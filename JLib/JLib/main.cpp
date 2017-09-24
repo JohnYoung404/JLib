@@ -6,24 +6,35 @@
 // Date : [9/24/2017]
 
 int main() {
-    float a[] = { 1.4f, 2.8f, 3.7f, 4.7f, 5.6f, 6.2f, 70.1f, 86.3f, 9.72f, 10.894452f, 11.11f, 12.9461f, 13.5f, 14.14f, 15.15f};
+    std::vector<float> a;
+    a.resize(100);
+    float b[100];
+    for (int i = 0; i < 100; ++i)
+    {
+        a[i] = (float)rand()/(i + 1);
+        b[i] = a[i];
+    }
     float result = 0;
     {
         JLOG();
         for (volatile int i = 0; i < 100000000; ++i)
         {
-            sumOfArray<15>(a);
+            sumOfArray<100>(a.begin());
         }
     }
+    std::cout << sumOfArray<100>(a.begin()) << std::endl;
     {
         JLOG();
         for (volatile int i = 0; i < 100000000; ++i)
         {
-            for (volatile int j = 0; j < 15; ++j)
+            result = 0;
+            for (volatile int j = 0; j < 100; ++j)
             {
-                result += a[j];
+                result = result + a[j];
             }
         }
     }
+    //std::cout << result << std::endl;
     getchar();
 }
+

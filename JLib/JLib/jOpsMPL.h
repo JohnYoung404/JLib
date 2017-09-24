@@ -1,3 +1,7 @@
+// Author : John Young
+// Contact : JohnYoung404@outlook.com
+// Date : [9/24/2017]
+// Description : simple operation template meta.
 #pragma once
 
 template <int X, int Y>

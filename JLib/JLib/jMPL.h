@@ -17,10 +17,8 @@ struct _sumOfArray {
     };
     typedef typename std::iterator_traits<It>::value_type value_type;
     inline static value_type result(It it) {
-        int k = loop_times;
-        int j = rest_elems_num;
-        int l = beg_pos;
         value_type v1 = 0, v2 = 0, v3 = 0, v4 = 0, v5 = 0;
+
         for (int i = 0; i < loop_times; ++i)
         {
             v1 += *(it + i * 4);

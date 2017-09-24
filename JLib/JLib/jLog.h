@@ -1,3 +1,7 @@
+// Author : John Young
+// Contact : JohnYoung404@outlook.com
+// Date : [9/24/2017]
+// Description : Log helper.
 #pragma once
 #include "jAnonymousVariable.h"
 #include <string>
