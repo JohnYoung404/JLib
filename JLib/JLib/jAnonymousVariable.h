@@ -2,6 +2,7 @@
 // Contact : JohnYoung404@outlook.com
 // Date : [9/24/2017]
 // Description : Anonymous Variable Name.
+
 #pragma once
 #include "jMPL.h"
 
