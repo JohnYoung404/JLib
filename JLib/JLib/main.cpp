@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include "jLib.h"
 
 // Author : John Young
@@ -28,7 +29,7 @@ int main() {
         for (volatile int i = 0; i < 100000000; ++i)
         {
             result = 0;
-            for (volatile int j = 0; j < 100; ++j)
+            for (int j = 0; j < 100; ++j)
             {
                 result = result + a[j];
             }
