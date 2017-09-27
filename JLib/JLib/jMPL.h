@@ -42,3 +42,8 @@ inline typename std::iterator_traits<It>::value_type
 sumOfArray(It it) {
     return _sumOfArray<Length, It>::result(it);
 }
+
+template <typename Type, size_t N>
+size_t ArraySize(const Type (&arr)[N]) {
+    return N;
+}
