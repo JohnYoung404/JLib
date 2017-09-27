@@ -7,22 +7,22 @@
 
 int main() {
 
-    jMat_4<double> j = {
-        1, 2 ,3, 4,
-        2, 2, 3, 4,
-        3, 2, 3, 4,
-        4, 2, 3, 4
-    };
-
-    jMat_4<double> k = {
-        1, 2, 3, 4,
-        1, 2, 3, 4,
-        1, 2, 3, 4,
-        1, 2, 3, 4
-    };
-
-    std::cout << jMat_4<double>::Zero() * j + k * jMat_4<double>::I();
-
-    getchar();
+    //jMat_4<double> j = {
+    //    1, 2 ,3, 4,
+    //    2, 2, 3, 4,
+    //    3, 2, 3, 4,
+    //    4, 2, 3, 4
+    //};
+    //
+    //jMat_4<double> k = {
+    //    1, 2, 3, 4,
+    //    1, 2, 3, 4,
+    //    1, 2, 3, 4,
+    //    1, 2, 3, 4
+    //};
+    //
+    //std::cout << jMat_4<double>::Zero() * j + k * jMat_4<double>::I();
+    //
+    //getchar();
 }
 
