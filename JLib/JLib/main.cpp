@@ -9,8 +9,8 @@
 int main() {
 
 	jVec_3<float> jv = { 0, 1, 0};
-	jVec_3<float> jv2 = { 0, 1, 1 };
-	std::cout << theta(jv, jv2);
+	jVec_3<float> jv2 = { 0, 1, 1};
+	std::cout << theta(jv, jv2) << jv[2];
     getchar();
 }
 

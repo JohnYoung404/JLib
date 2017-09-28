@@ -18,8 +18,14 @@ public:
 		}
 		return std::move(ret);
 	}
+	jVector_base<Degree, Type>() {
+		vec_ = new Type[Degree];
+		memset(vec_, 0, Degree * sizeof(Type));
+	}
 	jVector_base<Degree, Type>(const std::initializer_list<Type> &initList) {
+#ifdef _DEBUG
 		BOOST_ASSERT(initList.size() == Degree);
+#endif
 		vec_ = new Type[Degree];
 		int i = 0;
 		for (auto item : initList) {
@@ -91,6 +97,19 @@ public:
 		return std::move(ret);
 	}
 
+	const Type& operator[] (size_t index) const {
+#ifdef _DEBUG
+		BOOST_ASSERT(index < Degree);
+#endif
+		return this->vec_[index];
+	}
+	Type& operator[](size_t index) {
+#ifdef _DEBUG
+		BOOST_ASSERT(index < Degree);
+#endif
+		return this->vec_[index];
+	}
+
 	template<size_t Degree, typename Type>
 	friend const jVector_base<Degree, Type> doCross(const jVector_base<Degree, Type> &lhs, const jVector_base<Degree, Type> &rhs);
 
@@ -141,10 +160,6 @@ public:
 	};
 	
 private:
-	jVector_base<Degree, Type>() {
-		vec_ = new Type[Degree];
-		memset(vec_, 0, Degree * sizeof(Type));
-	}
 	Type * vec_;
 };
 
@@ -180,5 +195,5 @@ const float cosTheta(const jVector_base<Degree, Type> &lhs, const jVector_base<D
 
 template<size_t Degree, typename Type>
 const float theta(const jVector_base<Degree, Type> &lhs, const jVector_base<Degree, Type> &rhs) {
-	return acosf(cosTheta(lhs, rhs)) * 180 / PI;
+	return (float)acosf(cosTheta(lhs, rhs)) * 180 / PI;
 };

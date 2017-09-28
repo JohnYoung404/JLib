@@ -10,3 +10,4 @@
 #include "jTypeTrait.h"
 #include "jMath.h"
 #include "jVector.h"
+#include "jGraphicLib.h"
