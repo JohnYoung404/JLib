@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "jLib.h"
+#include "jScreenPoint.h"
 
 // Author : John Young
 // Contact : JohnYoung404@outlook.com
@@ -11,6 +12,7 @@ int main() {
 	jVec_3<float> jv = { 0, 1, 0};
 	jVec_3<float> jv2 = { 0, 1, 1};
 	std::cout << theta(jv, jv2) << jv[2];
+	jGraphic::jScreenPoint l;
     getchar();
 }
 

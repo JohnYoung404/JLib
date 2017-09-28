@@ -166,6 +166,9 @@ private:
 template<typename Type>
 using jVec_3 = jVector_base<3, Type>;
 
+template<typename Type>
+using jPoint2D = jVector_base<2, Type>;
+
 template<size_t Degree, typename Type>
 const jVector_base<Degree, Type>  doCross(const jVector_base<Degree, Type> &lhs, const jVector_base<Degree, Type> &rhs) {
 	BOOST_STATIC_ASSERT(Degree == 3);

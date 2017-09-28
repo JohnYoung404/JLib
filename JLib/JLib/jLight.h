@@ -39,9 +39,8 @@ namespace jGraphic {
 
 	class jPointLight : public jLight {
 	public:
-		jPointLight() {};
+		jPointLight() {}
 	private:
 		jVec_3<float> position_;
 	};
-
 }
