@@ -7,4 +7,7 @@
 #include "jMPL.h"
 #include "jLog.h"
 #include "jAnonymousVariable.h"
-#include "jMatrix.h"
+#include "jTypeTrait.h"
+#include "jMath.h"
+#include "jVector.h"
+#include "jGraphicLib.h"

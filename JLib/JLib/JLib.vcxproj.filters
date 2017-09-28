@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\jGraphicLib">
+      <UniqueIdentifier>{f803b1f7-aaf5-400e-aa62-3741fe00b6af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\jMediaLib">
+      <UniqueIdentifier>{582524b9-e8f8-4e1a-a726-4899a91d6205}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="JLib.h">
@@ -27,11 +33,35 @@
     <ClInclude Include="jAnonymousVariable.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="jOpsMPL.h">
+    <ClInclude Include="jTypeTrait.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jLight.h">
+      <Filter>头文件\jGraphicLib</Filter>
+    </ClInclude>
+    <ClInclude Include="jColor.h">
+      <Filter>头文件\jGraphicLib</Filter>
+    </ClInclude>
+    <ClInclude Include="jGraphicLib.h">
+      <Filter>头文件\jGraphicLib</Filter>
+    </ClInclude>
+    <ClInclude Include="jVector.h">
+      <Filter>头文件\jGraphicLib</Filter>
+    </ClInclude>
+    <ClInclude Include="jImage.h">
+      <Filter>头文件\jMediaLib</Filter>
+    </ClInclude>
+    <ClInclude Include="jCamera.h">
+      <Filter>头文件\jGraphicLib</Filter>
+    </ClInclude>
+    <ClInclude Include="jMath.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="jMatrix.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\jGraphicLib</Filter>
+    </ClInclude>
+    <ClInclude Include="jScreenPoint.h">
+      <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
