@@ -7,3 +7,4 @@
 #include "jMPL.h"
 #include "jLog.h"
 #include "jAnonymousVariable.h"
+#include "jTypeTrait.h"
