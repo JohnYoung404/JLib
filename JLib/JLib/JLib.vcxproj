@@ -125,8 +125,10 @@
     <ClInclude Include="jAnonymousVariable.h" />
     <ClInclude Include="JLib.h" />
     <ClInclude Include="jLog.h" />
+    <ClInclude Include="jMath.h" />
     <ClInclude Include="jMPL.h" />
     <ClInclude Include="jTypeTrait.h" />
+    <ClInclude Include="jVector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

@@ -8,3 +8,5 @@
 #include "jLog.h"
 #include "jAnonymousVariable.h"
 #include "jTypeTrait.h"
+#include "jMath.h"
+#include "jVector.h"

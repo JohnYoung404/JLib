@@ -30,6 +30,12 @@
     <ClInclude Include="jTypeTrait.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="jVector.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jMath.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
