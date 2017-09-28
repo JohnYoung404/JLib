@@ -98,6 +98,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Programming\boost_1_65_1\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -112,6 +113,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Programming\boost_1_65_1\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -123,7 +125,9 @@
     <ClInclude Include="jAnonymousVariable.h" />
     <ClInclude Include="JLib.h" />
     <ClInclude Include="jLog.h" />
+    <ClInclude Include="jMatrix.h" />
     <ClInclude Include="jMPL.h" />
+    <ClInclude Include="jOpsMPL.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

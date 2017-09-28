@@ -27,6 +27,12 @@
     <ClInclude Include="jAnonymousVariable.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="jOpsMPL.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jMatrix.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
