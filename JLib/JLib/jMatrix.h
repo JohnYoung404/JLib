@@ -6,10 +6,17 @@
 #include <initializer_list>
 #include <boost/static_assert.hpp>
 #include "jOpsMPL.h"
-#include <bitset>
+#include "jMPL.h"
+#include "boost/assert.hpp"
 
 namespace jGraphic {
 
+	//////////////////////////////////////////////////////////////////////////
+	// The index of a 3-degree matrix:
+	//[ 00 01 02 ]
+	//[ 10 11 12 ]
+	//[ 20 21 22 ]
+	//////////////////////////////////////////////////////////////////////////
 	template <size_t Degree, typename Type>
 	class jMat_base {
 	public:
@@ -76,11 +83,26 @@ namespace jGraphic {
 		friend const jMat_base<Degree, Type> operator* (const jMat_base<Degree, Type> &lhs, const jMat_base<Degree, Type> &rhs);
 
 		inline Type& RefOfPos(int i, int j) {
+#ifdef _DEBUG
+			BOOST_ASSERT(i < Degree && i >= 0 && j < Degree && j >= 0);
+#endif
 			return mat_[i * Degree + j];
 		}
 		inline const Type& RefOfPos(int i, int j) const {
+#ifdef _DEBUG
+			BOOST_ASSERT(i < Degree && i >= 0 && j < Degree && j >= 0);
+#endif
 			return mat_[i * Degree + j];
 		}
+
+		template<size_t Degree, typename Type>
+		friend const jMat_base<Degree, Type> inverse(const jMat_base<Degree, Type> &rhs);
+
+		template<size_t Degree, typename Type>
+		friend const Type determinant(const jMat_base<Degree, Type> &rhs);
+
+		template<size_t Degree, typename Type>
+		friend const jMat_base<Degree, Type> adjoint(const jMat_base<Degree, Type> &rhs);
 
 		friend std::ostream& operator<< (std::ostream& os, const jMat_base<Degree, Type> &outMat) {
 			for (int i = 0; i < Degree; ++i)
@@ -100,11 +122,6 @@ namespace jGraphic {
 		}
 		Type* mat_;
 	};
-
-	////////////////////////////////////////////////////////////////////////// Declaration of jMat_4
-	template<typename Type>
-	using jMat_4 = jMat_base<4, Type>;
-
 
 	////////////////////////////////////////////////////////////////////////// Implementation of operations
 	template <size_t Degree, typename Type>
@@ -137,4 +154,46 @@ namespace jGraphic {
 		}
 		return std::move(ret);
 	}
+
+	template<size_t Degree, typename Type>
+	const Type determinant(const jMat_base<Degree, Type> &rhs) {
+		return determinantOfMatrix<Degree, Type>::invoke(rhs);
+	}
+
+	template<size_t Degree, typename Type>
+	const jMat_base<Degree, Type> adjoint(const jMat_base<Degree, Type> &rhs) {
+		auto ret = jMat_base<Degree, Type>::Zero();
+		for (int i = 0; i < Degree; ++i)
+		{
+			for (int j = 0; j < Degree; ++j) 
+			{
+				auto tmp = jMat_base<Degree - 1, Type>::Zero();
+				for (int m = 0; m < Degree - 1; ++m) {
+					for (int n = 0; n < Degree - 1; ++n) {
+						tmp.RefOfPos(m, n) = rhs.RefOfPos((m < i ? m : m + 1), (n < j ? n : n + 1));
+					}
+				}
+				ret.RefOfPos(j, i) = ((i + j) % 2 == 0 ? 1 : -1) * determinant(tmp);
+			}
+		}
+		return std::move(ret);
+	}
+
+	template<size_t Degree, typename Type>
+	const jMat_base<Degree, Type> inverse(const jMat_base<Degree, Type> &rhs) {
+		Type det = determinant(rhs);
+		auto ret = adjoint(rhs);
+		for (int i = 0 ; i < Degree; ++i)
+		{
+			for (int j = 0; j < Degree; ++j)
+			{
+				ret.RefOfPos(i, j) = ret.RefOfPos(i, j) / det;
+			}
+		}
+		return std::move(ret);
+	}
+
+	////////////////////////////////////////////////////////////////////////// Declaration of jMat_4
+	template<typename Type>
+	using jMat_4 = jMat_base<4, Type>;
 }

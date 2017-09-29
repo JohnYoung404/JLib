@@ -18,6 +18,7 @@ public:
 		}
 		return std::move(ret);
 	}
+
 	jVector_base<Degree, Type>() {
 		vec_ = new Type[Degree];
 		memset(vec_, 0, Degree * sizeof(Type));

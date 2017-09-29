@@ -2,6 +2,7 @@
 #include <vector>
 #include "jLib.h"
 #include "jScreenPoint.h"
+#include "jMatrix.h"
 
 // Author : John Young
 // Contact : JohnYoung404@outlook.com
@@ -9,14 +10,16 @@
 
 int main() {
 	{
-		jGraphic::jMat_4<float> jm = {
-			1, 2,  3 , 4,
-			5, 6, 7, 8,
-			9, 10, 11, 12,
-			13, 14, 15, 16
+		using namespace jGraphic;
+		jMat_base<7, float> jm = jMat_base<7, float>::Identity();
+		jMat_base<5, float> t = {
+			1, 2, 3, 4, 4,
+			1, 1, 0, 2, 3,
+			3, 0, 9, 6, 1,
+			1, 2, 3, 7, 4,
+			2, 3, 4, 5, 5
 		};
-		std::cout << jGraphic::jMat_4<float>::Identity() * jGraphic::jMat_4<float>::Identity();
+		std::cout <<  inverse(t) * t;
 	}
     getchar();
 }
-
