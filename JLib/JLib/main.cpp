@@ -8,11 +8,15 @@
 // Date : [9/24/2017]
 
 int main() {
-
-	jVec_3<float> jv = { 0, 1, 0};
-	jVec_3<float> jv2 = { 0, 1, 1};
-	std::cout << theta(jv, jv2) << jv[2];
-	jGraphic::jScreenPoint l;
+	{
+		jGraphic::jMat_4<float> jm = {
+			1, 2,  3 , 4,
+			5, 6, 7, 8,
+			9, 10, 11, 12,
+			13, 14, 15, 16
+		};
+		std::cout << jGraphic::jMat_4<float>::Identity() * jGraphic::jMat_4<float>::Identity();
+	}
     getchar();
 }
 
