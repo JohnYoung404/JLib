@@ -10,15 +10,16 @@
 int main() {
 	{
 		using namespace jGraphic;
-		jMat_base<7, float> jm = jMat_base<7, float>::Identity();
-		jMat_base<5, float> t = {
-			1, 2, 3, 4, 4,
-			1, 1, 0, 2, 3,
-			3, 0, 9, 6, 1,
-			1, 2, 3, 7, 4,
-			2, 3, 4, 5, 5
+		jMat_base<4, float> a = jMat_base<4, float>::Zero();
+		jMat_4<float> t = {
+			1, 2, 3, 4,
+			1, 1, 0, 2,
+			3, 0, 9, 6,
+			1, 2, 3, 7
 		};
-		std::cout << inverse(t) * t;
+		std::cout << inverse(t) * a;
+		jCamera c;
+		std::cout << c.EyePos() << c.FowardVec();
 	}
 	JCheckMemory();
     getchar();

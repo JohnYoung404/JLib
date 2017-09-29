@@ -8,6 +8,7 @@
 #include "jOpsMPL.h"
 #include "jMPL.h"
 #include "boost/assert.hpp"
+#include "jVector.h"
 
 namespace jGraphic {
 
@@ -35,6 +36,10 @@ namespace jGraphic {
 			return std::move(ret);
 		}
 
+		jMat_base<Degree, Type>() {
+			mat_ = new Type[size];
+			memset(mat_, 0, size * sizeof(Type));
+		}
 		jMat_base<Degree, Type>(const std::initializer_list<Type> &initList) {
 			BOOST_ASSERT(initList.size() == size);
 			mat_ = new Type[size];
@@ -81,6 +86,8 @@ namespace jGraphic {
 		friend const jMat_base<Degree, Type> operator- (const jMat_base<Degree, Type> &lhs, const jMat_base<Degree, Type> &rhs);
 		template<size_t Degree, typename Type>
 		friend const jMat_base<Degree, Type> operator* (const jMat_base<Degree, Type> &lhs, const jMat_base<Degree, Type> &rhs);
+		template<size_t Degree, typename Type>
+		friend const jVector_base<Degree, Type> operator* (const jMat_base<Degree, Type> &lmat, const jVector_base<Degree, Type> &rvec);
 
 		inline Type& RefOfPos(int i, int j) {
 #ifdef _DEBUG
@@ -116,10 +123,6 @@ namespace jGraphic {
 			return os;
 		}
 	private:
-		jMat_base<Degree, Type>() {
-			mat_ = new Type[size];
-			memset(mat_, 0, size * sizeof(Type));
-		}
 		Type* mat_;
 	};
 
@@ -188,6 +191,19 @@ namespace jGraphic {
 			for (int j = 0; j < Degree; ++j)
 			{
 				ret.RefOfPos(i, j) = ret.RefOfPos(i, j) / det;
+			}
+		}
+		return std::move(ret);
+	}
+
+	template<size_t Degree, typename Type>
+	const jVector_base<Degree, Type> operator* (const jMat_base<Degree, Type> &lmat, const jVector_base<Degree, Type> &rvec) {
+		auto ret = std::move(jVector_base<Degree, Type>::Zero());
+		for (int i = 0 ; i < Degree; ++i)
+		{
+			for (int j = 0; j < Degree; ++j)
+			{
+				ret[i] += lmat.RefOfPos(i, j) * rvec[j];
 			}
 		}
 		return std::move(ret);
