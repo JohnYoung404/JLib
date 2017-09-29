@@ -125,6 +125,7 @@
     <ClInclude Include="jAnonymousVariable.h" />
     <ClInclude Include="jCamera.h" />
     <ClInclude Include="jColor.h" />
+    <ClInclude Include="jDebug.h" />
     <ClInclude Include="jGraphicLib.h" />
     <ClInclude Include="jImage.h" />
     <ClInclude Include="JLib.h" />

@@ -2,7 +2,6 @@
 #include <vector>
 #include "jLib.h"
 #include "jScreenPoint.h"
-#include "jMatrix.h"
 
 // Author : John Young
 // Contact : JohnYoung404@outlook.com
@@ -19,7 +18,8 @@ int main() {
 			1, 2, 3, 7, 4,
 			2, 3, 4, 5, 5
 		};
-		std::cout <<  inverse(t) * t;
+		std::cout << inverse(t) * t;
 	}
+	JCheckMemory();
     getchar();
 }

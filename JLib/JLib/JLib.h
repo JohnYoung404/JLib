@@ -11,3 +11,4 @@
 #include "jMath.h"
 #include "jVector.h"
 #include "jGraphicLib.h"
+#include "jDebug.h"
