@@ -9,7 +9,7 @@ namespace jGraphic {
 	class jCamera {
 	public:
 		jCamera() {
-			setCameraView(jPoint3D{ 0, 0, 0 }, jPoint3D{ 0, 0, 1 }, jPoint3D{0, 1, 0});
+			setCameraView(jPoint3D{ 0, 1, 2 }, jPoint3D{ 0, 0, 1 }, jPoint3D{0, 1, 0});
 			setCameraProj(PI / 4, 1, 1, 1000);
 		}
 		void setCameraView(jPoint3D eye_pos, jPoint3D look_at, jPoint3D up_vec = jPoint3D{ 0.0f, 1.0f, 0.0f }){

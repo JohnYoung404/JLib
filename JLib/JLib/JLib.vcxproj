@@ -123,6 +123,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="jAnonymousVariable.h" />
+    <ClInclude Include="jBitMap.h" />
     <ClInclude Include="jCamera.h" />
     <ClInclude Include="jColor.h" />
     <ClInclude Include="jDebug.h" />
