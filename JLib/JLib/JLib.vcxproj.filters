@@ -69,6 +69,9 @@
     <ClInclude Include="jMatrixCvt.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
+    <ClInclude Include="jBitMap.h">
+      <Filter>头文件\jMediaLib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
