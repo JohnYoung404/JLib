@@ -9,12 +9,13 @@
 #include <fstream>
 #include <cstdio>
 #include <iosfwd>
+#include "boost/assert.hpp"
 
-//BMP structure infomation : http://www.cnblogs.com/xiekeli/archive/2012/05/09/2491191.html
+//BMP structure information : http://www.cnblogs.com/xiekeli/archive/2012/05/09/2491191.html
 
 namespace jGraphic {
 
-#pragma pack(1) // For MSVC,disable struct Pack,or short will take 32bit mem as int32_t
+#pragma pack(1) // For MSVC,disable struct Pack,or short will take 32 bits memory as int32_t
 	namespace jBitMapStruct {
 
 		struct jBitMapFileHeader
@@ -59,6 +60,8 @@ namespace jGraphic {
 
 		bool LoadImage(const char* filePath);
 		bool SaveImage(const char* filePath);
+        void CreateEmpty(int width, int height);
+        void ClearImage();
 
 		bool Clear() {
 			fileHeaderPtr_.reset();
@@ -86,6 +89,9 @@ namespace jGraphic {
 			return 0;
 		}
 		inline uint8_t& RefOfPos(int horiIndex, int vertIndex, int channel) {
+#ifdef _DEBUG
+            BOOST_ASSERT(horiIndex < Width() && horiIndex >= 0 && vertIndex >= 0 && vertIndex < Height());
+#endif
 			return imgData[vertIndex * infoHeaderPtr_->biWidth * Channel() + horiIndex * Channel() + channel];
 		}
 
@@ -106,13 +112,13 @@ namespace jGraphic {
 			return false;
 		}
 
-		fileHeaderPtr_ = std::make_shared<jBitMapStruct::jBitMapFileHeader>(jBitMapStruct::jBitMapFileHeader());
-		infoHeaderPtr_ = std::make_shared<jBitMapStruct::jBitMapInfoHeader>(jBitMapStruct::jBitMapInfoHeader());
-		rgbMapPtr_ = std::make_shared<jBitMapStruct::jRGBMap>(jBitMapStruct::jRGBMap());
+		fileHeaderPtr_ = std::make_shared<jBitMapStruct::jBitMapFileHeader>();
+		infoHeaderPtr_ = std::make_shared<jBitMapStruct::jBitMapInfoHeader>();
+		rgbMapPtr_ = std::make_shared<jBitMapStruct::jRGBMap>();
 
 		ifs.read((char*)fileHeaderPtr_.get(), sizeof(jBitMapStruct::jBitMapFileHeader));
 
-		if (fileHeaderPtr_->bfType == 0x4D42) {
+		if (fileHeaderPtr_->bfType == 0x4D42) {     //0x4D42 is ascii code for "BM".
 			int channels = 0;
 			ifs.read((char*)infoHeaderPtr_.get(), sizeof(jBitMapStruct::jBitMapInfoHeader));
 			if (infoHeaderPtr_->biBitCount == 8)
@@ -154,6 +160,9 @@ namespace jGraphic {
 	}
 
 	bool jBitMap::SaveImage(const char* filePath) {
+        if (!imgLoaded_) {
+            return false;
+        }
 		std::ofstream ofs;
 		ofs.open(filePath, std::ios::out | std::ios::binary);
 		if (!ofs) {
@@ -203,6 +212,39 @@ namespace jGraphic {
 		ofs.close();
 		return true;
 	}
+
+    void jBitMap::CreateEmpty(int width, int height) {
+        ClearImage();
+        fileHeaderPtr_ = std::make_shared<jBitMapStruct::jBitMapFileHeader>();
+        infoHeaderPtr_ = std::make_shared<jBitMapStruct::jBitMapInfoHeader>();
+        fileHeaderPtr_->bfType = 0x4D42;
+        fileHeaderPtr_->bfReserved1 = fileHeaderPtr_->bfReserved2 = 0;
+        fileHeaderPtr_->bfOffBits = 54;
+        fileHeaderPtr_->bfSize = 54 + 4 * width * height;
+
+        infoHeaderPtr_->biSize = 40;
+        infoHeaderPtr_->biBitCount = 32;
+        infoHeaderPtr_->biWidth = width;
+        infoHeaderPtr_->biHeight = height;
+        infoHeaderPtr_->biPlanes = 1;
+        infoHeaderPtr_->biClrImportant = 0;
+        infoHeaderPtr_->biClrUsed = 0;
+        infoHeaderPtr_->biCompression = 0;
+        infoHeaderPtr_->biXPelsPerMeter = 88;
+        infoHeaderPtr_->biYPelsPerMeter = 90;
+        infoHeaderPtr_->biSizeImage = (width * 32 + 31) / 32 * 4 * height;
+
+        imgData.resize(4 * width * height);
+        imgLoaded_ = true;
+    }
+
+    void jBitMap::ClearImage() {
+        fileHeaderPtr_.reset();
+        infoHeaderPtr_.reset();
+        rgbMapPtr_.reset();
+        imgData.clear();
+        imgLoaded_ = false;
+    }
 
 }
 

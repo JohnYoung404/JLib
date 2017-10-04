@@ -26,6 +26,11 @@ namespace jGraphic {
 			return jColor(255, 0, 255, 255);
 		}
 
+        inline uint8_t A() { return a_; }
+        inline uint8_t R() { return r_; }
+        inline uint8_t G() { return g_; }
+        inline uint8_t B() { return b_; }
+
 		friend bool operator==(jColor lhs, jColor rhs);
 
 		friend jColor ColorLerp(jColor from, jColor to, float interpolator);

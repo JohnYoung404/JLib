@@ -7,6 +7,7 @@ namespace jGraphic {
 
 	private:
 		jColor pointcolor_;
-		jPoint2D<int> scrpoint_;
+		jPoint2D<int> point_;
+        float depth_;
 	};
 }
