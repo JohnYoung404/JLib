@@ -75,10 +75,13 @@
     <ClInclude Include="jPlane.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
-    <ClInclude Include="jLine.h">
+    <ClInclude Include="jCircle.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
-    <ClInclude Include="jConvas.h">
+    <ClInclude Include="jCanvas.h">
+      <Filter>头文件\jGraphicLib</Filter>
+    </ClInclude>
+    <ClInclude Include="jLine2D.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
   </ItemGroup>

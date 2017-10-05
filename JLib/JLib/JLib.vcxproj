@@ -125,14 +125,15 @@
     <ClInclude Include="jAnonymousVariable.h" />
     <ClInclude Include="jBitMap.h" />
     <ClInclude Include="jCamera.h" />
+    <ClInclude Include="jCircle.h" />
     <ClInclude Include="jColor.h" />
-    <ClInclude Include="jConvas.h" />
+    <ClInclude Include="jCanvas.h" />
     <ClInclude Include="jDebug.h" />
     <ClInclude Include="jGraphicLib.h" />
     <ClInclude Include="jImage.h" />
     <ClInclude Include="JLib.h" />
     <ClInclude Include="jLight.h" />
-    <ClInclude Include="jLine.h" />
+    <ClInclude Include="jLine2D.h" />
     <ClInclude Include="jLog.h" />
     <ClInclude Include="jMath.h" />
     <ClInclude Include="jMatrix.h" />

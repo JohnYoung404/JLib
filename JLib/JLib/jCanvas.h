@@ -4,26 +4,36 @@
 
 namespace jGraphic {
 
-    class jIConvas {
+    class jICanvas {
     public:
+
+        virtual void setPixel(int x, int y, jColor color) {
+            if (x >= horiBound() || x < 0 || y >= vertBound() || y < 0)  return;
+            this->getPosRef(x, y, 0) = color.B();
+            this->getPosRef(x, y, 1) = color.G();
+            this->getPosRef(x, y, 2) = color.R();
+            this->getPosRef(x, y, 3) = color.A();
+        };
+
         virtual uint8_t& getPosRef(int hori, int vert, int cannel) = 0;
-        virtual void setPixel(int x, int y, jColor color) = 0;
-        virtual ~jIConvas() {};
+        virtual int horiBound() = 0;
+        virtual int vertBound() = 0;
+        virtual ~jICanvas() {};
     };
 
-    class jBitMapConvas : public jIConvas {
+    class jBitMapCanvas : public jICanvas {
     public:
-        jBitMapConvas(jBitMap &bitmap) {
+        jBitMapCanvas(jBitMap &bitmap) {
             bitmapPtr_ = &bitmap;
         }
         uint8_t& getPosRef(int hori, int vert, int cannel) override {
             return bitmapPtr_->RefOfPos(hori, vert, cannel);
         }
-        void setPixel(int x, int y, jColor color) override {
-            this->getPosRef(x, y, 0) = color.B();
-            this->getPosRef(x, y, 1) = color.G();
-            this->getPosRef(x, y, 2) = color.R();
-            this->getPosRef(x, y, 3) = color.A();
+        int horiBound() override {
+            return bitmapPtr_->Width();
+        }
+        int vertBound() override {
+            return bitmapPtr_->Height();
         }
     private:
         jBitMap* bitmapPtr_;
@@ -32,7 +42,7 @@ namespace jGraphic {
     class jCanvas {
     public:
         jCanvas(jBitMap & bitmap) {
-            canvasPtr_ = std::make_shared<jBitMapConvas>(bitmap);
+            canvasPtr_ = std::make_shared<jBitMapCanvas>(bitmap);
         }
         uint8_t& getPosRef(int hori, int vert, int cannel) {
             if (canvasPtr_ != nullptr) {
@@ -43,9 +53,9 @@ namespace jGraphic {
             canvasPtr_->setPixel(x, y, color);
         }
     private:
-        std::shared_ptr<jIConvas> canvasPtr_;
+        std::shared_ptr<jICanvas> canvasPtr_;
     };
 
-    
+
 
 }

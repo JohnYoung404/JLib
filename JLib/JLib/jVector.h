@@ -167,8 +167,7 @@ private:
 template<typename Type>
 using jVec_3 = jVector_base<3, Type>;
 
-template<typename Type>
-using jPoint2D = jVector_base<2, Type>;
+using jPoint2D = jVector_base<2, float>;
 
 using jPoint3D = jVector_base<3, float>;
 

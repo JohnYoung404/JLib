@@ -234,7 +234,7 @@ namespace jGraphic {
         infoHeaderPtr_->biYPelsPerMeter = 90;
         infoHeaderPtr_->biSizeImage = (width * 32 + 31) / 32 * 4 * height;
 
-        imgData.resize(4 * width * height);
+        imgData.resize(4 * width * height, 255);
         imgLoaded_ = true;
     }
 

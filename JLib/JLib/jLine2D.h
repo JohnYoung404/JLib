@@ -1,18 +1,18 @@
 #pragma once
 #include "jVector.h"
 #include "jColor.h"
-#include "jConvas.h"
+#include "jCanvas.h"
 
 namespace jGraphic {
 
     class jIDrawLineAlgorithm {
     public:
-        virtual void drawLine(jCanvas &canvas, jPoint3D p0_, jPoint3D p1_, jColor color) = 0;
+        virtual void drawLine(jCanvas &canvas, const jPoint2D &p0_, const jPoint2D &p1_, jColor color) = 0;
         virtual ~jIDrawLineAlgorithm() {}
     };
 
     class jDDALine : public jIDrawLineAlgorithm {
-        void drawLine(jCanvas &canvas, jPoint3D p0_, jPoint3D p1_, jColor color) override final {
+        void drawLine(jCanvas &canvas, const jPoint2D &p0_, const jPoint2D &p1_, jColor color) override final {
             int dx = p1_[0] - p0_[0];
             int dy = p1_[1] - p0_[1];
             int steps, k;
@@ -33,12 +33,11 @@ namespace jGraphic {
                 canvas.setPixel(round(x), round(y), color);
             }
         };
-
     };
 
-    class jLine{
+    class jLine2D{
     public:
-        jLine(const jPoint3D p0, const jPoint3D p1, jColor color) 
+        jLine2D(const jPoint2D p0, const jPoint2D p1, jColor color) 
             : p0_(p0), p1_(p1), color_(color)
         {
             drawLineAlgoPtr_ = std::make_shared<jDDALine>();
@@ -47,7 +46,7 @@ namespace jGraphic {
             drawLineAlgoPtr_->drawLine(canvas, p0_, p1_, color_);
         };
     private:
-        jPoint3D p0_, p1_;
+        jPoint2D p0_, p1_;
         jColor color_;
         std::shared_ptr<jIDrawLineAlgorithm> drawLineAlgoPtr_;
     };    
