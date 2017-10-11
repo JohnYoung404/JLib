@@ -5,6 +5,9 @@
 #include "jImage.h"
 #include "jLine2D.h"
 #include "jCircle.h"
+#include "jMath.h"
+#include "jIntString.h"
+#include "jBitInt.h"
 
 // Author : John Young
 // Contact : JohnYoung404@outlook.com
@@ -23,21 +26,41 @@ int main() {
 		//std::cout << inverse(t) * a;
 		//jCamera c;
 		//std::cout << c.EyePos() << c.FowardVec();
-		jBitMap m;
-        m.CreateEmpty(600, 600);
-        jCanvas theCanvas = jCanvas(m);
-        jLine2D theLine  = jLine2D(jPoint2D{ 0.0f, 0.0f},    jPoint2D{450.0f, 450.0f}, jColor::Black());
-        jLine2D theLine2 = jLine2D(jPoint2D{ 0.0f, 450.0f }, jPoint2D{ 450.0f, 0.0f }, jColor::Red());
-        jLine2D theLine3 = jLine2D(jPoint2D{ 0.0f, 200.0f }, jPoint2D{ 450.0f, 0.0f }, jColor::Blue());
-        jLine2D theLine4 = jLine2D(jPoint2D{ 0.0f, 450.0f }, jPoint2D{ 200.0f, 0.0f }, jColor::Green());
-        jCircle theCircle = jCircle(jPoint2D{200, 200}, jColor::Red(), 150);
-        theLine.drawOn(theCanvas);
-        theLine2.drawOn(theCanvas);
-        theLine4.drawOn(theCanvas);
-        theLine3.drawOn(theCanvas);
-        theCircle.drawOn(theCanvas);
-		m.SaveImage("C:\\Users\\Administrator\\Desktop\\test\\test.bmp");
-        std::cout << "done";
+		//jBitMap m;
+        //m.CreateEmpty(1920, 1080);
+		//
+		//for (int i = 0; i < 1920; ++i)
+		//{
+		//	for (int j = 0; j < 1080; ++j) {
+		//		float hori_off = (float)i / 1920;
+		//		float vert_off = (float)j / 1080;
+		//		float val = jPerlinNoise::stb_perlin_ridge_noise3(hori_off, vert_off, 0.619f, 2.0f, 0.92f, 0.874f, 6, 0, 0, 0);
+		//		m.RefOfPos(i, j, 0) = 255;
+		//		m.RefOfPos(i, j, 1) = 255 * val < 255 ? 255* val : 255;
+		//		m.RefOfPos(i, j, 2) = 255 * val < 255 ? 255* val : 255;
+		//		m.RefOfPos(i, j, 3) = 255;
+		//	}
+		//}
+		//
+        //jCanvas theCanvas = jCanvas(m);
+        //jLine2D theLine  = jLine2D(jPoint2D{ 0.0f, 0.0f},    jPoint2D{450.0f, 450.0f}, jColor::Black());
+        //jLine2D theLine2 = jLine2D(jPoint2D{ 0.0f, 450.0f }, jPoint2D{ 450.0f, 0.0f }, jColor::Red());
+        //jLine2D theLine3 = jLine2D(jPoint2D{ 0.0f, 200.0f }, jPoint2D{ 450.0f, 0.0f }, jColor::Blue());
+        //jLine2D theLine4 = jLine2D(jPoint2D{ 0.0f, 450.0f }, jPoint2D{ 200.0f, 0.0f }, jColor::Green());
+        //jCircle theCircle = jCircle(jPoint2D{200, 200}, jColor::Red(), 150);
+        //theLine.drawOn(theCanvas);
+        //theLine2.drawOn(theCanvas);
+        //theLine4.drawOn(theCanvas);
+        //theLine3.drawOn(theCanvas);
+        //theCircle.drawOn(theCanvas);
+		//m.SaveImage("C:\\Users\\Administrator\\Desktop\\test\\test.bmp");
+        //std::cout << "done";
+		//std::string s;
+
+		jLib::jIntString jis("1011110100", 10);
+		jLib::jBigInt k = "464132132164163132135464121";
+		std::cout << (k / 65);
+		int c;
 	}
 	JCheckMemory();
     getchar();

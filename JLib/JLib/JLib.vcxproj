@@ -123,6 +123,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="jAnonymousVariable.h" />
+    <ClInclude Include="jBitInt.h" />
     <ClInclude Include="jBitMap.h" />
     <ClInclude Include="jCamera.h" />
     <ClInclude Include="jCircle.h" />
@@ -139,6 +140,7 @@
     <ClInclude Include="jMatrix.h" />
     <ClInclude Include="jMatrixCvt.h" />
     <ClInclude Include="jMPL.h" />
+    <ClInclude Include="jIntString.h" />
     <ClInclude Include="jPlane.h" />
     <ClInclude Include="jScreenPoint.h" />
     <ClInclude Include="jTypeTrait.h" />

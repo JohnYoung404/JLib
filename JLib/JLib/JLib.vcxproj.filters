@@ -84,6 +84,12 @@
     <ClInclude Include="jLine2D.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
+    <ClInclude Include="jBitInt.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jIntString.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
