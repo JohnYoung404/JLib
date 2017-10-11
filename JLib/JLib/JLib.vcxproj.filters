@@ -90,6 +90,12 @@
     <ClInclude Include="jIntString.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="jHeap.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jSort.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

@@ -8,6 +8,8 @@
 #include "jMath.h"
 #include "jIntString.h"
 #include "jBitInt.h"
+#include "jHeap.h"
+#include "jSort.h"
 
 // Author : John Young
 // Contact : JohnYoung404@outlook.com
@@ -59,8 +61,12 @@ int main() {
 
 		jLib::jIntString jis("1011110100", 10);
 		jLib::jBigInt k = "464132132164163132135464121";
-		std::cout << (k / 65);
+		jLib::jBigInt T = "1313463131536461";
+		std::cout << (k / T);
 		int c;
+		int arr[] = { 1, 2, 3, 4 , 2, 3, 4 , 6, 7, 8};
+		jLib::putMaxKValueInFront(arr, 5);
+		jLib::jSort::countingsort(arr);
 	}
 	JCheckMemory();
     getchar();
