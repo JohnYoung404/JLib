@@ -123,6 +123,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="jAnonymousVariable.h" />
+    <ClInclude Include="jAVLTree.h" />
     <ClInclude Include="jBitInt.h" />
     <ClInclude Include="jBitMap.h" />
     <ClInclude Include="jCamera.h" />
@@ -130,7 +131,9 @@
     <ClInclude Include="jColor.h" />
     <ClInclude Include="jCanvas.h" />
     <ClInclude Include="jDebug.h" />
+    <ClInclude Include="jGraph.h" />
     <ClInclude Include="jGraphicLib.h" />
+    <ClInclude Include="jHash.h" />
     <ClInclude Include="jHeap.h" />
     <ClInclude Include="jImage.h" />
     <ClInclude Include="JLib.h" />
@@ -142,9 +145,13 @@
     <ClInclude Include="jMatrixCvt.h" />
     <ClInclude Include="jMPL.h" />
     <ClInclude Include="jIntString.h" />
+    <ClInclude Include="jOverflowCheck.h" />
     <ClInclude Include="jPlane.h" />
+    <ClInclude Include="jRandom.h" />
     <ClInclude Include="jScreenPoint.h" />
     <ClInclude Include="jSort.h" />
+    <ClInclude Include="jString.h" />
+    <ClInclude Include="jSudoku.h" />
     <ClInclude Include="jTypeTrait.h" />
     <ClInclude Include="jVector.h" />
   </ItemGroup>

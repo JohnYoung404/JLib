@@ -10,6 +10,10 @@
 #include "jBitInt.h"
 #include "jHeap.h"
 #include "jSort.h"
+#include "jSudoku.h"
+#include "jHash.h"
+#include "jAVLTree.h"
+#include "jGraph.h"
 
 // Author : John Young
 // Contact : JohnYoung404@outlook.com
@@ -59,14 +63,19 @@ int main() {
         //std::cout << "done";
 		//std::string s;
 
-		jLib::jIntString jis("1011110100", 10);
-		jLib::jBigInt k = "464132132164163132135464121";
-		jLib::jBigInt T = "1313463131536461";
-		std::cout << (k / T);
-		int c;
-		int arr[] = { 1, 2, 3, 4 , 2, 3, 4 , 6, 7, 8};
-		jLib::putMaxKValueInFront(arr, 5);
-		jLib::jSort::countingsort(arr);
+		//jLib::jIntString jis("1011110100", 10);
+		//jLib::jBigInt k = "464132132164163132135464121";
+		//jLib::jBigInt T = "1313463131536461";
+		//std::cout << (k / T);
+		//int arr[] = { 1, 2, 3, 4 , 2, 3, 4 , 6, 7, 8};
+		//jLib::putMaxKValueInFront(arr, 5);
+		//jLib::jSort::countingsort(arr);
+		//jLib::jSudoku sdk;
+		//jLib::jAvlTree<int> jat;
+		//jat.insert(3);
+		//std::cout << jat.find(3)->key;
+		//jGraphLib::jGraph jg;
+		//jg.addLink(1, 3, 0.5);
 	}
 	JCheckMemory();
     getchar();

@@ -96,6 +96,27 @@
     <ClInclude Include="jSort.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="jSudoku.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jHash.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jAVLTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jGraph.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jRandom.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jOverflowCheck.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jString.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

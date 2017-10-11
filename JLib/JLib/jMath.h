@@ -3,6 +3,16 @@
 #include <cfloat>
 
 #define PI 3.14159265359
+#define GOLDEN_DIVNUM_OF_32_BIT 2654435769
+#define POS_INFINITY DBL_MAX
+#define NEG_INFINITY (-POS_INFINITY)
+#define NEG_ZERO (-1.0/POS_INFINITY)
+
+#define MAX(a,b) ((a)>(b)?a:b)
+#define MIN(a,b) ((a)<(b)?a:b)
+
+#define  max(a, b) MAX(a, b)
+#define  min(a, b) MIN(a, b)
 
 inline bool AlmostEqual(float lhs, float rhs) {
 	if (lhs == 0)
@@ -14,6 +24,19 @@ inline bool AlmostEqual(float lhs, float rhs) {
 	}
 }
 
+inline bool isPrimeNumber(unsigned int num) {
+	unsigned int k = static_cast<unsigned int>(sqrt(num));
+	unsigned int m;
+	for (m = 2; m <= k; ++m)
+		if (num % m == 0) break;
+	if (m > k) {
+		return true;
+	}
+	else {
+		return false;
+	}
+	return false;
+}
 
 //reference: https://github.com/nothings/stb/blob/master/stb_perlin.h
 namespace {
