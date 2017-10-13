@@ -122,6 +122,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="jRange.h" />
+    <ClInclude Include="jStringUtil.h" />
     <ClInclude Include="jAnonymousVariable.h" />
     <ClInclude Include="jAVLTree.h" />
     <ClInclude Include="jBitInt.h" />

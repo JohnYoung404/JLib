@@ -14,6 +14,7 @@
 #include "jHash.h"
 #include "jAVLTree.h"
 #include "jGraph.h"
+#include "jStringUtil.h"
 
 // Author : John Young
 // Contact : JohnYoung404@outlook.com
@@ -76,6 +77,9 @@ int main() {
 		//std::cout << jat.find(3)->key;
 		//jGraphLib::jGraph jg;
 		//jg.addLink(1, 3, 0.5);
+
+		std::string s = "Hello, world.";
+		std::cout << jLib::jStringUtil::replace(s, "l", "lll");
 	}
 	JCheckMemory();
     getchar();
