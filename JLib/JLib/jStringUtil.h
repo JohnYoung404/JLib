@@ -3,7 +3,9 @@
 #include <string>
 #include <vector>
 #include <cctype>
+#include <algorithm>
 #include "jRange.h"
+#include <filesystem>
 
 namespace jLib {
 
@@ -18,6 +20,10 @@ namespace jStringUtil {
 			found = Whole.find(part, found + 1);
 		}
 		return std::move(ret);
+	}
+
+	const size_t count(const std::string& Whole, const std::string& part) {
+		return findAll(Whole, part).size();
 	}
 
 	const std::string escape(const std::string& prime) {
@@ -56,6 +62,36 @@ namespace jStringUtil {
 		if (itr_head < itr_end)
 			ret = std::string(itr_head, ++itr_end);
 		return std::move(ret);
+	}
+
+	const std::string reverse(const std::string& prime) {
+		return std::move(std::string(prime.rbegin(), prime.rend()));
+	}
+
+	const std::string toLower(const std::string& prime) {
+		std::string ret;
+		std::for_each(prime.begin(), prime.end(), [&ret](auto chr) {
+			ret.push_back(tolower(chr));
+		});
+		return std::move(ret);
+	}
+
+	const std::string toUpper(const std::string& prime) {
+		std::string ret;
+		std::for_each(prime.begin(), prime.end(), [&ret](auto chr) {
+			ret.push_back(toupper(chr));
+		});
+		return std::move(ret);
+	}
+
+	const std::string head(const std::string& prime, size_t num) {
+		if (num >= prime.size())	return prime;
+		return std::move(std::string(prime.begin(), prime.begin() + num));
+	}
+
+	const std::string tail(const std::string& prime, size_t num) {
+		if (num >= prime.size())	return prime;
+		return std::move(std::string(prime.rbegin(), prime.rend()));
 	}
 
 	std::vector<std::string> split(const std::string& prime, const std::string& sep) {
@@ -167,6 +203,7 @@ namespace jStringUtil {
 		}
 		return true;
 	}
+
 }
 
 }

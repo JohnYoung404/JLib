@@ -79,7 +79,8 @@ int main() {
 		//jg.addLink(1, 3, 0.5);
 
 		std::string s = "Hello, world.";
-		std::cout << jLib::jStringUtil::replace(s, "l", "lll");
+		auto l = jLib::jStringUtil::split(s, ", ");
+		std::cout << jLib::jStringUtil::count(s, "l");
 	}
 	JCheckMemory();
     getchar();
