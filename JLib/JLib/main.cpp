@@ -14,7 +14,9 @@
 #include "jHash.h"
 #include "jAVLTree.h"
 #include "jGraph.h"
+#include "jDebug.h"
 #include "jStringUtil.h"
+#include "jRange.h"
 
 // Author : John Young
 // Contact : JohnYoung404@outlook.com
@@ -22,7 +24,7 @@
 
 int main() {
 	{
-		using namespace jGraphic;
+		//using namespace jGraphic;
 		//jMat_base<4, float> a = jMat_base<4, float>::Zero();
 		//jMat_4<float> t = {
 		//	1, 2, 3, 4,
@@ -78,9 +80,14 @@ int main() {
 		//jGraphLib::jGraph jg;
 		//jg.addLink(1, 3, 0.5);
 
-		std::string s = "Hello, world.";
-		auto l = jLib::jStringUtil::split(s, ", ");
-		std::cout << jLib::jStringUtil::count(s, "l");
+		//std::string s = "Helllo, world.";
+		//auto l = jLib::jStringUtil::split(s, "ll");
+
+		jLib::jRangeTest t;
+		t.regist();
+		//jLib::jTestManager::instance().addTest(std::shared_ptr<jLib::jITestable>(new jLib::jRangeTest()));
+		jLib::jTestManager::instance().doAllTest();
+		//jRangeTest();
 	}
 	JCheckMemory();
     getchar();

@@ -154,6 +154,7 @@
     <ClInclude Include="jSort.h" />
     <ClInclude Include="jString.h" />
     <ClInclude Include="jSudoku.h" />
+    <ClInclude Include="jTest.h" />
     <ClInclude Include="jTypeTrait.h" />
     <ClInclude Include="jVector.h" />
   </ItemGroup>

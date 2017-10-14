@@ -13,7 +13,7 @@ namespace jLib {
 			}
 			p = i / 2;
 			if (arr[p - 1] <= arr[i - 1]) break;
-			swap(arr[p - 1], arr[i - 1]);
+			_swap(arr[p - 1], arr[i - 1]);
 			i = p;
 		}
 	}
@@ -31,13 +31,13 @@ namespace jLib {
 				if (arr[p] < arr[p - 1])	p = p + 1;
 			}
 			if (arr[i - 1] <= arr[p - 1]) break;
-			swap(arr[p - 1], arr[i - 1]);
+			_swap(arr[p - 1], arr[i - 1]);
 			i = p;
 		}
 	}
 
 	template<typename T>
-	void swap(T &a, T &b) {
+	void _swap(T &a, T &b) {
 		T tmp = std::move(a);
 		a = std::move(b);
 		b = std::move(tmp);
@@ -54,7 +54,7 @@ namespace jLib {
 	void heapsort(T(&arr)[N]) {
 		heapfy(arr, N);
 		for (int i = N; i >= 2; --i) {
-			swap(arr[0], arr[i - 1]);
+			_swap(arr[0], arr[i - 1]);
 			siftdown(arr, i - 1);
 		}
 	}
@@ -109,7 +109,7 @@ namespace jLib {
 					continue;
 				}
 				else {
-					swap(arr[i], arr[0]);
+					_swap(arr[i], arr[0]);
 					siftdown(arr, K);
 				}
 			}

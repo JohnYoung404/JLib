@@ -5,7 +5,6 @@
 #include <cctype>
 #include <algorithm>
 #include "jRange.h"
-#include <filesystem>
 
 namespace jLib {
 
