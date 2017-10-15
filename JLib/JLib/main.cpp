@@ -80,7 +80,6 @@ int main() {
 
 		//jLib::jTestManager::instance().addTest(std::shared_ptr<jLib::jITestable>(new jLib::jRangeTest()));
 		jLib::jTestManager::instance().doAllTest();
-		//jRangeTest();
 	}
 	JCheckMemory();
     getchar();
