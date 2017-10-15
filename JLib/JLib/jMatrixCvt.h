@@ -24,29 +24,30 @@ namespace jGraphic {
 		}
 	}
 
-	const jMatProj look_at_lh(jPoint3D eye_pos, jPoint3D look_at, jPoint3D up_vec) {
+	const jMatProj look_at_mat(jPoint3D eye_pos, jPoint3D look_at, jPoint3D up_vec) {
 		jVec_3<float> zAxis = (look_at - eye_pos).Normalize();
 		jVec_3<float> xAxis = (doCross(up_vec, zAxis).Normalize());
 		jVec_3<float> yAxis = doCross(zAxis, xAxis);
 
 		jMatProj ret = {
-			xAxis[0] ,			yAxis[0] ,			zAxis[0],			0,
-			xAxis[1] ,			yAxis[1] ,			zAxis[1],			0,
-			xAxis[2] ,			yAxis[2] ,			zAxis[2],			0,
-			-(xAxis * eye_pos), -(yAxis * eye_pos), -(zAxis * eye_pos), 1
+			xAxis[0] ,			xAxis[1] ,			xAxis[2],			-(xAxis * eye_pos),
+			yAxis[0] ,			yAxis[1] ,			yAxis[2],			-(yAxis * eye_pos),
+			zAxis[0] ,			zAxis[1] ,			zAxis[2],			-(zAxis * eye_pos),
+			        0,                  0,                 0,                           1
 		};
 		return std::move(ret);
 	}
 
-	const jMatProj perspective_fov_lh(float fovy, float aspect, float zNear, float zFar) {
+	const jMatProj perspective_fov_mat(float fovy, float aspect, float zNear, float zFar) {
 		const float h = 1.0f / tan(fovy / 2);
 		const float w = h / aspect;
-		const float q = zFar / (zFar - zNear);
+		const float q = - (zFar + zNear ) / (zFar - zNear);
+        const float p = -2 * zFar * zNear / (zFar - zNear);
 		jMatProj ret = {
-			w ,			0 ,			0,			0,
-			0 ,			h ,			0,			0,
-			0 ,			0 ,			q,			1,
-			0 ,			0 ,		-q * zNear,		0
+            w ,			0 ,			0,			0,
+            0 ,			h ,			0,			0,
+            0 ,			0 ,			q,          p,
+            0 ,			0 ,		    -1,		    0
 		};
 		return std::move(ret);
 	}
