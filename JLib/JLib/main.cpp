@@ -5,7 +5,18 @@
 #include "jImage.h"
 #include "jLine2D.h"
 #include "jCircle.h"
-#include <stdio.h>
+#include "jMath.h"
+#include "jIntString.h"
+#include "jBitInt.h"
+#include "jHeap.h"
+#include "jSort.h"
+#include "jSudoku.h"
+#include "jHash.h"
+#include "jAVLTree.h"
+#include "jGraph.h"
+#include "jDebug.h"
+#include "jStringUtil.h"
+#include "jRange.h"
 
 // Author : John Young
 // Contact : JohnYoung404@outlook.com
@@ -13,20 +24,33 @@
 
 int main() {
 	{
-		using namespace jGraphic;
-        //jMat_base<4, float> a = jMat_base<4, float>::Zero();
-        //jMat_4<float> t = {
-        //    1, 2, 3, 4,
-        //    1, 1, 0, 2,
-        //    3, 0, 9, 6,
-        //    1, 2, 3, 7
-        //};
+		//using namespace jGraphic;
+		//jMat_base<4, float> a = jMat_base<4, float>::Zero();
+		//jMat_4<float> t = {
+		//	1, 2, 3, 4,
+		//	1, 1, 0, 2,
+		//	3, 0, 9, 6,
+		//	1, 2, 3, 7
+		//};
 		//std::cout << inverse(t) * a;
 		//jCamera c;
-        //jVector_base<4, float> toCast = {0, 1, -5, 1};
-		//std::cout << c.EyePos() << c.FowardVec() << c.ProjMat() * (c.ViewMat() * toCast);
+		//std::cout << c.EyePos() << c.FowardVec();
 		//jBitMap m;
-        //m.CreateEmpty(600, 600);
+        //m.CreateEmpty(1920, 1080);
+		//
+		//for (int i = 0; i < 1920; ++i)
+		//{
+		//	for (int j = 0; j < 1080; ++j) {
+		//		float hori_off = (float)i / 1920;
+		//		float vert_off = (float)j / 1080;
+		//		float val = jPerlinNoise::stb_perlin_ridge_noise3(hori_off, vert_off, 0.619f, 2.0f, 0.92f, 0.874f, 6, 0, 0, 0);
+		//		m.RefOfPos(i, j, 0) = 255;
+		//		m.RefOfPos(i, j, 1) = 255 * val < 255 ? 255* val : 255;
+		//		m.RefOfPos(i, j, 2) = 255 * val < 255 ? 255* val : 255;
+		//		m.RefOfPos(i, j, 3) = 255;
+		//	}
+		//}
+		//
         //jCanvas theCanvas = jCanvas(m);
         //jLine2D theLine  = jLine2D(jPoint2D{ 0.0f, 0.0f},    jPoint2D{450.0f, 450.0f}, jColor::Black());
         //jLine2D theLine2 = jLine2D(jPoint2D{ 0.0f, 450.0f }, jPoint2D{ 450.0f, 0.0f }, jColor::Red());
@@ -39,13 +63,31 @@ int main() {
         //theLine3.drawOn(theCanvas);
         //theCircle.drawOn(theCanvas);
 		//m.SaveImage("C:\\Users\\Administrator\\Desktop\\test\\test.bmp");
-        int i;
-        for (i = 0, printf("%d\n", i); i < 10, printf("%d\n", i); ++i, printf("%d\n", i))
-        {
-            printf("%d\n", i);
-        }
-
         //std::cout << "done";
+		//std::string s;
+
+		//jLib::jIntString jis("1011110100", 10);
+		//jLib::jBigInt k = "464132132164163132135464121";
+		//jLib::jBigInt T = "1313463131536461";
+		//std::cout << (k / T);
+		//int arr[] = { 1, 2, 3, 4 , 2, 3, 4 , 6, 7, 8};
+		//jLib::putMaxKValueInFront(arr, 5);
+		//jLib::jSort::countingsort(arr);
+		//jLib::jSudoku sdk;
+		//jLib::jAvlTree<int> jat;
+		//jat.insert(3);
+		//std::cout << jat.find(3)->key;
+		//jGraphLib::jGraph jg;
+		//jg.addLink(1, 3, 0.5);
+
+		//std::string s = "Helllo, world.";
+		//auto l = jLib::jStringUtil::split(s, "ll");
+
+		jLib::jRangeTest t;
+		t.regist();
+		//jLib::jTestManager::instance().addTest(std::shared_ptr<jLib::jITestable>(new jLib::jRangeTest()));
+		jLib::jTestManager::instance().doAllTest();
+		//jRangeTest();
 	}
 	JCheckMemory();
     getchar();
