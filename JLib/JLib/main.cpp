@@ -17,6 +17,7 @@
 #include "jDebug.h"
 #include "jStringUtil.h"
 #include "jRange.h"
+#include "jTestManager.h"
 
 // Author : John Young
 // Contact : JohnYoung404@outlook.com
@@ -83,8 +84,6 @@ int main() {
 		//std::string s = "Helllo, world.";
 		//auto l = jLib::jStringUtil::split(s, "ll");
 
-		jLib::jRangeTest t;
-		t.regist();
 		//jLib::jTestManager::instance().addTest(std::shared_ptr<jLib::jITestable>(new jLib::jRangeTest()));
 		jLib::jTestManager::instance().doAllTest();
 		//jRangeTest();

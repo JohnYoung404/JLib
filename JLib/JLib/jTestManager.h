@@ -1,13 +1,13 @@
 #pragma once
 #include <memory>
 #include <vector>
+#include <functional>
+#include <type_traits>
+
+#include "jTestBase.h"
+#include "jRange.h"
 
 namespace jLib {
-
-	struct jITestable
-	{
-		virtual void test() = 0;
-	};
 
 	class jTestManager{
 	public:
@@ -15,9 +15,11 @@ namespace jLib {
 			return *instance_ptr_;
 		}
 
-		void regist() {
-			
-		}
+        template<typename TestClass>
+        std::enable_if_t<std::is_base_of<jITestable, TestClass>::value, void>   // if TestClass is not testable, report compile error.
+        /*void*/ regist() {
+            allTestCase_.push_back(std::shared_ptr<jITestable>(new TestClass()));
+        }
 
 		void addTest(std::shared_ptr<jITestable> testToAdd) {
 			allTestCase_.push_back(testToAdd);
@@ -28,17 +30,18 @@ namespace jLib {
 		void doAllTest() {
 			for (auto testPtr : allTestCase_)
 			{
-				testPtr->test();
+                testPtr->test();
 			}
 		}
 	private:
-		jTestManager();
+        jTestManager();
 		static std::shared_ptr<jTestManager> instance_ptr_;
 		std::vector<std::shared_ptr<jITestable> > allTestCase_;
 	};
 
 	std::shared_ptr<jTestManager> jTestManager::instance_ptr_ = std::shared_ptr<jTestManager>(new jTestManager());
-	jTestManager::jTestManager() {
-		regist();
-	}
+
+    jTestManager::jTestManager() {
+        regist<jRangeTest>();
+    }
 }

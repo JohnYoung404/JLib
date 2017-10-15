@@ -122,6 +122,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="jTestBase.h" />
     <ClInclude Include="jRange.h" />
     <ClInclude Include="jStringUtil.h" />
     <ClInclude Include="jAnonymousVariable.h" />
@@ -154,7 +155,7 @@
     <ClInclude Include="jSort.h" />
     <ClInclude Include="jString.h" />
     <ClInclude Include="jSudoku.h" />
-    <ClInclude Include="jTest.h" />
+    <ClInclude Include="jTestManager.h" />
     <ClInclude Include="jTypeTrait.h" />
     <ClInclude Include="jVector.h" />
   </ItemGroup>

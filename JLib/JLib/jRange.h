@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <iostream>
 #include "boost/assert.hpp"
-#include "jTest.h"
+#include "jTestBase.h"
 
 namespace jLib {
 
@@ -272,19 +272,29 @@ namespace jLib {
 
 	};
 
-	
 	class jRangeTest final : public jITestable {
 	public:
-		static void regist() {
-			jTestManager::instance().addTest(std::shared_ptr<jLib::jITestable>(new jLib::jRangeTest()));
-		}
 		virtual void test() override {
-			jLib::jRange<int> r;
-			for (int i = 0; i < 5000000; ++i)
-			{
-				r.addRange(i, i + 1);
-			}
-			std::cout << r;
+            jITestable::test();
+
+			jLib::jRange<int> r, m;
+            r.addRange(-1, 5);
+            std::cout << "r.addRange [-1, 5] : " << r << std::endl;
+            r.addRange(7, 9, true, false);
+            std::cout << "r.addRange [7, 9) : " << r << std::endl;
+            r.addRange(3, 6, true, false);
+            std::cout << "r.addRange [3, 6) : " << r << std::endl;
+
+            std::cout << "r.contains 6 : " << r.contains(6) << std::endl;
+            std::cout << "r.contains -1 : " << r.contains(-1) << std::endl;
+            std::cout << "r.contains 8 : " << r.contains(8) << std::endl;
+
+            for (int i = 0; i < 20; ++i)
+            {
+                r.addRange(i, i + 1, false, false);
+            }
+            std::cout << "r.add (0,1),(1,2)...(19,20) : " << r << std::endl;
+
 		}
 	};
 }
