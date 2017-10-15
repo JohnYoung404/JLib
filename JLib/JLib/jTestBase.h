@@ -11,7 +11,7 @@ struct jITestable
 
 template<size_t N, class T>
 void PrintArray(T (&arr)[N]) {
-    std::cout << "{";
+    std::cout << "{ ";
     for (auto i = 0; i < N; ++i)
     {
         std::cout << arr[i] << ", ";
@@ -20,5 +20,5 @@ void PrintArray(T (&arr)[N]) {
     {
         std::cout << "\b\b" " " "\b";
     }
-    std::cout << "}";
+    std::cout << " }";
 }

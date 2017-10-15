@@ -136,6 +136,7 @@ namespace jLib {
             jLib::putMaxKValueInFront(arr, 7);
             std::cout << std::endl << "putMaxKValueInFront(arr, 7) : " << std::endl;
             PrintArray(arr);
+            std::cout << std::endl;
         }
     };
 

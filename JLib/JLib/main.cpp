@@ -74,12 +74,6 @@ int main() {
 		//int arr[] = { 1, 2, 3, 4 , 2, 3, 4 , 6, 7, 8};
 		//jLib::putMaxKValueInFront(arr, 5);
 		//jLib::jSort::countingsort(arr);
-		//jLib::jSudoku sdk;
-		//jLib::jAvlTree<int> jat;
-		//jat.insert(3);
-		//std::cout << jat.find(3)->key;
-		//jGraphLib::jGraph jg;
-		//jg.addLink(1, 3, 0.5);
 
 		//std::string s = "Helllo, world.";
 		//auto l = jLib::jStringUtil::split(s, "ll");

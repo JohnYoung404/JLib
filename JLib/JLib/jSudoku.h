@@ -2,7 +2,7 @@
 #include <ctime>
 #include <iostream>
 #include <set>
-
+#include "jTestBase.h"
 
 namespace jLib {
 	class jSudoku {
@@ -94,16 +94,26 @@ namespace jLib {
 		return ret;
 	}
 
-}
+    std::ostream& operator << (std::ostream &output, jSudoku s) {
+        for (size_t i = 1; i < 10; ++i)
+        {
+            for (size_t j = 1; j < 10; ++j)
+            {
+                output << static_cast<int>(s.sudokuList[i][j]) << " ";
+            }
+            output << std::endl;
+        }
+        return output;
+    }
 
-std::ostream& operator << (std::ostream &output, jLib::jSudoku s) {
-	for (size_t i = 1; i < 10; ++i)
-	{
-		for (size_t j = 1; j < 10; ++j)
-		{
-			output << static_cast<int>(s.sudokuList[i][j]) << " ";
-		}
-		output << std::endl;
-	}
-	return output;
+    class jSudokuTest final : public jITestable {
+    public:
+        virtual void test() override {
+            jITestable::test();
+
+            jLib::jSudoku s;
+            std::cout << s;
+        }
+    };
+
 }

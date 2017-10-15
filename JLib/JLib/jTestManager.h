@@ -6,6 +6,7 @@
 
 #include "jTestBase.h"
 #include "jRange.h"
+#include "jSudoku.h"
 
 namespace jLib {
 
@@ -44,5 +45,6 @@ namespace jLib {
     jTestManager::jTestManager() {
         regist<jRangeTest>();
         regist<jHeapTest>();
+        regist<jSudokuTest>();
     }
 }
