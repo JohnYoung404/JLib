@@ -43,5 +43,6 @@ namespace jLib {
 
     jTestManager::jTestManager() {
         regist<jRangeTest>();
+        regist<jHeapTest>();
     }
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include "jTestBase.h"
 
 namespace jLib {
 
@@ -115,5 +116,27 @@ namespace jLib {
 			}
 		}
 	}
+
+    class jHeapTest final : public jITestable {
+    public:
+        virtual void test() override {
+            jITestable::test();
+
+            int arr[] = { 1, 2, 3, 4 , 2, 3, 4 , 6, 7, 8 };
+
+            std::cout << "int arr[] = { 1, 2, 3, 4, 2, 3, 4, 6, 7, 8 };" << std::endl;
+            jLib::putMaxKValueInFront(arr, 3);
+            std::cout <<  "putMaxKValueInFront(arr, 3) : " << std::endl;
+            PrintArray(arr);
+
+            jLib::putMaxKValueInFront(arr, 5);
+            std::cout << std::endl << "putMaxKValueInFront(arr, 5) : " << std::endl;
+            PrintArray(arr);
+
+            jLib::putMaxKValueInFront(arr, 7);
+            std::cout << std::endl << "putMaxKValueInFront(arr, 7) : " << std::endl;
+            PrintArray(arr);
+        }
+    };
 
 }
