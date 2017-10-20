@@ -22,9 +22,6 @@ namespace jLib {
             allTestCase_.push_back(std::shared_ptr<jITestable>(new TestClass()));
         }
 
-		void addTest(std::shared_ptr<jITestable> testToAdd) {
-			allTestCase_.push_back(testToAdd);
-		}
 		void clearTest() {
 			allTestCase_.clear();
 		}
