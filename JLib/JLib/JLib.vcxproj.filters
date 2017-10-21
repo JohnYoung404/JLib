@@ -19,6 +19,9 @@
     <Filter Include="头文件\jMediaLib">
       <UniqueIdentifier>{582524b9-e8f8-4e1a-a726-4899a91d6205}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\jExperimental">
+      <UniqueIdentifier>{e579e936-4184-494f-8664-bf7b6721bc61}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="JLib.h">
@@ -128,6 +131,9 @@
     </ClInclude>
     <ClInclude Include="jTestManager.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jConstableClass.h">
+      <Filter>头文件\jExperimental</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

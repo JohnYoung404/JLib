@@ -7,6 +7,7 @@
 #include "jTestBase.h"
 #include "jRange.h"
 #include "jSudoku.h"
+#include "jConstableClass.h"
 
 namespace jLib {
 
@@ -40,8 +41,9 @@ namespace jLib {
 	std::shared_ptr<jTestManager> jTestManager::instance_ptr_ = std::shared_ptr<jTestManager>(new jTestManager());
 
     jTestManager::jTestManager() {
-        regist<jRangeTest>();
-        regist<jHeapTest>();
-        regist<jSudokuTest>();
+        //regist<jRangeTest>();
+        //regist<jHeapTest>();
+        //regist<jSudokuTest>();
+		regist<jConstableTest>();
     }
 }

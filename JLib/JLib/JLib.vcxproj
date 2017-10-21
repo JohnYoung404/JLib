@@ -122,6 +122,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="jConstableClass.h" />
     <ClInclude Include="jTestBase.h" />
     <ClInclude Include="jRange.h" />
     <ClInclude Include="jStringUtil.h" />
