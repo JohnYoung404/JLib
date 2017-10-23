@@ -23,7 +23,48 @@
 // Contact : JohnYoung404@outlook.com
 // Date : [9/24/2017]
 
-int main() {
+class A;
+class B;
+
+class A {
+public:
+    A(){
+        std::cout << "A ctor called." << std::endl;
+    }
+    ~A() {
+        std::cout << "A dtor called." << std::endl;
+    }
+    std::shared_ptr<B> _PtrToB;
+private:
+    int data;
+};
+
+class B {
+public:
+    B() {
+        std::cout << "B ctor called." << std::endl;
+    }
+    ~B() {
+        std::cout << "B dtor called." << std::endl;
+    }
+    std::weak_ptr<A> _PtrToA;
+private:
+    int data;
+};
+
+int main(){
+    {
+        auto Aptr = std::make_shared<A>();
+        Aptr->_PtrToB = std::make_shared<B>();
+        Aptr->_PtrToB->_PtrToA = Aptr;
+    }
+    JCheckMemory();
+    getchar();
+}
+
+
+
+int main_() {
 	{
 		//using namespace jGraphic;
 		//jMat_base<4, float> a = jMat_base<4, float>::Zero();
@@ -84,4 +125,5 @@ int main() {
 	}
 	JCheckMemory();
     getchar();
+    return 0;
 }
