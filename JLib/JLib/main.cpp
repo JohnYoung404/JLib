@@ -78,10 +78,9 @@ int main() {
 		//std::string s = "Helllo, world.";
 		//auto l = jLib::jStringUtil::split(s, "ll");
 
-		//jLib::jTestManager::instance().addTest(std::shared_ptr<jLib::jITestable>(new jLib::jRangeTest()));
 		jLib::jTestManager::instance().doAllTest();
 
-		//std::string s = "hello, world";
+		//jLib::jTestManager::instance().addTest(std::shared_ptr<jLib::jITestable>(new jLib::jRangeTest()));
 	}
 	JCheckMemory();
     getchar();
