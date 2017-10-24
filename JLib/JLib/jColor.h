@@ -23,7 +23,7 @@ namespace jGraphic {
 			return jColor(255, 0, 255, 0);
 		}
 		inline static const jColor Blue() {
-			return jColor(255, 0, 255, 255);
+			return jColor(255, 0, 0, 255);
 		}
 
         inline uint8_t A() { return a_; }
