@@ -197,7 +197,7 @@ namespace jGraphic {
 	}
 
     //////////////////////////////////////////////////////////////////////////
-    //向量和矩阵是列乘法
+    //向量和矩阵的列乘法
     // @  @  @     @
     // @  @  @  x  @  
     // @  @  @     @
@@ -214,6 +214,25 @@ namespace jGraphic {
 		}
 		return std::move(ret);
 	}
+
+    //////////////////////////////////////////////////////////////////////////
+    //向量和矩阵的行乘法
+    //             @  @  @
+    // @  @  @  x  @  @  @ 
+    //             @  @  @
+    //////////////////////////////////////////////////////////////////////////
+    template<size_t Degree, typename Type>
+    const jVector_base<Degree, Type> operator* (const jVector_base<Degree, Type> &lvec, const jMat_base<Degree, Type> &rmat) {
+        auto ret = std::move(jVector_base<Degree, Type>::Zero());
+        for (int i = 0; i < Degree; ++i)
+        {
+            for (int j = 0; j < Degree; ++j)
+            {
+                ret[i] += rmat.RefOfPos(j, i) * lvec[j];
+            }
+        }
+        return std::move(ret);
+    }
 
 	////////////////////////////////////////////////////////////////////////// Declaration of jMat_4
 	template<typename Type>
