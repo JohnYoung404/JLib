@@ -135,6 +135,12 @@
     <ClInclude Include="jConstableClass.h">
       <Filter>头文件\jExperimental</Filter>
     </ClInclude>
+    <ClInclude Include="jKDTree.h">
+      <Filter>头文件\jGraphicLib</Filter>
+    </ClInclude>
+    <ClInclude Include="jAABBox.h">
+      <Filter>头文件\jGraphicLib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

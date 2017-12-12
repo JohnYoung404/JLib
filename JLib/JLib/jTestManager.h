@@ -38,8 +38,7 @@ namespace jLib {
 		std::vector<std::shared_ptr<jITestable> > allTestCase_;
 	};
 
-    std::shared_ptr<jTestManager> jTestManager::instance_ptr_ = std::shared_ptr<jTestManager>();
-	//std::shared_ptr<jTestManager> jTestManager::instance_ptr_ = std::shared_ptr<jTestManager>(new jTestManager());	// singleton, will be destroyed when program exit,
+	std::shared_ptr<jTestManager> jTestManager::instance_ptr_ = std::shared_ptr<jTestManager>(new jTestManager());	// singleton, will be destroyed when program exit,
 																													// so memory-leak checker may report false positive.
     jTestManager::jTestManager() {
         //regist<jRangeTest>();
