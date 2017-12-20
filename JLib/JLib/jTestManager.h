@@ -10,6 +10,7 @@
 #include "jConstableClass.h"
 #include "jHana.h"
 #include "jBoostCompute.h"
+#include "jMetaStateMachine.h"
 
 namespace jLib {
 
@@ -48,6 +49,7 @@ namespace jLib {
         //regist<jSudokuTest>();
 		//regist<jConstableTest>();
 		//regist<jHanaTest>();
-		regist<jBoostComputeTest>();
+		//regist<jBoostComputeTest>();
+		regist<jMsmTest>();
     }
 }

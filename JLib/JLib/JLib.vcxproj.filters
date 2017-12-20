@@ -147,6 +147,9 @@
     <ClInclude Include="jBoostCompute.h">
       <Filter>头文件\jExperimental</Filter>
     </ClInclude>
+    <ClInclude Include="jMetaStateMachine.h">
+      <Filter>头文件\jExperimental</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
