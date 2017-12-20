@@ -141,6 +141,12 @@
     <ClInclude Include="jAABBox.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
+    <ClInclude Include="jHana.h">
+      <Filter>头文件\jExperimental</Filter>
+    </ClInclude>
+    <ClInclude Include="jBoostCompute.h">
+      <Filter>头文件\jExperimental</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

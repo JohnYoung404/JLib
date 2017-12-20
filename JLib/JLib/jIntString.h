@@ -68,7 +68,7 @@ namespace jLib {
 		{
 			if (this != &rhs) {
 				this->radix_ = rhs.radix_;
-				this->sign_ - rhs.sign_;
+				this->sign_ = rhs.sign_;
 				this->mstring_ = std::move(rhs.mstring_);
 				this->numVec_ = std::move(rhs.numVec_);
 			}

@@ -8,6 +8,8 @@
 #include "jRange.h"
 #include "jSudoku.h"
 #include "jConstableClass.h"
+#include "jHana.h"
+#include "jBoostCompute.h"
 
 namespace jLib {
 
@@ -44,6 +46,8 @@ namespace jLib {
         //regist<jRangeTest>();
         //regist<jHeapTest>();
         //regist<jSudokuTest>();
-		regist<jConstableTest>();
+		//regist<jConstableTest>();
+		//regist<jHanaTest>();
+		regist<jBoostComputeTest>();
     }
 }
