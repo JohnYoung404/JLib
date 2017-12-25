@@ -3,6 +3,7 @@
 #include <boost/msm/front/euml/state_grammar.hpp>
 #include <boost/msm/back/state_machine.hpp>
 #include "jTestBase.h"
+#include <Algorithm>
 
 namespace msm = boost::msm;
 using namespace boost::msm::front::euml;
