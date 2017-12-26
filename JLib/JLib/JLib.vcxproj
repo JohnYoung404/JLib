@@ -172,6 +172,7 @@
     <ClInclude Include="jVector.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="implementation.cpp" />
     <ClCompile Include="jGrid.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
