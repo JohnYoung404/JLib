@@ -19,15 +19,14 @@ public:
 	typedef Type ElemType;
 
 	const size_t ROW() const { return _ROW; }
-	const size_t ROW() { return _ROW; }
 	const size_t COL() const { return _COL; }
-	const size_t COL() { return _COL; }
 
 	class column_iterator;
 	class row_iterator;
 	class col_itr_pair;
 	class row_itr_pair;
 
+	//未实现const_iterator 和 const 版本的col_at/row_at
 	col_itr_pair col_at(int col)
 	{
 #ifdef _DEBUG
@@ -58,6 +57,7 @@ public:
 		return _gridPtr.get()[row * _COL + col];
 	}
 
+
 	void fill(const Type &val)
 	{
 		std::for_each(_gridPtr.get(), _gridPtr.get() + _ROW * _COL, [&val] (auto &origVal) { origVal = val; });
@@ -72,6 +72,12 @@ public:
 	void for_each(Func &f)
 	{
 		std::for_each(_gridPtr.get(), _gridPtr.get() + _ROW * _COL, [&f](auto &Val) { f(Val); });
+	}
+
+	template<typename Func>
+	void for_each(Func &f) const
+	{
+		std::for_each(_gridPtr.get(), _gridPtr.get() + _ROW * _COL, [&f](const auto &Val) { f(Val); });
 	}
 
 private:

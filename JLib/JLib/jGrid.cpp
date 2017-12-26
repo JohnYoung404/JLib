@@ -14,19 +14,19 @@ public:
 	explicit column_iterator(Type *Inpos, size_t Incol) : _pos(Inpos), _col(Incol) {}
 	column_iterator& operator++() { _pos += _col; return *this; }
 	column_iterator& operator--() { _pos -= _col; return *this; }
-	column_iterator operator++(int) { auto ret = *this; return ++ret; }
-	column_iterator operator--(int) { auto ret = *this; return --ret; }
-	ptrdiff_t operator-(column_iterator rhs)
+	column_iterator operator++(int) const { auto ret = *this; return ++ret; }
+	column_iterator operator--(int) const { auto ret = *this; return --ret; }
+	ptrdiff_t operator-(column_iterator rhs) const
 	{
 		return _pos - rhs._pos;
 	}
-	column_iterator operator+(ptrdiff_t _offset)
+	column_iterator operator+(ptrdiff_t _offset) const
 	{
 		auto ret = *this;
 		ret._pos += _offset * _COL;
 		return  ret;
 	}
-	column_iterator operator-(ptrdiff_t _offset)
+	column_iterator operator-(ptrdiff_t _offset) const
 	{
 		auto ret = *this;
 		ret._pos -= _offset * _COL;
