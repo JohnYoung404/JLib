@@ -11,7 +11,7 @@
 #include "jHana.h"
 #include "jBoostCompute.h"
 #include "jMetaStateMachine.h"
-#include "jGrid.h"
+#include "jGrid.cpp"
 #include "jMPL.h"
 
 namespace jLib {
