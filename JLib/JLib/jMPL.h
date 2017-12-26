@@ -3,8 +3,11 @@
 // Date : [9/24/2017]
 #pragma once
 #include <iterator>
+#include <functional>
 #include "jOpsMPL.h"
 #include "jMatrix.h"
+#include <tuple>
+#include "jTestBase.h"
 
 #define _concat(s1, s2) s1 ## s2
 #define  jconcat(s1, s2) _concat(s1, s2)
@@ -114,6 +117,49 @@ namespace jGraphic {
 					- rhs.RefOfPos(0, 1) * (rhs.RefOfPos(1, 0) * _3344_3443 - rhs.RefOfPos(1, 2) * _3144_3441 + rhs.RefOfPos(1, 3) * _3143_3341)
 					+ rhs.RefOfPos(0, 2) * (rhs.RefOfPos(1, 0) * _3244_3442 - rhs.RefOfPos(1, 1) * _3144_3441 + rhs.RefOfPos(1, 3) * _3142_3241)
 					- rhs.RefOfPos(0, 3) * (rhs.RefOfPos(1, 0) * _3243_3342 - rhs.RefOfPos(1, 1) * _3143_3341 + rhs.RefOfPos(1, 2) * _3142_3241);
+		}
+	};
+}
+
+///<summary>
+///tuple functional
+///</summary>
+template<typename... Args, typename Func>
+void tuple_for_each(const std::tuple<Args...> &t, Func &f)
+{
+	__tuple_processor<decltype(t), Func, sizeof...(Args)>::__tuple_process(t, f);
+}
+
+namespace {	//匿名命名空间，将可访问性限制在此文件
+template<typename Tuple, typename Func ,size_t N>
+struct __tuple_processor
+{
+	inline static void __tuple_process(const Tuple &t, Func &f)
+	{
+		__tuple_processor<Tuple, Func, N - 1>::__tuple_process(t, f);
+		f(std::get<N - 1>(t));
+	}
+};
+
+template<typename Tuple, typename Func>
+struct __tuple_processor<Tuple, Func, 1>
+{
+	inline static void __tuple_process(const Tuple &t, Func &f)
+	{
+		f(std::get<0>(t));
+	}
+};
+}
+
+namespace jLib {
+	class jMPLTest final : public jITestable {
+	public:
+		virtual void test() override {
+			jITestable::test();
+			auto t1 = std::make_tuple(1, "2", 3.4f);
+			int n = 5;
+			auto t2 = std::tuple_cat(t1, std::tie(n), std::make_pair(6, 7));
+			tuple_for_each(t2, [](auto &val) { std::cout << val << " "; });
 		}
 	};
 }

@@ -11,6 +11,8 @@
 #include "jHana.h"
 #include "jBoostCompute.h"
 #include "jMetaStateMachine.h"
+#include "jGrid.h"
+#include "jMPL.h"
 
 namespace jLib {
 
@@ -47,9 +49,11 @@ namespace jLib {
         //regist<jRangeTest>();
         //regist<jHeapTest>();
         //regist<jSudokuTest>();
-		regist<jConstableTest>();
+		//regist<jConstableTest>();
 		//regist<jHanaTest>();
 		//regist<jBoostComputeTest>();
 		//regist<jMsmTest>();
+		regist<jGridTest>();
+		regist<jMPLTest>();
     }
 }

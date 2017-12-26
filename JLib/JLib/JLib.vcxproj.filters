@@ -22,6 +22,9 @@
     <Filter Include="头文件\jExperimental">
       <UniqueIdentifier>{e579e936-4184-494f-8664-bf7b6721bc61}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\jGameComponent">
+      <UniqueIdentifier>{15c179ab-6523-4306-8020-0a40aa930017}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="JLib.h">
@@ -149,6 +152,12 @@
     </ClInclude>
     <ClInclude Include="jMetaStateMachine.h">
       <Filter>头文件\jExperimental</Filter>
+    </ClInclude>
+    <ClInclude Include="jGameObject.h">
+      <Filter>头文件\jGameComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="jGrid.h">
+      <Filter>头文件\jGameComponent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
