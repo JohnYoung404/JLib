@@ -159,6 +159,9 @@
     <ClInclude Include="jGrid.h">
       <Filter>头文件\jGameComponent</Filter>
     </ClInclude>
+    <ClInclude Include="jGraphGrid.h">
+      <Filter>头文件\jGameComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

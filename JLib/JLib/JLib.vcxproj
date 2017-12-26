@@ -130,6 +130,7 @@
     <ClInclude Include="jBoostCompute.h" />
     <ClInclude Include="jConstableClass.h" />
     <ClInclude Include="jGameObject.h" />
+    <ClInclude Include="jGraphGrid.h" />
     <ClInclude Include="jGrid.h" />
     <ClInclude Include="jHana.h" />
     <ClInclude Include="jKDTree.h" />
