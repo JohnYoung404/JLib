@@ -25,6 +25,12 @@
     <Filter Include="头文件\jGameComponent">
       <UniqueIdentifier>{15c179ab-6523-4306-8020-0a40aa930017}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\jGraphLib">
+      <UniqueIdentifier>{d823635d-b57e-4020-a4cf-cee3128622b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\jContainer">
+      <UniqueIdentifier>{1cfa59d4-d99e-460f-833c-47f340250d57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="JLib.h">
@@ -111,9 +117,6 @@
     <ClInclude Include="jAVLTree.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="jGraph.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="jRandom.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -162,6 +165,15 @@
     <ClInclude Include="jGraphGrid.h">
       <Filter>头文件\jGameComponent</Filter>
     </ClInclude>
+    <ClInclude Include="jGraph_discard.h">
+      <Filter>头文件\jGraphLib</Filter>
+    </ClInclude>
+    <ClInclude Include="jGraph.h">
+      <Filter>头文件\jGraphLib</Filter>
+    </ClInclude>
+    <ClInclude Include="jGraphSearch.h">
+      <Filter>头文件\jGraphLib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -171,7 +183,7 @@
       <Filter>头文件\jGameComponent</Filter>
     </ClCompile>
     <ClCompile Include="implementation.cpp">
-      <Filter>头文件</Filter>
+      <Filter>头文件\jGraphLib</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

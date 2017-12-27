@@ -32,7 +32,9 @@ public:
 #ifdef _DEBUG
 		BOOST_ASSERT(col < _COL && col >= 0);
 #endif
-		return col_itr_pair(col_begin(col), col_end(col));
+		column_iterator _beg(_gridPtr.get() + col, _COL);
+		column_iterator _end(_gridPtr.get() + col + _COL * _ROW, _COL);
+		return col_itr_pair(_beg, _end);
 	}
 
 	row_itr_pair row_at(int row)
@@ -40,7 +42,9 @@ public:
 #ifdef _DEBUG
 		BOOST_ASSERT(row < _ROW && row >= 0);
 #endif
-		return row_itr_pair(row_begin(row), row_end(row));
+		row_iterator _beg(_gridPtr.get() + row * _COL, _ROW);
+		row_iterator _end(_gridPtr.get() + row * _COL + _COL, _ROW);
+		return row_itr_pair(_beg, _end);
 	}
 
 	Type& at(size_t col, size_t row) { 
@@ -84,26 +88,6 @@ private:
 	size_t _COL;
 	size_t _ROW;
 	std::unique_ptr<ElemType[] > _gridPtr;
-
-	column_iterator col_begin(int col)
-	{
-		return column_iterator(_gridPtr.get() + col, _COL);
-	}
-
-	column_iterator col_end(int col)
-	{
-		return column_iterator(_gridPtr.get() + col + _COL * _ROW, _COL);
-	}
-
-	row_iterator row_begin(int row)
-	{
-		return row_iterator(_gridPtr.get() + row * _COL, _ROW);
-	}
-
-	row_iterator row_end(int row)
-	{
-		return row_iterator(_gridPtr.get() + row * _COL + _COL, _ROW);
-	}
 };
 
 template<typename T>

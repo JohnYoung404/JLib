@@ -13,6 +13,7 @@
 #include "jMetaStateMachine.h"
 #include "jGrid.cpp"
 #include "jMPL.h"
+#include "jGraphSearch.h"
 
 namespace jLib {
 
@@ -54,6 +55,7 @@ namespace jLib {
 		//regist<jBoostComputeTest>();
 		//regist<jMsmTest>();
 		regist<jGridTest>();
-		regist<jMPLTest>();
+		//regist<jMPLTest>();
+		//regist<jGraphSearchTest>();
     }
 }

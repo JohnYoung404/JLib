@@ -160,6 +160,7 @@ namespace jLib {
 			int n = 5;
 			auto t2 = std::tuple_cat(t1, std::tie(n), std::make_pair(6, 7));
 			tuple_for_each(t2, [](auto &val) { std::cout << val << " "; });
+			std::cout << std::endl;
 		}
 	};
 }

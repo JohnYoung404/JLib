@@ -87,7 +87,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>D:\Programming\boost_1_65_1\boost_1_65_1;D:\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/std:c++14 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -117,7 +117,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>D:\Programming\boost_1_65_1\boost_1_65_1;D:\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/std:c++14 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -130,7 +130,9 @@
     <ClInclude Include="jBoostCompute.h" />
     <ClInclude Include="jConstableClass.h" />
     <ClInclude Include="jGameObject.h" />
+    <ClInclude Include="jGraph.h" />
     <ClInclude Include="jGraphGrid.h" />
+    <ClInclude Include="jGraphSearch.h" />
     <ClInclude Include="jGrid.h" />
     <ClInclude Include="jHana.h" />
     <ClInclude Include="jKDTree.h" />
@@ -147,7 +149,7 @@
     <ClInclude Include="jColor.h" />
     <ClInclude Include="jCanvas.h" />
     <ClInclude Include="jDebug.h" />
-    <ClInclude Include="jGraph.h" />
+    <ClInclude Include="jGraph_discard.h" />
     <ClInclude Include="jGraphicLib.h" />
     <ClInclude Include="jHash.h" />
     <ClInclude Include="jHeap.h" />

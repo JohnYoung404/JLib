@@ -16,6 +16,7 @@
 #include <queue>
 #include <tuple>
 #include <algorithm>
+#include <functional>
 
 using std::unordered_map;
 using std::unordered_set;
