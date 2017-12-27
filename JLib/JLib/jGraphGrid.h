@@ -7,14 +7,18 @@
 namespace jGame
 {
 
-using jGridPos = std::tuple<int, int>;
+using jPosNode = std::tuple<int, int>;
 
-template<typename Type>
-class jGraphGrid : public class jGrid<Type>
+class jPositionGraph : public jGraphLib::jGraph<jPosNode>
 {
 public:
-	bool legal_pos();
+    jPositionGraph(int initWidth, int initHeight) : _width(initWidth), _height(initHeight) { }
+    std::vector<jPosNode> neibours(jPosNode InputNode) override
+    {
 
+    }
+private:
+    int _width, _height;
 };
 
 
