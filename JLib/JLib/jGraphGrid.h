@@ -1,31 +1,21 @@
 #pragma once
+#include <tuple>
+#include "jGraph.h"
 #include "jGrid.h"
 #include "jVector.h"
 
 namespace jGame
 {
 
-using jGridPos = jVector_base<2, int>;
-
-class __quadruple_accessive_cell
-{
-    __quadruple_accessive_cell *left;
-    __quadruple_accessive_cell *right;
-    __quadruple_accessive_cell *top;
-    __quadruple_accessive_cell *bottom;
-};
-
-class __octuple_accessive_cell
-{
-
-};
+using jGridPos = std::tuple<int, int>;
 
 template<typename Type>
 class jGraphGrid : public class jGrid<Type>
 {
+public:
+	bool legal_pos();
 
 };
 
-using jWeightedGrid = jGraphGrid<__quadruple_accessive_cell>;
 
 }
