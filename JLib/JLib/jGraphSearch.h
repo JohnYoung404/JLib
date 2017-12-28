@@ -70,7 +70,7 @@ a_star_search(Graph &graph, const node &start, const node & goal)
 		for (auto &next : graph.neibours(current))
 		{
             if(closed_set.count(next)) continue;
-			float new_cost = graph.dist(current, next) == FLT_MAX ? FLT_MAX :cost_eval[current] + graph.dist(current, next);
+			float new_cost = (graph.dist(current, next) == FLT_MAX ? FLT_MAX :cost_eval[current] + graph.dist(current, next));
 			if (!cost_eval.count(next) || new_cost < cost_eval[next]) {
 				cost_eval[next] = new_cost;
 				float priority = new_cost + graph.heuristic(next, goal);	//heuristic启发函数如果是常值，则退化为dijkstra搜索
@@ -79,7 +79,6 @@ a_star_search(Graph &graph, const node &start, const node & goal)
 			}
 		}
 	}
-
 	return std::vector<node>();
 }
 

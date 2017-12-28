@@ -68,10 +68,10 @@ public:
 	}
 
 	const float heuristic(jPosNode a, jPosNode b) override {
-		int x1, y1, x2, y2;
-		std::tie(x1, y1) = a;
-		std::tie(x2, y2) = b;
-		return static_cast<float>(abs(x1 - x2) + abs(y1 - y2));
+        int x1, y1, x2, y2;
+        std::tie(x1, y1) = a;
+        std::tie(x2, y2) = b;
+        return static_cast<float>(abs(x1 - x2) + abs(y1 - y2)) * 1.1;   //增大权重，优先往离目标近的方向搜
 	}
 
 	inline void addWall(jPosNode input)
@@ -113,12 +113,17 @@ namespace jLib {
 		virtual void test() override {
 			jITestable::test();
 			using namespace jGame;
-			jPositionGraph g(9, 9);
-			g.addWall(std::make_tuple(1, 1));
+			jPositionGraph g(100, 100);
+            for (auto i = 1; i < 99; ++i)
+            {
+                g.addWall(std::make_tuple(i, i));
+            }
             g.addWall(std::make_tuple(0, 4));
             g.addWall(std::make_tuple(4, 0));
             g.PreLoadNeibour();
-			auto ret = a_star_search(g, std::make_tuple(0, 0), std::make_tuple(8, 8));
+            auto before = clock();
+			auto ret = a_star_search(g, std::make_tuple(0, 0), std::make_tuple(99, 99));
+            std::cout << "time cost:" << clock() - before << "ms" << std::endl;     //release模式下，100 * 100网格0ms；debug模式150ms
 			for (auto &i : ret)
 			{
 				std::cout << "(" <<std::get<0>(i) << "," << std::get<1>(i) << ") ";
