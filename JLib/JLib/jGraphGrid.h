@@ -32,24 +32,26 @@ class jPositionGraph : public jGraphLib::jGraph<jPosNode>
 {
 public:
     jPositionGraph(int initWidth, int initHeight) : _width(initWidth), _height(initHeight) { }
-	static std::array<jPosNode, 4> DIRS;
 	
-
-    std::vector<jPosNode> neibours(jPosNode InputNode) override
+    const std::vector<jPosNode>& neibours(jPosNode InputNode) override
     {
+        if (_cachedNeibourMap.count(InputNode))
+        {
+            return _cachedNeibourMap[InputNode];
+        }
 		int x, y, dx, dy;
 		std::tie(x, y) = InputNode;
 		std::vector<jPosNode> results;
 
-		for (auto dir : DIRS) {
+		for (auto dir : _DIRS) {
 			std::tie(dx, dy) = dir;
 			jPosNode next(x + dx, y + dy);
 			if (in_bounds(next) && passable(next)) {
 				results.push_back(next);
 			}
 		}
-
-		return results;
+        _cachedNeibourMap[InputNode] = results;
+		return _cachedNeibourMap[InputNode];
     }
 
 	const float dist(jPosNode from, jPosNode to) override
@@ -58,8 +60,8 @@ public:
 		{
 			if (passable(to) && passable(from))
 			{
-				auto neibourVec = neibours(from);
-				return from == to ? 0 : (std::find(neibourVec.begin(), neibourVec.end(), to) != neibourVec.end()) ? 1.0f : FLT_MAX;
+                float dst = static_cast<float>(abs(std::get<0>(from) - std::get<0>(to)) + abs(std::get<1>(from) - std::get<1>(to)));
+				return from == to ? 0 : (std::find(neibours(from).begin(), neibours(from).end(), to) != neibours(from).end()) ? dst : FLT_MAX;
 			}
 		}
 		return FLT_MAX;
@@ -72,28 +74,36 @@ public:
 		return static_cast<float>(abs(x1 - x2) + abs(y1 - y2));
 	}
 
-	inline bool in_bounds(jPosNode input)  {
-		int x, y;
-		std::tie(x, y) = input;
-		return 0 <= x && x < _width && 0 <= y && y < _height;
-	}
-
-	inline bool passable(jPosNode input)  {
-		return !_walls.count(input);
-	}
-
 	inline void addWall(jPosNode input)
 	{
 		_walls.emplace(input);
 	}
 
+    void PreLoadNeibour()
+    {
+        for (auto i = 0; i < _width; ++i)
+            for (auto j = 0; j < _height; ++j)
+                neibours(std::make_tuple(i, j));
+    }
+
 private:
     int _width, _height;
 	std::unordered_set<jPosNode> _walls;
+    std::unordered_map<jPosNode, std::vector<jPosNode>> _cachedNeibourMap;
+    static std::array<jPosNode, 4> _DIRS;
+
+    inline bool in_bounds(jPosNode input) {
+        int x, y;
+        std::tie(x, y) = input;
+        return 0 <= x && x < _width && 0 <= y && y < _height;
+    }
+
+    inline bool passable(jPosNode input) {
+        return !_walls.count(input);
+    }
 };
 
-std::array<jPosNode, 4> jPositionGraph::DIRS{ jPosNode{ 1, 0 }, jPosNode{ 0, -1 }, jPosNode{ -1, 0 }, jPosNode{ 0, 1 } };
-
+std::array<jPosNode, 4> jPositionGraph::_DIRS{ jPosNode{ 1, 0 }, jPosNode{ 0, -1 }, jPosNode{ -1, 0 }, jPosNode{ 0, 1 } };
 
 }
 
@@ -103,9 +113,12 @@ namespace jLib {
 		virtual void test() override {
 			jITestable::test();
 			using namespace jGame;
-			jPositionGraph g(3, 3);
+			jPositionGraph g(9, 9);
 			g.addWall(std::make_tuple(1, 1));
-			auto ret = a_star_search(g, std::make_tuple(0, 0), std::make_tuple(2, 2));
+            g.addWall(std::make_tuple(0, 4));
+            g.addWall(std::make_tuple(4, 0));
+            g.PreLoadNeibour();
+			auto ret = a_star_search(g, std::make_tuple(0, 0), std::make_tuple(8, 8));
 			for (auto &i : ret)
 			{
 				std::cout << "(" <<std::get<0>(i) << "," << std::get<1>(i) << ") ";

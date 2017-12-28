@@ -14,9 +14,9 @@ class jGraph
 {
 public:
 
-	virtual std::vector<node> neibours(node InputNode)
+	virtual const std::vector<node>& neibours(node InputNode)
 	{
-		return _graph.count(InputNode) ? _graph[InputNode] : std::vector<node>();
+		return _graph.count(InputNode) ? _graph[InputNode] : _graph[InputNode] = std::vector<node>();
 	}
 
 	virtual void addNode(node InputNode, std::vector<node> NodeNeibours)

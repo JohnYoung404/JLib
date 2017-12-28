@@ -54,6 +54,7 @@ a_star_search(Graph &graph, const node &start, const node & goal)
 
 	std::unordered_map<node, node> path;
 	std::unordered_map<node, float> cost_eval;
+    std::unordered_set<node> closed_set;
 
 	path[start] = start;
 	cost_eval[start] = 0;
@@ -61,12 +62,14 @@ a_star_search(Graph &graph, const node &start, const node & goal)
 	while (!theQueue.empty())
 	{
 		auto current = theQueue.get();
+        closed_set.emplace(current);
 		if (current == goal)
 		{
 			return reconstruct_path(start, goal, path);
 		}
 		for (auto &next : graph.neibours(current))
 		{
+            if(closed_set.count(next)) continue;
 			float new_cost = graph.dist(current, next) == FLT_MAX ? FLT_MAX :cost_eval[current] + graph.dist(current, next);
 			if (!cost_eval.count(next) || new_cost < cost_eval[next]) {
 				cost_eval[next] = new_cost;
