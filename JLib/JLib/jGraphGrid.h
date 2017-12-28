@@ -71,20 +71,13 @@ public:
         int x1, y1, x2, y2;
         std::tie(x1, y1) = a;
         std::tie(x2, y2) = b;
-        return static_cast<float>(abs(x1 - x2) + abs(y1 - y2)) * 1.1;   //增大权重，优先往离目标近的方向搜
+        return static_cast<float>(abs(x1 - x2) + abs(y1 - y2)) * 1.1f;   //增大权重，优先往离目标近的方向搜
 	}
 
 	inline void addWall(jPosNode input)
 	{
 		_walls.emplace(input);
 	}
-
-    void PreLoadNeibour()
-    {
-        for (auto i = 0; i < _width; ++i)
-            for (auto j = 0; j < _height; ++j)
-                neibours(std::make_tuple(i, j));
-    }
 
 private:
     int _width, _height;
@@ -120,7 +113,6 @@ namespace jLib {
             }
             g.addWall(std::make_tuple(0, 4));
             g.addWall(std::make_tuple(4, 0));
-            g.PreLoadNeibour();
             auto before = clock();
 			auto ret = a_star_search(g, std::make_tuple(0, 0), std::make_tuple(99, 99));
             std::cout << "time cost:" << clock() - before << "ms" << std::endl;     //release模式下，100 * 100网格0ms；debug模式150ms
