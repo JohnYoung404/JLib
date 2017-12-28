@@ -137,6 +137,7 @@
     <ClInclude Include="jHana.h" />
     <ClInclude Include="jKDTree.h" />
     <ClInclude Include="jMetaStateMachine.h" />
+    <ClInclude Include="jOpsMPL.h" />
     <ClInclude Include="jTestBase.h" />
     <ClInclude Include="jRange.h" />
     <ClInclude Include="jStringUtil.h" />
@@ -149,7 +150,7 @@
     <ClInclude Include="jColor.h" />
     <ClInclude Include="jCanvas.h" />
     <ClInclude Include="jDebug.h" />
-    <ClInclude Include="jGraph_discard.h" />
+    <ClInclude Include="jNearestPointPair.h" />
     <ClInclude Include="jGraphicLib.h" />
     <ClInclude Include="jHash.h" />
     <ClInclude Include="jHeap.h" />
@@ -175,7 +176,6 @@
     <ClInclude Include="jVector.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="implementation.cpp" />
     <ClCompile Include="jGrid.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

@@ -3,6 +3,7 @@
 #include <tuple>
 #include <functional>
 #include <utility>
+#include <type_traits>
 #include "jGraph.h"
 #include "jTestBase.h"
 
@@ -13,8 +14,7 @@ namespace {
 template<typename T, typename priority_t>
 struct PriorityQueue {
 	typedef std::pair<priority_t, T> PQElement;
-	std::priority_queue<PQElement, std::vector<PQElement>,
-		std::greater<PQElement>> elements;
+	std::priority_queue<PQElement, std::vector<PQElement>, std::greater<PQElement>> elements;
 
 	inline bool empty() const { return elements.empty(); }
 
@@ -30,8 +30,9 @@ struct PriorityQueue {
 };
 }
 
+namespace {
 template<typename node>
-std::vector<node> reconstruct_path(node start, node goal, std::unordered_map<node, node>& came_from) 
+std::vector<node> reconstruct_path(node start, node goal, std::unordered_map<node, node>& came_from)
 {
 	std::vector<node> path;
 	node current = goal;
@@ -42,9 +43,11 @@ std::vector<node> reconstruct_path(node start, node goal, std::unordered_map<nod
 	path.push_back(start);
 	return std::vector<node>(path.rbegin(), path.rend());
 }
+}
 
-template<typename node>
-std::vector<node> a_star_search(jGraph<node> &graph, const node &start, const node & goal)
+template<typename node, typename Graph>
+std::enable_if_t<std::is_base_of<jGraph<node>, Graph>::value, std::vector<node> >
+a_star_search(Graph &graph, const node &start, const node & goal)
 {
 	PriorityQueue<node, float> theQueue;
 	theQueue.put(start, 0);
@@ -93,6 +96,11 @@ namespace jLib {
 			g.addNode(5, std::vector<int>{});
 			g.addNode(6, std::vector<int>{});
 			auto ret = a_star_search(g, 1, 5);
+			for (auto &i : ret)
+			{
+				std::cout << i << " ";
+			}
+			std::cout << std::endl;
 		}
 	};
 }

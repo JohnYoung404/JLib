@@ -14,6 +14,7 @@
 #include "jGrid.cpp"
 #include "jMPL.h"
 #include "jGraphSearch.h"
+#include "jGraphGrid.h"
 
 namespace jLib {
 
@@ -54,8 +55,9 @@ namespace jLib {
 		//regist<jHanaTest>();
 		//regist<jBoostComputeTest>();
 		//regist<jMsmTest>();
-		regist<jGridTest>();
+		//regist<jGridTest>();
 		//regist<jMPLTest>();
-		//regist<jGraphSearchTest>();
+		regist<jGraphSearchTest>();
+		regist<jGraphGridTest>();
     }
 }

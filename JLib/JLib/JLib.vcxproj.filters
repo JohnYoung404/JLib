@@ -165,14 +165,17 @@
     <ClInclude Include="jGraphGrid.h">
       <Filter>头文件\jGameComponent</Filter>
     </ClInclude>
-    <ClInclude Include="jGraph_discard.h">
-      <Filter>头文件\jGraphLib</Filter>
-    </ClInclude>
     <ClInclude Include="jGraph.h">
       <Filter>头文件\jGraphLib</Filter>
     </ClInclude>
     <ClInclude Include="jGraphSearch.h">
       <Filter>头文件\jGraphLib</Filter>
+    </ClInclude>
+    <ClInclude Include="jOpsMPL.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jNearestPointPair.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -181,9 +184,6 @@
     </ClCompile>
     <ClCompile Include="jGrid.cpp">
       <Filter>头文件\jGameComponent</Filter>
-    </ClCompile>
-    <ClCompile Include="implementation.cpp">
-      <Filter>头文件\jGraphLib</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
