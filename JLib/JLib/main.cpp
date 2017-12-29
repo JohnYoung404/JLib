@@ -1,6 +1,7 @@
 #include <iostream>
 #include "jDebug.h"
 #include "jTestManager.h"
+#include "jGraphGrid.h"
 
 // Author : John Young
 // Contact : JohnYoung404@outlook.com

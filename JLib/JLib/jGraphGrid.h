@@ -2,6 +2,7 @@
 #include <tuple>
 #include <functional>
 #include <cmath>
+#include <ctime>
 #include <unordered_set>
 #include <array>
 #include "jGraphSearch.h"
@@ -31,7 +32,7 @@ using jPosNode = std::tuple<int, int>;
 class jPositionGraph : public jGraphLib::jGraph<jPosNode>
 {
 public:
-    jPositionGraph(int initWidth, int initHeight) : _width(initWidth), _height(initHeight) { }
+    jPositionGraph(int initWidth, int initHeight) : _width(initWidth), _height(initHeight), _DIRS{ jPosNode{ 1, 0 }, jPosNode{ 0, -1 }, jPosNode{ -1, 0 }, jPosNode{ 0, 1 } } { }
 	
     const std::vector<jPosNode>& neibours(jPosNode InputNode) override
     {
@@ -43,7 +44,7 @@ public:
 		std::tie(x, y) = InputNode;
 		std::vector<jPosNode> results;
 
-		for (auto dir : _DIRS) {
+		for (auto &dir : _DIRS) {
 			std::tie(dx, dy) = dir;
 			jPosNode next(x + dx, y + dy);
 			if (in_bounds(next) && passable(next)) {
@@ -83,7 +84,7 @@ private:
     int _width, _height;
 	std::unordered_set<jPosNode> _walls;
     std::unordered_map<jPosNode, std::vector<jPosNode>> _cachedNeibourMap;
-    static std::array<jPosNode, 4> _DIRS;
+    const std::array<jPosNode, 4> _DIRS;
 
     inline bool in_bounds(jPosNode input) {
         int x, y;
@@ -95,8 +96,6 @@ private:
         return !_walls.count(input);
     }
 };
-
-std::array<jPosNode, 4> jPositionGraph::_DIRS{ jPosNode{ 1, 0 }, jPosNode{ 0, -1 }, jPosNode{ -1, 0 }, jPosNode{ 0, 1 } };
 
 }
 

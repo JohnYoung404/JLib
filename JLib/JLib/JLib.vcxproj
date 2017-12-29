@@ -162,19 +162,17 @@
     <ClInclude Include="jMatrixCvt.h" />
     <ClInclude Include="jMPL.h" />
     <ClInclude Include="jIntString.h" />
-    <ClInclude Include="jOverflowCheck.h" />
     <ClInclude Include="jPlane.h" />
     <ClInclude Include="jRandom.h" />
     <ClInclude Include="jSort.h" />
     <ClInclude Include="jString.h" />
     <ClInclude Include="jSudoku.h" />
     <ClInclude Include="jTestManager.h" />
-    <ClInclude Include="jTypeTrait.h" />
     <ClInclude Include="jVector.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="jGrid.cpp" />
     <ClCompile Include="jStringUtil.cpp" />
+    <ClCompile Include="jTestManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

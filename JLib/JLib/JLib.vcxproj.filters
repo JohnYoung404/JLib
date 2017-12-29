@@ -120,9 +120,6 @@
     <ClInclude Include="jOpsMPL.h">
       <Filter>头文件\jMPL</Filter>
     </ClInclude>
-    <ClInclude Include="jTypeTrait.h">
-      <Filter>头文件\jMPL</Filter>
-    </ClInclude>
     <ClInclude Include="jStringUtil.h">
       <Filter>头文件\jUtility</Filter>
     </ClInclude>
@@ -159,9 +156,6 @@
     <ClInclude Include="jRange.h">
       <Filter>头文件\jContainer</Filter>
     </ClInclude>
-    <ClInclude Include="jOverflowCheck.h">
-      <Filter>头文件\jUtility</Filter>
-    </ClInclude>
     <ClInclude Include="jNearestPointPair.h">
       <Filter>头文件\jAlgorithm</Filter>
     </ClInclude>
@@ -185,10 +179,10 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="jGrid.cpp">
-      <Filter>头文件\jGameComponent</Filter>
-    </ClCompile>
     <ClCompile Include="jStringUtil.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="jTestManager.cpp">
       <Filter>头文件\jUtility</Filter>
     </ClCompile>
   </ItemGroup>

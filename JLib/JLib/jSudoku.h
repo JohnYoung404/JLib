@@ -33,7 +33,7 @@ namespace jLib {
 		std::set<unsigned char> validlist = getValidValues(posX, posY);
 		while (!done)
 		{
-			int sz = validlist.size();
+			auto sz = validlist.size();
 			if (sz == 0)
 			{
 				sudokuList[posX][posY] = 0;
@@ -82,9 +82,9 @@ namespace jLib {
 				ret.erase(sudokuList[posX][i]);
 			}
 		}
-		int _x = (posX - 1) / 3 * 3, _y = (posY - 1) / 3 * 3;
-		for (int i = _x + 1; i < _x + 4; ++i)
-			for (int j = _y + 1; j < _y + 4; ++j)
+		auto _x = (posX - 1) / 3 * 3, _y = (posY - 1) / 3 * 3;
+		for (auto i = _x + 1; i < _x + 4; ++i)
+			for (auto j = _y + 1; j < _y + 4; ++j)
 			{
 				if (sudokuList[i][j] != 0)
 				{
