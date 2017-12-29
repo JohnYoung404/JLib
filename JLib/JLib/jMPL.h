@@ -15,8 +15,8 @@
 template<int Length, typename It>
 struct _sumOfArray {
     enum {
-        loop_times = _div<Length, 4>::value,
-        rest_elems_num = _mod<Length, 4>::value,
+        loop_times = jLib::_div<Length, 4>::value,
+        rest_elems_num = jLib::_mod<Length, 4>::value,
         beg_pos = loop_times * 4
     };
     typedef typename std::iterator_traits<It>::value_type value_type;

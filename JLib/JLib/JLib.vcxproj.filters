@@ -54,9 +54,6 @@
     <ClInclude Include="jVector.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
-    <ClInclude Include="jImage.h">
-      <Filter>头文件\jMediaLib</Filter>
-    </ClInclude>
     <ClInclude Include="jCamera.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
@@ -180,7 +177,10 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="jTestManager.cpp">
-      <Filter>头文件\jUtility</Filter>
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="jBitMap.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

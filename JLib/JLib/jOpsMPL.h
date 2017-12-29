@@ -4,6 +4,9 @@
 // Description : simple operation template meta.
 #pragma once
 
+namespace jLib 
+{
+
 template <int X, int Y>
 struct _plus {
     enum {
@@ -38,3 +41,5 @@ struct _mod {
         value = X % Y
     };
 };
+
+}

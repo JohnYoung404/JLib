@@ -1,10 +1,12 @@
+// Author : John Young
+// Contact : JohnYoung404@outlook.com
+// Description : Test Manager to manage unit test.
 #pragma once
 #include <memory>
 #include <vector>
 #include <functional>
 #include <type_traits>
 #include "jTestBase.h"
-
 
 namespace jLib {
 
@@ -33,5 +35,4 @@ private:
 	std::vector<std::shared_ptr<jITestable> > _allTestCase;
 };
 
-	
 }

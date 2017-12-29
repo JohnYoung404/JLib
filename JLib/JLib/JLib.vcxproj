@@ -153,7 +153,6 @@
     <ClInclude Include="jNearestPointPair.h" />
     <ClInclude Include="jHash.h" />
     <ClInclude Include="jHeap.h" />
-    <ClInclude Include="jImage.h" />
     <ClInclude Include="jLight.h" />
     <ClInclude Include="jLine2D.h" />
     <ClInclude Include="jLog.h" />
@@ -170,6 +169,7 @@
     <ClInclude Include="jVector.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="jBitMap.cpp" />
     <ClCompile Include="jStringUtil.cpp" />
     <ClCompile Include="jTestManager.cpp" />
     <ClCompile Include="main.cpp" />
