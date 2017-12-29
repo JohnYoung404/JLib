@@ -37,6 +37,12 @@
     <Filter Include="头文件\jUtility">
       <UniqueIdentifier>{5b23e6d2-b1ba-47a2-bb00-03bdba52fdb9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\jAlgorithm">
+      <UniqueIdentifier>{1135bab3-9950-44a8-8548-ebb8dd3a0247}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\jMath">
+      <UniqueIdentifier>{bb54b1ea-553b-4095-bdf4-cf3c13d12c55}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="jLight.h">
@@ -53,9 +59,6 @@
     </ClInclude>
     <ClInclude Include="jCamera.h">
       <Filter>头文件\jGraphicLib</Filter>
-    </ClInclude>
-    <ClInclude Include="jMath.h">
-      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="jMatrix.h">
       <Filter>头文件\jGraphicLib</Filter>
@@ -77,39 +80,6 @@
     </ClInclude>
     <ClInclude Include="jLine2D.h">
       <Filter>头文件\jGraphicLib</Filter>
-    </ClInclude>
-    <ClInclude Include="jBitInt.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="jIntString.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="jHeap.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="jSort.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="jSudoku.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="jHash.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="jAVLTree.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="jRandom.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="jOverflowCheck.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="jString.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="jRange.h">
-      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="jConstableClass.h">
       <Filter>头文件\jExperimental</Filter>
@@ -144,9 +114,6 @@
     <ClInclude Include="jGraphSearch.h">
       <Filter>头文件\jGraphLib</Filter>
     </ClInclude>
-    <ClInclude Include="jNearestPointPair.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="jMPL.h">
       <Filter>头文件\jMPL</Filter>
     </ClInclude>
@@ -174,6 +141,45 @@
     <ClInclude Include="jTestManager.h">
       <Filter>头文件\jUtility</Filter>
     </ClInclude>
+    <ClInclude Include="jHash.h">
+      <Filter>头文件\jAlgorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="jHeap.h">
+      <Filter>头文件\jAlgorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="jBitInt.h">
+      <Filter>头文件\jContainer</Filter>
+    </ClInclude>
+    <ClInclude Include="jIntString.h">
+      <Filter>头文件\jContainer</Filter>
+    </ClInclude>
+    <ClInclude Include="jAVLTree.h">
+      <Filter>头文件\jContainer</Filter>
+    </ClInclude>
+    <ClInclude Include="jRange.h">
+      <Filter>头文件\jContainer</Filter>
+    </ClInclude>
+    <ClInclude Include="jOverflowCheck.h">
+      <Filter>头文件\jUtility</Filter>
+    </ClInclude>
+    <ClInclude Include="jNearestPointPair.h">
+      <Filter>头文件\jAlgorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="jMath.h">
+      <Filter>头文件\jMath</Filter>
+    </ClInclude>
+    <ClInclude Include="jRandom.h">
+      <Filter>头文件\jMath</Filter>
+    </ClInclude>
+    <ClInclude Include="jSort.h">
+      <Filter>头文件\jAlgorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="jSudoku.h">
+      <Filter>头文件\jAlgorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="jString.h">
+      <Filter>头文件\jContainer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -181,6 +187,9 @@
     </ClCompile>
     <ClCompile Include="jGrid.cpp">
       <Filter>头文件\jGameComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="jStringUtil.cpp">
+      <Filter>头文件\jUtility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

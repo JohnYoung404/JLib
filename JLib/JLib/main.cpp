@@ -1,20 +1,5 @@
 #include <iostream>
-#include <vector>
-#include "jImage.h"
-#include "jLine2D.h"
-#include "jCircle.h"
-#include "jMath.h"
-#include "jIntString.h"
-#include "jBitInt.h"
-#include "jHeap.h"
-#include "jSort.h"
-#include "jSudoku.h"
-#include "jHash.h"
-#include "jAVLTree.h"
-#include "jGraph.h"
 #include "jDebug.h"
-#include "jStringUtil.h"
-#include "jRange.h"
 #include "jTestManager.h"
 
 // Author : John Young
@@ -74,12 +59,10 @@ int main() {
 		//jLib::putMaxKValueInFront(arr, 5);
 		//jLib::jSort::countingsort(arr);
 
-		//std::string s = "Helllo, world.";
-		//auto l = jLib::jStringUtil::split(s, "ll");
+		//
+		//
 
 		jLib::jTestManager::instance().doAllTest();
-
-		//jLib::jTestManager::instance().addTest(std::shared_ptr<jLib::jITestable>(new jLib::jRangeTest()));
 	}
 	JCheckMemory();
     getchar();

@@ -11,10 +11,11 @@
 #include "jHana.h"
 #include "jBoostCompute.h"
 #include "jMetaStateMachine.h"
-#include "jGrid.cpp"
 #include "jMPL.h"
 #include "jGraphSearch.h"
 #include "jGraphGrid.h"
+#include "jStringUtil.h"
+#include "jGrid.h"
 
 namespace jLib {
 
@@ -57,7 +58,8 @@ namespace jLib {
 		//regist<jMsmTest>();
 		//regist<jGridTest>();
 		//regist<jMPLTest>();
-		regist<jGraphSearchTest>();
-		regist<jGraphGridTest>();
+		//regist<jGraphSearchTest>();
+		//regist<jGraphGridTest>();
+		regist<jStringUtilTest>();
     }
 }
