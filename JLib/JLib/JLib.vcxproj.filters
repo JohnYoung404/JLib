@@ -191,8 +191,5 @@
     <ClCompile Include="jStringUtil.cpp">
       <Filter>头文件\jUtility</Filter>
     </ClCompile>
-    <ClCompile Include="jGraphGrid.cpp">
-      <Filter>头文件\jGameComponent</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>
