@@ -1,7 +1,10 @@
 #include <stack>
 #include <cmath>
+#include <cctype>
+#include <algorithm>
+
 #include "jStringUtil.h"
-#include "jTestBase.h"
+#include "jRange.h"
 
 namespace jLib
 {

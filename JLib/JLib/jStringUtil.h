@@ -2,9 +2,7 @@
 
 #include <string>
 #include <vector>
-#include <cctype>
-#include <algorithm>
-#include "jRange.h"
+
 #include "jTestBase.h"
 
 namespace jLib {
