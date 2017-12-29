@@ -13,19 +13,19 @@ namespace jGraphic {
 
     class jDDALine : public jIDrawLineAlgorithm {
         void drawLine(jCanvas &canvas, const jPoint2D &p0_, const jPoint2D &p1_, jColor color) override final {
-            int dx = p1_[0] - p0_[0];
-            int dy = p1_[1] - p0_[1];
+            int dx = static_cast<int>(p1_[0] - p0_[0]);
+            int dy = static_cast<int>(p1_[1] - p0_[1]);
             int steps, k;
             float xIncrement, yIncrement, x = p0_[0], y = p0_[1];
-            if (fabs(dx) > fabs(dy)) {
-                steps = fabs(dx);
+            if (abs(dx) > abs(dy)) {
+                steps = abs(dx);
             }
             else {
-                steps = fabs(dy);
+                steps = abs(dy);
             }
             xIncrement = float(dx) / float(steps);
             yIncrement = float(dy) / float(steps);
-            canvas.setPixel(round(x), round(y), color);
+            canvas.setPixel((int)round(x), (int)round(y), color);
             for (k = 0; k < steps; ++k)
             {
                 x += xIncrement;

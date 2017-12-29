@@ -2,6 +2,7 @@
 #include <tuple>
 #include <functional>
 #include <cmath>
+#include <ctime>
 #include <unordered_set>
 #include <array>
 #include "jGraphSearch.h"
@@ -95,8 +96,6 @@ private:
         return !_walls.count(input);
     }
 };
-
-std::array<jPosNode, 4> jPositionGraph::_DIRS{ jPosNode{ 1, 0 }, jPosNode{ 0, -1 }, jPosNode{ -1, 0 }, jPosNode{ 0, 1 } };
 
 }
 
