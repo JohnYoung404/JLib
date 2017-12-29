@@ -10,7 +10,8 @@ namespace jLib {
 
 namespace jStringUtil {
 
-	const std::vector<size_t> findAll(const std::string& Whole, const std::string& part) {
+	const std::vector<size_t> findAll(const std::string& Whole, const std::string& part) 
+	{
 		std::vector<size_t> ret;
 		std::size_t found = Whole.find(part, 0);
 		while (found != std::string::npos)
@@ -18,7 +19,7 @@ namespace jStringUtil {
 			ret.push_back(found);
 			found = Whole.find(part, found + 1);
 		}
-		return std::move(ret);
+		return ret;
 	}
 
 	const size_t count(const std::string& Whole, const std::string& part) {
@@ -41,7 +42,7 @@ namespace jStringUtil {
 				ret.append(toAppend);
 			}
 		}
-		return std::move(ret);
+		return ret;
 	}
 
 	const std::string trim(const std::string& prime) {
@@ -60,11 +61,12 @@ namespace jStringUtil {
 		}
 		if (itr_head < itr_end)
 			ret = std::string(itr_head, ++itr_end);
-		return std::move(ret);
+		return ret;
 	}
 
-	const std::string reverse(const std::string& prime) {
-		return std::move(std::string(prime.rbegin(), prime.rend()));
+	const std::string reverse(const std::string& prime)
+	{
+		return std::string(prime.rbegin(), prime.rend());
 	}
 
 	const std::string toLower(const std::string& prime) {
@@ -72,7 +74,7 @@ namespace jStringUtil {
 		std::for_each(prime.begin(), prime.end(), [&ret](auto chr) {
 			ret.push_back(tolower(chr));
 		});
-		return std::move(ret);
+		return ret;
 	}
 
 	const std::string toUpper(const std::string& prime) {
@@ -80,17 +82,17 @@ namespace jStringUtil {
 		std::for_each(prime.begin(), prime.end(), [&ret](auto chr) {
 			ret.push_back(toupper(chr));
 		});
-		return std::move(ret);
+		return ret;
 	}
 
-	const std::string head(const std::string& prime, size_t num) {
-		if (num >= prime.size())	return prime;
-		return std::move(std::string(prime.begin(), prime.begin() + num));
+	const std::string head(const std::string& prime, size_t num) 
+	{
+		return (num >= prime.size()) ? prime : std::string(prime.begin(), prime.begin() + num);
 	}
 
-	const std::string tail(const std::string& prime, size_t num) {
-		if (num >= prime.size())	return prime;
-		return std::move(std::string(prime.rbegin(), prime.rend()));
+	const std::string tail(const std::string& prime, size_t num) 
+	{
+		return (num >= prime.size()) ? prime : std::string(prime.rbegin(), prime.rbegin() + num);
 	}
 
 	std::vector<std::string> split(const std::string& prime, const std::string& sep) {
@@ -104,10 +106,10 @@ namespace jStringUtil {
 				tmp.insert(tmp.begin(), chr);
 				ret.push_back(std::move(tmp));
 			}
-			return std::move(ret);
+			return ret;
 		}
 
-		auto sep_pos_vec = findAll(prime, sep);
+		auto& sep_pos_vec = findAll(prime, sep);
 		jRange<size_t> r;
 		for (auto pos : sep_pos_vec)
 		{
@@ -130,12 +132,12 @@ namespace jStringUtil {
 			ret.push_back(std::move(sepString));
 			sepString.clear();
 		}
-		return std::move(ret);
+		return ret;
 	}
 
 	const std::string join(const std::vector<std::string> &strVec, const std::string& joiner) {
 		std::string ret;
-		for (auto str : strVec) {
+		for (auto& str : strVec) {
 			if (str.size()) {
 				ret.append(str);
 				ret.append(joiner);
@@ -148,10 +150,11 @@ namespace jStringUtil {
 				ret.pop_back();
 			}
 		}
-		return std::move(ret);
+		return ret;
 	}
 
-	const std::string replace(const std::string & prime, const std::string& oldSub, const std::string & newSub){
+	const std::string replace(const std::string & prime, const std::string& oldSub, const std::string & newSub)
+	{
 		std::string ret = prime;
 		std::size_t found = ret.find(oldSub, 0);
 		while (found != std::string::npos)
@@ -159,7 +162,7 @@ namespace jStringUtil {
 			ret.replace(found, oldSub.size(), newSub);
 			found = ret.find(oldSub, found + newSub.size());
 		}
-		return std::move(ret);
+		return ret;
 	}
 
 	const bool constains(const std::string& Whole, const std::string& part) {
