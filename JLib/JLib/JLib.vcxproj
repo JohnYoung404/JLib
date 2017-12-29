@@ -173,6 +173,7 @@
     <ClInclude Include="jVector.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="jGraphGrid.cpp" />
     <ClCompile Include="jGrid.cpp" />
     <ClCompile Include="jStringUtil.cpp" />
     <ClCompile Include="main.cpp" />
