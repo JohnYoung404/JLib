@@ -171,9 +171,6 @@
     <ClInclude Include="jSudoku.h">
       <Filter>头文件\jAlgorithm</Filter>
     </ClInclude>
-    <ClInclude Include="jString.h">
-      <Filter>头文件\jContainer</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

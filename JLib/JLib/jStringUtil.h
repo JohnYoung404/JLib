@@ -41,6 +41,8 @@ namespace jStringUtil {
 	extern const bool startsWith(const std::string& Whole, const std::string& part);
 
 	extern const std::vector<size_t> KMP_match(const std::string& Whole, const std::string &part);
+
+    extern const double calExpressionValue(const std::string& expression);
 }
 }
 
@@ -66,6 +68,9 @@ namespace jLib {
 			std::cout << std::endl;
 			auto newStr = replace(s, "l", "s");
 			std::cout << newStr << std::endl;
+
+            std::string valStr = "(1 + 2^2) *3  - 2 / 3";   //Output : 14.333
+            std::cout << calExpressionValue(valStr) << std::endl;
 		}
 	};
 }

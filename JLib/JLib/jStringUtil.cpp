@@ -1,3 +1,5 @@
+#include <stack>
+#include <cmath>
 #include "jStringUtil.h"
 #include "jTestBase.h"
 
@@ -205,7 +207,7 @@ namespace jStringUtil
 
 namespace
 {
-	const std::vector<size_t> PrefixFunc(const std::string & inputStr)
+	const std::vector<size_t> _PrefixFunc(const std::string & inputStr)
 	{
 		size_t k = 0;
 		std::vector<size_t> ret;
@@ -230,7 +232,7 @@ namespace
 	const std::vector<size_t> KMP_match(const std::string& Whole, const std::string &part) {
 		size_t n = Whole.size();
 		size_t m = part.size();
-		auto & prefixFunc = PrefixFunc(part);
+		auto & prefixFunc = _PrefixFunc(part);
 		size_t q = 0;
 		std::vector<size_t> ret;
 		for (size_t i = 0; i < n; ++i)
@@ -251,6 +253,219 @@ namespace
 		}
 		return ret;
 	}
+
+namespace {
+    enum class ElemType { VALUE, OPERATOR };
+    enum class OperatorType { PLUS, MINUS, MULTIPLY, DIVIDE, POWER, LEFT_BRACKET, RIGHT_BRACKET };
+    struct ExpressionElem {
+        ElemType type;
+        union
+        {
+            double value;
+            OperatorType op;
+        };
+    };
+
+    int priorityOfOps(OperatorType op)
+    {
+        switch (op)
+        {
+        case OperatorType::PLUS:
+        case OperatorType::MINUS:
+        {
+            return 0;
+        }
+        case OperatorType::MULTIPLY:
+        case OperatorType::DIVIDE:
+        {
+            return 1;
+        }
+        case OperatorType::POWER:
+        {
+            return 2;
+        }
+        case OperatorType::RIGHT_BRACKET: 
+        {
+            return -1;
+        }
+        default:
+            return 3;
+        }
+    }
+
+    const std::vector<ExpressionElem> _ReversePolish(const std::string exp)
+    {
+        std::string blankRemoved = replace(exp, "\t", "");
+        blankRemoved = replace(exp, "\n", "");
+        blankRemoved = replace(exp, " ", "");
+
+        auto itr = blankRemoved.begin();
+        std::stack<OperatorType> theStack;
+        std::string valString;
+        std::vector<ExpressionElem> ret;
+        for (; itr != blankRemoved.end(); ++itr)
+        {
+            if (*itr != '+' && *itr != '-' && *itr != '*' && *itr != '/' && *itr != '(' && *itr != ')' && *itr != '^')
+            {
+                valString.push_back(*itr);
+                continue;
+            }
+            else {
+                ExpressionElem toInsert;
+                if (!valString.empty())
+                {
+                    double val = atof(valString.c_str());
+                    valString.clear();
+                    toInsert.type = ElemType::VALUE;
+                    toInsert.value = val;
+                    ret.push_back(toInsert);
+                }
+                OperatorType toPush;
+                switch (*itr)
+                {
+                case '+':
+                    toPush = OperatorType::PLUS;
+                    break;
+                case '-':
+                    toPush = OperatorType::MINUS;
+                    break;
+                case '*':
+                    toPush = OperatorType::MULTIPLY;
+                    break;
+                case '/':
+                    toPush = OperatorType::DIVIDE;
+                    break;
+                case '^':
+                    toPush = OperatorType::POWER;
+                    break;
+                case '(':
+                    toPush = OperatorType::LEFT_BRACKET;
+                    break;
+                case ')':
+                    toPush = OperatorType::RIGHT_BRACKET;
+                    break;
+                default:
+                    break;
+                }
+                if (toPush != OperatorType::POWER)
+                {
+                    while (!theStack.empty() && priorityOfOps(theStack.top()) >= priorityOfOps(toPush))
+                    {
+                        if (theStack.top() != OperatorType::LEFT_BRACKET) {
+                            toInsert.type = ElemType::OPERATOR;
+                            toInsert.op = theStack.top();
+                            ret.push_back(toInsert);
+                            theStack.pop();
+                            continue;
+                        }
+                        if (theStack.top() == OperatorType::LEFT_BRACKET && toPush == OperatorType::RIGHT_BRACKET)
+                        {
+                            theStack.pop();
+                            break;
+                        }
+                        else if (theStack.top() == OperatorType::LEFT_BRACKET && toPush != OperatorType::RIGHT_BRACKET)
+                        {
+                            break;
+                        }
+                    }
+                    if (toPush != OperatorType::RIGHT_BRACKET)
+                    {
+                        theStack.push(toPush);
+                    }
+                }
+                else {
+                    while (!theStack.empty() && priorityOfOps(theStack.top()) > priorityOfOps(toPush))
+                    {
+                        if (theStack.top() != OperatorType::LEFT_BRACKET) {
+                            toInsert.type = ElemType::OPERATOR;
+                            toInsert.op = theStack.top();
+                            ret.push_back(toInsert);
+                            theStack.pop();
+                            continue;
+                        }
+                        if (theStack.top() == OperatorType::LEFT_BRACKET && toPush == OperatorType::RIGHT_BRACKET)
+                        {
+                            theStack.pop();
+                            break;
+                        }
+                        else if (theStack.top() == OperatorType::LEFT_BRACKET && toPush != OperatorType::RIGHT_BRACKET)
+                        {
+                            break;
+                        }
+                    }
+                    theStack.push(toPush);
+                }
+            }
+        }
+        ExpressionElem toInsert;
+        if (!valString.empty())
+        {
+            double val = atof(valString.c_str());
+            valString.clear();
+            toInsert.type = ElemType::VALUE;
+            toInsert.value = val;
+            ret.push_back(toInsert);
+        }
+
+        while (!theStack.empty())
+        {
+            toInsert.type = ElemType::OPERATOR;
+            toInsert.op = theStack.top();
+            ret.push_back(toInsert);
+            theStack.pop();
+        }
+        return ret;
+    }
+
+    double _CalculateValueOf_RP(const std::vector<ExpressionElem> &reversePolish)
+    {
+        std::stack<double> theStack;
+        auto itr = reversePolish.begin();
+        for (; itr != reversePolish.end(); ++itr)
+        {
+            if (itr->type == ElemType::VALUE)
+            {
+                theStack.push(itr->value);
+                continue;
+            }
+            else if (itr->type == ElemType::OPERATOR)
+            {
+                double val2 = theStack.top();
+                theStack.pop();
+                double val1 = theStack.top();
+                theStack.pop();
+                double val3;
+                switch (itr->op)
+                {
+                case OperatorType::PLUS:
+                    val3 = val1 + val2;
+                    break;
+                case OperatorType::MINUS:
+                    val3 = val1 - val2;
+                    break;
+                case OperatorType::MULTIPLY:
+                    val3 = val1 * val2;
+                    break;
+                case OperatorType::DIVIDE:
+                    val3 = val1 / val2;
+                    break;
+                case OperatorType::POWER:
+                    val3 = pow(val1, val2);
+                    break;
+                default:
+                    break;
+                }
+                theStack.push(val3);
+            }
+        }
+        return theStack.top();
+    }
+}
+
+    const double calExpressionValue(const std::string& expression)
+    {
+        return _CalculateValueOf_RP(_ReversePolish(expression));
+    }
 
 }
 

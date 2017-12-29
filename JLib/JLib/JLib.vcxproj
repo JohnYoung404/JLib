@@ -165,7 +165,6 @@
     <ClInclude Include="jPlane.h" />
     <ClInclude Include="jRandom.h" />
     <ClInclude Include="jSort.h" />
-    <ClInclude Include="jString.h" />
     <ClInclude Include="jSudoku.h" />
     <ClInclude Include="jTestManager.h" />
     <ClInclude Include="jVector.h" />
