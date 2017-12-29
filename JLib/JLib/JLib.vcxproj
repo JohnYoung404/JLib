@@ -151,11 +151,9 @@
     <ClInclude Include="jCanvas.h" />
     <ClInclude Include="jDebug.h" />
     <ClInclude Include="jNearestPointPair.h" />
-    <ClInclude Include="jGraphicLib.h" />
     <ClInclude Include="jHash.h" />
     <ClInclude Include="jHeap.h" />
     <ClInclude Include="jImage.h" />
-    <ClInclude Include="JLib.h" />
     <ClInclude Include="jLight.h" />
     <ClInclude Include="jLine2D.h" />
     <ClInclude Include="jLog.h" />
@@ -167,7 +165,6 @@
     <ClInclude Include="jOverflowCheck.h" />
     <ClInclude Include="jPlane.h" />
     <ClInclude Include="jRandom.h" />
-    <ClInclude Include="jScreenPoint.h" />
     <ClInclude Include="jSort.h" />
     <ClInclude Include="jString.h" />
     <ClInclude Include="jSudoku.h" />

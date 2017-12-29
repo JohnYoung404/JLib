@@ -31,30 +31,18 @@
     <Filter Include="头文件\jContainer">
       <UniqueIdentifier>{1cfa59d4-d99e-460f-833c-47f340250d57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\jMPL">
+      <UniqueIdentifier>{6a640c5a-4b70-4567-b5c3-4dd408e85b01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\jUtility">
+      <UniqueIdentifier>{5b23e6d2-b1ba-47a2-bb00-03bdba52fdb9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="JLib.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="jMPL.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="jLog.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="jAnonymousVariable.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="jTypeTrait.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="jLight.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
     <ClInclude Include="jColor.h">
-      <Filter>头文件\jGraphicLib</Filter>
-    </ClInclude>
-    <ClInclude Include="jGraphicLib.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
     <ClInclude Include="jVector.h">
@@ -71,12 +59,6 @@
     </ClInclude>
     <ClInclude Include="jMatrix.h">
       <Filter>头文件\jGraphicLib</Filter>
-    </ClInclude>
-    <ClInclude Include="jScreenPoint.h">
-      <Filter>头文件\jGraphicLib</Filter>
-    </ClInclude>
-    <ClInclude Include="jDebug.h">
-      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="jMatrixCvt.h">
       <Filter>头文件\jGraphicLib</Filter>
@@ -126,16 +108,7 @@
     <ClInclude Include="jString.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="jStringUtil.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="jRange.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="jTestBase.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="jTestManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="jConstableClass.h">
@@ -171,11 +144,35 @@
     <ClInclude Include="jGraphSearch.h">
       <Filter>头文件\jGraphLib</Filter>
     </ClInclude>
-    <ClInclude Include="jOpsMPL.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="jNearestPointPair.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jMPL.h">
+      <Filter>头文件\jMPL</Filter>
+    </ClInclude>
+    <ClInclude Include="jOpsMPL.h">
+      <Filter>头文件\jMPL</Filter>
+    </ClInclude>
+    <ClInclude Include="jTypeTrait.h">
+      <Filter>头文件\jMPL</Filter>
+    </ClInclude>
+    <ClInclude Include="jStringUtil.h">
+      <Filter>头文件\jUtility</Filter>
+    </ClInclude>
+    <ClInclude Include="jDebug.h">
+      <Filter>头文件\jUtility</Filter>
+    </ClInclude>
+    <ClInclude Include="jLog.h">
+      <Filter>头文件\jUtility</Filter>
+    </ClInclude>
+    <ClInclude Include="jAnonymousVariable.h">
+      <Filter>头文件\jUtility</Filter>
+    </ClInclude>
+    <ClInclude Include="jTestBase.h">
+      <Filter>头文件\jUtility</Filter>
+    </ClInclude>
+    <ClInclude Include="jTestManager.h">
+      <Filter>头文件\jUtility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

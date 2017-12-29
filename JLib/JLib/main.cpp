@@ -1,7 +1,5 @@
 #include <iostream>
 #include <vector>
-#include "jLib.h"
-#include "jScreenPoint.h"
 #include "jImage.h"
 #include "jLine2D.h"
 #include "jCircle.h"

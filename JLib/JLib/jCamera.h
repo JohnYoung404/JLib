@@ -10,7 +10,7 @@ namespace jGraphic {
 	public:
 		jCamera() {
 			setCameraView(jPoint3D{ 0, 0, 1 }, jPoint3D{ 0, 0, 0 }, jPoint3D{0, 1, 0});
-			setCameraProj(PI / 4, 1, 1, 1000);
+			setCameraProj(static_cast<float>(PI / 4), 1, 1, 1000);
 		}
 		void setCameraView(jPoint3D eye_pos, jPoint3D look_at, jPoint3D up_vec = jPoint3D{ 0.0f, 1.0f, 0.0f }){
 			look_at_dist_ = (look_at - eye_pos).Length();
