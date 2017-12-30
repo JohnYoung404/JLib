@@ -64,28 +64,28 @@ public:
     void CreateEmpty(int width, int height);
     void ClearImage();
 
-	bool Clear() {
+	inline void Clear() {
 		fileHeaderPtr_.reset();
 		infoHeaderPtr_.reset();
 		rgbMapPtr_.reset();
 		imgData.clear();
 	}
 
-	inline const int Width() {
+	inline const int Width() const {
 		if (infoHeaderPtr_.get() != nullptr) {
 			return infoHeaderPtr_->biWidth;
 		}
 		return 0;
 	}
 
-	inline const int Height() {
+	inline const int Height() const {
 		if (infoHeaderPtr_.get() != nullptr) {
 			return infoHeaderPtr_->biHeight;
 		}
 		return 0;
 	}
 
-	inline const int Channel() {
+	inline const int Channel() const {
 		if (infoHeaderPtr_.get() != nullptr) {
 			return infoHeaderPtr_->biBitCount >> 3;
 		}
@@ -98,6 +98,13 @@ public:
 #endif
 		return imgData[vertIndex * infoHeaderPtr_->biWidth * Channel() + horiIndex * Channel() + channel];
 	}
+
+    inline const uint8_t& RefOfPos(int horiIndex, int vertIndex, int channel) const {
+#ifdef _DEBUG
+        BOOST_ASSERT(horiIndex < Width() && horiIndex >= 0 && vertIndex >= 0 && vertIndex < Height());
+#endif
+        return imgData[vertIndex * infoHeaderPtr_->biWidth * Channel() + horiIndex * Channel() + channel];
+    }
 
 private:
 	std::shared_ptr<jBitMapStruct::jBitMapFileHeader> fileHeaderPtr_;

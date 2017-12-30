@@ -11,6 +11,7 @@
 #include "jGraphGrid.h"
 #include "jStringUtil.h"
 #include "jGrid.h"
+#include "jHash.h"
 
 namespace jLib
 {
@@ -27,8 +28,9 @@ jTestManager::jTestManager()
     //regist<jGridTest>();
     //regist<jMPLTest>();
     //regist<jGraphSearchTest>();
-    //regist<jGraphGridTest>();
+    regist<jGraphGridTest>();
     regist<jStringUtilTest>();
+    regist<jHashTest>();
 }
 
 std::shared_ptr<jTestManager> jTestManager::_instance_ptr = std::shared_ptr<jTestManager>(new jTestManager());	// singleton, will be destroyed when program exit,

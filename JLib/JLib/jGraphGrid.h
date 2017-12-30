@@ -9,7 +9,9 @@
 #include "jGrid.h"
 #include "jVector.h"
 #include "jTestBase.h"
+#include "jHash.h"
 
+/*
 namespace std {
 
 template <>
@@ -22,7 +24,7 @@ struct hash<tuple<int, int> >
 	}
 };
 
-}
+}*/
 
 namespace jGame
 {
