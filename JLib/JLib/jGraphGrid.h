@@ -11,21 +11,6 @@
 #include "jTestBase.h"
 #include "jHash.h"
 
-/*
-namespace std {
-
-template <>
-struct hash<tuple<int, int> > 
-{
-	inline size_t operator()(const tuple<int, int>& location) const {
-		int x, y;
-		tie(x, y) = location;
-		return x * 1812433253 + y;
-	}
-};
-
-}*/
-
 namespace jGame
 {
 
