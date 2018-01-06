@@ -29,7 +29,7 @@ namespace jAlgorithm
             return std::get<0>(lhs) < std::get<0>(rhs);
         });
 
-        auto &lside = std::vector<jPoint>(pointSetCopy.begin(), pointSetCopy.begin() + pointSetCopy.size() / 2);
+        auto &lside = std::vector<jPoint>(pointSetCopy.begin(), pointSetCopy.begin() + pointSetCopy.size() / 2);    // divide point set to two half.
         auto &rside = std::vector<jPoint>(pointSetCopy.begin() + pointSetCopy.size() / 2, pointSetCopy.end());
 
         auto &lhs = mostAdjacentPointPair(lside);
@@ -48,7 +48,7 @@ namespace jAlgorithm
             if (std::get<0>(point) >= lBorder_x && std::get<0>(point) <= rBorder_x)  midArea.push_back(point);
         });
 
-        std::sort(midArea.begin(), midArea.end(), [](jPoint &lhs, jPoint &rhs) {        // these time sort by y coordinate.
+        std::sort(midArea.begin(), midArea.end(), [](jPoint &lhs, jPoint &rhs) {        // this time sort by y coordinate.
             return std::get<1>(lhs) < std::get<1>(rhs);
         });
 
