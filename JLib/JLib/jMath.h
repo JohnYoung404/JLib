@@ -8,12 +8,6 @@
 #define NEG_INFINITY (-POS_INFINITY)
 #define NEG_ZERO (-1.0/POS_INFINITY)
 
-#define MAX(a,b) ((a)>(b)?a:b)
-#define MIN(a,b) ((a)<(b)?a:b)
-
-#define  max(a, b) MAX(a, b)
-#define  min(a, b) MIN(a, b)
-
 inline bool AlmostEqual(float lhs, float rhs) {
 	if (lhs == 0)
 	{

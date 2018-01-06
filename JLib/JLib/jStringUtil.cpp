@@ -94,7 +94,7 @@ namespace jStringUtil
 
 	const std::string tail(const std::string& prime, size_t num)
 	{
-		return (num >= prime.size()) ? prime : reverse(std::string(prime.rbegin(), prime.rbegin() + num));
+		return (num >= prime.size()) ? prime : std::string(prime.begin() + prime.size() - num, prime.end());
 	}
 
 	const std::vector<std::string> split(const std::string& prime, const std::string& sep) {

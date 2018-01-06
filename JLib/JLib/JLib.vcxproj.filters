@@ -147,9 +147,6 @@
     <ClInclude Include="jRange.h">
       <Filter>头文件\jContainer</Filter>
     </ClInclude>
-    <ClInclude Include="jNearestPointPair.h">
-      <Filter>头文件\jAlgorithm</Filter>
-    </ClInclude>
     <ClInclude Include="jMath.h">
       <Filter>头文件\jMath</Filter>
     </ClInclude>
@@ -158,6 +155,15 @@
     </ClInclude>
     <ClInclude Include="jSort.h">
       <Filter>头文件\jAlgorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="jAdjacentPointPair.h">
+      <Filter>头文件\jAlgorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="jVectorUtil.h">
+      <Filter>头文件\jUtility</Filter>
+    </ClInclude>
+    <ClInclude Include="jUtility.h">
+      <Filter>头文件\jUtility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +177,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="jBitMap.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="jAdjacentPointPair.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

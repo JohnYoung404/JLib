@@ -148,7 +148,7 @@
     <ClInclude Include="jColor.h" />
     <ClInclude Include="jCanvas.h" />
     <ClInclude Include="jDebug.h" />
-    <ClInclude Include="jNearestPointPair.h" />
+    <ClInclude Include="jAdjacentPointPair.h" />
     <ClInclude Include="jHash.h" />
     <ClInclude Include="jHeap.h" />
     <ClInclude Include="jLight.h" />
@@ -163,9 +163,12 @@
     <ClInclude Include="jRandom.h" />
     <ClInclude Include="jSort.h" />
     <ClInclude Include="jTestManager.h" />
+    <ClInclude Include="jUtility.h" />
     <ClInclude Include="jVector.h" />
+    <ClInclude Include="jVectorUtil.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="jAdjacentPointPair.cpp" />
     <ClCompile Include="jBitMap.cpp" />
     <ClCompile Include="jStringUtil.cpp" />
     <ClCompile Include="jTestManager.cpp" />

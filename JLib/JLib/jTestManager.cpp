@@ -1,7 +1,6 @@
 #include "jTestManager.h"
 
 #include "jRange.h"
-#include "jSudoku.h"
 #include "jConstableClass.h"
 #include "jHana.h"
 #include "jBoostCompute.h"
@@ -12,6 +11,7 @@
 #include "jStringUtil.h"
 #include "jGrid.h"
 #include "jHash.h"
+#include "jAdjacentPointPair.h"
 
 namespace jLib
 {
@@ -31,6 +31,7 @@ jTestManager::jTestManager()
     regist<jGraphGridTest>();
     regist<jStringUtilTest>();
     regist<jHashTest>();
+    regist<jAdjacentPointPairTest>();
 }
 
 std::shared_ptr<jTestManager> jTestManager::_instance_ptr = std::shared_ptr<jTestManager>(new jTestManager());	// singleton, will be destroyed when program exit,
