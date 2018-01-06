@@ -3,12 +3,12 @@
 // Date : [9/24/2017]
 // Description : Log helper.
 #pragma once
-#include "jAnonymousVariable.h"
 #include <string>
-#include "boost/lexical_cast.hpp"
-#include "boost/timer.hpp"
-#include "boost/noncopyable.hpp"
+#include <boost/lexical_cast.hpp>
+#include <boost/timer.hpp>
+#include <boost/noncopyable.hpp>
 #include <iomanip>
+#include "jMPL.h"
 
 #define  JLOG() __AnonymousNameSpece::jProgressLog ANONYMOUS_VARIABLE(__AnonymousNameSpece::jFileInfo((const char*)__FILE__, (const char*)__FUNCTION__, (const char*)__DATE__, (const char*)__TIME__, __LINE__))
 

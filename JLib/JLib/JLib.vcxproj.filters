@@ -126,9 +126,6 @@
     <ClInclude Include="jLog.h">
       <Filter>头文件\jUtility</Filter>
     </ClInclude>
-    <ClInclude Include="jAnonymousVariable.h">
-      <Filter>头文件\jUtility</Filter>
-    </ClInclude>
     <ClInclude Include="jTestBase.h">
       <Filter>头文件\jUtility</Filter>
     </ClInclude>
@@ -147,9 +144,6 @@
     <ClInclude Include="jIntString.h">
       <Filter>头文件\jContainer</Filter>
     </ClInclude>
-    <ClInclude Include="jAVLTree.h">
-      <Filter>头文件\jContainer</Filter>
-    </ClInclude>
     <ClInclude Include="jRange.h">
       <Filter>头文件\jContainer</Filter>
     </ClInclude>
@@ -163,9 +157,6 @@
       <Filter>头文件\jMath</Filter>
     </ClInclude>
     <ClInclude Include="jSort.h">
-      <Filter>头文件\jAlgorithm</Filter>
-    </ClInclude>
-    <ClInclude Include="jSudoku.h">
       <Filter>头文件\jAlgorithm</Filter>
     </ClInclude>
   </ItemGroup>

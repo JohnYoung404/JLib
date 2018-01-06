@@ -12,6 +12,12 @@
 #define _concat(s1, s2) s1 ## s2
 #define  jconcat(s1, s2) _concat(s1, s2)
 
+#ifdef __COUNTER__
+#   define ANONYMOUS_VARIABLE jconcat(__var_ , __COUNTER__)
+#else
+#   define ANONYMOUS_VARIABLE jconcat(__var_ , __LINE__)
+#endif
+
 template<int Length, typename It>
 struct _sumOfArray {
     enum {

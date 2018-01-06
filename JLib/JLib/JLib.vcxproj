@@ -141,8 +141,6 @@
     <ClInclude Include="jTestBase.h" />
     <ClInclude Include="jRange.h" />
     <ClInclude Include="jStringUtil.h" />
-    <ClInclude Include="jAnonymousVariable.h" />
-    <ClInclude Include="jAVLTree.h" />
     <ClInclude Include="jBitInt.h" />
     <ClInclude Include="jBitMap.h" />
     <ClInclude Include="jCamera.h" />
@@ -164,7 +162,6 @@
     <ClInclude Include="jPlane.h" />
     <ClInclude Include="jRandom.h" />
     <ClInclude Include="jSort.h" />
-    <ClInclude Include="jSudoku.h" />
     <ClInclude Include="jTestManager.h" />
     <ClInclude Include="jVector.h" />
   </ItemGroup>

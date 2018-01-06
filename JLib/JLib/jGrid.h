@@ -18,8 +18,8 @@ public:
 	}
 	typedef Type ElemType;
 
-	const size_t ROW() const { return _ROW; }
-	const size_t COL() const { return _COL; }
+	inline const size_t ROW() const { return _ROW; }
+	inline const size_t COL() const { return _COL; }
 
 	class column_iterator;
 	class row_iterator;
