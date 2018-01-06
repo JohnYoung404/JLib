@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "jAdjacentPointPair.h"
 
 namespace jLib

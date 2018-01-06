@@ -1,10 +1,8 @@
 #pragma once
 
 #include <vector>
-#include <algorithm>
 #include <tuple>
 #include <boost/optional.hpp>
-#include "jUtility.h"
 #include "jTestBase.h"
 
 namespace jLib {
