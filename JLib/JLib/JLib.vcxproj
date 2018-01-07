@@ -150,7 +150,6 @@
     <ClInclude Include="jDebug.h" />
     <ClInclude Include="jAdjacentPointPair.h" />
     <ClInclude Include="jHash.h" />
-    <ClInclude Include="jHeap.h" />
     <ClInclude Include="jLight.h" />
     <ClInclude Include="jLine2D.h" />
     <ClInclude Include="jLog.h" />

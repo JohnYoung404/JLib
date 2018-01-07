@@ -22,7 +22,7 @@ namespace jAlgorithm
     const boost::optional<jPointPair> mostAdjacentPointPair(const std::vector<jPoint> & inputSet)
     {
         if (inputSet.size() <= 1) return boost::none;
-        if (inputSet.size() == 2) return std::make_tuple(jPoint(inputSet[0]), inputSet[1]);
+        if (inputSet.size() == 2) return std::make_tuple(inputSet[0], inputSet[1]);
 
         auto pointSetCopy = inputSet;
 

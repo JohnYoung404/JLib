@@ -135,9 +135,6 @@
     <ClInclude Include="jHash.h">
       <Filter>头文件\jAlgorithm</Filter>
     </ClInclude>
-    <ClInclude Include="jHeap.h">
-      <Filter>头文件\jAlgorithm</Filter>
-    </ClInclude>
     <ClInclude Include="jBitInt.h">
       <Filter>头文件\jContainer</Filter>
     </ClInclude>
