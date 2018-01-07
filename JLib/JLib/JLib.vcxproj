@@ -160,7 +160,6 @@
     <ClInclude Include="jIntString.h" />
     <ClInclude Include="jPlane.h" />
     <ClInclude Include="jRandom.h" />
-    <ClInclude Include="jSort.h" />
     <ClInclude Include="jTestManager.h" />
     <ClInclude Include="jUtility.h" />
     <ClInclude Include="jVector.h" />

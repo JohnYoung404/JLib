@@ -150,9 +150,6 @@
     <ClInclude Include="jRandom.h">
       <Filter>头文件\jMath</Filter>
     </ClInclude>
-    <ClInclude Include="jSort.h">
-      <Filter>头文件\jAlgorithm</Filter>
-    </ClInclude>
     <ClInclude Include="jAdjacentPointPair.h">
       <Filter>头文件\jAlgorithm</Filter>
     </ClInclude>
