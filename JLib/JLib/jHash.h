@@ -16,7 +16,7 @@ namespace std
     {
         inline size_t operator()(const tuple<Args...>& t) const {
             size_t seed = 0;
-            tuple_for_each(t, [&seed] (auto & e) {
+            jLib::jMPL::tuple_for_each(t, [&seed] (auto & e) {
                 size_t std_hash = hash<boost::remove_cv_ref_t<decltype(e)> >{}(e);
                 boost::hash_combine(seed, std_hash);
             });

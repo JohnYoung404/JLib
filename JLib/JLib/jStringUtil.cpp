@@ -33,7 +33,7 @@ namespace jStringUtil
 		for (auto orig_elem : prime)
 		{
 			unsigned char elem = (unsigned char)orig_elem;
-			if (isdigit(elem) || islower(elem) || isupper(elem))
+			if (std::isdigit(elem) || std::islower(elem) || std::isupper(elem))
 				ret.push_back(elem);
 			else if (elem < 256) {
 				ret.push_back('%');
@@ -52,13 +52,13 @@ namespace jStringUtil
 		auto itr_head = prime.begin();
 		auto itr_end = prime.end();
 		while ((itr_head != prime.end())) {
-			if (!isspace((unsigned char)*itr_head))
+			if (!std::isspace((unsigned char)*itr_head))
 				break;
 			++itr_head;
 		}
 		while ((itr_end != prime.begin())) {
 			--itr_end;
-			if (!isspace((unsigned char)*itr_end))
+			if (!std::isspace((unsigned char)*itr_end))
 				break;
 		}
 		if (itr_head < itr_end)
@@ -317,7 +317,7 @@ namespace {
                 ExpressionElem toInsert;
                 if (!valString.empty())
                 {
-                    double val = atof(valString.c_str());
+                    double val = std::atof(valString.c_str());
                     valString.clear();
                     toInsert.type = ElemType::VALUE;
                     toInsert.value = val;
