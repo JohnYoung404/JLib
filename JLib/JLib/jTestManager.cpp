@@ -12,6 +12,7 @@
 #include "jGrid.h"
 #include "jHash.h"
 #include "jAdjacentPointPair.h"
+#include "jIntString.h"
 
 namespace jLib
 {
@@ -32,6 +33,7 @@ jTestManager::jTestManager()
     regist<jStringUtilTest>();
     regist<jHashTest>();
     regist<jAdjacentPointPairTest>();
+	regist<jIntStringTest>();
 }
 
 std::shared_ptr<jTestManager> jTestManager::_instance_ptr = std::shared_ptr<jTestManager>(new jTestManager());	// singleton, will be destroyed when program exit,
