@@ -92,14 +92,14 @@ public:
 		return 0;
 	}
 
-	inline uint8_t& RefOfPos(int horiIndex, int vertIndex, int channel) {
+	inline uint8_t& at(int horiIndex, int vertIndex, int channel) {
 #ifdef _DEBUG
         BOOST_ASSERT(horiIndex < Width() && horiIndex >= 0 && vertIndex >= 0 && vertIndex < Height());
 #endif
 		return imgData[vertIndex * infoHeaderPtr_->biWidth * Channel() + horiIndex * Channel() + channel];
 	}
 
-    inline const uint8_t& RefOfPos(int horiIndex, int vertIndex, int channel) const {
+    inline const uint8_t& at(int horiIndex, int vertIndex, int channel) const {
 #ifdef _DEBUG
         BOOST_ASSERT(horiIndex < Width() && horiIndex >= 0 && vertIndex >= 0 && vertIndex < Height());
 #endif

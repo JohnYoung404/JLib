@@ -9,13 +9,13 @@ namespace jGraphic {
 
         virtual void setPixel(int x, int y, jColor color) {
             if (x >= horiBound() || x < 0 || y >= vertBound() || y < 0)  return;
-            this->getPosRef(x, y, 0) = color.B();
-            this->getPosRef(x, y, 1) = color.G();
-            this->getPosRef(x, y, 2) = color.R();
-            this->getPosRef(x, y, 3) = color.A();
+            this->at(x, y, 0) = color.B();
+            this->at(x, y, 1) = color.G();
+            this->at(x, y, 2) = color.R();
+            this->at(x, y, 3) = color.A();
         };
 
-        virtual uint8_t& getPosRef(int hori, int vert, int cannel) = 0;
+        virtual uint8_t& at(int hori, int vert, int cannel) = 0;
         virtual int horiBound() = 0;
         virtual int vertBound() = 0;
         virtual ~jICanvas() {};
@@ -26,8 +26,8 @@ namespace jGraphic {
         jBitMapCanvas(jBitMap &bitmap) {
             bitmapPtr_ = &bitmap;
         }
-        uint8_t& getPosRef(int hori, int vert, int cannel) override {
-            return bitmapPtr_->RefOfPos(hori, vert, cannel);
+        uint8_t& at(int hori, int vert, int cannel) override {
+            return bitmapPtr_->at(hori, vert, cannel);
         }
         int horiBound() override {
             return bitmapPtr_->Width();
@@ -44,9 +44,9 @@ namespace jGraphic {
         jCanvas(jBitMap & bitmap) {
             canvasPtr_ = std::make_shared<jBitMapCanvas>(bitmap);
         }
-        uint8_t& getPosRef(int hori, int vert, int cannel) {
+        uint8_t& at(int hori, int vert, int cannel) {
             if (canvasPtr_ != nullptr) {
-                return canvasPtr_->getPosRef(hori, vert, cannel);
+                return canvasPtr_->at(hori, vert, cannel);
             }
         }
         void setPixel(int x, int y, jColor color) {
