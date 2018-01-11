@@ -51,7 +51,7 @@ namespace jLib {
 			jITestable::test();
 			try
 			{
-				jLib::jNum::jIntString jis("1396348573", 10);
+				jLib::jNum::jIntString jis("001396348573");
 				jis.changeRadix(7);
 				std::cout << jis << std::endl;
 				jis.changeRadix(10);

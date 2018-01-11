@@ -6,6 +6,7 @@ namespace jLib {
 
 struct jITestable
 {
+	virtual ~jITestable() {}
     virtual void test() {
         std::cout << "testing class: " << typeid(*this).name() << "..." << std::endl;
     };

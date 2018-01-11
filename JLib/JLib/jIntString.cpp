@@ -1,3 +1,5 @@
+#include <iostream>
+#include <stdexcept>
 #include <boost/assert.hpp>
 #include "jIntString.h"
 
@@ -45,18 +47,9 @@ namespace jNum
 		, sign_(sign)
 	{
 		if (radix_ > 16 || radix_ < 2) throw std::invalid_argument("Only support index less or equal than 16.");
-		for (const auto & chr : numVec)
+		for (const auto & num : numVec)
 		{
-			if (chr >= '0' && chr <= '9')
-			{
-				char val = chr - '0';
-				if (val < 0 || val >= radix_) throw std::invalid_argument("Invalid number string input.");
-			}
-			else if (chr >= 'a' && chr <= 'f') {
-				char val = chr - 'a' + 10;
-				if (val < 0 || val >= radix_) throw std::invalid_argument("Invalid number string input.");
-			}
-			else throw std::invalid_argument("Invalid number string input.");
+			if (num < 0 || num >= radix_) throw std::invalid_argument("Invalid number string input.");
 		}
 		rebuiltString();
 	}

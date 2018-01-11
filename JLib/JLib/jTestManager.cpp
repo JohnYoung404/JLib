@@ -13,6 +13,7 @@
 #include "jHash.h"
 #include "jAdjacentPointPair.h"
 #include "jIntString.h"
+#include "jBigInt.h"
 
 namespace jLib
 {
@@ -34,6 +35,7 @@ jTestManager::jTestManager()
     regist<jHashTest>();
     regist<jAdjacentPointPairTest>();
 	regist<jIntStringTest>();
+	regist<jBigIntTest>();
 }
 
 std::shared_ptr<jTestManager> jTestManager::_instance_ptr = std::shared_ptr<jTestManager>(new jTestManager());	// singleton, will be destroyed when program exit,

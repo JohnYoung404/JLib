@@ -1,7 +1,5 @@
-#include <iostream>
 #include "jDebug.h"
 #include "jTestManager.h"
-#include "jGraphGrid.h"
 
 // Author : John Young
 // Contact : JohnYoung404@outlook.com
@@ -51,10 +49,6 @@ int main() {
 		//m.SaveImage("C:\\Users\\Administrator\\Desktop\\test\\test.bmp");
         //std::cout << "done";
 		//std::string s;
-
-		//jLib::jBigInt k = "464132132164163132135464121";
-		//jLib::jBigInt T = "1313463131536461";
-		//std::cout << (k / T);
 		jLib::jTestManager::instance().doAllTest();
 	}
 	JCheckMemory();
