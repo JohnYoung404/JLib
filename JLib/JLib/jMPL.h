@@ -4,10 +4,9 @@
 #pragma once
 #include <iterator>
 #include <functional>
+#include <tuple>
 #include "jOpsMPL.h"
 #include "jMatrix.h"
-#include <tuple>
-#include "jTestBase.h"
 
 #define _concat(s1, s2) s1 ## s2
 #define  jconcat(s1, s2) _concat(s1, s2)
@@ -127,7 +126,6 @@ namespace jGraphic {
 	};
 }
 
-
 namespace jLib
 {
 
@@ -162,6 +160,8 @@ namespace jMPL
 }
 
 }
+
+#include "jTestBase.h"
 
 namespace jLib {
 	class jMPLTest final : public jITestable {

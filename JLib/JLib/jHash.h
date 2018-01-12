@@ -6,8 +6,6 @@
 #include <boost/functional/hash.hpp>
 #include <boost/type_traits.hpp>
 #include "jMPL.h"
-#include "jTestBase.h"
-
 
 namespace std
 {
@@ -24,6 +22,8 @@ namespace std
         }
     };
 }
+
+#include "jTestBase.h"
 
 namespace jLib {
     class jHashTest final : public jITestable {

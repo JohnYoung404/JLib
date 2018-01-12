@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "jTestBase.h"
 
 namespace jLib {
 
@@ -43,6 +42,8 @@ namespace jNum
 }
 	
 }
+
+#include "jTestBase.h"
 
 namespace jLib {
 	class jIntStringTest final : public jITestable {

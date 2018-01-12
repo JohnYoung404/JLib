@@ -46,9 +46,6 @@ int main() {
         //theLine4.drawOn(theCanvas);
         //theLine3.drawOn(theCanvas);
         //theCircle.drawOn(theCanvas);
-		//m.SaveImage("C:\\Users\\Administrator\\Desktop\\test\\test.bmp");
-        //std::cout << "done";
-		//std::string s;
 		jLib::jTestManager::instance().doAllTest();
 	}
 	JCheckMemory();

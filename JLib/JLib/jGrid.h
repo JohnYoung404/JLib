@@ -2,8 +2,7 @@
 #include <iterator>
 #include <algorithm>
 #include <memory>
-#include "boost/assert.hpp"
-#include "jTestBase.h"
+#include <boost/assert.hpp>
 
 namespace jGame {
 
@@ -198,6 +197,8 @@ namespace jGame
 		row_iterator _beg, _end;
 	};
 }
+
+#include "jTestBase.h"
 
 namespace jLib {
 	class jGridTest final : public jITestable {

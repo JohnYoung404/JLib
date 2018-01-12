@@ -159,6 +159,9 @@
     <ClInclude Include="jBigInt.h">
       <Filter>头文件\jContainer</Filter>
     </ClInclude>
+    <ClInclude Include="jPerlinNoise.h">
+      <Filter>头文件\jAlgorithm</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -180,6 +183,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="jIntString.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="jPerlinNoise.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

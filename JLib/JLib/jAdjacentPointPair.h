@@ -3,7 +3,6 @@
 #include <vector>
 #include <tuple>
 #include <boost/optional.hpp>
-#include "jTestBase.h"
 
 namespace jLib {
 
@@ -16,6 +15,8 @@ namespace jAlgorithm
 }
     
 }
+
+#include "jTestBase.h"
 
 namespace jLib {
     class jAdjacentPointPairTest final : public jITestable {

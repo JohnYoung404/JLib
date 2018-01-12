@@ -138,6 +138,7 @@
     <ClInclude Include="jKDTree.h" />
     <ClInclude Include="jMetaStateMachine.h" />
     <ClInclude Include="jOpsMPL.h" />
+    <ClInclude Include="jPerlinNoise.h" />
     <ClInclude Include="jTestBase.h" />
     <ClInclude Include="jRange.h" />
     <ClInclude Include="jStringUtil.h" />
@@ -170,6 +171,7 @@
     <ClCompile Include="jBigInt.cpp" />
     <ClCompile Include="jBitMap.cpp" />
     <ClCompile Include="jIntString.cpp" />
+    <ClCompile Include="jPerlinNoise.cpp" />
     <ClCompile Include="jStringUtil.cpp" />
     <ClCompile Include="jTestManager.cpp" />
     <ClCompile Include="main.cpp" />

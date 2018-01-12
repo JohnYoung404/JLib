@@ -14,6 +14,8 @@
 #include "jAdjacentPointPair.h"
 #include "jIntString.h"
 #include "jBigInt.h"
+#include "jBitMap.h"
+#include "jPerlinNoise.h"
 
 namespace jLib
 {
@@ -21,8 +23,6 @@ namespace jLib
 jTestManager::jTestManager()
 {
     //regist<jRangeTest>();
-    //regist<jHeapTest>();
-    //regist<jSudokuTest>();
     //regist<jConstableTest>();
     //regist<jHanaTest>();
     //regist<jBoostComputeTest>();
@@ -36,6 +36,8 @@ jTestManager::jTestManager()
     regist<jAdjacentPointPairTest>();
 	regist<jIntStringTest>();
 	regist<jBigIntTest>();
+	regist<jBitMapTest>();
+	regist<jPerlinNoiseTest>();
 }
 
 std::shared_ptr<jTestManager> jTestManager::_instance_ptr = std::shared_ptr<jTestManager>(new jTestManager());	// singleton, will be destroyed when program exit,

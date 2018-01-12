@@ -7,8 +7,6 @@
 #include <array>
 #include "jGraphSearch.h"
 #include "jGrid.h"
-#include "jVector.h"
-#include "jTestBase.h"
 #include "jHash.h"
 
 namespace jGame
@@ -85,6 +83,8 @@ private:
 };
 
 }
+
+#include "jTestBase.h"
 
 namespace jLib {
 	class jGraphGridTest final : public jITestable {

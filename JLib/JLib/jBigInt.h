@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include "jIntString.h"
-#include "jTestBase.h"
 
 namespace jLib {
 
@@ -84,6 +83,8 @@ extern std::ostream& operator << (std::ostream &output, const jBigInt &jbi);
 	
 }
 
+#include "jTestBase.h"
+
 namespace jLib {
 	class jBigIntTest final : public jITestable {
 	public:
@@ -93,7 +94,7 @@ namespace jLib {
 			{
 				jNum::jBigInt k = "464132132164163132135464121";
 				jNum::jBigInt T = "134612313513143";
-				std::cout << (k / T) + 1;	//division would be slow in debug mode.
+				std::cout << (k / T) + 1 << std::endl;	//division would be slow in debug mode.
 			}
 			catch (const std::exception& e)
 			{

@@ -3,8 +3,6 @@
 #include <string>
 #include <vector>
 
-#include "jTestBase.h"
-
 namespace jLib {
 namespace jStringUtil {
 
@@ -43,6 +41,8 @@ namespace jStringUtil {
     extern const double calExpressionValue(const std::string& expression);
 }
 }
+
+#include "jTestBase.h"
 
 namespace jLib {
 	class jStringUtilTest final : public jITestable {
