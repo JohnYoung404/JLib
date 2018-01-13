@@ -17,6 +17,7 @@
 #include "jBitMap.h"
 #include "jPerlinNoise.h"
 #include "jCanvas.h"
+#include "jVector.h"
 
 namespace jLib
 {
@@ -39,7 +40,8 @@ jTestManager::jTestManager()
 	//regist<jBigIntTest>();
 	//regist<jBitMapTest>();
 	//regist<jPerlinNoiseTest>();
-    regist<jCanvasTest>();
+    //regist<jCanvasTest>();
+    regist<jVecBaseTest>();
 }
 
 std::unique_ptr<jTestManager> jTestManager::_instance_ptr = std::unique_ptr<jTestManager>(new jTestManager());	// singleton, will be destroyed when program exit,

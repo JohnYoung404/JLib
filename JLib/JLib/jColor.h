@@ -26,13 +26,13 @@ public:
         return jColor(255, 0, 0, 255);
     }
 
-    inline const Byte R() const { return r_; }
+    inline constexpr Byte R() const { return r_; }
     inline Byte& R() { return r_; }
-    inline const Byte G() const { return g_; }
+    inline constexpr Byte G() const { return g_; }
     inline Byte& G() { return g_; }
-    inline const Byte B() const { return b_; }
+    inline constexpr Byte B() const { return b_; }
     inline Byte& B() { return b_; }
-    inline const Byte A() const { return a_; }
+    inline constexpr Byte A() const { return a_; }
     inline Byte& A() { return a_; }
 
     friend constexpr bool operator==(jColor lhs, jColor rhs);

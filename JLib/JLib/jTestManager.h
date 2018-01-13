@@ -18,7 +18,7 @@ public:
 		return *_instance_ptr;
 	}
 
-    template<typename TestClass, jConstrain_is_subclass(TestClass, jITestable)>
+    template<typename TestClass, jConstrain_typename_is_subclass(TestClass, jITestable)>
     void regist() {
 			_allTestCase.push_back(std::unique_ptr<jITestable>(new TestClass()));
     }

@@ -2,20 +2,98 @@
 #include <initializer_list>
 #include <boost/assert.hpp>
 #include <cmath>
+#include <array>
+#include <cstring>
+#include "jTypeTraits.h"
 
 namespace jLib{
 namespace jContainer {
 
-template <size_t Degree, typename Type>
+template <typename Type, size_t Degree>
 class jVecBase
 {
 public:
-    //constexpr jVecBase<Degree, Type>();
+    constexpr jVecBase<Type, Degree>()
+    {
+        if (std::is_scalar<Type>::value)
+            std::memset(_inner_vec.data(), 0, Degree * sizeof(Type));
+        else
+            _inner_vec = {};
+    }
+    constexpr jVecBase<Type, Degree>(const Type &val)
+    {
+        _inner_vec.assign(val);
+    }
+    jVecBase<Type, Degree>(const std::initializer_list<Type> &init_list)
+    {
+        _inner_vec = {};
+        auto itr_inner = _inner_vec.begin();
+        for (auto itr_input = init_list.begin(); itr_input != init_list.end(); ++itr_input, ++itr_inner)
+        {
+            *itr_inner = *itr_input;
+        }
+    }
+    jVecBase<Type, Degree>(std::initializer_list<Type> &&init_list)
+    {
+        _inner_vec = {};
+        auto itr_inner = _inner_vec.begin();
+        for (auto itr_input = init_list.begin(); itr_input != init_list.end(); ++itr_input, ++itr_inner)
+        {
+            if (std::is_scalar<Type>::value)
+                *itr_inner = *itr_input;
+            else
+                *itr_inner = std::move(*itr_input);
+        }
+    }
+    jVecBase<Type, Degree>(const jVecBase<Type, Degree> &rhs) {
+        if (std::is_trivially_copyable<Type>::value)
+            std::memcpy(_inner_vec.data(), rhs._inner_vec.data(), Degree * sizeof(Type));
+        else
+            _inner_vec = rhs._inner_vec;
+    }
+
+
+public:
+    inline static  jVecBase<Type, Degree> zero()
+    {
+        jConstrain_sentence_is_arithmetic(Type);
+        return jVecBase<Type, Degree>(0);
+    }
+    inline static constexpr jVecBase<Type, Degree> identity()
+    {
+        jConstrain_sentence_is_arithmetic(Type);
+        return jVecBase<Type, Degree>(1);
+    }
 private:
+    template <typename Type, size_t Degree>
+    friend std::ostream& operator << (std::ostream &output, const jVecBase<Type, Degree> &vec);
+
     std::array<Type, Degree> _inner_vec;
 };
 
+template <typename Type, size_t Degree>
+std::ostream& operator << (std::ostream &output, const jVecBase<Type, Degree> &vec)
+{
+    for (auto & v : vec._inner_vec)
+    {
+        output << v << " ";
+    }
+    output << std::endl;
+    return output;
 }
+
+}
+}
+
+#include "jTestBase.h"
+namespace jLib {
+    class jVecBaseTest final : public jITestable {
+    public:
+        virtual void test() override {
+            jContainer::jVecBase<float, 3> v = {1, 2};
+            std::cout << v << jContainer::jVecBase<int, 5>::zero();
+        }
+    };
 }
 
 template<size_t Degree, typename Type>
@@ -59,10 +137,10 @@ public:
 		}
 		return *this;
 	}
-	jVector_base<Degree, Type>(jVector_base<Degree, Type> &&rhs) : vec_(rhs.vec_)
-	{
-		rhs.vec_ = nullptr;
-	}
+    jVector_base<Degree, Type>(jVector_base<Degree, Type> &&rhs) : vec_(rhs.vec_)
+    {
+        rhs.vec_ = nullptr;
+    }
 	jVector_base<Degree, Type>& operator= (jVector_base<Degree, Type> &&rhs) {
 		if (this != &rhs) {
 			this->vec_ = rhs.vec_;
