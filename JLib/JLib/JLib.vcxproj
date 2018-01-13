@@ -162,6 +162,7 @@
     <ClInclude Include="jPlane.h" />
     <ClInclude Include="jRandom.h" />
     <ClInclude Include="jTestManager.h" />
+    <ClInclude Include="jTypeTraits.h" />
     <ClInclude Include="jUtility.h" />
     <ClInclude Include="jVector.h" />
     <ClInclude Include="jVectorUtil.h" />

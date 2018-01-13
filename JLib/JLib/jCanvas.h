@@ -18,6 +18,7 @@ public:
     };
 
     virtual uint8_t& at(int hori, int vert, int cannel) = 0;
+    virtual const uint8_t& at(int hori, int vert, int cannel) const = 0;
     virtual const int horiBound() const = 0;
     virtual const int vertBound() const = 0;
     virtual ~jICanvas() {};
@@ -29,6 +30,9 @@ public:
         bitmapPtr_ = &bitmap;
     }
     uint8_t& at(int hori, int vert, int cannel) override {
+        return bitmapPtr_->at(hori, vert, cannel);
+    }
+    const uint8_t& at(int hori, int vert, int cannel) const override {
         return bitmapPtr_->at(hori, vert, cannel);
     }
     const int horiBound() const override {
@@ -47,6 +51,11 @@ public:
         canvasPtr_ = std::move(std::make_unique<jBitMapCanvas>(bitmap));
     }
     uint8_t& at(int hori, int vert, int cannel) {
+        if (canvasPtr_ != nullptr) {
+            return canvasPtr_->at(hori, vert, cannel);
+        }
+    }
+    const uint8_t& at(int hori, int vert, int cannel) const {
         if (canvasPtr_ != nullptr) {
             return canvasPtr_->at(hori, vert, cannel);
         }

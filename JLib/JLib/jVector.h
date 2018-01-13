@@ -1,7 +1,22 @@
 #pragma once
 #include <initializer_list>
-#include "boost/assert.hpp"
-#include "jMath.h"
+#include <boost/assert.hpp>
+#include <cmath>
+
+namespace jLib{
+namespace jContainer {
+
+template <size_t Degree, typename Type>
+class jVecBase
+{
+public:
+    //constexpr jVecBase<Degree, Type>();
+private:
+    std::array<Type, Degree> _inner_vec;
+};
+
+}
+}
 
 template<size_t Degree, typename Type>
 class jVector_base {
