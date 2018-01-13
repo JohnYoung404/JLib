@@ -7,6 +7,7 @@
 #include <vector>
 #include <memory>
 #include <boost/assert.hpp>
+#include "jGrid.h"
 
 //BMP structure information : http://www.cnblogs.com/xiekeli/archive/2012/05/09/2491191.html
 namespace jLib

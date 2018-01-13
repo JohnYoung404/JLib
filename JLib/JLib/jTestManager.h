@@ -20,19 +20,19 @@ public:
     template<typename TestClass>
     std::enable_if_t<std::is_base_of<jITestable, TestClass>::value, void>   // if TestClass is not testable, report compile error.
     regist() {
-			_allTestCase.push_back(std::shared_ptr<jITestable>(new TestClass()));
+			_allTestCase.push_back(std::unique_ptr<jITestable>(new TestClass()));
         }
 
 	void doAllTest() {
-			for (auto testPtr : _allTestCase)
+			for (auto &testPtr : _allTestCase)
 			{
                 testPtr->test();
 			}
 		}
 private:
     jTestManager();
-	static std::shared_ptr<jTestManager> _instance_ptr;
-	std::vector<std::shared_ptr<jITestable> > _allTestCase;
+	static std::unique_ptr<jTestManager> _instance_ptr;
+	std::vector<std::unique_ptr<jITestable> > _allTestCase;
 };
 
 }

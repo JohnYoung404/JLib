@@ -99,9 +99,6 @@
     <ClInclude Include="jGameObject.h">
       <Filter>头文件\jGameComponent</Filter>
     </ClInclude>
-    <ClInclude Include="jGrid.h">
-      <Filter>头文件\jGameComponent</Filter>
-    </ClInclude>
     <ClInclude Include="jGraphGrid.h">
       <Filter>头文件\jGameComponent</Filter>
     </ClInclude>
@@ -161,6 +158,9 @@
     </ClInclude>
     <ClInclude Include="jPerlinNoise.h">
       <Filter>头文件\jAlgorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="jGrid.h">
+      <Filter>头文件\jContainer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

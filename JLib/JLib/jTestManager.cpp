@@ -16,6 +16,7 @@
 #include "jBigInt.h"
 #include "jBitMap.h"
 #include "jPerlinNoise.h"
+#include "jCanvas.h"
 
 namespace jLib
 {
@@ -27,20 +28,21 @@ jTestManager::jTestManager()
     //regist<jHanaTest>();
     //regist<jBoostComputeTest>();
     //regist<jMsmTest>();
-    //regist<jGridTest>();
+    regist<jGridTest>();
     //regist<jMPLTest>();
     //regist<jGraphSearchTest>();
-    regist<jGraphGridTest>();
-    regist<jStringUtilTest>();
-    regist<jHashTest>();
-    regist<jAdjacentPointPairTest>();
-	regist<jIntStringTest>();
-	regist<jBigIntTest>();
-	regist<jBitMapTest>();
-	regist<jPerlinNoiseTest>();
+    //regist<jGraphGridTest>();
+    //regist<jStringUtilTest>();
+    //regist<jHashTest>();
+    //regist<jAdjacentPointPairTest>();
+	//regist<jIntStringTest>();
+	//regist<jBigIntTest>();
+	//regist<jBitMapTest>();
+	//regist<jPerlinNoiseTest>();
+    regist<jCanvasTest>();
 }
 
-std::shared_ptr<jTestManager> jTestManager::_instance_ptr = std::shared_ptr<jTestManager>(new jTestManager());	// singleton, will be destroyed when program exit,
+std::unique_ptr<jTestManager> jTestManager::_instance_ptr = std::unique_ptr<jTestManager>(new jTestManager());	// singleton, will be destroyed when program exit,
                                                                                                                     // so memory-leak checker may report false positive.
 
 }
