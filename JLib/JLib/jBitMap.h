@@ -7,7 +7,7 @@
 #include <vector>
 #include <memory>
 #include <boost/assert.hpp>
-#include "jGrid.h"
+#include "jColor.h"
 
 //BMP structure information : http://www.cnblogs.com/xiekeli/archive/2012/05/09/2491191.html
 namespace jLib
@@ -96,17 +96,42 @@ public:
 
 	inline uint8_t& at(int horiIndex, int vertIndex, int channel) {
 #ifdef _DEBUG
-		BOOST_ASSERT(horiIndex < Width() && horiIndex >= 0 && vertIndex >= 0 && vertIndex < Height());
+		BOOST_ASSERT(horiIndex < Width() && horiIndex >= 0 && vertIndex >= 0 && vertIndex < Height() && channel < Channel() && channel >= 0);
 #endif
 		return imgData[vertIndex * infoHeaderPtr_->biWidth * Channel() + horiIndex * Channel() + channel];
 	}
 
 	inline const uint8_t& at(int horiIndex, int vertIndex, int channel) const {
 #ifdef _DEBUG
-		BOOST_ASSERT(horiIndex < Width() && horiIndex >= 0 && vertIndex >= 0 && vertIndex < Height());
+		BOOST_ASSERT(horiIndex < Width() && horiIndex >= 0 && vertIndex >= 0 && vertIndex < Height() && channel < Channel() && channel >= 0);
 #endif
 		return imgData[vertIndex * infoHeaderPtr_->biWidth * Channel() + horiIndex * Channel() + channel];
 	}
+
+    inline void SetPixel(int horiIndex, int vertIndex, const jLib::jGraphic::jColor &color)
+    {
+        if (Channel() == 3 || Channel() == 4)
+        {
+            at(horiIndex, vertIndex, jMedia::jBitMap::B) = color.B();
+            at(horiIndex, vertIndex, jMedia::jBitMap::G) = color.G();
+            at(horiIndex, vertIndex, jMedia::jBitMap::R) = color.R();
+            if (Channel() == 4) at(horiIndex, vertIndex, jMedia::jBitMap::A) = color.A();
+        }
+    }
+
+    inline const jLib::jGraphic::jColor GetPixel(int horiIndex, int vertIndex) const
+    {
+        jGraphic::jColor ret;
+        if (Channel() == 3 || Channel() == 4)
+        {
+            ret.B() = at(horiIndex, vertIndex, jMedia::jBitMap::B);
+            ret.G() = at(horiIndex, vertIndex, jMedia::jBitMap::G);
+            ret.R() = at(horiIndex, vertIndex, jMedia::jBitMap::R);
+            ret.A() = 255;
+            if (Channel() == 4) ret.A() = at(horiIndex, vertIndex, jMedia::jBitMap::A);
+        }
+        return ret;
+    }
 private:
 	jBitMap(const jBitMap &rhs) = delete;
 	jBitMap& operator=(const jBitMap &rhs) = delete;
@@ -135,10 +160,7 @@ namespace jLib {
 				for (int j = 0; j < 1080; ++j) {
 					float hori_off = (float)i / 1920;
 					float vert_off = (float)j / 1080;
-					m.at(i, j, jMedia::jBitMap::B) = 0;
-					m.at(i, j, jMedia::jBitMap::G) = 0;
-					m.at(i, j, jMedia::jBitMap::R) = 255;
-					m.at(i, j, jMedia::jBitMap::A) = 255;
+                    m.SetPixel(i, j, jGraphic::jColor(255, 255, 0, 0));
 				}
 			}
 			m.SaveImage("jBitMapTest/create_plain_red_img.bmp");
@@ -148,10 +170,11 @@ namespace jLib {
 			for (int i = 0; i < m.Width(); ++i)
 			{
 				for (int j = 0; j < m.Height(); ++j) {
-					m.at(i, j, jMedia::jBitMap::B) = 255 - m.at(i, j, jMedia::jBitMap::B);
-					m.at(i, j, jMedia::jBitMap::G) = 255 - m.at(i, j, jMedia::jBitMap::G);
-					m.at(i, j, jMedia::jBitMap::R) = 255 - m.at(i, j, jMedia::jBitMap::R);
-					m.at(i, j, jMedia::jBitMap::A) = 255;
+                    auto flipped_color = m.GetPixel(i, j);
+                    flipped_color.R() = 255 - flipped_color.R();
+                    flipped_color.G() = 255 - flipped_color.G();
+                    flipped_color.B() = 255 - flipped_color.B();
+                    m.SetPixel(i, j, flipped_color);
 				}
 			}
 			m.SaveImage("jBitMapTest/rgb_filp_of_test_img.bmp");

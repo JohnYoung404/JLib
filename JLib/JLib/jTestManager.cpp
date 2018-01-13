@@ -28,7 +28,7 @@ jTestManager::jTestManager()
     //regist<jHanaTest>();
     //regist<jBoostComputeTest>();
     //regist<jMsmTest>();
-    regist<jGridTest>();
+    //regist<jGridTest>();
     //regist<jMPLTest>();
     //regist<jGraphSearchTest>();
     //regist<jGraphGridTest>();

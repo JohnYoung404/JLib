@@ -9,18 +9,35 @@ namespace jGraphic {
 
 class jICanvas {
 public:
+
     virtual void setPixel(int x, int y, jColor color) {
         if (x >= horiBound() || x < 0 || y >= vertBound() || y < 0)  return;
-        this->at(x, y, 0) = color.B();
-        this->at(x, y, 1) = color.G();
-        this->at(x, y, 2) = color.R();
-        this->at(x, y, 3) = color.A();
+        if (channels() == 3 || channels() == 4)
+        {
+            this->at(x, y, 0) = color.B();
+            this->at(x, y, 1) = color.G();
+            this->at(x, y, 2) = color.R();
+            if(channels() == 4) this->at(x, y, 3) = color.A();
+        }
     };
+    virtual const jColor getPixel(int x, int y) const {
+        jGraphic::jColor ret;
+        if (channels() == 3 || channels() == 4)
+        {
+            ret.B() = at(x, y, jMedia::jBitMap::B);
+            ret.G() = at(x, y, jMedia::jBitMap::G);
+            ret.R() = at(x, y, jMedia::jBitMap::R);
+            ret.A() = 255;
+            if (channels() == 4) ret.A() = at(x, y, jMedia::jBitMap::A);
+        }
+        return ret;
+    }
 
     virtual uint8_t& at(int hori, int vert, int cannel) = 0;
     virtual const uint8_t& at(int hori, int vert, int cannel) const = 0;
     virtual const int horiBound() const = 0;
     virtual const int vertBound() const = 0;
+    virtual const int channels() const = 0;
     virtual ~jICanvas() {};
 };
 
@@ -40,6 +57,9 @@ public:
     }
     const int vertBound() const override {
         return bitmapPtr_->Height();
+    }
+    virtual const int channels() const override{
+        return bitmapPtr_->Channel();
     }
 private:
     jMedia::jBitMap* bitmapPtr_;
@@ -62,6 +82,10 @@ public:
     }
     void setPixel(int x, int y, jColor color) {
         canvasPtr_->setPixel(x, y, color);
+    }
+    const jColor getPixel(int x, int y) const
+    {
+        canvasPtr_->getPixel(x, y);
     }
     const int horiBound() const {
         return canvasPtr_->horiBound();
@@ -87,7 +111,7 @@ namespace jLib {
             jITestable::test();
 
             jMedia::jBitMap m;
-            m.CreateEmpty(512, 512);
+            m.LoadImage("srcImg/test.bmp");
             jGraphic::jCanvas cvs = jGraphic::jCanvas(m);
             jGraphic::jLine2D theLine = jGraphic::jLine2D(jPoint2D{ 0.0f, 0.0f }, jPoint2D{ 450.0f, 450.0f }, jGraphic::jColor::Black());
             jGraphic::jLine2D theLine2 = jGraphic::jLine2D(jPoint2D{ 0.0f, 450.0f }, jPoint2D{ 450.0f, 0.0f }, jGraphic::jColor::Red());
