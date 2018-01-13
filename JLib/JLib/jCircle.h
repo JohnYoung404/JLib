@@ -3,6 +3,7 @@
 #include "jColor.h"
 #include "jCanvas.h"
 
+namespace jLib{
 namespace jGraphic {
 
     class jCircle {
@@ -44,4 +45,5 @@ namespace jGraphic {
         }
     };
 
+}
 }

@@ -26,8 +26,8 @@ namespace jLib {
 					float vert_off = (float)j / 1080;
 					float val = jAlgorithm::jPerlinNoise::perlin_ridge_noise3(hori_off, vert_off, 0.619f, 2.0f, 0.92f, 0.874f, 6, 0, 0, 0);
 					m.at(i, j, jMedia::jBitMap::B) = 255;
-					m.at(i, j, jMedia::jBitMap::G) = 255 * val < 255 ? 255 * val : 255;
-					m.at(i, j, jMedia::jBitMap::R) = 255 * val < 255 ? 255 * val : 255;
+					m.at(i, j, jMedia::jBitMap::G) = static_cast<uint8_t>(255 * val < 255 ? 255 * val : 255);
+					m.at(i, j, jMedia::jBitMap::R) = static_cast<uint8_t>(255 * val < 255 ? 255 * val : 255);
 					m.at(i, j, jMedia::jBitMap::A) = 255;
 				}
 			}

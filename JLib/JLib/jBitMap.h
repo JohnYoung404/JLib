@@ -7,6 +7,7 @@
 #include <vector>
 #include <memory>
 #include <boost/assert.hpp>
+#include "jGrid.h"
 
 //BMP structure information : http://www.cnblogs.com/xiekeli/archive/2012/05/09/2491191.html
 namespace jLib
@@ -143,7 +144,7 @@ namespace jLib {
 			m.SaveImage("jBitMapTest/create_plain_red_img.bmp");
 			std::cout << "Created a plain red image." << std::endl;
 
-			m.LoadImage("jBitMapTest/src_img/test.bmp");
+			m.LoadImage("srcImg/test.bmp");
 			for (int i = 0; i < m.Width(); ++i)
 			{
 				for (int j = 0; j < m.Height(); ++j) {

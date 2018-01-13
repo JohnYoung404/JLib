@@ -6,6 +6,7 @@
 #include <vector>
 #include <functional>
 #include <type_traits>
+#include "jTypeTraits.h"
 #include "jTestBase.h"
 
 namespace jLib {
@@ -14,21 +15,20 @@ class jTestManager{
 public:
 
 	static jTestManager& instance(){
-			return *_instance_ptr;
-		}
+		return *_instance_ptr;
+	}
 
-    template<typename TestClass>
-    std::enable_if_t<std::is_base_of<jITestable, TestClass>::value, void>   // if TestClass is not testable, report compile error.
-    regist() {
+    template<typename TestClass, jConstrain_is_subclass(TestClass, jITestable)>
+    void regist() {
 			_allTestCase.push_back(std::unique_ptr<jITestable>(new TestClass()));
-        }
+    }
 
 	void doAllTest() {
-			for (auto &testPtr : _allTestCase)
-			{
-                testPtr->test();
-			}
+		for (auto &testPtr : _allTestCase)
+		{
+            testPtr->test();
 		}
+	}
 private:
     jTestManager();
 	static std::unique_ptr<jTestManager> _instance_ptr;

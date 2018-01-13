@@ -6,7 +6,6 @@
 #include <unordered_set>
 #include <array>
 #include "jGraphSearch.h"
-#include "jGrid.h"
 #include "jHash.h"
 
 namespace jGame

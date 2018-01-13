@@ -3,6 +3,7 @@
 #include "jColor.h"
 #include "jCanvas.h"
 
+namespace jLib{
 namespace jGraphic {
 
     class jIDrawLineAlgorithm {
@@ -30,7 +31,7 @@ namespace jGraphic {
             {
                 x += xIncrement;
                 y += yIncrement;
-                canvas.setPixel(round(x), round(y), color);
+                canvas.setPixel(static_cast<int>(round(x)), static_cast<int>(round(y)), color);
             }
         };
     };
@@ -50,4 +51,5 @@ namespace jGraphic {
         jColor color_;
         std::shared_ptr<jIDrawLineAlgorithm> drawLineAlgoPtr_;
     };    
+}
 }
