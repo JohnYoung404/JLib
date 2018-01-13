@@ -143,7 +143,7 @@ namespace jLib {
 			m.SaveImage("jBitMapTest/create_plain_red_img.bmp");
 			std::cout << "Created a plain red image." << std::endl;
 
-			m.LoadImage("jBitMapTest/src_img/test.bmp");
+			m.LoadImage("srcImg/test.bmp");
 			for (int i = 0; i < m.Width(); ++i)
 			{
 				for (int j = 0; j < m.Height(); ++j) {

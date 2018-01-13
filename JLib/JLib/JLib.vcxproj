@@ -170,6 +170,7 @@
     <ClCompile Include="jAdjacentPointPair.cpp" />
     <ClCompile Include="jBigInt.cpp" />
     <ClCompile Include="jBitMap.cpp" />
+    <ClCompile Include="jColor.cpp" />
     <ClCompile Include="jIntString.cpp" />
     <ClCompile Include="jPerlinNoise.cpp" />
     <ClCompile Include="jStringUtil.cpp" />

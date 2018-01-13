@@ -2,6 +2,8 @@
 #include "jBitMap.h"
 #include "jColor.h"
 
+namespace jLib
+{
 namespace jGraphic {
 
     class jICanvas {
@@ -55,7 +57,5 @@ namespace jGraphic {
     private:
         std::shared_ptr<jICanvas> canvasPtr_;
     };
-
-
-
+}
 }

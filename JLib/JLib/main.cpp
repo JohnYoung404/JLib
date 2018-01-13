@@ -32,7 +32,7 @@ int main() {
         //theCircle.drawOn(theCanvas);
         jLib::jTestManager::instance().doAllTest();
     }
-	JCheckMemory();
+    JCheckMemory();
     getchar();
     return 0;
 }
