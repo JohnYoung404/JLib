@@ -24,7 +24,7 @@ public:
     {
         _inner_vec.assign(val);
     }
-    jVecBase<Type, Degree>(const std::initializer_list<Type> &init_list)
+    /*constexpr*/ jVecBase<Type, Degree>(const std::initializer_list<Type> &init_list) //C++14 constexpr not supported in VC.
     {
         _inner_vec = {};
         auto itr_inner = _inner_vec.begin();
@@ -33,7 +33,7 @@ public:
             *itr_inner = *itr_input;
         }
     }
-    jVecBase<Type, Degree>(std::initializer_list<Type> &&init_list)
+    /*constexpr*/ jVecBase<Type, Degree>(std::initializer_list<Type> &&init_list) //C++14 constexpr not supported in VC.
     {
         _inner_vec = {};
         auto itr_inner = _inner_vec.begin();
@@ -45,7 +45,8 @@ public:
                 *itr_inner = std::move(*itr_input);
         }
     }
-    jVecBase<Type, Degree>(const jVecBase<Type, Degree> &rhs) {
+    constexpr jVecBase<Type, Degree>(const jVecBase<Type, Degree> &rhs) 
+    { 
         if (std::is_trivially_copyable<Type>::value)
             std::memcpy(_inner_vec.data(), rhs._inner_vec.data(), Degree * sizeof(Type));
         else
@@ -54,7 +55,7 @@ public:
 
 
 public:
-    inline static  jVecBase<Type, Degree> zero()
+    inline static constexpr jVecBase<Type, Degree> zero()
     {
         jConstrain_sentence_is_arithmetic(Type);
         return jVecBase<Type, Degree>(0);
@@ -91,7 +92,8 @@ namespace jLib {
     public:
         virtual void test() override {
             jContainer::jVecBase<float, 3> v = {1, 2};
-            std::cout << v << jContainer::jVecBase<int, 5>::zero();
+            constexpr jContainer::jVecBase<int, 5> _zero_int_5 = jContainer::jVecBase<int, 5>::identity();    //VC intellisense bug here.
+            std::cout << v << _zero_int_5;
         }
     };
 }
