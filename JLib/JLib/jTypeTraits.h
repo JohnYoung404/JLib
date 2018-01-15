@@ -1,5 +1,6 @@
 #pragma once
 #include <type_traits>
+#include <boost/type_traits.hpp>
 
 #define jConstrain_typename_is_subclass(Derived, Base) typename = jLib::jMPL::enable_if_is_subclass<Derived, Base>
 #define jConstrain_sentence_is_arithmetic(Type) std::enable_if_t<std::is_arithmetic<Type>::value, int>()

@@ -13,87 +13,114 @@ template <typename Type, size_t Degree>
 class jVecBase
 {
 public:
-    constexpr jVecBase<Type, Degree>()
+    constexpr jVecBase() : _inner_vec{}
     {
-        if (std::is_scalar<Type>::value)
-            std::memset(_inner_vec.data(), 0, Degree * sizeof(Type));
-        else
-            _inner_vec = {};
     }
-    constexpr jVecBase<Type, Degree>(const Type &val)
+    //constexpr jVecBase(Type ... inputs) : _inner_vec{ inputs... }
+    //{
+    //}
+    constexpr jVecBase(const std::array<Type, Degree> &arrayInput) : _inner_vec(arrayInput)
+    {
+    }
+    constexpr jVecBase(const Type(&arrayInput)[Degree]) : _inner_vec(arrayInput)
+    {
+    }
+    jVecBase(const Type &val)
     {
         _inner_vec.assign(val);
     }
-    /*constexpr*/ jVecBase<Type, Degree>(const std::initializer_list<Type> &init_list) //C++14 constexpr not supported in VC.
+    //constexpr jVecBase(std::initializer_list<Type> init_list) : _inner_vec(std::array<Type, Degree>(init_list))
+    //{
+    //    //_inner_vec = {};
+    //    //auto itr_inner = _inner_vec.begin();
+    //    //for (auto itr_input = init_list.begin(); itr_input != init_list.end(); ++itr_input, ++itr_inner)
+    //    //{
+    //    //    *itr_inner = *itr_input;
+    //    //}
+    //}
+
+    jVecBase(const jVecBase &rhs)
     {
-        _inner_vec = {};
-        auto itr_inner = _inner_vec.begin();
-        for (auto itr_input = init_list.begin(); itr_input != init_list.end(); ++itr_input, ++itr_inner)
-        {
-            *itr_inner = *itr_input;
-        }
-    }
-    /*constexpr*/ jVecBase<Type, Degree>(std::initializer_list<Type> &&init_list) //C++14 constexpr not supported in VC.
-    {
-        _inner_vec = {};
-        auto itr_inner = _inner_vec.begin();
-        for (auto itr_input = init_list.begin(); itr_input != init_list.end(); ++itr_input, ++itr_inner)
-        {
-            if (std::is_scalar<Type>::value)
-                *itr_inner = *itr_input;
-            else
-                *itr_inner = std::move(*itr_input);
-        }
-    }
-    constexpr jVecBase<Type, Degree>(const jVecBase<Type, Degree> &rhs) 
-    { 
         if (std::is_trivially_copyable<Type>::value)
             std::memcpy(_inner_vec.data(), rhs._inner_vec.data(), Degree * sizeof(Type));
         else
             _inner_vec = rhs._inner_vec;
     }
-
+    constexpr const Type & at(size_t pos) const {
+        return _inner_vec.at(pos);
+    }
+    Type & at(size_t pos)
+    {
+        return _inner_vec.at(pos);
+    }
 
 public:
-    inline static constexpr jVecBase<Type, Degree> zero()
+    inline static constexpr size_t dim(){
+        return Degree;
+    }
+    inline static const jVecBase zero()
     {
         jConstrain_sentence_is_arithmetic(Type);
-        return jVecBase<Type, Degree>(0);
+        return jVecBase(0);
     }
-    inline static constexpr jVecBase<Type, Degree> identity()
+    inline static const jVecBase identity()
     {
         jConstrain_sentence_is_arithmetic(Type);
-        return jVecBase<Type, Degree>(1);
+        return jVecBase(1);
     }
+    //inline static constexpr std::array<Type, Degree> make_array()
 private:
-    template <typename Type, size_t Degree>
-    friend std::ostream& operator << (std::ostream &output, const jVecBase<Type, Degree> &vec);
-
     std::array<Type, Degree> _inner_vec;
 };
 
 template <typename Type, size_t Degree>
-std::ostream& operator << (std::ostream &output, const jVecBase<Type, Degree> &vec)
+class jVecBase2 
 {
-    for (auto & v : vec._inner_vec)
-    {
-        output << v << " ";
+public:
+    inline static constexpr size_t dim() {
+        return Degree;
     }
-    output << std::endl;
-    return output;
-}
+    inline constexpr static const jVecBase2 zero()
+    {
+        jConstrain_sentence_is_arithmetic(Type);
+        return jVecBase();
+    }
+    constexpr const Type & at(size_t pos) const {
+        return _inner_vec.at(pos);
+    }
+    std::array<Type, Degree> _inner_vec;
+    //inline static const jVecBase identity()
+    //{
+    //    jConstrain_sentence_is_arithmetic(Type);
+    //    return jVecBase(1);
+    //}
+};
+
 
 }
 }
 
 #include "jTestBase.h"
+#include "jVectorTraits.h"
 namespace jLib {
     class jVecBaseTest final : public jITestable {
     public:
         virtual void test() override {
-            jContainer::jVecBase<float, 3> v = {1, 2};
-            constexpr jContainer::jVecBase<int, 5> _zero_int_5 = jContainer::jVecBase<int, 5>::identity();    //VC intellisense bug here.
-            std::cout << v << _zero_int_5;
+            constexpr jContainer::jVecBase2<int, 4> v = { 1, 2, 3, 4};
+            ////jContainer::jVecBase<float, 3> v = {1, 2};
+            //const auto & v2 = jContainer::jVecBase<float, 3>::zero();
+            //auto v3 = jContainer::jVecBase<int, 3>::identity();
+            //testConstNumber<jMPL::jVecTraits::is_vec<decltype(v2)>::value> out1;
+            ////testConstNumber<decltype(v)::dim()> out2;
+            //testConstNumber<decltype(v3)::dim()> out3;
+            //constexpr auto vx = std::array<int, 4> {1, 2, 3, 4};
+            //testConstNumber<vx.at(1)> out4;
+            //constexpr auto constV = jContainer::jVecBase<int, 4>(); // Intellisense Bug here.
+            //testConstNumber<constV.at(1)> out5;
+            //constexpr jContainer::jVecBase<int, 4> constV2 = { { 1, 2, 3, 4 } };
+            testConstNumber<v.at(3)> out6;
+            ////std::initializer_list<int> il = { 1, 2 ,3, 4 };
+            ////std::array<int, 4> = il;
         }
     };
 }

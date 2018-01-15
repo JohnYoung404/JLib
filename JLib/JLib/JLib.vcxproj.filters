@@ -165,6 +165,12 @@
     <ClInclude Include="jTypeTraits.h">
       <Filter>头文件\jMPL</Filter>
     </ClInclude>
+    <ClInclude Include="jVectorTraits.h">
+      <Filter>头文件\jMPL</Filter>
+    </ClInclude>
+    <ClInclude Include="jTupleMPL.h">
+      <Filter>头文件\jMPL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

@@ -26,5 +26,11 @@ void PrintArray(T(&arr)[N]) {
     std::cout << " }";
 }
 
+template <int N>
+struct testConstNumber
+{
+    testConstNumber() { std::cout << N << std::endl; }
+};
+
 }
 
