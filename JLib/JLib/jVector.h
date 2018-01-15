@@ -102,6 +102,7 @@ public:
 
 #include "jTestBase.h"
 #include "jVectorTraits.h"
+#include "jTupleMPL.h"
 namespace jLib {
     class jVecBaseTest final : public jITestable {
     public:
@@ -118,9 +119,10 @@ namespace jLib {
             //constexpr auto constV = jContainer::jVecBase<int, 4>(); // Intellisense Bug here.
             //testConstNumber<constV.at(1)> out5;
             //constexpr jContainer::jVecBase<int, 4> constV2 = { { 1, 2, 3, 4 } };
-            testConstNumber<v.at(3)> out6;
             ////std::initializer_list<int> il = { 1, 2 ,3, 4 };
             ////std::array<int, 4> = il;
+            constexpr auto k = jMPL::make_tuple_n<5>(6);    //Intellisense Bug here.
+            testConstNumber<v.at(3)> out6;
         }
     };
 }
