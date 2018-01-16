@@ -29,18 +29,3 @@ namespace jLib
         }
     }
 }
-
-namespace jLib
-{
-    namespace jMPL
-    {
-        namespace jVecTraits
-        {
-            template<typename Type, size_t Num>
-            constexpr std::array<Type, Num> create_array(const Type &val)
-            {
-
-            }
-        }
-    }
-}

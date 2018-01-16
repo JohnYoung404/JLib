@@ -16,20 +16,17 @@ public:
     constexpr jVecBase() : _inner_vec{}
     {
     }
-    //constexpr jVecBase(Type ... inputs) : _inner_vec{ inputs... }
+
+    template<typename ...InputType>
+    constexpr jVecBase(InputType... inputs) : _inner_vec{ inputs... } {
+    }
+
+    constexpr jVecBase(const std::array<Type, Degree> &arrayInput) : _inner_vec(arrayInput){}
+    //jVecBase(const Type &val)
     //{
+    //    _inner_vec.assign(val);
     //}
-    constexpr jVecBase(const std::array<Type, Degree> &arrayInput) : _inner_vec(arrayInput)
-    {
-    }
-    constexpr jVecBase(const Type(&arrayInput)[Degree]) : _inner_vec(arrayInput)
-    {
-    }
-    jVecBase(const Type &val)
-    {
-        _inner_vec.assign(val);
-    }
-    //constexpr jVecBase(std::initializer_list<Type> init_list) : _inner_vec(std::array<Type, Degree>(init_list))
+    //constexpr jVecBase(const std::initializer_list<Type> &init_list) : _inner_vec{ init_list }
     //{
     //    //_inner_vec = {};
     //    //auto itr_inner = _inner_vec.begin();
@@ -55,18 +52,16 @@ public:
     }
 
 public:
-    inline static constexpr size_t dim(){
+    inline static constexpr const size_t dim(){
         return Degree;
     }
-    inline static const jVecBase zero()
+    inline static constexpr const jVecBase zero()
     {
-        jConstrain_sentence_is_arithmetic(Type);
-        return jVecBase(0);
+        return jMPL::make_array_n<Degree>(Type(0));
     }
-    inline static const jVecBase identity()
+    inline static constexpr const jVecBase identity()
     {
-        jConstrain_sentence_is_arithmetic(Type);
-        return jVecBase(1);
+        return jMPL::make_array_n<Degree>(Type(1));
     }
     //inline static constexpr std::array<Type, Degree> make_array()
 private:
@@ -107,7 +102,8 @@ namespace jLib {
     class jVecBaseTest final : public jITestable {
     public:
         virtual void test() override {
-            constexpr jContainer::jVecBase2<int, 4> v = { 1, 2, 3, 4};
+             jContainer::jVecBase<int, 4> v = { 1, 2, 3, 4 };
+            constexpr std::array<float, 4> ar = { 1, 2, 3, 4 };
             ////jContainer::jVecBase<float, 3> v = {1, 2};
             //const auto & v2 = jContainer::jVecBase<float, 3>::zero();
             //auto v3 = jContainer::jVecBase<int, 3>::identity();
@@ -122,7 +118,15 @@ namespace jLib {
             ////std::initializer_list<int> il = { 1, 2 ,3, 4 };
             ////std::array<int, 4> = il;
             constexpr auto k = jMPL::make_tuple_n<5>(6);    //Intellisense Bug here.
-            testConstNumber<v.at(3)> out6;
+            //testConstNumber<v.at(3)> out6;
+            constexpr auto a = jMPL::tuple_to_array(std::make_tuple(1, 2, 3, 4, 5, 6));
+            testConstNumber<a.at(3)> out7;
+            constexpr auto j = jMPL::make_array_n<6>(7);
+            testConstNumber<j.at(3)> out8;
+            constexpr auto x = decltype(v)::identity();
+            testConstNumber<x.at(3)> out9;
+            constexpr auto e = jMPL::make_array_from_braced_init_list<float>( 1, 2, 3 );
+            testConstNumber<x.at(3)> out10;
         }
     };
 }
