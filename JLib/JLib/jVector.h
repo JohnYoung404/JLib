@@ -7,42 +7,17 @@
 #include "jTypeTraits.h"
 
 namespace jLib{
-namespace jContainer {
+namespace jContainer{
 
 template <typename Type, size_t Degree>
 class jVecBase
 {
 public:
-    constexpr jVecBase() : _inner_vec{}
-    {
-    }
+    template<typename ...Args>
+    constexpr jVecBase(Args... inputs) : _inner_vec{ static_cast<Type>(inputs)... } {}
+    constexpr jVecBase() : _inner_vec{} {}
+    constexpr jVecBase(const jVecBase &rhs) : _inner_vec(rhs._inner_vec) {}
 
-    template<typename ...InputType>
-    constexpr jVecBase(InputType... inputs) : _inner_vec{ inputs... } {
-    }
-
-    constexpr jVecBase(const std::array<Type, Degree> &arrayInput) : _inner_vec(arrayInput){}
-    //jVecBase(const Type &val)
-    //{
-    //    _inner_vec.assign(val);
-    //}
-    //constexpr jVecBase(const std::initializer_list<Type> &init_list) : _inner_vec{ init_list }
-    //{
-    //    //_inner_vec = {};
-    //    //auto itr_inner = _inner_vec.begin();
-    //    //for (auto itr_input = init_list.begin(); itr_input != init_list.end(); ++itr_input, ++itr_inner)
-    //    //{
-    //    //    *itr_inner = *itr_input;
-    //    //}
-    //}
-
-    jVecBase(const jVecBase &rhs)
-    {
-        if (std::is_trivially_copyable<Type>::value)
-            std::memcpy(_inner_vec.data(), rhs._inner_vec.data(), Degree * sizeof(Type));
-        else
-            _inner_vec = rhs._inner_vec;
-    }
     constexpr const Type & at(size_t pos) const {
         return _inner_vec.at(pos);
     }
@@ -57,43 +32,18 @@ public:
     }
     inline static constexpr const jVecBase zero()
     {
-        return jMPL::make_array_n<Degree>(Type(0));
+        return jVecBase(jMPL::make_array_n<Degree>(static_cast<Type>(0)));
     }
     inline static constexpr const jVecBase identity()
     {
-        return jMPL::make_array_n<Degree>(Type(1));
+        return jVecBase(jMPL::make_array_n<Degree>(static_cast<Type>(1)));
     }
-    //inline static constexpr std::array<Type, Degree> make_array()
 private:
+    constexpr jVecBase(const std::array<Type, Degree> &rhs) :_inner_vec(rhs) {}
     std::array<Type, Degree> _inner_vec;
 };
 
-template <typename Type, size_t Degree>
-class jVecBase2 
-{
-public:
-    inline static constexpr size_t dim() {
-        return Degree;
-    }
-    inline constexpr static const jVecBase2 zero()
-    {
-        jConstrain_sentence_is_arithmetic(Type);
-        return jVecBase();
-    }
-    constexpr const Type & at(size_t pos) const {
-        return _inner_vec.at(pos);
-    }
-    std::array<Type, Degree> _inner_vec;
-    //inline static const jVecBase identity()
-    //{
-    //    jConstrain_sentence_is_arithmetic(Type);
-    //    return jVecBase(1);
-    //}
-};
-
-
-}
-}
+}}
 
 #include "jTestBase.h"
 #include "jVectorTraits.h"
@@ -102,31 +52,18 @@ namespace jLib {
     class jVecBaseTest final : public jITestable {
     public:
         virtual void test() override {
-             jContainer::jVecBase<int, 4> v = { 1, 2, 3, 4 };
-            constexpr std::array<float, 4> ar = { 1, 2, 3, 4 };
-            ////jContainer::jVecBase<float, 3> v = {1, 2};
-            //const auto & v2 = jContainer::jVecBase<float, 3>::zero();
-            //auto v3 = jContainer::jVecBase<int, 3>::identity();
-            //testConstNumber<jMPL::jVecTraits::is_vec<decltype(v2)>::value> out1;
-            ////testConstNumber<decltype(v)::dim()> out2;
-            //testConstNumber<decltype(v3)::dim()> out3;
-            //constexpr auto vx = std::array<int, 4> {1, 2, 3, 4};
-            //testConstNumber<vx.at(1)> out4;
-            //constexpr auto constV = jContainer::jVecBase<int, 4>(); // Intellisense Bug here.
-            //testConstNumber<constV.at(1)> out5;
-            //constexpr jContainer::jVecBase<int, 4> constV2 = { { 1, 2, 3, 4 } };
-            ////std::initializer_list<int> il = { 1, 2 ,3, 4 };
-            ////std::array<int, 4> = il;
-            constexpr auto k = jMPL::make_tuple_n<5>(6);    //Intellisense Bug here.
-            //testConstNumber<v.at(3)> out6;
-            constexpr auto a = jMPL::tuple_to_array(std::make_tuple(1, 2, 3, 4, 5, 6));
-            testConstNumber<a.at(3)> out7;
-            constexpr auto j = jMPL::make_array_n<6>(7);
-            testConstNumber<j.at(3)> out8;
-            constexpr auto x = decltype(v)::identity();
-            testConstNumber<x.at(3)> out9;
-            constexpr auto e = jMPL::make_array_from_braced_init_list<float>( 1, 2, 3 );
-            testConstNumber<x.at(3)> out10;
+            jITestable::test();
+
+            constexpr jContainer::jVecBase<int, 4> theVec = { 1, 2, 3, 4};
+            constexpr jContainer::jVecBase<int, 4> otherVec = theVec;
+            testConstNumber<otherVec.at(0)> out;
+
+            constexpr auto identityVec = jContainer::jVecBase<int, 4>::identity();
+            testConstNumber<identityVec.at(0)> out2;
+
+            const jContainer::jVecBase<int, 5> constVec = { 1, 2 };
+            testConstNumber<jMPL::jVecTraits::is_vec<decltype(constVec)>::value> out3;
+            testConstNumber<decltype(constVec)::dim()> out4;
         }
     };
 }

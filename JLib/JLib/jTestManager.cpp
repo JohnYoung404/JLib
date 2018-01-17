@@ -1,5 +1,4 @@
 #include "jTestManager.h"
-
 #include "jRange.h"
 #include "jConstableClass.h"
 #include "jHana.h"
@@ -42,6 +41,7 @@ jTestManager::jTestManager()
 	//regist<jPerlinNoiseTest>();
     //regist<jCanvasTest>();
     regist<jVecBaseTest>();
+    regist<jTupleMPLTest>();
 }
 
 std::unique_ptr<jTestManager> jTestManager::_instance_ptr = std::unique_ptr<jTestManager>(new jTestManager());	// singleton, will be destroyed when program exit,

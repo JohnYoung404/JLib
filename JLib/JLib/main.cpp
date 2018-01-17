@@ -6,6 +6,7 @@
 // Date : [9/24/2017]
 
 int main() {
+    JCheckMemory();
     {
         //using namespace jGraphic;
         //jMat_base<4, float> a = jMat_base<4, float>::Zero();
@@ -18,9 +19,8 @@ int main() {
         //std::cout << inverse(t) * a;
         //jCamera c;
         //std::cout << c.EyePos() << c.FowardVec();
-        jLib::jTestManager::instance().doAllTest();
     }
-    JCheckMemory();
+    jLib::jTestManager::instance().doAllTest();
     getchar();
     return 0;
 }
