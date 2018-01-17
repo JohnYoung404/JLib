@@ -58,22 +58,28 @@ namespace jMPL {
     template<typename elem_ops, typename Type, size_t Degree>
     inline constexpr decltype(auto) array_fold(const std::array<Type, Degree> &prime, const Type &header)
     {
-        return __array_fold_detail::__array_fold_impl<Type, Degree, elem_ops, Degree>(prime, header);
+        return Degree == 0 ? header : __array_fold_detail::__array_fold_impl_host<Type, Degree, elem_ops, Degree>::__array_fold_impl(prime, header);
     }
 
     namespace __array_fold_detail
     {
         template<typename Type, size_t Degree, typename elem_ops, size_t Dim>
-        inline constexpr decltype(auto) __array_fold_impl(const std::array<Type, Degree> &prime, const Type &header)
+        struct __array_fold_impl_host
         {
-            return elem_ops.invoke(__array_fold_impl<Type, Degree, elem_ops, Dim - 1>(prime, header), prime.at(Dim));
-        }
+            inline static constexpr const Type __array_fold_impl(const std::array<Type, Degree> &prime, const Type &header)
+            {
+                return elem_ops::invoke(__array_fold_impl_host<Type, Degree, elem_ops, Dim - 1>::__array_fold_impl(prime, header), prime.at(Dim - 1));
+            }
+        };
 
-        template<typename Type, size_t Degree, typename elem_ops, size_t Dim>
-        inline constexpr decltype(auto) __array_fold_impl<Type, Degree, elem_ops, 0>(const std::array<Type, Degree> &prime, const Type &header)
+        template<typename Type, size_t Degree, typename elem_ops>
+        struct __array_fold_impl_host<Type, Degree, elem_ops, 0>
         {
-            return elem_ops.invoke(header, prime.at(Dim));
-        }
+            inline static constexpr const Type __array_fold_impl(const std::array<Type, Degree> &prime, const Type &header)
+            {
+                return header;
+            }
+        };
     }
 
 }}
@@ -156,11 +162,13 @@ namespace jLib {
             jITestable::test();
             constexpr auto array_of_n = jMPL::make_array_n<4>(1);
             testConstNumber<array_of_n.at(0)> out0;
+            constexpr auto arr_null = std::array<int, 0>{};
             constexpr auto arr_1 = std::array<int, 5>{1, 2, 3, 4, 9};
             constexpr auto arr_2 = std::array<int, 5>{5, 6, 7, 8, 6};
             constexpr auto arr_sum = jMPL::array_minus(arr_1, arr_2);
             constexpr auto arr_sum_each = jMPL::array_scalar_mult(5, arr_1);
             constexpr auto arr_fold = jMPL::array_fold<jMPL::array_elem_ops_plus<int>>(arr_1, 0);
+            constexpr auto arr_fold2 = jMPL::array_fold<jMPL::array_elem_ops_plus<int>>(arr_null, 100);
             testConstNumber<arr_sum[3]> out1;
         }
     };
