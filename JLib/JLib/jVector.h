@@ -5,6 +5,7 @@
 #include <array>
 #include <cstring>
 #include "jTypeTraits.h"
+#include "jArrayMPL.h"
 
 namespace jLib{
 namespace jContainer{
@@ -17,11 +18,39 @@ public:
     constexpr jVecBase(Args... inputs) : _inner_vec{ static_cast<Type>(inputs)... } {}
     constexpr jVecBase() : _inner_vec{} {}
     constexpr jVecBase(const jVecBase &rhs) : _inner_vec(rhs._inner_vec) {}
+    jVecBase(jVecBase &&rhs) : vec_(rhs.vec_) noexcept
+    {
+        _inner_vec = std::move(rhs._inner_vec);
+    }
+
+    jVecBase& operator=(const jVecBase &rhs) 
+    {
+        if (this != &rhs) {
+            _inner_vec = rhs._inner_vec;
+        }
+        return *this;
+    }
+
+    jVecBase& operator= (jVecBase &&rhs) noexcept
+    {
+        if (this != &rhs) {
+            this->vec_ = rhs.vec_;
+            rhs.vec_ = nullptr;
+        }
+        return *this;
+    }
 
     constexpr const Type & at(size_t pos) const {
         return _inner_vec.at(pos);
     }
     Type & at(size_t pos)
+    {
+        return _inner_vec.at(pos);
+    }
+    constexpr const Type & operator[](size_t pos) const {
+        return _inner_vec.at(pos);
+    }
+    Type & operator[](size_t pos)
     {
         return _inner_vec.at(pos);
     }
@@ -47,7 +76,6 @@ private:
 
 #include "jTestBase.h"
 #include "jVectorTraits.h"
-#include "jTupleMPL.h"
 namespace jLib {
     class jVecBaseTest final : public jITestable {
     public:
@@ -56,7 +84,7 @@ namespace jLib {
 
             constexpr jContainer::jVecBase<int, 4> theVec = { 1, 2, 3, 4};
             constexpr jContainer::jVecBase<int, 4> otherVec = theVec;
-            testConstNumber<otherVec.at(0)> out;
+            testConstNumber<otherVec[1]> out;
 
             constexpr auto identityVec = jContainer::jVecBase<int, 4>::identity();
             testConstNumber<identityVec.at(0)> out2;

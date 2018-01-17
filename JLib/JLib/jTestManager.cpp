@@ -17,6 +17,8 @@
 #include "jPerlinNoise.h"
 #include "jCanvas.h"
 #include "jVector.h"
+#include "jArrayMPL.h"
+#include "jTupleMPL.h"
 
 namespace jLib
 {
@@ -42,9 +44,9 @@ jTestManager::jTestManager()
     //regist<jCanvasTest>();
     regist<jVecBaseTest>();
     regist<jTupleMPLTest>();
+    regist<jArrayMPLTest>();
 }
 
-std::unique_ptr<jTestManager> jTestManager::_instance_ptr = std::unique_ptr<jTestManager>(new jTestManager());	// singleton, will be destroyed when program exit,
-                                                                                                                    // so memory-leak checker may report false positive.
+std::unique_ptr<jTestManager> jTestManager::_instance_ptr = std::unique_ptr<jTestManager>(new jTestManager());  //singleton
 
 }

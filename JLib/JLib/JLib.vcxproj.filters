@@ -171,6 +171,9 @@
     <ClInclude Include="jTupleMPL.h">
       <Filter>头文件\jMPL</Filter>
     </ClInclude>
+    <ClInclude Include="jArrayMPL.h">
+      <Filter>头文件\jMPL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -198,6 +201,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="jColor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="jVector.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
