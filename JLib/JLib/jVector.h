@@ -67,10 +67,28 @@ public:
     {
         return jVecBase(jMPL::make_array_n<Degree>(static_cast<Type>(1)));
     }
+
+    template<typename Type, size_t Degree>
+    friend constexpr const jVecBase<Type, Degree> operator+ (const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs);
+    template<typename Type, size_t Degree>
+    friend constexpr const jVecBase<Type, Degree> operator- (const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs);
 private:
     constexpr jVecBase(const std::array<Type, Degree> &rhs) :_inner_vec(rhs) {}
+    constexpr jVecBase(std::array<Type, Degree> &&rhs) noexcept : _inner_vec(std::move(rhs)) {}
     std::array<Type, Degree> _inner_vec;
 };
+
+template<typename Type, size_t Degree>
+constexpr const jVecBase<Type, Degree> operator+ (const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs)
+{
+    return jVecBase<Type, Degree>(jMPL::array_add(lhs._inner_vec, rhs._inner_vec));
+}
+
+template<typename Type, size_t Degree>
+constexpr const jVecBase<Type, Degree> operator- (const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs)
+{
+    return jVecBase<Type, Degree>(jMPL::array_minus(lhs._inner_vec, rhs._inner_vec));
+}
 
 }}
 
@@ -83,15 +101,18 @@ namespace jLib {
             jITestable::test();
 
             constexpr jContainer::jVecBase<int, 4> theVec = { 1, 2, 3, 4};
-            constexpr jContainer::jVecBase<int, 4> otherVec = theVec;
+            constexpr jContainer::jVecBase<int, 4> otherVec = {3, 2, 1, 0};
             testConstNumber<otherVec[1]> out;
 
-            constexpr auto identityVec = jContainer::jVecBase<int, 4>::identity();
+            constexpr auto identityVec = jContainer::jVecBase<int, 4>::identity();  //intellisense bug.
             testConstNumber<identityVec.at(0)> out2;
 
             const jContainer::jVecBase<int, 5> constVec = { 1, 2 };
             testConstNumber<jMPL::jVecTraits::is_vec<decltype(constVec)>::value> out3;
             testConstNumber<decltype(constVec)::dim()> out4;
+
+            constexpr auto vec_sum = theVec + otherVec - otherVec;  //intellisense bug.
+            testConstNumber<vec_sum[2]> out7;
         }
     };
 }
