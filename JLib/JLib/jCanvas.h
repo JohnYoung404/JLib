@@ -109,6 +109,7 @@ namespace jLib {
     public:
         virtual void test() override {
             jITestable::test();
+            using jContainer::jPoint2D;
 
             jMedia::jBitMap m;
             m.LoadImage("srcImg/test.bmp");

@@ -43,8 +43,8 @@ jTestManager::jTestManager()
 	//regist<jPerlinNoiseTest>();
     //regist<jCanvasTest>();
     regist<jVecBaseTest>();
-    regist<jTupleMPLTest>();
-    regist<jArrayMPLTest>();
+    //regist<jTupleMPLTest>();
+    //regist<jArrayMPLTest>();
 }
 
 std::unique_ptr<jTestManager> jTestManager::_instance_ptr = std::unique_ptr<jTestManager>(new jTestManager());  //singleton

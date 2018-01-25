@@ -179,7 +179,6 @@
     <ClCompile Include="jPerlinNoise.cpp" />
     <ClCompile Include="jStringUtil.cpp" />
     <ClCompile Include="jTestManager.cpp" />
-    <ClCompile Include="jVector.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

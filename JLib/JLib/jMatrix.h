@@ -1,3 +1,27 @@
+#include <array>
+#include "jVector.h"
+
+namespace jLib{
+namespace jContainer {
+
+template <typename Type, size_t Degree>
+class jMatBase
+{
+public:
+    constexpr jMatBase() : _inner_mat {} {}
+public:
+    inline static constexpr const jMatBase zero()
+    {
+        return jMPL::make_array_n<Degree>(jVecBase(jMPL::make_array_n<Degree>(static_cast<Type>(0))));
+    }
+private:
+    std::array<jVecBase<Type, Degree>, Degree> _inner_mat;
+};
+
+}}
+
+
+/*
 // Author : John Young
 // Contact : JohnYoung404@outlook.com
 // Date : [9/28/2017]
@@ -238,3 +262,4 @@ namespace jGraphic {
 	template<typename Type>
 	using jMat_4 = jMat_base<4, Type>;
 }
+*/

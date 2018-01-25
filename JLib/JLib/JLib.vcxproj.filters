@@ -203,8 +203,5 @@
     <ClCompile Include="jColor.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="jVector.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

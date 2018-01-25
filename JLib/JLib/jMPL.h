@@ -57,6 +57,7 @@ size_t ArraySize(const Type (&arr)[N]) {
     return N;
 }
 
+/*
 namespace jGraphic {
 	template<size_t Degree, typename Type>
 	struct determinantOfMatrix {
@@ -124,7 +125,7 @@ namespace jGraphic {
 					- rhs.RefOfPos(0, 3) * (rhs.RefOfPos(1, 0) * _3243_3342 - rhs.RefOfPos(1, 1) * _3143_3341 + rhs.RefOfPos(1, 2) * _3142_3241);
 		}
 	};
-}
+}*/
 
 namespace jLib
 {
