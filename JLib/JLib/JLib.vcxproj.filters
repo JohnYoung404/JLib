@@ -78,9 +78,6 @@
     <ClInclude Include="jLine2D.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
-    <ClInclude Include="jConstableClass.h">
-      <Filter>头文件\jExperimental</Filter>
-    </ClInclude>
     <ClInclude Include="jKDTree.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
