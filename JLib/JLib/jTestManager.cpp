@@ -1,6 +1,5 @@
 #include "jTestManager.h"
 #include "jRange.h"
-#include "jConstableClass.h"
 #include "jHana.h"
 #include "jBoostCompute.h"
 #include "jMetaStateMachine.h"
@@ -19,6 +18,7 @@
 #include "jVector.h"
 #include "jArrayMPL.h"
 #include "jTupleMPL.h"
+#include "jMatrix.h"
 
 namespace jLib
 {
@@ -26,7 +26,6 @@ namespace jLib
 jTestManager::jTestManager()
 {
     //regist<jRangeTest>();
-    //regist<jConstableTest>();
     //regist<jHanaTest>();
     //regist<jBoostComputeTest>();
     //regist<jMsmTest>();
@@ -42,9 +41,10 @@ jTestManager::jTestManager()
 	//regist<jBitMapTest>();
 	//regist<jPerlinNoiseTest>();
     //regist<jCanvasTest>();
-    regist<jVecBaseTest>();
+    //regist<jVecBaseTest>();
     //regist<jTupleMPLTest>();
     //regist<jArrayMPLTest>();
+    regist<jMatBaseTest>();
 }
 
 std::unique_ptr<jTestManager> jTestManager::_instance_ptr = std::unique_ptr<jTestManager>(new jTestManager());  //singleton

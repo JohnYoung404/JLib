@@ -1,5 +1,14 @@
+// Author : John Young
+// Contact : JohnYoung404@outlook.com
+// Date : [1/26/2018]
+// Description : Matrix Library.
+
+#pragma once
 #include <array>
+#include <memory>
+#include <initializer_list>
 #include "jVector.h"
+#include "jGrid.h"
 
 namespace jLib{
 namespace jContainer {
@@ -7,18 +16,195 @@ namespace jContainer {
 template <typename Type, size_t Degree>
 class jMatBase
 {
+    enum { size = Degree * Degree };
 public:
-    constexpr jMatBase() : _inner_mat {} {}
-public:
-    inline static constexpr const jMatBase zero()
+    jMatBase() : _mat_ptr(std::shared_ptr<Type>(new Type[size], std::default_delete<Type[]>())), _mat_accesser(Degree, Degree, _mat_ptr) { _mat_accesser.reset(); }
+    jMatBase(const std::initializer_list<Type> &InitList) : _mat_ptr(std::shared_ptr<Type>(new Type[size], std::default_delete<Type[]>())), _mat_accesser(Degree, Degree, _mat_ptr)
     {
-        return jMPL::make_array_n<Degree>(jVecBase(jMPL::make_array_n<Degree>(static_cast<Type>(0))));
+#ifdef _DEBUG
+        BOOST_ASSERT(InitList.size() == size);
+#endif
+        _mat_accesser.reset();
+        auto itr = InitList.begin();
+        for (int i = 0; i < size; ++i, ++itr)
+        {
+            _mat_accesser.at(i) = *itr;
+        }
     }
+    jMatBase(const jMatBase &rhs) : _mat_ptr(std::shared_ptr<Type>(new Type[size], std::default_delete<Type[]>())), _mat_accesser(Degree, Degree, _mat_ptr)
+    {
+        if (std::is_arithmetic<Type>::value)
+            memcpy(_mat_ptr.get(), rhs._mat_ptr.get(), size * sizeof(Type));
+        else
+            for (int i = 0; i < size; ++i)   _mat_ptr.get()[i] = rhs._mat_ptr.get()[i];
+    }
+    jMatBase(jMatBase &&rhs) noexcept : _mat_accesser(Degree, Degree, rhs._mat_ptr)
+    {
+        _mat_ptr = rhs._mat_ptr;
+        rhs._mat_ptr = nullptr;
+    }
+    jMatBase& operator=(const jMatBase &rhs)
+    {
+        if (this != &rhs)
+        {
+            if (std::is_arithmetic<Type>::value)
+                memcpy(_mat_ptr.get(), rhs._mat_ptr.get(), size * sizeof(Type));
+            else
+                for (int i = 0; i < size; ++i)   _mat_ptr.get()[i] = rhs._mat_ptr.get()[i];
+        }
+        return *this;
+    }
+    jMatBase& operator=(jMatBase &&rhs) noexcept
+    {
+        if (this != &rhs)
+        {
+            _mat_ptr = rhs._mat_ptr;
+            rhs._mat_ptr = nullptr;
+            _mat_accesser.bindPtr(_mat_ptr);
+        }
+        return *this;
+    }
+
+    Type & at(size_t col, size_t row) {
+        return _mat_accesser.at(col, row);
+    }
+    Type & at(size_t raw_pos) {
+        return _mat_accesser.at(raw_pos);
+    }
+    const Type & at(size_t col, size_t row) const {
+        return _mat_accesser.at(col, row);
+    }
+    const Type & at(size_t raw_pos) const {
+        return _mat_accesser.at(raw_pos);
+    }
+    typename jGrid<Type>::col_itr_pair col_at(int col)
+    {
+        return _mat_accesser.col_at(col);
+    }
+    typename jGrid<Type>::const_col_itr_pair col_at(int col) const
+    {
+        return _mat_accesser.col_at(col);
+    }
+    typename jGrid<Type>::row_itr_pair row_at(int row)
+    {
+        return _mat_accesser.row_at(row);
+    }
+    typename jGrid<Type>::const_row_itr_pair row_at(int row) const
+    {
+        return _mat_accesser.row_at(row);
+    }
+public:
+    inline static const jMatBase zero(){ return jMatBase(); }
+    inline static const jMatBase identity()
+    {
+        jMatBase ret;
+        for (int i = 0; i < Degree; ++i)
+        {
+            ret._mat_accesser.at(i, i) = Type(1);
+        }
+        return ret;
+    }
+
+    template<typename Type, size_t Degree>
+    inline friend const jMatBase<Type, Degree> operator+ (const jMatBase<Type, Degree> &lhs, const jMatBase<Type, Degree> &rhs);
+    template<typename Type, size_t Degree>
+    inline friend const jMatBase<Type, Degree> operator- (const jMatBase<Type, Degree> &lhs, const jMatBase<Type, Degree> &rhs);
+    template<typename Type, size_t Degree>
+    inline friend const jMatBase<Type, Degree> operator* (const jMatBase<Type, Degree> &lhs, const jMatBase<Type, Degree> &rhs);
+    template<typename Type, size_t Degree>
+    inline friend const jVecBase<Type, Degree> operator* (const jMatBase<Type, Degree> &lmat, const jVecBase<Type, Degree> &rvec);  //列乘法
+    template<typename Type, size_t Degree>
+    inline friend const jVecBase<Type, Degree> operator* (const jVecBase<Type, Degree> &lvec, const jMatBase<Type, Degree> &rmat);  //行乘法
 private:
-    std::array<jVecBase<Type, Degree>, Degree> _inner_mat;
+    std::shared_ptr<Type> _mat_ptr;
+    jGrid<Type> _mat_accesser;
 };
 
+template <typename Type, size_t Degree>
+std::ostream& operator<< (std::ostream& os, const jMatBase<Type, Degree> &outMat) {
+    for (int row = 0; row < Degree; ++row)
+    {
+        auto row_itr = outMat.row_at(row);
+        for (auto & val : row_itr)
+        {
+            std::cout << val << " ";
+        }
+        std::cout << "\n";
+    }
+    return os;
+}
+
+template<typename Type, size_t Degree>
+inline const jMatBase<Type, Degree> operator+ (const jMatBase<Type, Degree> &lhs, const jMatBase<Type, Degree> &rhs)
+{
+    jMatBase<Type, Degree> ret = lhs;
+    for (int i = 0; i < jMatBase<Type, Degree>::size; ++i)  ret.at(i) += rhs.at(i);
+    return ret;
+}
+
+template<typename Type, size_t Degree>
+inline const jMatBase<Type, Degree> operator- (const jMatBase<Type, Degree> &lhs, const jMatBase<Type, Degree> &rhs)
+{
+    jMatBase<Type, Degree> ret = lhs;
+    for (int i = 0; i < jMatBase<Type, Degree>::size; ++i)  ret.at(i) -= rhs.at(i);
+    return ret;
+}
+
+template<typename Type, size_t Degree>
+inline const jMatBase<Type, Degree> operator* (const jMatBase<Type, Degree> &lhs, const jMatBase<Type, Degree> &rhs)
+{
+    jMatBase<Type, Degree> ret;
+    for (int i = 0; i < Degree; ++i)
+        for (int j = 0; j < Degree; ++j)
+            for (int k = 0; k < Degree; ++k)
+                ret.at(i, j) += lhs.at(k, j) * rhs.at(i, k);
+    return ret;
+}
+
+template<typename Type, size_t Degree>
+inline const jVecBase<Type, Degree> operator* (const jMatBase<Type, Degree> &lmat, const jVecBase<Type, Degree> &rvec)  //列乘法
+{
+    jVecBase<Type, Degree> ret;
+    for (int i = 0; i < Degree; ++i)
+        for (int j = 0; j < Degree; ++j)
+            ret[i] += lmat.at(j, i) * rvec[j];
+    return ret;
+}
+
+template<typename Type, size_t Degree>
+inline const jVecBase<Type, Degree> operator* (const jVecBase<Type, Degree> &lvec, const jMatBase<Type, Degree> &rmat)  //行乘法
+{
+    jVecBase<Type, Degree> ret;
+    for (int i = 0; i < Degree; ++i)
+        for (int j = 0; j < Degree; ++j)
+            ret[i] += lvec[j] * rmat.at(i, j);
+    return ret;
+}
+
 }}
+
+#include "jTestBase.h"
+namespace jLib {
+    class jMatBaseTest final : public jITestable {
+    public:
+        virtual void test() override {
+            jITestable::test();
+            using namespace jContainer;
+
+            auto zeroMat = jMatBase<float, 4>::zero();
+            auto identityMat = jMatBase<double, 5>::identity();
+            auto k = zeroMat.at(2, 3);
+            jMatBase<int, 2> x = { 1, 2, 3, 4 };
+            auto xj = std::move(jMatBase<int, 2>{1, 2, 3, 4});
+            jVecBase<int, 2> xv = { 1, 2 };
+            auto & kk = xv * x;
+            std::cout << xj * x << std::endl;
+            std::cout << zeroMat << std::endl;
+            std::cout << identityMat << std::endl;
+            getchar();
+        }
+    };
+}
 
 
 /*
@@ -45,87 +231,6 @@ namespace jGraphic {
 	template <size_t Degree, typename Type>
 	class jMat_base {
 	public:
-		enum {
-			size = _mult<Degree, Degree>::value
-		};
-		inline static const jMat_base<Degree, Type> Zero() {
-			return std::move(jMat_base<Degree, Type>());
-		}
-		inline static const jMat_base<Degree, Type> Identity() {
-			jMat_base<Degree, Type> ret = jMat_base<Degree, Type>();
-			for (int i = 0; i < Degree; ++i)
-			{
-				ret.mat_[i + i * Degree] = static_cast<Type>(1);
-			}
-			return std::move(ret);
-		}
-
-		jMat_base<Degree, Type>() {
-			mat_ = new Type[size];
-			memset(mat_, 0, size * sizeof(Type));
-		}
-		jMat_base<Degree, Type>(const std::initializer_list<Type> &initList) {
-			BOOST_ASSERT(initList.size() == size);
-			mat_ = new Type[size];
-			int i = 0;
-			for (auto &item : initList)
-			{
-				mat_[i] = item;
-				i++;
-			}
-		}
-		jMat_base<Degree, Type>(const jMat_base<Degree, Type> &rhs) {
-			mat_ = new Type[size];
-			memcpy(mat_, rhs.mat_, size * sizeof(Type));
-		}
-		jMat_base<Degree, Type>& operator= (const jMat_base<Degree, Type> &rhs) {
-			if (this != &rhs) {
-				memcpy(mat_, rhs.mat_, size * sizeof(Type));
-			}
-			return *this;
-		}
-		jMat_base<Degree, Type>(jMat_base<Degree, Type> &&rhs) {
-			if (this != &rhs) {
-				this->mat_ = rhs.mat_;
-				rhs.mat_ = nullptr;
-			}
-		}
-		jMat_base<Degree, Type>& operator= (jMat_base<Degree, Type> &&rhs) {
-			if (this != &rhs) {
-				this->mat_ = rhs.mat_;
-				rhs.mat_ = nullptr;
-			}
-			return *this;
-		}
-		~jMat_base<Degree, Type>() {
-			if (mat_ != nullptr)
-			{
-				delete[] mat_;
-			}
-		}
-
-		template<size_t Degree, typename Type>
-		friend const jMat_base<Degree, Type> operator+ (const jMat_base<Degree, Type> &lhs, const jMat_base<Degree, Type> &rhs);
-		template<size_t Degree, typename Type>
-		friend const jMat_base<Degree, Type> operator- (const jMat_base<Degree, Type> &lhs, const jMat_base<Degree, Type> &rhs);
-		template<size_t Degree, typename Type>
-		friend const jMat_base<Degree, Type> operator* (const jMat_base<Degree, Type> &lhs, const jMat_base<Degree, Type> &rhs);
-		template<size_t Degree, typename Type>
-		friend const jVector_base<Degree, Type> operator* (const jMat_base<Degree, Type> &lmat, const jVector_base<Degree, Type> &rvec);
-
-		inline Type& RefOfPos(int i, int j) {
-#ifdef _DEBUG
-			BOOST_ASSERT(i < Degree && i >= 0 && j < Degree && j >= 0);
-#endif
-			return mat_[i * Degree + j];
-		}
-		inline const Type& RefOfPos(int i, int j) const {
-#ifdef _DEBUG
-			BOOST_ASSERT(i < Degree && i >= 0 && j < Degree && j >= 0);
-#endif
-			return mat_[i * Degree + j];
-		}
-
 		template<size_t Degree, typename Type>
 		friend const jMat_base<Degree, Type> inverse(const jMat_base<Degree, Type> &rhs);
 
@@ -135,52 +240,13 @@ namespace jGraphic {
 		template<size_t Degree, typename Type>
 		friend const jMat_base<Degree, Type> adjoint(const jMat_base<Degree, Type> &rhs);
 
-		friend std::ostream& operator<< (std::ostream& os, const jMat_base<Degree, Type> &outMat) {
-			for (int i = 0; i < Degree; ++i)
-			{
-				for (int j = 0; j < Degree; ++j)
-				{
-					os << outMat.RefOfPos(i, j) << " ";
-				}
-				std::cout << "\n";
-			}
-			return os;
-		}
+	
 	private:
 		Type* mat_;
 	};
 
 	////////////////////////////////////////////////////////////////////////// Implementation of operations
-	template <size_t Degree, typename Type>
-	const jMat_base<Degree, Type> operator+ (const jMat_base<Degree, Type> &lhs, const jMat_base<Degree, Type> &rhs) {
-		jMat_base<Degree, Type> ret = lhs;
-		for (int i = 0; i < jMat_base<Degree, Type>::size; ++i) {
-			ret.mat_[i] += rhs.mat_[i];
-		}
-		return std::move(ret);
-	};
 
-	template <size_t Degree, typename Type>
-	const jMat_base<Degree, Type> operator- (const jMat_base<Degree, Type> &lhs, const jMat_base<Degree, Type> &rhs) {
-		jMat_base<Degree, Type> ret = lhs;
-		for (int i = 0; i < jMat_base<Degree, Type>::size; ++i) {
-			ret.mat_[i] -= rhs.mat_[i];
-		}
-		return std::move(ret);
-	}
-
-	template <size_t Degree, typename Type>
-	const jMat_base<Degree, Type> operator* (const jMat_base<Degree, Type> &lhs, const jMat_base<Degree, Type> &rhs) {
-		jMat_base<Degree, Type> ret = jMat_base<Degree, Type>::Zero();
-		for (int i = 0; i < Degree; ++i) {
-			for (int j = 0; j < Degree; ++j) {
-				for (int k = 0; k < Degree; ++k) {
-					ret.RefOfPos(i, j) += lhs.RefOfPos(i, k) * rhs.RefOfPos(k, j);
-				}
-			}
-		}
-		return std::move(ret);
-	}
 
 	template<size_t Degree, typename Type>
 	const Type determinant(const jMat_base<Degree, Type> &rhs) {
@@ -220,46 +286,8 @@ namespace jGraphic {
 		return std::move(ret);
 	}
 
-    //////////////////////////////////////////////////////////////////////////
-    //向量和矩阵的列乘法
-    // @  @  @     @
-    // @  @  @  x  @  
-    // @  @  @     @
-    //////////////////////////////////////////////////////////////////////////
-	template<size_t Degree, typename Type>
-	const jVector_base<Degree, Type> operator* (const jMat_base<Degree, Type> &lmat, const jVector_base<Degree, Type> &rvec) {
-		auto ret = std::move(jVector_base<Degree, Type>::Zero());
-		for (int i = 0 ; i < Degree; ++i)
-		{
-			for (int j = 0; j < Degree; ++j)
-			{
-				ret[i] += lmat.RefOfPos(i, j) * rvec[j];
-			}
-		}
-		return std::move(ret);
-	}
-
-    //////////////////////////////////////////////////////////////////////////
-    //向量和矩阵的行乘法
-    //             @  @  @
-    // @  @  @  x  @  @  @ 
-    //             @  @  @
-    //////////////////////////////////////////////////////////////////////////
-    template<size_t Degree, typename Type>
-    const jVector_base<Degree, Type> operator* (const jVector_base<Degree, Type> &lvec, const jMat_base<Degree, Type> &rmat) {
-        auto ret = std::move(jVector_base<Degree, Type>::Zero());
-        for (int i = 0; i < Degree; ++i)
-        {
-            for (int j = 0; j < Degree; ++j)
-            {
-                ret[i] += rmat.RefOfPos(j, i) * lvec[j];
-            }
-        }
-        return std::move(ret);
-    }
-
 	////////////////////////////////////////////////////////////////////////// Declaration of jMat_4
 	template<typename Type>
 	using jMat_4 = jMat_base<4, Type>;
-}
-*/
+}*/
+

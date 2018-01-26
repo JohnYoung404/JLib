@@ -22,7 +22,6 @@ public:
     {
         _inner_vec = std::move(rhs._inner_vec);
     }
-
     jVecBase& operator=(const jVecBase &rhs) 
     {
         if (this != &rhs) {
@@ -30,7 +29,6 @@ public:
         }
         return *this;
     }
-
     jVecBase& operator= (jVecBase &&rhs) noexcept
     {
         if (this != &rhs) {

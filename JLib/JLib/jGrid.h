@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <memory>
 #include <boost/assert.hpp>
+#include <type_traits>
 
 namespace jLib{
 namespace jContainer
@@ -80,6 +81,13 @@ public:
         return _gridPtr.get()[row * _COL + col];
     }
 
+    Type& at(size_t raw_pos) {
+#ifdef _DEBUG
+        BOOST_ASSERT(raw_pos < _ROW * _COL && raw_pos >= 0);
+#endif
+        return _gridPtr.get()[raw_pos];
+    }
+
     const Type& at(size_t col, size_t row) const {
 #ifdef _DEBUG
         BOOST_ASSERT(row < _ROW && col < _COL && row >= 0 && col >= 0);
@@ -87,6 +95,12 @@ public:
         return _gridPtr.get()[row * _COL + col];
     }
 
+    const Type& at(size_t raw_pos) const {
+#ifdef _DEBUG
+        BOOST_ASSERT(raw_pos < _ROW * _COL && raw_pos >= 0);
+#endif
+        return _gridPtr.get()[raw_pos];
+    }
 
     void fill(const Type &val)
     {
@@ -95,7 +109,15 @@ public:
 
     void reset()
     {
-        fill(Type());
+        if (std::is_arithmetic<Type>::value)
+            memset(_gridPtr.get(), 0, _ROW * _COL * sizeof(Type));
+        else
+            fill(Type());
+    }
+
+    void bindPtr(std::shared_ptr<Type> srcPtr)
+    {
+        _gridPtr = srcPtr;
     }
 
     template<typename Func>

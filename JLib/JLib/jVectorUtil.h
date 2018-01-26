@@ -4,11 +4,8 @@
 #include <boost/optional.hpp>
 #include "jTestBase.h"
 
-namespace jLib
-{
-
-namespace jVectorUtil
-{
+namespace jLib{
+namespace jVectorUtil{
 
 template <typename Type>
 const std::vector<Type> reverse(const std::vector<Type> & prime)
@@ -78,6 +75,4 @@ const boost::optional<Type> foldL(const std::vector<Type> & input, const FoldFun
 	return ret;
 }
 
-}
-
-}
+}}
