@@ -101,6 +101,16 @@ private:
     std::array<Type, Degree> _inner_vec;
 };
 
+template <typename Type, size_t Degree>
+std::ostream& operator<< (std::ostream& os, const jVecBase<Type, Degree> &outVec) {
+    for (int i = 0 ; i < Degree; ++i)
+    {
+        std::cout << outVec[i] << " ";
+    }
+    std::cout << std::endl;
+    return os;
+}
+
 template<typename Type, size_t Degree>
 inline constexpr const jVecBase<Type, Degree> operator+ (const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs)
 {

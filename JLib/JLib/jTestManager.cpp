@@ -19,6 +19,7 @@
 #include "jArrayMPL.h"
 #include "jTupleMPL.h"
 #include "jMatrix.h"
+#include "jMatrixCvt.h"
 
 namespace jLib
 {
@@ -45,6 +46,7 @@ jTestManager::jTestManager()
     //regist<jTupleMPLTest>();
     //regist<jArrayMPLTest>();
     regist<jMatBaseTest>();
+    regist<jMatCvtTest>();
 }
 
 std::unique_ptr<jTestManager> jTestManager::_instance_ptr = std::unique_ptr<jTestManager>(new jTestManager());  //singleton

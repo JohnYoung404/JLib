@@ -249,7 +249,6 @@ namespace jLib {
                 2, 0, 3, 2, 9
             };
             std::cout << inverse(fm) << std::endl;
-            getchar();
         }
     };
 }

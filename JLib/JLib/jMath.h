@@ -3,7 +3,7 @@
 #include <cfloat>
 #include <limits> 
 
-#define PI 3.14159265359
+#define PI 3.14159265358979323846
 #define GOLDEN_DIVNUM_OF_32_BIT 2654435769
 #define POS_INFINITY DBL_MAX
 #define NEG_INFINITY (-POS_INFINITY)
