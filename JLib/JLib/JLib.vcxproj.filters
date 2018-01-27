@@ -54,9 +54,6 @@
     <ClInclude Include="jCamera.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
-    <ClInclude Include="jMatrix.h">
-      <Filter>头文件\jGraphicLib</Filter>
-    </ClInclude>
     <ClInclude Include="jMatrixCvt.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
@@ -169,6 +166,12 @@
       <Filter>头文件\jMPL</Filter>
     </ClInclude>
     <ClInclude Include="jVector.h">
+      <Filter>头文件\jContainer</Filter>
+    </ClInclude>
+    <ClInclude Include="jMatrixMPL.h">
+      <Filter>头文件\jMPL</Filter>
+    </ClInclude>
+    <ClInclude Include="jMatrix.h">
       <Filter>头文件\jContainer</Filter>
     </ClInclude>
   </ItemGroup>

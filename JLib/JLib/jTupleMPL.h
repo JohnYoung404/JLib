@@ -46,6 +46,37 @@ namespace jMPL {
 
 }}
 
+namespace jLib {
+namespace jMPL {
+    template<typename... Args, typename Func>
+    void tuple_for_each(const std::tuple<Args...> &t, Func &f)
+    {
+        tuple_for_each_::__tuple_processor<decltype(t), Func, sizeof...(Args)>::__tuple_process(t, f);
+    }
+
+    namespace tuple_for_each_ {
+        template<typename Tuple, typename Func, size_t N>
+        struct __tuple_processor
+        {
+            inline static void __tuple_process(const Tuple &t, Func &f)
+            {
+                __tuple_processor<Tuple, Func, N - 1>::__tuple_process(t, f);
+                f(std::get<N - 1>(t));
+            }
+        };
+
+        template<typename Tuple, typename Func>
+        struct __tuple_processor<Tuple, Func, 1>
+        {
+            inline static void __tuple_process(const Tuple &t, Func &f)
+            {
+                f(std::get<0>(t));
+            }
+        };
+    }
+
+}}
+
 
 #include "jTestBase.h"
 
@@ -60,6 +91,12 @@ namespace jLib {
 
             testConstNumber<std::get<0>(tuple_of_n)> out0; // Intellisense Bugs here.
             testConstNumber<array_from_tuple.at(0)> out1;
+
+            auto t1 = std::make_tuple(1, "2", 3.4f);
+            int n = 5;
+            auto t2 = std::tuple_cat(t1, std::tie(n), std::make_pair(6, 7));
+            jMPL::tuple_for_each(t2, [](auto &val) { std::cout << val << " "; });
+            std::cout << std::endl;
         }
     };
 }

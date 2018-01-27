@@ -1,14 +1,11 @@
 #pragma once
-#include "jMath.h"
 #include "jMatrix.h"
 #include "jVector.h"
-#include "boost/static_assert.hpp"
 
 namespace jGraphic {
-	using jMatProj = jMat_4<float>;
-	
+
 	template<size_t Degree>
-	const jVector_base<4, float> transform(const jVector_base<Degree, float> &pointToProj, const jMatProj &projMat) {
+	const jVecBase<4, float> transform(const jVector_base<Degree, float> &pointToProj, const jMatProj &projMat) {
 		BOOST_STATIC_ASSERT((Degree >= 2) && (Degree <= 4), "Point degree should be 2, 3 or 4.");
 		if (Degree == 2) {
 			jVector_base<4, float> ret = { pointToProj[0], pointToProj[1], 1, 1 };
