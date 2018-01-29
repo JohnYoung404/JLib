@@ -231,6 +231,9 @@ inline const jMatBase<Type, Degree> inverse(const jMatBase<Type, Degree> &rhs)
     return ret;
 }
 
+template<typename Type>
+using jMat4 = jMatBase<Type, 4>;
+
 }}
 
 #include "jTestBase.h"

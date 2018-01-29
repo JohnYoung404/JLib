@@ -20,6 +20,7 @@
 #include "jTupleMPL.h"
 #include "jMatrix.h"
 #include "jMatrixCvt.h"
+#include "jCamera.h"
 
 namespace jLib
 {
@@ -45,8 +46,9 @@ jTestManager::jTestManager()
     //regist<jVecBaseTest>();
     //regist<jTupleMPLTest>();
     //regist<jArrayMPLTest>();
-    regist<jMatBaseTest>();
-    regist<jMatCvtTest>();
+    //regist<jMatBaseTest>();
+    //regist<jMatCvtTest>();
+    regist<jCameraTest>();
 }
 
 std::unique_ptr<jTestManager> jTestManager::_instance_ptr = std::unique_ptr<jTestManager>(new jTestManager());  //singleton

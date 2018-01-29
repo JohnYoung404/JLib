@@ -11,10 +11,10 @@ namespace jGraphic {
 	public:
 		jCamera() {
 			setCameraView(jContainer::jPoint3D{ 0, 0, 1 }, jContainer::jPoint3D{ 0, 0, 0 }, jContainer::jPoint3D{0, 1, 0});
-			setCameraProj(static_cast<float>(PI / 4), 1, 1, 1000);
+			setCameraProj(45, 1, 1, 1000);
 		}
-		void setCameraView(jPoint3D eye_pos, jPoint3D look_at, jPoint3D up_vec = jPoint3D{ 0.0f, 1.0f, 0.0f }){
-			look_at_dist_ = (look_at - eye_pos).Length();
+		void setCameraView(jContainer::jPoint3D eye_pos, jContainer::jPoint3D look_at, jContainer::jPoint3D up_vec = jContainer::jPoint3D{ 0.0f, 1.0f, 0.0f }){
+			look_at_dist_ = std::sqrt((look_at - eye_pos).square_length());
 
 			view_mat_ = look_at_mat(eye_pos, look_at, up_vec);
 			inv_view_mat_ = inverse(view_mat_);
@@ -33,53 +33,53 @@ namespace jGraphic {
 			return look_at_dist_;
 		}
 
-		const jVec_3<float> UpVec() {
-			jPoint3D ret = {
-                inv_view_mat_.RefOfPos(0, 1),
-                inv_view_mat_.RefOfPos(1, 1),
-                inv_view_mat_.RefOfPos(2, 1)
+		const jContainer::jPoint3D UpVec() {
+            jContainer::jPoint3D ret = {
+                inv_view_mat_.at(1, 0),
+                inv_view_mat_.at(1, 1),
+                inv_view_mat_.at(1, 2)
 			};
-			return std::move(ret);
+			return ret;
 		}
-		const jVec_3<float> RightVec() {
-			jPoint3D ret = {
-                inv_view_mat_.RefOfPos(0, 0),
-                inv_view_mat_.RefOfPos(1, 0),
-                inv_view_mat_.RefOfPos(2, 0)
+		const jContainer::jPoint3D RightVec() {
+            jContainer::jPoint3D ret = {
+                inv_view_mat_.at(0, 0),
+                inv_view_mat_.at(0, 1),
+                inv_view_mat_.at(0, 2)
 			};
-			return std::move(ret);
+			return ret;
 		}
-		const jVec_3<float> FowardVec() {
-			jPoint3D ret = {
-                inv_view_mat_.RefOfPos(0, 2),
-                inv_view_mat_.RefOfPos(1, 2),
-                inv_view_mat_.RefOfPos(2, 2)
+		const jContainer::jPoint3D FowardVec() {
+            jContainer::jPoint3D ret = {
+                inv_view_mat_.at(2, 0),
+                inv_view_mat_.at(2, 1),
+                inv_view_mat_.at(2, 2)
 			};
-			return std::move(ret);
+			return ret;
 		}
 
-		const jPoint3D EyePos() {
-			jPoint3D ret = {
-                inv_view_mat_.RefOfPos(0, 3),
-                inv_view_mat_.RefOfPos(1, 3),
-                inv_view_mat_.RefOfPos(2, 3)
+		const jContainer::jPoint3D EyePos() {
+            jContainer::jPoint3D ret = {
+                inv_view_mat_.at(3, 0),
+                inv_view_mat_.at(3, 1),
+                inv_view_mat_.at(3, 2)
 			};
-			return std::move(ret);
+			return ret;
 		}
-		const jPoint3D LookAtPos() {
+		const jContainer::jPoint3D LookAtPos() {
 			return EyePos() + FowardVec() * look_at_dist_;
 		}
 
-        const jMat_4<float>& ProjMat() {
+        const jContainer::jMat4<float>& ProjMat() {
             return proj_mat_;
         }
-        const jMat_4<float>& InvProjMat() {
+        const jContainer::jMat4<float>& InvProjMat() {
             return inv_proj_mat_;
         }
-        const jMat_4<float>& ViewMat() {
+        const jContainer::jMat4<float>& ViewMat() {
             return view_mat_;
         }
-        const jMat_4<float>& InvViewMat() {
+        const jContainer::jMat4<float>& InvViewMat() {
             return inv_view_mat_;
         }
 	private:
@@ -90,11 +90,27 @@ namespace jGraphic {
 
 		float look_at_dist_;
 
-		jMat_4<float> proj_mat_;
-		jMat_4<float> inv_proj_mat_;
+		jContainer::jMat4<float> proj_mat_;
+        jContainer::jMat4<float> inv_proj_mat_;
 
-		jMat_4<float> view_mat_;
-		jMat_4<float> inv_view_mat_;
+        jContainer::jMat4<float> view_mat_;
+        jContainer::jMat4<float> inv_view_mat_;
 	};
-
 }}
+
+#include "jTestBase.h"
+namespace jLib {
+    class jCameraTest final : public jITestable {
+    public:
+        virtual void test() override {
+            jITestable::test();
+            using namespace jGraphic;
+            jCamera c;
+            std::cout << c.LookAtPos();
+            std::cout << c.EyePos();
+            std::cout << c.UpVec();
+            std::cout << c.RightVec();
+            std::cout << c.FowardVec();
+        }
+    };
+}
