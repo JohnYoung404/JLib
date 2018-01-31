@@ -160,7 +160,7 @@ namespace jMPL {
         return array_fold<array_elem_ops_plus<Type>>(array_zip<array_elem_ops_mult<Type>>(lhs, rhs), Type(0));
     }
 
-    template<typename Type, size_t Degree, jConstrain_typename_num_eqal(Degree, 3)>
+    template<typename Type, size_t Degree, jConstrain_typename_num_equal(Degree, 3)>
     inline constexpr decltype(auto) array_cross_mult(const std::array<Type, Degree> &lhs, const std::array<Type, Degree> &rhs)
     {
         return std::array<Type,Degree>{lhs.at(1)*rhs.at(2) - lhs.at(2)*rhs.at(1), lhs.at(2)*rhs.at(0) - lhs.at(0)*rhs.at(2), lhs.at(0)*rhs.at(1) - lhs.at(1)*rhs.at(0)};

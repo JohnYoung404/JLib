@@ -15,24 +15,24 @@ class jTestManager{
 public:
 
 	static jTestManager& instance(){
-		return *_instance_ptr;
+        return *_instance_ptr;
 	}
 
     template<typename TestClass, jConstrain_typename_is_subclass(TestClass, jITestable)>
     void regist() {
-			_allTestCase.push_back(std::unique_ptr<jITestable>(new TestClass()));
+        _allTestCase.push_back(std::unique_ptr<jITestable>(new TestClass()));
     }
 
-	void doAllTest() {
-		for (auto &testPtr : _allTestCase)
-		{
+    void doAllTest() {
+        for (auto &testPtr : _allTestCase)
+        {
             testPtr->test();
-		}
-	}
+        }
+    }
 private:
     jTestManager();
-	static std::unique_ptr<jTestManager> _instance_ptr;
-	std::vector<std::unique_ptr<jITestable> > _allTestCase;
+    static std::unique_ptr<jTestManager> _instance_ptr;
+    std::vector<std::unique_ptr<jITestable> > _allTestCase;
 };
 
 }

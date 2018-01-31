@@ -86,12 +86,12 @@ public:
     inline friend constexpr const jVecBase<Type, Degree> operator* (const jVecBase<Type, Degree> &prime, const Type &scalar);
     template<typename Type, size_t Degree>
     inline friend constexpr const jVecBase<Type, Degree> operator* (const Type &scalar, const jVecBase<Type, Degree> &prime);
-    template<typename Type, size_t Degree, jConstrain_typename_num_eqal(Degree, 3)>
+    template<typename Type, size_t Degree, jConstrain_typename_num_equal(Degree, 3)>
     inline friend constexpr const jVecBase<Type, Degree> operator^ (const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs);
 
     template<typename Type, size_t Degree>
     inline friend constexpr const Type dot (const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs);
-    template<typename Type, size_t Degree, jConstrain_typename_num_eqal(Degree, 3)>
+    template<typename Type, size_t Degree, jConstrain_typename_num_equal(Degree, 3)>
     inline friend constexpr const jVecBase<Type, Degree> cross (const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs);
     template<typename Type, size_t Degree, jConstrain_typename_floating_point(Type)>
     inline friend constexpr const Type cos_theta(const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs);
@@ -143,7 +143,7 @@ inline constexpr const jVecBase<Type, Degree> operator* (const Type &scalar, con
     return jVecBase<Type, Degree>(jMPL::array_scalar_mult(prime._inner_vec, scalar));
 }
 
-template<typename Type, size_t Degree, jConstrain_typename_num_eqal(Degree, 3)>
+template<typename Type, size_t Degree, jConstrain_typename_num_equal(Degree, 3)>
 inline constexpr const jVecBase<Type, Degree> operator^ (const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs)
 {
     return jVecBase<Type, Degree>(jMPL::array_cross_mult(lhs._inner_vec, rhs._inner_vec));
@@ -155,7 +155,7 @@ inline constexpr const Type dot(const jVecBase<Type, Degree> &lhs, const jVecBas
     return lhs * rhs;
 }
 
-template<typename Type, size_t Degree, jConstrain_typename_num_eqal(Degree, 3)>
+template<typename Type, size_t Degree, jConstrain_typename_num_equal(Degree, 3)>
 inline constexpr const jVecBase<Type, Degree> cross(const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs)
 {
     return lhs ^ rhs;
