@@ -38,16 +38,16 @@ namespace jGraphic {
                 inv_view_mat_.at(1, 0),
                 inv_view_mat_.at(1, 1),
                 inv_view_mat_.at(1, 2)
-			};
-			return ret;
+            };
+            return ret;
 		}
         const jContainer::jPoint3D RightVec() {
             jContainer::jPoint3D ret = {
                 inv_view_mat_.at(0, 0),
                 inv_view_mat_.at(0, 1),
                 inv_view_mat_.at(0, 2)
-			};
-			return ret;
+            };
+            return ret;
 		}
         const jContainer::jPoint3D FowardVec() {
             jContainer::jPoint3D ret = {
@@ -63,8 +63,8 @@ namespace jGraphic {
                 inv_view_mat_.at(3, 0),
                 inv_view_mat_.at(3, 1),
                 inv_view_mat_.at(3, 2)
-			};
-			return ret;
+            };
+            return ret;
 		}
         const jContainer::jPoint3D LookAtPos() {
             return EyePos() + FowardVec() * look_at_dist_;
