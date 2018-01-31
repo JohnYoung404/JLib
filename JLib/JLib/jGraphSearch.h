@@ -7,8 +7,8 @@
 #include "jGraph.h"
 #include "jTestBase.h"
 
-namespace jGraphLib
-{
+namespace jLib{
+namespace jGraphLib{
 
 namespace {
 template<typename T, typename priority_t>
@@ -82,7 +82,7 @@ a_star_search(Graph &graph, const node &start, const node & goal)
 	return std::vector<node>();
 }
 
-}
+}}
 
 namespace jLib {
 	class jGraphSearchTest final : public jITestable {

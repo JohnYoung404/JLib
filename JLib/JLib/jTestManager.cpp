@@ -33,8 +33,8 @@ jTestManager::jTestManager()
     //regist<jMsmTest>();
     //regist<jGridTest>();
     //regist<jMPLTest>();
-    //regist<jGraphSearchTest>();
-    //regist<jGraphGridTest>();
+    regist<jGraphSearchTest>();
+    regist<jGraphGridTest>();
     //regist<jStringUtilTest>();
     //regist<jHashTest>();
     //regist<jAdjacentPointPairTest>();

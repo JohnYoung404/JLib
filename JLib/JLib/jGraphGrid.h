@@ -8,8 +8,8 @@
 #include "jGraphSearch.h"
 #include "jHash.h"
 
-namespace jGame
-{
+namespace jLib{
+namespace jGame{
 
 using jPosNode = std::tuple<int, int>;
 
@@ -81,7 +81,7 @@ private:
     }
 };
 
-}
+}}
 
 #include "jTestBase.h"
 

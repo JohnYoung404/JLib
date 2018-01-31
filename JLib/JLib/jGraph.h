@@ -5,8 +5,8 @@
 #include <algorithm>
 #include <iterator>
 
-namespace jGraphLib
-{
+namespace jLib{
+namespace jGraphLib{
 
 //使用领接表的简单有向图结构
 template <typename node>
@@ -39,4 +39,4 @@ private:
 	std::unordered_map<node, std::vector<node>> _graph;
 };
 
-}
+}}
