@@ -14,9 +14,9 @@ namespace jLib {
 class jTestManager{
 public:
 
-	static jTestManager& instance(){
+    static jTestManager& instance(){
         return *_instance_ptr;
-	}
+    }
 
     template<typename TestClass, jConstrain_typename_is_subclass(TestClass, jITestable)>
     void regist() {
