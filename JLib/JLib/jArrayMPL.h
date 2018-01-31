@@ -194,6 +194,11 @@ namespace jMPL {
             : array_dot_mult(lhs, rhs) / (array_length<Type>(lhs) * array_length<Type>(rhs));
     }
 
+    template<typename Type, size_t Degree, jConstrain_typename_floating_point(Type)>
+    inline constexpr decltype(auto) array_lerp(const std::array<Type, Degree> &from, const std::array<Type, Degree> &to, const Type& interpolator)
+    {
+        return  array_add(from, array_scalar_mult(interpolator, array_minus(to, from)));
+    }
 }
 }
 
@@ -226,6 +231,7 @@ namespace jLib {
             constexpr auto arr_norm = jMPL::array_normalize(arr_double);
             constexpr auto arr_norm2 = jMPL::array_normalize(arr_float_NAN);
             constexpr auto array_costheta = jMPL::array_cos_theta(arr_double, arr_double2);
+            constexpr auto array_lerped = jMPL::array_lerp(arr_double, arr_double2, 0.5);
         }
     };
 }

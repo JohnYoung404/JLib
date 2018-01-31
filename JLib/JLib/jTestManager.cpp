@@ -43,7 +43,7 @@ jTestManager::jTestManager()
 	//regist<jBitMapTest>();
 	//regist<jPerlinNoiseTest>();
     //regist<jCanvasTest>();
-    //regist<jVecBaseTest>();
+    regist<jVecBaseTest>();
     //regist<jTupleMPLTest>();
     //regist<jArrayMPLTest>();
     //regist<jMatBaseTest>();

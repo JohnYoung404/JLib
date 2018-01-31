@@ -18,5 +18,4 @@ constexpr bool operator==(jColor lhs, jColor rhs)
     return (lhs.a_ == rhs.a_) && (lhs.r_ == rhs.r_) && (lhs.g_ == rhs.g_) && (lhs.b_ == rhs.b_);
 }
 
-}
-}
+}}

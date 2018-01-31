@@ -42,6 +42,5 @@ private:
     Byte a_, r_, g_, b_;
 };
 
-}
-}
+}}
 

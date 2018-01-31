@@ -95,6 +95,8 @@ public:
     inline friend constexpr const jVecBase<Type, Degree> cross (const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs);
     template<typename Type, size_t Degree, jConstrain_typename_floating_point(Type)>
     inline friend constexpr const Type cos_theta(const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs);
+    template<typename Type, size_t Degree, jConstrain_typename_floating_point(Type)>
+    inline friend constexpr const jVecBase<Type, Degree> lerp(const jVecBase<Type, Degree> &from, const jVecBase<Type, Degree> &to, const Type& interpolator);
 private:
     constexpr jVecBase(const std::array<Type, Degree> &rhs) :_inner_vec(rhs) {}
     constexpr jVecBase(std::array<Type, Degree> &&rhs) noexcept : _inner_vec(std::move(rhs)) {}
@@ -165,6 +167,12 @@ inline constexpr const Type cos_theta(const jVecBase<Type, Degree> &lhs, const j
     return jMPL::array_cos_theta(lhs._inner_vec, rhs._inner_vec);
 }
 
+template<typename Type, size_t Degree, jConstrain_typename_floating_point(Type)>
+inline constexpr const jVecBase<Type, Degree> lerp(const jVecBase<Type, Degree> &from, const jVecBase<Type, Degree> &to, const Type& interpolator)
+{
+    return jVecBase<Type, Degree>(jMPL::array_lerp(from._inner_vec, to._inner_vec, interpolator));
+}
+
 template<typename Type>
 using jVec2 = jVecBase<Type, 2>;
 template<typename Type>
@@ -205,6 +213,8 @@ namespace jLib {
             constexpr auto vec_norm = aVec.normalize(); //intellisense bug.
             constexpr auto vec_cos_theta = jContainer::cos_theta(aVec, bVec);
             testConstNumber<(int)vec_norm[0]> out8;
+            constexpr auto vec_lerp = jContainer::lerp(aVec, bVec, 0.5);    //intellisense bug.
+            testConstNumber<(int)vec_lerp[0]> out9;
         }
     };
 }

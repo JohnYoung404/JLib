@@ -33,7 +33,7 @@ namespace jGraphic {
 			return look_at_dist_;
 		}
 
-		const jContainer::jPoint3D UpVec() {
+        const jContainer::jPoint3D UpVec() {
             jContainer::jPoint3D ret = {
                 inv_view_mat_.at(1, 0),
                 inv_view_mat_.at(1, 1),
@@ -41,7 +41,7 @@ namespace jGraphic {
 			};
 			return ret;
 		}
-		const jContainer::jPoint3D RightVec() {
+        const jContainer::jPoint3D RightVec() {
             jContainer::jPoint3D ret = {
                 inv_view_mat_.at(0, 0),
                 inv_view_mat_.at(0, 1),
@@ -49,7 +49,7 @@ namespace jGraphic {
 			};
 			return ret;
 		}
-		const jContainer::jPoint3D FowardVec() {
+        const jContainer::jPoint3D FowardVec() {
             jContainer::jPoint3D ret = {
                 inv_view_mat_.at(2, 0),
                 inv_view_mat_.at(2, 1),
@@ -58,7 +58,7 @@ namespace jGraphic {
 			return ret;
 		}
 
-		const jContainer::jPoint3D EyePos() {
+        const jContainer::jPoint3D EyePos() {
             jContainer::jPoint3D ret = {
                 inv_view_mat_.at(3, 0),
                 inv_view_mat_.at(3, 1),
@@ -66,9 +66,9 @@ namespace jGraphic {
 			};
 			return ret;
 		}
-		const jContainer::jPoint3D LookAtPos() {
-			return EyePos() + FowardVec() * look_at_dist_;
-		}
+        const jContainer::jPoint3D LookAtPos() {
+            return EyePos() + FowardVec() * look_at_dist_;
+        }
 
         const jContainer::jMat4<float>& ProjMat() {
             return proj_mat_;
