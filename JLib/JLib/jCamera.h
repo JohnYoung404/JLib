@@ -10,27 +10,27 @@ namespace jGraphic {
 	class jCamera {
 	public:
         jCamera() {
-        	setCameraView(jContainer::jPoint3D{ 0, 0, 1 }, jContainer::jPoint3D{ 0, 0, 0 }, jContainer::jPoint3D{0, 1, 0});
-        	setCameraProj(45, 1, 1, 1000);
+            setCameraView(jContainer::jPoint3D{ 0, 0, 1 }, jContainer::jPoint3D{ 0, 0, 0 }, jContainer::jPoint3D{0, 1, 0});
+            setCameraProj(45, 1, 1, 1000);
         }
         void setCameraView(jContainer::jPoint3D eye_pos, jContainer::jPoint3D look_at, jContainer::jPoint3D up_vec = jContainer::jPoint3D{ 0.0f, 1.0f, 0.0f }){
-        	look_at_dist_ = std::sqrt((look_at - eye_pos).square_length());
-        
-        	view_mat_ = look_at_mat(eye_pos, look_at, up_vec);
-        	inv_view_mat_ = inverse(view_mat_);
+            look_at_dist_ = std::sqrt((look_at - eye_pos).square_length());
+            
+            view_mat_ = look_at_mat(eye_pos, look_at, up_vec);
+            inv_view_mat_ = inverse(view_mat_);
         }
         void setCameraProj(float fovy, float aspect, float zNear, float zFar) {
-        	fovy_ = fovy;
-        	aspect_ = aspect;
-        	zNear_ = zNear;
-        	zFar_ = zFar;
-        
-        	proj_mat_ = perspective_fov_mat(fovy, aspect, zNear, zFar);
-        	inv_proj_mat_ = inverse(proj_mat_);
+            fovy_ = fovy;
+            aspect_ = aspect;
+            zNear_ = zNear;
+            zFar_ = zFar;
+            
+            proj_mat_ = perspective_fov_mat(fovy, aspect, zNear, zFar);
+            inv_proj_mat_ = inverse(proj_mat_);
         }
         
         float DistToLookAt() {
-        	return look_at_dist_;
+            return look_at_dist_;
         }
         
         const jContainer::jPoint3D UpVec() {
