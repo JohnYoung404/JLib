@@ -43,10 +43,10 @@ namespace jGraphic{
         const float q = zFar / (zFar - zNear);
         const float p = - zFar * zNear / (zFar - zNear);
         jContainer::jMatBase<float, 4> ret = {
-            w ,			0 ,			0,			0,
-            0 ,			h ,			0,			0,
-            0 ,			0 ,			q,          p,
-            0 ,			0 ,		    1,		    0
+            w ,         0 ,         0,          0,
+            0 ,         h ,         0,          0,
+            0 ,         0 ,         q,          p,
+            0 ,         0 ,         1,          0
         };
         return std::move(ret);
     }
