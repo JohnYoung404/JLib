@@ -3,9 +3,9 @@
 namespace jLib{
 namespace jGraphic{
 
-    class jScene
-    {
+class jScene
+{
 
-    };
+};
 
 }}

@@ -177,6 +177,9 @@
     <ClInclude Include="jScene.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
+    <ClInclude Include="jSceneObj.h">
+      <Filter>头文件\jGraphicLib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

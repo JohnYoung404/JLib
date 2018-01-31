@@ -33,8 +33,8 @@ jTestManager::jTestManager()
     //regist<jMsmTest>();
     //regist<jGridTest>();
     //regist<jMPLTest>();
-    regist<jGraphSearchTest>();
-    regist<jGraphGridTest>();
+    //regist<jGraphSearchTest>();
+    //regist<jGraphGridTest>();
     //regist<jStringUtilTest>();
     //regist<jHashTest>();
     //regist<jAdjacentPointPairTest>();
@@ -43,7 +43,7 @@ jTestManager::jTestManager()
 	//regist<jBitMapTest>();
 	//regist<jPerlinNoiseTest>();
     //regist<jCanvasTest>();
-    regist<jVecBaseTest>();
+    //regist<jVecBaseTest>();
     //regist<jTupleMPLTest>();
     //regist<jArrayMPLTest>();
     //regist<jMatBaseTest>();

@@ -178,6 +178,9 @@ using jVec2 = jVecBase<Type, 2>;
 template<typename Type>
 using jVec3 = jVecBase<Type, 3>;
 
+using jVec2f = jVecBase<float, 2>;
+using jVec3f = jVecBase<float, 3>;
+
 using jPoint2D = jVecBase<float, 2>;
 using jPoint3D = jVecBase<float, 3>;
 }}

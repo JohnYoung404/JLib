@@ -141,6 +141,7 @@
     <ClInclude Include="jOpsMPL.h" />
     <ClInclude Include="jPerlinNoise.h" />
     <ClInclude Include="jScene.h" />
+    <ClInclude Include="jSceneObj.h" />
     <ClInclude Include="jTestBase.h" />
     <ClInclude Include="jRange.h" />
     <ClInclude Include="jStringUtil.h" />

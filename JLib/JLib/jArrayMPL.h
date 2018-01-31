@@ -197,7 +197,7 @@ namespace jMPL {
     template<typename Type, size_t Degree, jConstrain_typename_floating_point(Type)>
     inline constexpr decltype(auto) array_lerp(const std::array<Type, Degree> &from, const std::array<Type, Degree> &to, const Type& interpolator)
     {
-        return  array_add(from, array_scalar_mult(interpolator, array_minus(to, from)));
+        return array_add(from, array_scalar_mult(interpolator, array_minus(to, from)));
     }
 }
 }
