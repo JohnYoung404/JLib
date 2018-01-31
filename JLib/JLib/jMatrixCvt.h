@@ -32,7 +32,7 @@ namespace jGraphic{
             xAxis[0] ,      xAxis[1] ,      xAxis[2],       -(xAxis * eye_pos),
             yAxis[0] ,      yAxis[1] ,      yAxis[2],       -(yAxis * eye_pos),
             zAxis[0] ,      zAxis[1] ,      zAxis[2],       -(zAxis * eye_pos),
-            0,              0,              0,              1
+            0,              0,              0,              1 
         };
         return ret;
     }
