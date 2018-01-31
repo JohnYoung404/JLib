@@ -174,16 +174,30 @@ inline constexpr const jVecBase<Type, Degree> lerp(const jVecBase<Type, Degree> 
 }
 
 template<typename Type>
-using jVec2 = jVecBase<Type, 2>;
+using _jVec2 = jVecBase<Type, 2>;
 template<typename Type>
-using jVec3 = jVecBase<Type, 3>;
+using _jVec3 = jVecBase<Type, 3>;
 
-using jVec2f = jVecBase<float, 2>;
-using jVec3f = jVecBase<float, 3>;
+using _jfloat = float;
 
-using jPoint2D = jVecBase<float, 2>;
-using jPoint3D = jVecBase<float, 3>;
+using _jVec2f = jVecBase<_jfloat, 2>;
+using _jVec3f = jVecBase<_jfloat, 3>;
+using _jVec4f = jVecBase<_jfloat, 4>;
 }}
+
+namespace jLib
+{
+    template<typename Type>
+    using jVec2 = jContainer::_jVec2<Type>;
+    template<typename Type>
+    using jVec3 = jContainer::_jVec3<Type>;
+
+    using jVec2f = jContainer::_jVec2f;
+    using jVec3f = jContainer::_jVec3f;
+    using jVec4f = jContainer::_jVec4f;
+    
+    using jfloat = jContainer::_jfloat;
+}
 
 #include "jTestBase.h"
 #include "jVectorTraits.h"

@@ -10,16 +10,16 @@ namespace jGraphic {
 	class jCamera {
 	public:
         jCamera() {
-            setCameraView(jContainer::jPoint3D{ 0, 0, 1 }, jContainer::jPoint3D{ 0, 0, 0 }, jContainer::jPoint3D{0, 1, 0});
+            setCameraView(jVec3f{ 0, 0, 1 }, jVec3f{ 0, 0, 0 }, jVec3f{0, 1, 0});
             setCameraProj(45, 1, 1, 1000);
         }
-        void setCameraView(jContainer::jPoint3D eye_pos, jContainer::jPoint3D look_at, jContainer::jPoint3D up_vec = jContainer::jPoint3D{ 0.0f, 1.0f, 0.0f }){
+        void setCameraView(jVec3f eye_pos, jVec3f look_at, jVec3f up_vec = jVec3f{ 0.0f, 1.0f, 0.0f }){
             look_at_dist_ = std::sqrt((look_at - eye_pos).square_length());
             
             view_mat_ = look_at_mat(eye_pos, look_at, up_vec);
             inv_view_mat_ = inverse(view_mat_);
         }
-        void setCameraProj(float fovy, float aspect, float zNear, float zFar) {
+        void setCameraProj(jfloat fovy, jfloat aspect, jfloat zNear, jfloat zFar) {
             fovy_ = fovy;
             aspect_ = aspect;
             zNear_ = zNear;
@@ -29,28 +29,28 @@ namespace jGraphic {
             inv_proj_mat_ = inverse(proj_mat_);
         }
         
-        float DistToLookAt() {
+        jfloat DistToLookAt() {
             return look_at_dist_;
         }
         
-        const jContainer::jPoint3D UpVec() {
-            jContainer::jPoint3D ret = {
+        const jVec3f UpVec() {
+            jVec3f ret = {
                 inv_view_mat_.at(1, 0),
                 inv_view_mat_.at(1, 1),
                 inv_view_mat_.at(1, 2)
             };
             return ret;
         }
-        const jContainer::jPoint3D RightVec() {
-            jContainer::jPoint3D ret = {
+        const jVec3f RightVec() {
+            jVec3f ret = {
                 inv_view_mat_.at(0, 0),
                 inv_view_mat_.at(0, 1),
                 inv_view_mat_.at(0, 2)
             };
             return ret;
         }
-        const jContainer::jPoint3D FowardVec() {
-            jContainer::jPoint3D ret = {
+        const jVec3f FowardVec() {
+            jVec3f ret = {
                 inv_view_mat_.at(2, 0),
                 inv_view_mat_.at(2, 1),
                 inv_view_mat_.at(2, 2)
@@ -58,43 +58,43 @@ namespace jGraphic {
             return ret;
         }
         
-        const jContainer::jPoint3D EyePos() {
-            jContainer::jPoint3D ret = {
+        const jVec3f EyePos() {
+            jVec3f ret = {
                 inv_view_mat_.at(3, 0),
                 inv_view_mat_.at(3, 1),
                 inv_view_mat_.at(3, 2)
             };
             return ret;
         }
-        const jContainer::jPoint3D LookAtPos() {
+        const jVec3f LookAtPos() {
             return EyePos() + FowardVec() * look_at_dist_;
         }
         
-        const jContainer::jMat4<float>& ProjMat() {
+        const jMat4f& ProjMat() {
             return proj_mat_;
         }
-        const jContainer::jMat4<float>& InvProjMat() {
+        const jMat4f& InvProjMat() {
             return inv_proj_mat_;
         }
-        const jContainer::jMat4<float>& ViewMat() {
+        const jMat4f& ViewMat() {
             return view_mat_;
         }
-        const jContainer::jMat4<float>& InvViewMat() {
+        const jMat4f& InvViewMat() {
             return inv_view_mat_;
         }
 	private:
-        float fovy_;
-        float aspect_;
-        float zNear_;
-        float zFar_;
+        jfloat fovy_;
+        jfloat aspect_;
+        jfloat zNear_;
+        jfloat zFar_;
 
-        float look_at_dist_;
+        jfloat look_at_dist_;
 
-        jContainer::jMat4<float> proj_mat_;
-        jContainer::jMat4<float> inv_proj_mat_;
+        jMat4f proj_mat_;
+        jMat4f inv_proj_mat_;
 
-        jContainer::jMat4<float> view_mat_;
-        jContainer::jMat4<float> inv_view_mat_;
+        jMat4f view_mat_;
+        jMat4f inv_view_mat_;
     };
 }}
 

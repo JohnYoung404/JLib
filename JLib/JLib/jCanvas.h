@@ -109,16 +109,15 @@ namespace jLib {
     public:
         virtual void test() override {
             jITestable::test();
-            using jContainer::jPoint2D;
 
             jMedia::jBitMap m;
             m.LoadImage("srcImg/test.bmp");
             jGraphic::jCanvas cvs = jGraphic::jCanvas(m);
-            jGraphic::jLine2D theLine = jGraphic::jLine2D(jPoint2D{ 0.0f, 0.0f }, jPoint2D{ 450.0f, 450.0f }, jGraphic::jColor::Black());
-            jGraphic::jLine2D theLine2 = jGraphic::jLine2D(jPoint2D{ 0.0f, 450.0f }, jPoint2D{ 450.0f, 0.0f }, jGraphic::jColor::Red());
-            jGraphic::jLine2D theLine3 = jGraphic::jLine2D(jPoint2D{ 0.0f, 200.0f }, jPoint2D{ 450.0f, 0.0f }, jGraphic::jColor::Blue());
-            jGraphic::jLine2D theLine4 = jGraphic::jLine2D(jPoint2D{ 0.0f, 450.0f }, jPoint2D{ 200.0f, 0.0f }, jGraphic::jColor::Green());
-            jGraphic::jCircle theCircle = jGraphic::jCircle(jPoint2D{ 200, 200 }, jGraphic::jColor::Red(), 150);
+            jGraphic::jLine2D theLine = jGraphic::jLine2D(jVec2f{ 0.0f, 0.0f }, jVec2f{ 450.0f, 450.0f }, jGraphic::jColor::Black());
+            jGraphic::jLine2D theLine2 = jGraphic::jLine2D(jVec2f{ 0.0f, 450.0f }, jVec2f{ 450.0f, 0.0f }, jGraphic::jColor::Red());
+            jGraphic::jLine2D theLine3 = jGraphic::jLine2D(jVec2f{ 0.0f, 200.0f }, jVec2f{ 450.0f, 0.0f }, jGraphic::jColor::Blue());
+            jGraphic::jLine2D theLine4 = jGraphic::jLine2D(jVec2f{ 0.0f, 450.0f }, jVec2f{ 200.0f, 0.0f }, jGraphic::jColor::Green());
+            jGraphic::jCircle theCircle = jGraphic::jCircle(jVec2f{ 200, 200 }, jGraphic::jColor::Red(), 150);
             theLine.drawOn(cvs);
             theLine2.drawOn(cvs);
             theLine4.drawOn(cvs);

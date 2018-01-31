@@ -8,7 +8,7 @@ namespace jGraphic {
 
     class jCircle {
     public:
-        jCircle(jContainer::jPoint2D pos, jColor color, float radius) : pos_(pos), color_(color), radius_(radius) {}
+        jCircle(jVec2f pos, jColor color, float radius) : pos_(pos), color_(color), radius_(radius) {}
 
         void drawOn(jCanvas & canvas) {
             jContainer::jVecBase<int, 2> circlePoint = jContainer::jVecBase<int, 2>{0, (int)radius_};
@@ -28,7 +28,7 @@ namespace jGraphic {
         }
 
     private:
-        jContainer::jPoint2D pos_;
+        jVec2f pos_;
         jColor color_;
         float radius_;
 

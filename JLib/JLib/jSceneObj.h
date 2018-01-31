@@ -6,13 +6,11 @@ namespace jGraphic {
 
 class jSceneObj
 {
-public: 
-    virtual const jContainer::jVec3f& GetPos() const
-    {
-        return _pos;
-    }
-private:
-    jContainer::jVec3f _pos;
+public:
+    jSceneObj(jVec3f pos): _pos(pos){};
+    virtual ~jSceneObj() {};
+protected:
+    jVec3f _pos;
 };
 
 }}

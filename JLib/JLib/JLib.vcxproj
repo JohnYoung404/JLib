@@ -142,6 +142,7 @@
     <ClInclude Include="jPerlinNoise.h" />
     <ClInclude Include="jScene.h" />
     <ClInclude Include="jSceneObj.h" />
+    <ClInclude Include="jSphere.h" />
     <ClInclude Include="jTestBase.h" />
     <ClInclude Include="jRange.h" />
     <ClInclude Include="jStringUtil.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="jVector.h" />
     <ClInclude Include="jVectorTraits.h" />
     <ClInclude Include="jVectorUtil.h" />
+    <ClInclude Include="jMaterial.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jAdjacentPointPair.cpp" />
@@ -179,6 +181,7 @@
     <ClCompile Include="jColor.cpp" />
     <ClCompile Include="jIntString.cpp" />
     <ClCompile Include="jPerlinNoise.cpp" />
+    <ClCompile Include="jSphere.cpp" />
     <ClCompile Include="jStringUtil.cpp" />
     <ClCompile Include="jTestManager.cpp" />
     <ClCompile Include="main.cpp" />
