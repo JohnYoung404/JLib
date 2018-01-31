@@ -54,8 +54,8 @@ namespace jGraphic {
                 inv_view_mat_.at(2, 0),
                 inv_view_mat_.at(2, 1),
                 inv_view_mat_.at(2, 2)
-        	};
-        	return ret;
+            };
+            return ret;
         }
         
         const jContainer::jPoint3D EyePos() {
