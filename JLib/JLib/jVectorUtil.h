@@ -29,9 +29,9 @@ template <typename Type>
 const std::vector<size_t> findAll(const std::vector<Type> & input, const Type& val)
 {
 	std::vector<size_t> ret;
-	for (const auto & v : input)
+	for (auto i = 0; i < input.size(); ++i)
 	{
-		if (v == val) ret.push_back(v);
+		if (input[i] == val) ret.push_back(i);
 	}
 	return ret;
 }
