@@ -42,13 +42,13 @@ jTestManager::jTestManager()
 	//regist<jBigIntTest>();
 	//regist<jBitMapTest>();
 	//regist<jPerlinNoiseTest>();
-    //regist<jCanvasTest>();
+    regist<jCanvasTest>();
     //regist<jVecBaseTest>();
     //regist<jTupleMPLTest>();
     //regist<jArrayMPLTest>();
     //regist<jMatBaseTest>();
     //regist<jMatCvtTest>();
-    regist<jCameraTest>();
+    //regist<jCameraTest>();
 }
 
 std::unique_ptr<jTestManager> jTestManager::_instance_ptr = std::unique_ptr<jTestManager>(new jTestManager());  //singleton

@@ -43,6 +43,9 @@
     <Filter Include="头文件\jMath">
       <UniqueIdentifier>{bb54b1ea-553b-4095-bdf4-cf3c13d12c55}</UniqueIdentifier>
     </Filter>
+    <Filter Include="extern">
+      <UniqueIdentifier>{5588a9f9-e2d3-4c06-ab21-23861edc545b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="jLight.h">
@@ -186,6 +189,15 @@
     <ClInclude Include="jMaterial.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
+    <ClInclude Include="jTexture.h">
+      <Filter>头文件\jGraphicLib</Filter>
+    </ClInclude>
+    <ClInclude Include="jPNG.h">
+      <Filter>头文件\jMediaLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extern\lodepng\lodepng.h">
+      <Filter>extern</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -217,6 +229,15 @@
     </ClCompile>
     <ClCompile Include="jSphere.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="jTexture.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="jPNG.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extern\lodepng\lodepng.cpp">
+      <Filter>extern</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

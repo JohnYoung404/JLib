@@ -126,6 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\extern\lodepng\lodepng.h" />
     <ClInclude Include="jAABBox.h" />
     <ClInclude Include="jArrayMPL.h" />
     <ClInclude Include="jBoostCompute.h" />
@@ -140,6 +141,7 @@
     <ClInclude Include="jMetaStateMachine.h" />
     <ClInclude Include="jOpsMPL.h" />
     <ClInclude Include="jPerlinNoise.h" />
+    <ClInclude Include="jPNG.h" />
     <ClInclude Include="jScene.h" />
     <ClInclude Include="jSceneObj.h" />
     <ClInclude Include="jSphere.h" />
@@ -166,6 +168,7 @@
     <ClInclude Include="jPlane.h" />
     <ClInclude Include="jRandom.h" />
     <ClInclude Include="jTestManager.h" />
+    <ClInclude Include="jTexture.h" />
     <ClInclude Include="jTupleMPL.h" />
     <ClInclude Include="jTypeTraits.h" />
     <ClInclude Include="jUtility.h" />
@@ -175,15 +178,18 @@
     <ClInclude Include="jMaterial.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\extern\lodepng\lodepng.cpp" />
     <ClCompile Include="jAdjacentPointPair.cpp" />
     <ClCompile Include="jBigInt.cpp" />
     <ClCompile Include="jBitMap.cpp" />
     <ClCompile Include="jColor.cpp" />
     <ClCompile Include="jIntString.cpp" />
     <ClCompile Include="jPerlinNoise.cpp" />
+    <ClCompile Include="jPNG.cpp" />
     <ClCompile Include="jSphere.cpp" />
     <ClCompile Include="jStringUtil.cpp" />
     <ClCompile Include="jTestManager.cpp" />
+    <ClCompile Include="jTexture.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

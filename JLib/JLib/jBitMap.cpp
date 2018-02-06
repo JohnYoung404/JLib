@@ -4,11 +4,8 @@
 #include <experimental/filesystem>
 #include "jBitMap.h"
 
-namespace jLib
-{
-
-namespace jMedia
-{
+namespace jLib{
+namespace jMedia{
 
 bool jBitMap::LoadImage(const char* filePath) 
 {
@@ -163,6 +160,4 @@ void jBitMap::ClearImage()
 	imgLoaded_ = false;
 }
 
-}
-
-}
+}}

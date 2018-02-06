@@ -1,11 +1,13 @@
 #pragma once
 #include "jVector.h"
+#include "jTexture.h"
 
 namespace jLib {
 namespace jGraphic {
 
 class jMaterial
 {
+public:
     jfloat ambient[3];
     jfloat diffuse[3];
     jfloat specular[3];
@@ -14,6 +16,7 @@ class jMaterial
     jfloat shininess;
     jfloat ior;                 //index of refraction ’€…‰¬ 
     jfloat dissolve;            //1 == opaque; 0 == fully transparent
+    //jTexture texture;
 };
 
 }}
