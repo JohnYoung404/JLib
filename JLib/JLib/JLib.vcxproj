@@ -130,7 +130,6 @@
     <ClInclude Include="jAABBox.h" />
     <ClInclude Include="jArrayMPL.h" />
     <ClInclude Include="jBoostCompute.h" />
-    <ClInclude Include="jGameObject.h" />
     <ClInclude Include="jGraph.h" />
     <ClInclude Include="jGraphGrid.h" />
     <ClInclude Include="jGraphSearch.h" />

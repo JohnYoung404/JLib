@@ -90,9 +90,6 @@
     <ClInclude Include="jMetaStateMachine.h">
       <Filter>头文件\jExperimental</Filter>
     </ClInclude>
-    <ClInclude Include="jGameObject.h">
-      <Filter>头文件\jGameComponent</Filter>
-    </ClInclude>
     <ClInclude Include="jGraphGrid.h">
       <Filter>头文件\jGameComponent</Filter>
     </ClInclude>
