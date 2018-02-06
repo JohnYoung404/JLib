@@ -34,6 +34,20 @@ public:
     jBitMapCanvas(const std::shared_ptr<jMedia::jBitMap> &otherPtr) {
         _bitmapPtr = otherPtr;
     }
+    jBitMapCanvas(const jBitMapCanvas &rhs)
+    {
+        _bitmapPtr = std::make_shared<jMedia::jBitMap>();
+        *_bitmapPtr = *(rhs._bitmapPtr);
+    }
+    jBitMapCanvas& operator=(const jBitMapCanvas &rhs)
+    {
+        if (this != &rhs)
+        {
+            _bitmapPtr = std::make_shared<jMedia::jBitMap>();
+            *_bitmapPtr = *(rhs._bitmapPtr);
+        }
+        return *this;
+    }
     uint8_t& at(int hori, int vert, int cannel) override {
         return _bitmapPtr->at(hori, vert, cannel);
     }
@@ -84,6 +98,20 @@ public:
     jPngCanvas(const std::shared_ptr<jMedia::jPNG> &otherPtr) {
         _pngPtr = otherPtr;
     }
+    jPngCanvas(const jPngCanvas &rhs)
+    {
+        _pngPtr = std::make_shared<jMedia::jPNG>();
+        *_pngPtr = *(rhs._pngPtr);
+    }
+    jPngCanvas& operator=(const jPngCanvas &rhs)
+    {
+        if (this != &rhs)
+        {
+            _pngPtr = std::make_shared<jMedia::jPNG>();
+            *_pngPtr = *(rhs._pngPtr);
+        }
+        return *this;
+    }
     uint8_t& at(int hori, int vert, int cannel) override {
         return _pngPtr->at(hori, vert, cannel);
     }
@@ -126,12 +154,46 @@ private:
 
 class jCanvas {
 public:
-    jCanvas() = default;
-    jCanvas(std::shared_ptr<jMedia::jBitMap> bitmapPtr) {
-        canvasPtr_ = std::move(std::make_unique<jBitMapCanvas>(bitmapPtr));
+    enum CanvasType {
+        BITMAP, 
+        PNG,
+    };
+    jCanvas() : canvasPtr_(std::make_shared<jPngCanvas>()), _type(CanvasType::PNG) {}
+    jCanvas(std::shared_ptr<jMedia::jBitMap> bitmapPtr) : canvasPtr_(std::make_shared<jBitMapCanvas>(bitmapPtr)), _type(CanvasType::BITMAP) {}
+    jCanvas(std::shared_ptr<jMedia::jPNG> pngPtr) : canvasPtr_(std::make_shared<jPngCanvas>(pngPtr)), _type(CanvasType::PNG) {}
+    jCanvas(const jCanvas &rhs)
+    {
+        if (rhs.Type() == CanvasType::BITMAP)
+        {
+            canvasPtr_ = std::make_shared<jBitMapCanvas>();
+            _type = CanvasType::BITMAP;
+            *canvasPtr_ = *(rhs.canvasPtr_);
+        }
+        else if (rhs.Type() == CanvasType::PNG)
+        {
+            canvasPtr_ = std::make_shared<jPngCanvas>();
+            _type = CanvasType::PNG;
+            *canvasPtr_ = *(rhs.canvasPtr_);
+        }
     }
-    jCanvas(std::shared_ptr<jMedia::jPNG> pngPtr) {
-        canvasPtr_ = std::move(std::make_unique<jPngCanvas>(pngPtr));
+    jCanvas& operator=(const jCanvas &rhs)
+    {
+        if (this != &rhs)
+        {
+            if (rhs.Type() == CanvasType::BITMAP)
+            {
+                canvasPtr_ = std::make_shared<jBitMapCanvas>();
+                _type = CanvasType::BITMAP;
+                *canvasPtr_ = *(rhs.canvasPtr_);
+            }
+            else if (rhs.Type() == CanvasType::PNG)
+            {
+                canvasPtr_ = std::make_shared<jPngCanvas>();
+                _type = CanvasType::PNG;
+                *canvasPtr_ = *(rhs.canvasPtr_);
+            }
+        }
+        return *this;
     }
     void CreateEmpty(int width, int height)
     {
@@ -142,11 +204,13 @@ public:
         if (jStringUtil::endsWith(filename, ".bmp") || jStringUtil::endsWith(filename, ".BMP"))
         {
             canvasPtr_ = std::move(std::make_unique<jBitMapCanvas>());
+            _type = CanvasType::BITMAP;
             return canvasPtr_->LoadImage(filename);
         }
         else if (jStringUtil::endsWith(filename, ".png") || jStringUtil::endsWith(filename, ".PNG"))
         {
             canvasPtr_ = std::move(std::make_unique<jPngCanvas>());
+            _type = CanvasType::PNG;
             return canvasPtr_->LoadImage(filename);
         }
         return false;
@@ -170,7 +234,7 @@ public:
     }
     const jColor getPixel(int x, int y) const
     {
-        canvasPtr_->getPixel(x, y);
+        return canvasPtr_->getPixel(x, y);
     }
     const int horiBound() const {
         return canvasPtr_->horiBound();
@@ -178,8 +242,13 @@ public:
     const int vertBound() const {
         return canvasPtr_->vertBound();
     }
+    const CanvasType Type() const
+    {
+        return _type;
+    }
 private:
-    std::unique_ptr<jICanvas> canvasPtr_;
+    std::shared_ptr<jICanvas> canvasPtr_;
+    CanvasType _type;
 };
 
 }}

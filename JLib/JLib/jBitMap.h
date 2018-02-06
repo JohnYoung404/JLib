@@ -133,13 +133,10 @@ public:
         return ret;
     }
 private:
-	jBitMap(const jBitMap &rhs) = delete;
-	jBitMap& operator=(const jBitMap &rhs) = delete;
 	std::shared_ptr<jBitMapStruct::jBitMapFileHeader> fileHeaderPtr_;
 	std::shared_ptr<jBitMapStruct::jBitMapInfoHeader> infoHeaderPtr_;
 	std::shared_ptr<jBitMapStruct::jRGBMap> rgbMapPtr_;
 	std::vector<uint8_t> imgData;
-
 	bool imgLoaded_;
 };
 
