@@ -27,13 +27,8 @@ public:
 // bitmap Canvas
 class jBitMapCanvas : public jICanvas {
 public:
-    jBitMapCanvas()
-    {
-        _bitmapPtr = std::make_shared<jMedia::jBitMap>();
-    }
-    jBitMapCanvas(const std::shared_ptr<jMedia::jBitMap> &otherPtr) {
-        _bitmapPtr = otherPtr;
-    }
+    jBitMapCanvas() : _bitmapPtr(std::make_shared<jMedia::jBitMap>()) {}
+    jBitMapCanvas(const std::shared_ptr<jMedia::jBitMap> &otherPtr) : _bitmapPtr(otherPtr) {}
     jBitMapCanvas(const jBitMapCanvas &rhs)
     {
         _bitmapPtr = std::make_shared<jMedia::jBitMap>();
@@ -91,13 +86,8 @@ private:
 // PNG Canvas
 class jPngCanvas : public jICanvas {
 public:
-    jPngCanvas()
-    {
-        _pngPtr = std::make_shared<jMedia::jPNG>();
-    }
-    jPngCanvas(const std::shared_ptr<jMedia::jPNG> &otherPtr) {
-        _pngPtr = otherPtr;
-    }
+    jPngCanvas() : _pngPtr(std::make_shared<jMedia::jPNG>()) {}
+    jPngCanvas(const std::shared_ptr<jMedia::jPNG> &otherPtr) : _pngPtr(otherPtr) {}
     jPngCanvas(const jPngCanvas &rhs)
     {
         _pngPtr = std::make_shared<jMedia::jPNG>();
@@ -154,7 +144,8 @@ private:
 
 class jCanvas {
 public:
-    enum CanvasType {
+    enum CanvasType 
+    {
         BITMAP, 
         PNG,
     };
