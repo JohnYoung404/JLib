@@ -28,7 +28,7 @@ public:
 #ifdef _DEBUG
         BOOST_ASSERT(horiIndex < Width() && horiIndex >= 0 && vertIndex >= 0 && vertIndex < Height() && channel < Channel() && channel >= 0);
 #endif
-        return *(_data.begin() + (Height() - vertIndex) * Width() * Channel() + horiIndex * Channel() + channel);
+        return *(_data.begin() + (Height() - 1 - vertIndex) * Width() * Channel() + horiIndex * Channel() + channel);
     }
 
     inline const uint8_t& at(int horiIndex, int vertIndex, int channel) const {
@@ -36,7 +36,7 @@ public:
         BOOST_ASSERT(horiIndex < Width() && horiIndex >= 0 && vertIndex >= 0 && vertIndex < Height() && channel < Channel() && channel >= 0);
 #endif
         
-        return *(_data.begin() + (Height() - vertIndex) * Width() * Channel() + horiIndex * Channel() + channel);
+        return *(_data.begin() + (Height() - 1 - vertIndex) * Width() * Channel() + horiIndex * Channel() + channel);
     }
 
     inline void SetPixel(int horiIndex, int vertIndex, const jLib::jGraphic::jColor &color)

@@ -287,5 +287,6 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 
-# Remove bmp file trace
+# Remove image file trace
 *.bmp
+*.png
