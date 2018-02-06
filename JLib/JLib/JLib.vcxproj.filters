@@ -195,6 +195,9 @@
     <ClInclude Include="..\extern\lodepng\lodepng.h">
       <Filter>extern</Filter>
     </ClInclude>
+    <ClInclude Include="jMesh.h">
+      <Filter>头文件\jGraphicLib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

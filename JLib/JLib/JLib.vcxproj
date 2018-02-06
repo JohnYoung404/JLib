@@ -137,6 +137,7 @@
     <ClInclude Include="jHana.h" />
     <ClInclude Include="jKDTree.h" />
     <ClInclude Include="jMatrixMPL.h" />
+    <ClInclude Include="jMesh.h" />
     <ClInclude Include="jMetaStateMachine.h" />
     <ClInclude Include="jOpsMPL.h" />
     <ClInclude Include="jPerlinNoise.h" />
