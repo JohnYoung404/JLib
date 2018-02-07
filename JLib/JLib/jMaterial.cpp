@@ -47,7 +47,7 @@ const jRay jRefractMaterial::get_reflected_ray(const jRay &input, const jVec3f &
         ).normalize();
         return jRay(hitPos, refractRay);
     }
-    else if (dot(norm, input.Direction()) > 0) {
+    else {
         jVec3f Axis = input.Direction() - norm * dot(norm, input.Direction());
         Axis.x() = Axis.x() * refractRatio;
         Axis.y() = Axis.y() * refractRatio;
