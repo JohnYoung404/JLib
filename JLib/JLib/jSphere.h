@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include "jSceneObj.h"
 #include "jMaterial.h"
 
@@ -8,10 +9,10 @@ namespace jGraphic {
 class jSphere : public jSceneObj
 {
 public:
-    jSphere(jVec3f pos, jfloat radius, jMaterial material) : jSceneObj(pos), _radius(radius), _material(material) {};
+    jSphere(jVec3f pos, jfloat radius, std::shared_ptr<jIRayTracableMaterial> matPtr) : jSceneObj(pos), _radius(radius), _materialPtr(matPtr) {};
 private:
     jfloat _radius;
-    jMaterial _material;
+    std::shared_ptr<jIRayTracableMaterial> _materialPtr;
 };
 
 }}

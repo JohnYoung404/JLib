@@ -251,5 +251,8 @@
     <ClCompile Include="..\extern\rand48\rand48.c">
       <Filter>extern</Filter>
     </ClCompile>
+    <ClCompile Include="jMaterial.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

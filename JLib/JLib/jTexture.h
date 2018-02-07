@@ -13,7 +13,7 @@ public:
     jTexture(const char* filename);
 
     jColor GetPixel(int coor_x, int coor_y) const;
-    jColor GetPixel(jfloat u, jfloat v) const;
+    jVec3f GetPixel(jfloat u, jfloat v) const;
 
     inline bool IsLoaded() const { return _loaded; }
 private:

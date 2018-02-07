@@ -188,6 +188,7 @@
     <ClCompile Include="jBitMap.cpp" />
     <ClCompile Include="jColor.cpp" />
     <ClCompile Include="jIntString.cpp" />
+    <ClCompile Include="jMaterial.cpp" />
     <ClCompile Include="jPerlinNoise.cpp" />
     <ClCompile Include="jPNG.cpp" />
     <ClCompile Include="jSphere.cpp" />

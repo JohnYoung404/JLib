@@ -16,12 +16,12 @@ jColor jTexture::GetPixel(int coor_x, int coor_y) const
     return _img.getPixel(coor_x, coor_y);
 }
 
-jColor jTexture::GetPixel(jfloat u, jfloat v) const
+jVec3f jTexture::GetPixel(jfloat u, jfloat v) const
 {
-    if (!_loaded) return jColor::White();
+    if (!_loaded) return jVec3f::zero();
     int x = static_cast<int>((fmod(fabs(u), 1.0)) * (_width - 1));
     int y = static_cast<int>((1. - fmod(fabs(v), 1.0)) * (_height - 1));
-    return _img.getPixel(x, y);
+    return jVec3f((jfloat)_img.getPixel(x, y).R() / jfloat(255), (jfloat)_img.getPixel(x, y).G() / jfloat(255), (jfloat)_img.getPixel(x, y).B() / jfloat(255) );
 }
 
 }}

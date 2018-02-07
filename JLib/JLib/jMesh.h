@@ -8,9 +8,9 @@ namespace jGraphic {
 class jMesh : public jSceneObj
 {
 public:
-    jMesh(jVec3f pos, jMaterial material) : jSceneObj(pos), _material(material) {};
+    jMesh(jVec3f pos, std::shared_ptr<jIRayTracableMaterial> matPtr) : jSceneObj(pos), _materialPtr(matPtr) {};
 private:
-    jMaterial _material;
+    std::shared_ptr<jIRayTracableMaterial> _materialPtr;
 };
 
 }}
