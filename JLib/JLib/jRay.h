@@ -1,5 +1,8 @@
 #pragma once
+#include <memory>
 #include "jVector.h"
+
+class jIRayTracableMaterial;
 
 namespace jLib {
 namespace jGraphic {
@@ -15,6 +18,17 @@ protected:
     jVec3f _origin;
     jVec3f _direction;
     jVec3f _inv_direction;
+};
+
+class jRayObjectItersection
+{
+public:
+    jRayObjectItersection(bool hit, jfloat dist, jVec3f norm, std::shared_ptr<jIRayTracableMaterial> materialPtr) : _hit(hit), _dist(dist), _norm(norm), _materialPtr(materialPtr) {}
+private:
+    bool _hit;
+    jfloat _dist;
+    jVec3f _norm;
+    std::shared_ptr<jIRayTracableMaterial> _materialPtr;
 };
 
 }}
