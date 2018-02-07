@@ -127,6 +127,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\extern\lodepng\lodepng.h" />
+    <ClInclude Include="..\extern\rand48\erand48.h" />
     <ClInclude Include="jAABBox.h" />
     <ClInclude Include="jArrayMPL.h" />
     <ClInclude Include="jBoostCompute.h" />
@@ -142,6 +143,8 @@
     <ClInclude Include="jOpsMPL.h" />
     <ClInclude Include="jPerlinNoise.h" />
     <ClInclude Include="jPNG.h" />
+    <ClInclude Include="jRandom.h" />
+    <ClInclude Include="jRay.h" />
     <ClInclude Include="jScene.h" />
     <ClInclude Include="jSceneObj.h" />
     <ClInclude Include="jSphere.h" />
@@ -166,7 +169,7 @@
     <ClInclude Include="jMPL.h" />
     <ClInclude Include="jIntString.h" />
     <ClInclude Include="jPlane.h" />
-    <ClInclude Include="jRandom.h" />
+    <ClInclude Include="jRandom_Discarded.h" />
     <ClInclude Include="jTestManager.h" />
     <ClInclude Include="jTexture.h" />
     <ClInclude Include="jTupleMPL.h" />
@@ -179,6 +182,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\extern\lodepng\lodepng.cpp" />
+    <ClCompile Include="..\extern\rand48\rand48.c" />
     <ClCompile Include="jAdjacentPointPair.cpp" />
     <ClCompile Include="jBigInt.cpp" />
     <ClCompile Include="jBitMap.cpp" />

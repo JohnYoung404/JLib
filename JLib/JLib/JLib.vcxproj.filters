@@ -132,9 +132,6 @@
     <ClInclude Include="jMath.h">
       <Filter>头文件\jMath</Filter>
     </ClInclude>
-    <ClInclude Include="jRandom.h">
-      <Filter>头文件\jMath</Filter>
-    </ClInclude>
     <ClInclude Include="jAdjacentPointPair.h">
       <Filter>头文件\jAlgorithm</Filter>
     </ClInclude>
@@ -198,6 +195,18 @@
     <ClInclude Include="jMesh.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
+    <ClInclude Include="jRay.h">
+      <Filter>头文件\jGraphicLib</Filter>
+    </ClInclude>
+    <ClInclude Include="jRandom_Discarded.h">
+      <Filter>头文件\jMath</Filter>
+    </ClInclude>
+    <ClInclude Include="jRandom.h">
+      <Filter>头文件\jMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extern\rand48\erand48.h">
+      <Filter>extern</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -237,6 +246,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\extern\lodepng\lodepng.cpp">
+      <Filter>extern</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extern\rand48\rand48.c">
       <Filter>extern</Filter>
     </ClCompile>
   </ItemGroup>

@@ -7,9 +7,9 @@ namespace jGraphic {
 class jSceneObj
 {
 public:
-    jSceneObj(jVec3f pos): _pos(pos){};
     virtual ~jSceneObj() {};
 protected:
+    jSceneObj(jVec3f pos) : _pos(pos) {}
     jVec3f _pos;
 };
 

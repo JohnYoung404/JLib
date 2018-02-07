@@ -52,6 +52,19 @@ public:
         return _inner_vec.at(pos);
     }
 
+    template<jConstrain_typename_num_equal(Degree, 3)>
+    inline constexpr const Type& x() const { return _inner_vec.at(0); }
+    template<jConstrain_typename_num_equal(Degree, 3)>
+    inline constexpr const Type& y() const { return _inner_vec.at(1); }
+    template<jConstrain_typename_num_equal(Degree, 3)>
+    inline constexpr const Type& z() const { return _inner_vec.at(2); }
+    template<jConstrain_typename_num_equal(Degree, 3)>
+    inline Type& x() { return _inner_vec.at(0); }
+    template<jConstrain_typename_num_equal(Degree, 3)>
+    inline Type& y() { return _inner_vec.at(1); }
+    template<jConstrain_typename_num_equal(Degree, 3)>
+    inline Type& z() { return _inner_vec.at(2); }
+
     inline constexpr const Type square_length() const 
     {
         return (*this) * (*this);
