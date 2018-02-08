@@ -128,6 +128,7 @@
   <ItemGroup>
     <ClInclude Include="..\extern\lodepng\lodepng.h" />
     <ClInclude Include="..\extern\rand48\erand48.h" />
+    <ClInclude Include="..\extern\tiny_obj_loader\tiny_obj_loader.h" />
     <ClInclude Include="jAABBox.h" />
     <ClInclude Include="jArrayMPL.h" />
     <ClInclude Include="jBoostCompute.h" />
@@ -183,6 +184,7 @@
   <ItemGroup>
     <ClCompile Include="..\extern\lodepng\lodepng.cpp" />
     <ClCompile Include="..\extern\rand48\rand48.c" />
+    <ClCompile Include="..\extern\tiny_obj_loader\tiny_obj_loader.cc" />
     <ClCompile Include="jAdjacentPointPair.cpp" />
     <ClCompile Include="jBigInt.cpp" />
     <ClCompile Include="jBitMap.cpp" />

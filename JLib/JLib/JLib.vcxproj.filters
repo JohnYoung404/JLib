@@ -207,6 +207,9 @@
     <ClInclude Include="jTriangle.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
+    <ClInclude Include="..\extern\tiny_obj_loader\tiny_obj_loader.h">
+      <Filter>extern</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -256,6 +259,9 @@
     </ClCompile>
     <ClCompile Include="jKDTree.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extern\tiny_obj_loader\tiny_obj_loader.cc">
+      <Filter>extern</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
