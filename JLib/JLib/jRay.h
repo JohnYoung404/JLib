@@ -2,10 +2,10 @@
 #include <memory>
 #include "jVector.h"
 
-class jIRayTracableMaterial;
-
 namespace jLib {
 namespace jGraphic {
+
+class jIRayTracableMaterial;
 
 class jRay
 {

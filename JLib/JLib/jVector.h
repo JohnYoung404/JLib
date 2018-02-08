@@ -110,6 +110,15 @@ public:
     inline friend constexpr const Type cos_theta(const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs);
     template<typename Type, size_t Degree, jConstrain_typename_floating_point(Type)>
     inline friend constexpr const jVecBase<Type, Degree> lerp(const jVecBase<Type, Degree> &from, const jVecBase<Type, Degree> &to, const Type& interpolator);
+
+    inline constexpr const Type dot(const jVecBase &rhs)
+    {
+        return dot(*this, rhs);
+    }
+    inline constexpr const Type cross(const jVecBase &rhs)
+    {
+        return cross(*this, rhs);
+    }
 private:
     constexpr jVecBase(const std::array<Type, Degree> &rhs) :_inner_vec(rhs) {}
     constexpr jVecBase(std::array<Type, Degree> &&rhs) noexcept : _inner_vec(std::move(rhs)) {}
