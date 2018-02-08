@@ -9,6 +9,7 @@ namespace jGraphic{
 
 class jScene
 {
+public:
     jRayObjectItersection intersect(const jRay& ray);
     jVec3f trace_ray(const jRay &ray, int depth, unsigned short(&Xi)[3]);
 

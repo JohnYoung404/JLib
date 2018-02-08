@@ -14,7 +14,7 @@ public:
     inline const jVec3f Origin() const { return _origin; }
     inline const jVec3f Direction() const { return _direction; }
     inline const jVec3f InvDirection() const { return _inv_direction; }
-protected:
+private:
     jVec3f _origin;
     jVec3f _direction;
     jVec3f _inv_direction;

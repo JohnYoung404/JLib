@@ -147,6 +147,8 @@
     <ClInclude Include="jPNG.h" />
     <ClInclude Include="jRandom.h" />
     <ClInclude Include="jRay.h" />
+    <ClInclude Include="jRayTraceCamera.h" />
+    <ClInclude Include="jRenderer.h" />
     <ClInclude Include="jScene.h" />
     <ClInclude Include="jSceneObj.h" />
     <ClInclude Include="jSphere.h" />
@@ -196,6 +198,8 @@
     <ClCompile Include="jMesh.cpp" />
     <ClCompile Include="jPerlinNoise.cpp" />
     <ClCompile Include="jPNG.cpp" />
+    <ClCompile Include="jRayTraceCamera.cpp" />
+    <ClCompile Include="jRenderer.cpp" />
     <ClCompile Include="jScene.cpp" />
     <ClCompile Include="jSphere.cpp" />
     <ClCompile Include="jStringUtil.cpp" />

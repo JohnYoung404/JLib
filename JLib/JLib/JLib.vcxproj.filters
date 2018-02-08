@@ -210,6 +210,12 @@
     <ClInclude Include="..\extern\tiny_obj_loader\tiny_obj_loader.h">
       <Filter>extern</Filter>
     </ClInclude>
+    <ClInclude Include="jRenderer.h">
+      <Filter>头文件\jGraphicLib</Filter>
+    </ClInclude>
+    <ClInclude Include="jRayTraceCamera.h">
+      <Filter>头文件\jGraphicLib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -267,6 +273,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="jScene.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="jRenderer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="jRayTraceCamera.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
