@@ -41,21 +41,21 @@ public:
     }
 
     // Check if ray intersects with box. Returns true/false and stores distance in t
-    bool intersection(const jRay &r, double &t) {
-        double tx1 = (bl.x() - r.Origin().x())*r.InvDirection().x();
-        double tx2 = (tr.x() - r.Origin().x())*r.InvDirection().x();
+    bool intersection(const jRay &r, jfloat &t) {
+        jfloat tx1 = (bl.x() - r.Origin().x())*r.InvDirection().x();
+        jfloat tx2 = (tr.x() - r.Origin().x())*r.InvDirection().x();
 
-        double tmin = std::min(tx1, tx2);
-        double tmax = std::max(tx1, tx2);
+        jfloat tmin = std::min(tx1, tx2);
+        jfloat tmax = std::max(tx1, tx2);
 
-        double ty1 = (bl.y() - r.Origin().y())*r.InvDirection().y();
-        double ty2 = (tr.y() - r.Origin().y())*r.InvDirection().y();
+        jfloat ty1 = (bl.y() - r.Origin().y())*r.InvDirection().y();
+        jfloat ty2 = (tr.y() - r.Origin().y())*r.InvDirection().y();
 
         tmin = std::max(tmin, std::min(ty1, ty2));
         tmax = std::min(tmax, std::max(ty1, ty2));
 
-        double tz1 = (bl.z() - r.Origin().z())*r.InvDirection().z();
-        double tz2 = (tr.z() - r.Origin().z())*r.InvDirection().z();
+        jfloat tz1 = (bl.z() - r.Origin().z())*r.InvDirection().z();
+        jfloat tz2 = (tr.z() - r.Origin().z())*r.InvDirection().z();
 
         tmin = std::max(tmin, std::min(tz1, tz2));
         tmax = std::min(tmax, std::max(tz1, tz2));

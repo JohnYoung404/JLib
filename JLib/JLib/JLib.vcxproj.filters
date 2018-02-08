@@ -48,9 +48,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="jLight.h">
-      <Filter>头文件\jGraphicLib</Filter>
-    </ClInclude>
     <ClInclude Include="jColor.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
