@@ -263,5 +263,8 @@
     <ClCompile Include="..\extern\tiny_obj_loader\tiny_obj_loader.cc">
       <Filter>extern</Filter>
     </ClCompile>
+    <ClCompile Include="jMesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

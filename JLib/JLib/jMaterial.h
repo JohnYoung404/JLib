@@ -74,6 +74,7 @@ private:
 
 class jRefractMaterial : public jIRayTracableMaterial
 {
+public:
     jRefractMaterial(jVec3f refract_color) : _color(refract_color){}
     virtual const jRay get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f norm, unsigned short(&Xi)[3]) const override;
     virtual const jVec3f get_emission() const override { return jVec3f::zero(); }
@@ -85,6 +86,7 @@ private:
 
 class jEmitMaterial : public jIRayTracableMaterial
 {
+public:
     jEmitMaterial(jVec3f emission) : _emission(emission) {}
     virtual const jRay get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f norm, unsigned short(&Xi)[3]) const override;
     virtual const jVec3f get_emission() const override { return _emission; }

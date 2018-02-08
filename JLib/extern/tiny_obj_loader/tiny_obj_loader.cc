@@ -18,6 +18,7 @@
 // version 0.9.0: Initial
 //
 
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <cstdlib>
 #include <cstring>

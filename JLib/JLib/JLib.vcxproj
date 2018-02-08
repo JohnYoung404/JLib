@@ -88,6 +88,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>D:\Programming\boost_1_65_1\boost_1_65_1;D:\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/std:c++14 %(AdditionalOptions)</AdditionalOptions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -192,6 +193,7 @@
     <ClCompile Include="jIntString.cpp" />
     <ClCompile Include="jKDTree.cpp" />
     <ClCompile Include="jMaterial.cpp" />
+    <ClCompile Include="jMesh.cpp" />
     <ClCompile Include="jPerlinNoise.cpp" />
     <ClCompile Include="jPNG.cpp" />
     <ClCompile Include="jSphere.cpp" />
