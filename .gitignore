@@ -290,3 +290,5 @@ __pycache__/
 # Remove image file trace
 *.bmp
 *.png
+
+!models/*.obj

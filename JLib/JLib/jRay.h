@@ -10,7 +10,7 @@ class jIRayTracableMaterial;
 class jRay
 {
 public:
-    jRay(jVec3f origin, jVec3f direciton) : _origin(origin), _direction(direciton), _inv_direction(jVec3f(1.f/direciton[0], 1.f/direciton[1], 1.f/direciton[2])) {}
+    jRay(jVec3f origin, jVec3f direciton) : _origin(origin), _direction(direciton), _inv_direction(jVec3f(jfloat(1)/direciton[0], jfloat(1)/direciton[1], jfloat(1)/direciton[2])) {}
     inline const jVec3f Origin() const { return _origin; }
     inline const jVec3f Direction() const { return _direction; }
     inline const jVec3f InvDirection() const { return _inv_direction; }

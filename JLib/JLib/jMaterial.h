@@ -87,13 +87,14 @@ private:
 class jEmitMaterial : public jIRayTracableMaterial
 {
 public:
-    jEmitMaterial(jVec3f emission) : _emission(emission) {}
+    jEmitMaterial(jVec3f color , jVec3f emission) : _color(color), _emission(emission) {}
     virtual const jRay get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f norm, unsigned short(&Xi)[3]) const override;
     virtual const jVec3f get_emission() const override { return _emission; }
-    virtual const jVec3f get_color() const override { return jVec3f::zero(); }
+    virtual const jVec3f get_color() const override { return _color; }
     virtual const bool is_emit() const override { return true; }
 private:
     jVec3f _emission;
+    jVec3f _color;
 };
 
 }}

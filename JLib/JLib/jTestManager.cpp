@@ -21,6 +21,7 @@
 #include "jMatrix.h"
 #include "jMatrixCvt.h"
 #include "jCamera.h"
+#include "jRenderer.h"
 
 namespace jLib
 {
@@ -42,13 +43,14 @@ jTestManager::jTestManager()
 	//regist<jBigIntTest>();
 	//regist<jBitMapTest>();
 	//regist<jPerlinNoiseTest>();
-    regist<jCanvasTest>();
+    //regist<jCanvasTest>();
     //regist<jVecBaseTest>();
     //regist<jTupleMPLTest>();
     //regist<jArrayMPLTest>();
     //regist<jMatBaseTest>();
     //regist<jMatCvtTest>();
     //regist<jCameraTest>();
+    regist<jRendererTest>();
 }
 
 std::unique_ptr<jTestManager> jTestManager::_instance_ptr = std::unique_ptr<jTestManager>(new jTestManager());  //singleton
