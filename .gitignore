@@ -291,4 +291,4 @@ __pycache__/
 *.bmp
 *.png
 
-!/models/*
+!dragon2.obj

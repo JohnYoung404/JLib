@@ -11,7 +11,6 @@ jMesh::jMesh(jVec3f pos, const char* file_path, std::shared_ptr<jIRayTracableMat
     size_t div_pos = inputfile.find_last_of("/");
     mtlbasepath = inputfile.substr(0, div_pos + 1);
 
-    printf("Loading %s...\n", file_path);
     std::cout << "Loading " << file_path << "..." << std::endl;
     // Attempt to load mesh
     std::string err = tinyobj::LoadObj(_shapes, _materials, inputfile.c_str(), mtlbasepath.c_str());
