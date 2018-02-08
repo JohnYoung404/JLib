@@ -171,6 +171,7 @@
     <ClInclude Include="jRandom_Discarded.h" />
     <ClInclude Include="jTestManager.h" />
     <ClInclude Include="jTexture.h" />
+    <ClInclude Include="jTriangle.h" />
     <ClInclude Include="jTupleMPL.h" />
     <ClInclude Include="jTypeTraits.h" />
     <ClInclude Include="jUtility.h" />

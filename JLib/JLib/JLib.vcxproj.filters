@@ -204,6 +204,9 @@
     <ClInclude Include="..\extern\rand48\erand48.h">
       <Filter>extern</Filter>
     </ClInclude>
+    <ClInclude Include="jTriangle.h">
+      <Filter>头文件\jGraphicLib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

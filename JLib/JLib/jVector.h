@@ -98,6 +98,8 @@ public:
     template<typename Type, size_t Degree>
     inline friend constexpr const jVecBase<Type, Degree> operator* (const jVecBase<Type, Degree> &prime, const Type &scalar);
     template<typename Type, size_t Degree>
+    inline friend constexpr const jVecBase<Type, Degree> operator/ (const jVecBase<Type, Degree> &prime, const Type &scalar);
+    template<typename Type, size_t Degree>
     inline friend constexpr const jVecBase<Type, Degree> operator* (const Type &scalar, const jVecBase<Type, Degree> &prime);
     template<typename Type, size_t Degree, jConstrain_typename_num_equal(Degree, 3)>
     inline friend constexpr const jVecBase<Type, Degree> operator^ (const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs);
@@ -113,11 +115,13 @@ public:
 
     inline constexpr const Type dot(const jVecBase &rhs) const
     {
-        return jLib::jContainer::dot(*this, rhs);
+        return (*this) * rhs;
     }
-    inline constexpr const Type cross(const jVecBase &rhs) const
+
+    template<jConstrain_typename_num_equal(Degree, 3)>
+    inline constexpr const jVecBase cross(const jVecBase &rhs) const
     {
-        return jLib::jContainer::cross(*this, rhs);
+        return (*this) ^ rhs;
     }
 private:
     constexpr jVecBase(const std::array<Type, Degree> &rhs) :_inner_vec(rhs) {}
@@ -157,6 +161,12 @@ template<typename Type, size_t Degree>
 inline constexpr const jVecBase<Type, Degree> operator* (const jVecBase<Type, Degree> &prime, const Type &scalar)
 {
     return jVecBase<Type, Degree>(jMPL::array_scalar_mult(prime._inner_vec, scalar));
+}
+
+template<typename Type, size_t Degree>
+inline constexpr const jVecBase<Type, Degree> operator/ (const jVecBase<Type, Degree> &prime, const Type &scalar)
+{
+    return jVecBase<Type, Degree>(jMPL::array_scalar_div(prime._inner_vec, scalar));
 }
 
 template<typename Type, size_t Degree>

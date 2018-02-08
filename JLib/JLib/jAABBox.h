@@ -10,9 +10,7 @@ namespace jGraphic {
 class jAABBox
 {
 public:
-    jAABBox(jVec3f bl_ = jVec3f(), jVec3f tr_ = jVec3f()) {
-        bl = bl_, tr = tr_;
-    }
+    jAABBox(jVec3f bl_ = jVec3f::zero(), jVec3f tr_ = jVec3f::zero()) : bl(bl_), tr(tr_) {}
 
     // Expand to fit box
     void expand(const jAABBox &box) {

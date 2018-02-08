@@ -149,6 +149,12 @@ namespace jMPL {
     }
 
     template<typename Type, size_t Degree>
+    inline constexpr decltype(auto) array_scalar_div(const std::array<Type, Degree> &prime, const Type &scalar)
+    {
+        return array_for_each<array_elem_ops_div<Type>>(prime, scalar);
+    }
+
+    template<typename Type, size_t Degree>
     inline constexpr decltype(auto) array_scalar_mult(const Type &scalar, const std::array<Type, Degree> &prime)
     {
         return array_for_each<array_elem_ops_mult<Type>>(prime, scalar);
