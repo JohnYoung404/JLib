@@ -10,7 +10,7 @@ jRayObjectItersection jSphere::get_intersection(const jRay& ray)
     jVec3f norm = jVec3f::zero();
 
     jVec3f op = _pos - ray.Origin();
-    jfloat t, eps = 1e-4, b = op.dot(ray.Direction()), det = b*b - op.dot(op) + _radius*_radius;
+    jfloat t, eps = jfloat(1e-4), b = op.dot(ray.Direction()), det = b*b - op.dot(op) + _radius*_radius;
     if (det < 0) return jRayObjectItersection(hit, distance, norm, _materialPtr);
     else det = sqrt(det);
     distance = (t = b - det) > eps ? t : ((t = b + det) > eps ? t : 0);

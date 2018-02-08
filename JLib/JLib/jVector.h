@@ -111,13 +111,13 @@ public:
     template<typename Type, size_t Degree, jConstrain_typename_floating_point(Type)>
     inline friend constexpr const jVecBase<Type, Degree> lerp(const jVecBase<Type, Degree> &from, const jVecBase<Type, Degree> &to, const Type& interpolator);
 
-    inline constexpr const Type dot(const jVecBase &rhs)
+    inline constexpr const Type dot(const jVecBase &rhs) const
     {
-        return dot(*this, rhs);
+        return jLib::jContainer::dot(*this, rhs);
     }
-    inline constexpr const Type cross(const jVecBase &rhs)
+    inline constexpr const Type cross(const jVecBase &rhs) const
     {
-        return cross(*this, rhs);
+        return jLib::jContainer::cross(*this, rhs);
     }
 private:
     constexpr jVecBase(const std::array<Type, Degree> &rhs) :_inner_vec(rhs) {}
