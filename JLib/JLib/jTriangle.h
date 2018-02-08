@@ -95,6 +95,11 @@ struct jTriangle {
         return materialPtr->color_at(c.x(), c.y());
     }
 
+    jVec3f get_color ()
+    {
+        return materialPtr->get_color();
+    }
+
 };
 
 }}

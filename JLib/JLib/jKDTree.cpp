@@ -111,8 +111,9 @@ bool jKDNode::hit(std::shared_ptr<jKDNode> node, const jRay &ray, jfloat &t, jfl
                 }
             }
             if (hit_tri) {
-                jVec3f p = ray.Origin() + ray.Direction() * tmin;
-                color = node->triangles[tri_idx]->get_colour_at(p);
+                //jVec3f p = ray.Origin() + ray.Direction() * tmin;
+                //color = node->triangles[tri_idx]->get_colour_at(p);
+                color = node->triangles[tri_idx]->get_color();
                 return true;
             }
         }

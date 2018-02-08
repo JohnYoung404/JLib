@@ -106,6 +106,8 @@ public:
 
     template<typename Type, size_t Degree>
     inline friend constexpr const Type dot (const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs);
+    template<typename Type, size_t Degree>
+    inline friend constexpr const jVecBase<Type, Degree> mult(const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs);
     template<typename Type, size_t Degree, jConstrain_typename_num_equal(Degree, 3)>
     inline friend constexpr const jVecBase<Type, Degree> cross (const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs);
     template<typename Type, size_t Degree, jConstrain_typename_floating_point(Type)>
@@ -116,6 +118,11 @@ public:
     inline constexpr const Type dot(const jVecBase &rhs) const
     {
         return (*this) * rhs;
+    }
+
+    inline constexpr const jVecBase mult(const jVecBase &rhs) const
+    {
+        return jLib::jContainer::mult(*this, rhs);
     }
 
     template<jConstrain_typename_num_equal(Degree, 3)>
@@ -185,6 +192,12 @@ template<typename Type, size_t Degree>
 inline constexpr const Type dot(const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs)
 {
     return lhs * rhs;
+}
+
+template<typename Type, size_t Degree>
+inline constexpr const jVecBase<Type, Degree> mult(const jVecBase<Type, Degree> &lhs, const jVecBase<Type, Degree> &rhs)
+{
+    return jVecBase<Type, Degree>(jMPL::array_mult(lhs._inner_vec, rhs._inner_vec));
 }
 
 template<typename Type, size_t Degree, jConstrain_typename_num_equal(Degree, 3)>
