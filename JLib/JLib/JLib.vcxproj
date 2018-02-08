@@ -196,6 +196,7 @@
     <ClCompile Include="jMesh.cpp" />
     <ClCompile Include="jPerlinNoise.cpp" />
     <ClCompile Include="jPNG.cpp" />
+    <ClCompile Include="jScene.cpp" />
     <ClCompile Include="jSphere.cpp" />
     <ClCompile Include="jStringUtil.cpp" />
     <ClCompile Include="jTestManager.cpp" />
