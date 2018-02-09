@@ -7,6 +7,8 @@
 #include "jTypeTraits.h"
 #include "jArrayMPL.h"
 
+#include "jVec3.h"
+
 namespace jLib{
 namespace jContainer{
 
@@ -223,7 +225,7 @@ using _jVec2 = jVecBase<Type, 2>;
 template<typename Type>
 using _jVec3 = jVecBase<Type, 3>;
 
-using _jfloat = float;
+using _jfloat = double;
 
 using _jVec2f = jVecBase<_jfloat, 2>;
 using _jVec3f = jVecBase<_jfloat, 3>;
@@ -232,16 +234,18 @@ using _jVec4f = jVecBase<_jfloat, 4>;
 
 namespace jLib
 {
+    using jfloat = jContainer::_jfloat;
+
     template<typename Type>
     using jVec2 = jContainer::_jVec2<Type>;
     template<typename Type>
     using jVec3 = jContainer::_jVec3<Type>;
 
     using jVec2f = jContainer::_jVec2f;
-    using jVec3f = jContainer::_jVec3f;
+    //using jVec3f = jContainer::_jVec3f;
+    using jVec3f = jContainer::jVec3<jfloat>;
     using jVec4f = jContainer::_jVec4f;
     
-    using jfloat = jContainer::_jfloat;
 }
 
 #include "jTestBase.h"

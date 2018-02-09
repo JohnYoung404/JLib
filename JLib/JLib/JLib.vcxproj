@@ -187,6 +187,7 @@
     <ClInclude Include="jTupleMPL.h" />
     <ClInclude Include="jTypeTraits.h" />
     <ClInclude Include="jUtility.h" />
+    <ClInclude Include="jVec3.h" />
     <ClInclude Include="jVector.h" />
     <ClInclude Include="jVectorTraits.h" />
     <ClInclude Include="jVectorUtil.h" />

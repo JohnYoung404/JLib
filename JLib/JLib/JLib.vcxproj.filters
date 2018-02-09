@@ -216,6 +216,9 @@
     <ClInclude Include="jRayTraceCamera.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
+    <ClInclude Include="jVec3.h">
+      <Filter>头文件\jContainer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

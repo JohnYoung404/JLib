@@ -37,8 +37,8 @@ namespace jGraphic{
         return ret;
     }
 
-    inline const jMat4f perspective_fov_mat(float fovy, float aspect, float zNear, float zFar) {
-        const jfloat h = 1.0f / static_cast<jfloat>(std::tan(fovy * PI / 360.0f));
+    inline const jMat4f perspective_fov_mat(jfloat fovy, jfloat aspect, jfloat zNear, jfloat zFar) {
+        const jfloat h = jfloat(1) / static_cast<jfloat>(std::tan(fovy * PI / 360.0f));
         const jfloat w = h / aspect;
         const jfloat q = zFar / (zFar - zNear);
         const jfloat p = - zFar * zNear / (zFar - zNear);
@@ -73,7 +73,6 @@ namespace jLib {
             jVec3f eye = { 0, 0, -5.0f };
             jVec3f look_at = { 0, 0, 0 };
             jVec3f up_vec = { 0, 1, 0 };
-
             jVec3f observe_pos = { 1, 0, 0 };
 
             auto look_mat = jGraphic::look_at_mat(eye, look_at, up_vec);

@@ -17,7 +17,7 @@ namespace jGraphic {
             int dx = static_cast<int>(p1_[0] - p0_[0]);
             int dy = static_cast<int>(p1_[1] - p0_[1]);
             int steps, k;
-            float xIncrement, yIncrement, x = p0_[0], y = p0_[1];
+            jfloat xIncrement, yIncrement, x = p0_[0], y = p0_[1];
             if (abs(dx) > abs(dy)) {
                 steps = abs(dx);
             }

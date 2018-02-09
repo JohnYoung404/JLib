@@ -17,7 +17,7 @@ const jRay jDiffuseMaterial::get_reflected_ray(const jRay &input, const jVec3f &
 
 const jRay jSpecularMaterial::get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f norm, unsigned short(&Xi)[3]) const
 {
-    double roughness = 0.8;
+    jfloat roughness = jfloat(0.8);
     jVec3f reflected = input.Direction() - norm * jfloat(2) * dot(norm, input.Direction());
     reflected = jVec3f(
         reflected.x() + (jMath::jRandom::jerand48(Xi) - 0.5)*roughness,

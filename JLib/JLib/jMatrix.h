@@ -234,7 +234,7 @@ inline const jMatBase<Type, Degree> inverse(const jMatBase<Type, Degree> &rhs)
 template<typename Type>
 using _jMat4 = jMatBase<Type, 4>;
 
-using _jMat4f = jMatBase<float, 4>;
+using _jMat4f = jMatBase<jfloat, 4>;
 }}
 
 namespace jLib

@@ -16,7 +16,7 @@ void jRenderer::render(int samples /* = 4 */)
     jfloat samples_recp = jfloat(1) / samples;
 
     // Main Loop
-    #pragma omp parallel for schedule(dynamic, 1)       // OpenMP
+#pragma omp parallel for schedule(dynamic, 1)       // OpenMP
     for (int y = 0; y < height; y++) {
 #pragma warning( push )
 #pragma warning( disable : 4838 )
