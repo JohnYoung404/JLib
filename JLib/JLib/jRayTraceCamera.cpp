@@ -25,8 +25,8 @@ jRayTraceCamera::jRayTraceCamera(jVec3f eye_pos, jVec3f look_at, int width, int 
 
 jRay jRayTraceCamera::get_ray(int x, int y, bool jitter, unsigned short (&Xi)[3])
 {
-    double x_jitter;
-    double y_jitter;
+    jfloat x_jitter;
+    jfloat y_jitter;
 
     // If jitter == true, jitter point for anti-aliasing
     if (jitter) {

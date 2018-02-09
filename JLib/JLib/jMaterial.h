@@ -4,7 +4,6 @@
 #include "jTexture.h"
 #include "jRay.h"
 
-
 namespace jLib {
 namespace jGraphic {
 

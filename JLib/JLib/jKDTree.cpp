@@ -81,25 +81,26 @@ std::shared_ptr<jKDNode> jKDNode::build(std::vector<std::shared_ptr<jTriangle>> 
     return node;
 }
 
-bool jKDNode::hit(std::shared_ptr<jKDNode> node, const jRay &ray, jfloat &t, jfloat &tmin, jVec3f &norm, jVec3f &color)
+bool jKDNode::hit(const std::shared_ptr<jKDNode> &node, const jRay &ray, jfloat &t, jfloat &tmin, jVec3f &norm, jVec3f &color) const
 {
     jfloat dist;
     if (node->box.intersection(ray, dist)) {
         if (dist > tmin) return false;
 
         bool hit_tri = false;
-        bool hit_left = false;
-        bool hit_right = false;
+        bool hitLeft = false;
+        bool hitRight = false;
+
         size_t tri_idx;
 
-        if (!node->leaf) {
-            //if ( node->left->triangles.size() > 0 )
-            hit_left = hit(node->left, ray, t, tmin, norm, color);
+        if (!node->leaf) 
+        {
+            if (node->left->triangles.size() > 0)
+                hitLeft = hit(node->left, ray, t, tmin, norm, color);
+            if (node->right->triangles.size() > 0)
+                hitRight = hit(node->right, ray, t, tmin, norm, color);
 
-            //if ( node->right->triangles.size() > 0 )
-            hit_right = hit(node->right, ray, t, tmin, norm, color);
-
-            return hit_left || hit_right;
+            return  hitLeft||hitRight ;
         }
         else {
             auto triangles_size = node->triangles.size();

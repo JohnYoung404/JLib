@@ -5,6 +5,7 @@ namespace jGraphic {
 
 jRayObjectItersection jSphere::get_intersection(const jRay& ray)
 {
+    //return jRayObjectItersection();
     bool hit = false;
     jfloat distance = 0;
     jVec3f norm = jVec3f::zero();

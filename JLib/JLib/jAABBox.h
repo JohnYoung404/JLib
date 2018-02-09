@@ -31,7 +31,7 @@ public:
     }
 
     // Returns longest axis: 0, 1, 2 for x, y, z respectively
-    int get_longest_axis() {
+    int get_longest_axis() const {
         jVec3f diff = tr - bl;
         if (diff.x() > diff.y() && diff.x() > diff.z()) return 0;
         if (diff.y() > diff.x() && diff.y() > diff.z()) return 1;
@@ -39,7 +39,7 @@ public:
     }
 
     // Check if ray intersects with box. Returns true/false and stores distance in t
-    bool intersection(const jRay &r, jfloat &t) {
+    bool intersection(const jRay &r, jfloat &t) const {
         jfloat tx1 = (bl.x() - r.Origin().x())*r.InvDirection().x();
         jfloat tx2 = (tr.x() - r.Origin().x())*r.InvDirection().x();
 
