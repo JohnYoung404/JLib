@@ -95,10 +95,8 @@ bool jKDNode::hit(const std::shared_ptr<jKDNode> &node, const jRay &ray, jfloat 
 
         if (!node->leaf) 
         {
-            if (node->left->triangles.size() > 0)
-                hitLeft = hit(node->left, ray, t, tmin, norm, color);
-            if (node->right->triangles.size() > 0)
-                hitRight = hit(node->right, ray, t, tmin, norm, color);
+            hitLeft = hit(node->left, ray, t, tmin, norm, color);
+            hitRight = hit(node->right, ray, t, tmin, norm, color);
 
             return  hitLeft||hitRight ;
         }
