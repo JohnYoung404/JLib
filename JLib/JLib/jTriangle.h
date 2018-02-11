@@ -42,7 +42,7 @@ struct jTriangle {
     }
 
     // Checks if ray intersects with triangle. Returns true/false.
-    bool intersect(const jRay &ray, jfloat &t, jfloat tmin, jVec3f &norm) const {
+    bool intersect(const jRay &ray, jfloat &t, const jfloat &tmin, jVec3f &norm) const {
 
         jfloat u, v, t_temp = 0;
 
