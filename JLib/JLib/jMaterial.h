@@ -27,73 +27,63 @@ private:
 class jIRayTracableMaterial
 {
 public:
+    jIRayTracableMaterial(jVec3f color, jVec3f emission) : _color(color), _emission(emission) {}
     virtual ~jIRayTracableMaterial() {}
-    virtual const jRay get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f norm, unsigned short(&Xi)[3]) const = 0;
-    virtual const jVec3f get_emission() const = 0;
-    virtual const bool is_emit() const = 0;
-    virtual const jVec3f get_color() const = 0;
-    virtual const jVec3f color_at(jfloat u, jfloat v) const
+    virtual const jRay get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &norm, unsigned short(&Xi)[3]) const = 0;
+
+    inline const jVec3f get_emission() const { return jVec3f::zero(); }
+    inline const jVec3f get_color() const { return _color; }
+
+    virtual inline const bool is_emit() const = 0;
+    /*virtual*/ inline const jVec3f color_at(jfloat u, jfloat v) const
     {
-        return get_color();
+        return _color;
     };
+protected:
+    jVec3f _color;
+    jVec3f _emission;
 };
 
 class jDiffuseMaterial : public jIRayTracableMaterial
 {
 public:
-    jDiffuseMaterial(jVec3f diffuse_color, jTexture texture = jTexture()) : _color(diffuse_color), _texture(texture) {}
-    virtual const jRay get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f norm, unsigned short(&Xi)[3]) const override;
-    virtual const jVec3f get_emission() const override { return jVec3f::zero(); };
-    virtual const jVec3f get_color() const override { return _color; };
-    virtual const bool is_emit() const override { return false; }
-    virtual const jVec3f color_at(jfloat u, jfloat v) const override
-    {
-        if (_texture.IsLoaded())
-        {
-            return _texture.GetPixel(u, v);
-        }
-        return _color;
-    }
+    jDiffuseMaterial(jVec3f diffuse_color, jTexture texture = jTexture()) : jIRayTracableMaterial(diffuse_color, jVec3f::zero()), _texture(texture) {}
+    virtual const jRay get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &norm, unsigned short(&Xi)[3]) const override;
+    virtual inline const bool is_emit() const override { return false; }
+    //virtual inline const jVec3f color_at(jfloat u, jfloat v) const override
+    //{
+    //    if (_texture.IsLoaded())
+    //    {
+    //        return _texture.GetPixel(u, v);
+    //    }
+    //    return _color;
+    //}
 private:
-    jVec3f _color;
     jTexture _texture;
 };
 
 class jSpecularMaterial : public jIRayTracableMaterial
 {
 public:
-    jSpecularMaterial(jVec3f specular_color) : _color(specular_color) {}
-    virtual const jRay get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f norm, unsigned short(&Xi)[3]) const override;
-    virtual const jVec3f get_emission() const override { return jVec3f::zero();}
-    virtual const jVec3f get_color() const override { return _color; }
-    virtual const bool is_emit() const override { return false; }
-private:
-    jVec3f _color;
+    jSpecularMaterial(jVec3f specular_color) : jIRayTracableMaterial(specular_color, jVec3f::zero()) {}
+    virtual const jRay get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &norm, unsigned short(&Xi)[3]) const override;
+    virtual inline const bool is_emit() const override { return false; }
 };
 
 class jRefractMaterial : public jIRayTracableMaterial
 {
 public:
-    jRefractMaterial(jVec3f refract_color) : _color(refract_color){}
-    virtual const jRay get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f norm, unsigned short(&Xi)[3]) const override;
-    virtual const jVec3f get_emission() const override { return jVec3f::zero(); }
-    virtual const jVec3f get_color() const override { return _color; }
-    virtual const bool is_emit() const override { return false; }
-private:
-    jVec3f _color;
+    jRefractMaterial(jVec3f refract_color) : jIRayTracableMaterial(refract_color, jVec3f::zero()) {}
+    virtual const jRay get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &norm, unsigned short(&Xi)[3]) const override;
+    virtual inline const bool is_emit() const override { return false; }
 };
 
 class jEmitMaterial : public jIRayTracableMaterial
 {
 public:
-    jEmitMaterial(jVec3f color , jVec3f emission) : _color(color), _emission(emission) {}
-    virtual const jRay get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f norm, unsigned short(&Xi)[3]) const override;
-    virtual const jVec3f get_emission() const override { return _emission; }
-    virtual const jVec3f get_color() const override { return _color; }
-    virtual const bool is_emit() const override { return true; }
-private:
-    jVec3f _emission;
-    jVec3f _color;
+    jEmitMaterial(jVec3f color , jVec3f emission) : jIRayTracableMaterial(color, emission) {}
+    virtual const jRay get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &norm, unsigned short(&Xi)[3]) const override;
+    virtual inline const bool is_emit() const override { return true; }
 };
 
 }}

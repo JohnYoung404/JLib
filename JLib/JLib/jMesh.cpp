@@ -110,13 +110,13 @@ jMesh::jMesh(jVec3f pos, const char* file_path, std::shared_ptr<jIRayTracableMat
 
 jRayObjectItersection jMesh::get_intersection(const jRay& ray)
 {
+    return jRayObjectItersection();
     jfloat t = 0, tmin = std::numeric_limits<jfloat>::infinity();
     jVec3f normal = jVec3f::zero();
     jVec3f colour = jVec3f::zero();
-    bool hit = _node->hit(_node, ray, t, tmin, normal, colour);
-    //return jRayObjectItersection();
+    bool _hit = _node->hit(_node, ray, t, tmin, normal, colour);
     //bool hit = bvh.getIntersection(ray, t, tmin, normal);
-    return jRayObjectItersection(hit, tmin, normal, _materialPtr);
+    return jRayObjectItersection(_hit, tmin, normal, _materialPtr);
 }
 
 }}

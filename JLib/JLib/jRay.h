@@ -23,11 +23,11 @@ private:
 class jRayObjectItersection
 {
 public:
-    jRayObjectItersection(bool hit = false, jfloat dist = 0, jVec3f norm = jVec3f::zero(), std::shared_ptr<jIRayTracableMaterial> materialPtr = nullptr) : _hit(hit), _dist(dist), _norm(norm), _materialPtr(materialPtr) {}
+    jRayObjectItersection(bool hit = false, jfloat dist = 0, jVec3f norm = jVec3f::zero(), std::shared_ptr<jIRayTracableMaterial> matPtr = nullptr) : _hit(hit), _dist(dist), _norm(norm), _materialPtr(matPtr) {}
     inline const bool hit() const { return _hit; }
     inline const jfloat dist() const { return _dist; }
     inline const jVec3f norm() const { return _norm; }
-    inline std::shared_ptr<jIRayTracableMaterial> materialPtr() { return _materialPtr; }
+    inline const std::shared_ptr<jIRayTracableMaterial> &materialPtr() const { return _materialPtr; }
 
 private:
     bool _hit;

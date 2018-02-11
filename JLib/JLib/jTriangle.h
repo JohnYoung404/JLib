@@ -23,14 +23,14 @@ struct jTriangle {
     // Returns axis aligned bounding box that contains the triangle
     jAABBox get_bounding_box() {
         jVec3f bl = jVec3f(
-            std::min(std::min(v0.x(), v1.x()), v2.x()),
-            std::min(std::min(v0.y(), v1.y()), v2.y()),
-            std::min(std::min(v0.z(), v1.z()), v2.z())
+            v0.x() < v1.x() && v0.x() < v2.x() ? v0.x() : v1.x() < v2.x() ? v1.x() : v2.x(),
+            v0.y() < v1.y() && v0.y() < v2.y() ? v0.y() : v1.y() < v2.y() ? v1.y() : v2.y(),
+            v0.z() < v1.z() && v0.z() < v2.z() ? v0.z() : v1.z() < v2.z() ? v1.z() : v2.z()
         );
         jVec3f tr = jVec3f(
-            std::max(std::max(v0.x(), v1.x()), v2.x()),
-            std::max(std::max(v0.y(), v1.y()), v2.y()),
-            std::max(std::max(v0.z(), v1.z()), v2.z())
+            v0.x() > v1.x() && v0.x() > v2.x() ? v0.x() : v1.x() > v2.x() ? v1.x() : v2.x(),
+            v0.y() > v1.y() && v0.y() > v2.y() ? v0.y() : v1.y() > v2.y() ? v1.y() : v2.y(),
+            v0.z() > v1.z() && v0.z() > v2.z() ? v0.z() : v1.z() > v2.z() ? v1.z() : v2.z()
         );
 
         return jAABBox(bl, tr);
@@ -42,7 +42,7 @@ struct jTriangle {
     }
 
     // Checks if ray intersects with triangle. Returns true/false.
-    bool intersect(jRay ray, jfloat &t, jfloat tmin, jVec3f &norm) const {
+    bool intersect(const jRay &ray, jfloat &t, jfloat tmin, jVec3f &norm) const {
 
         jfloat u, v, t_temp = 0;
 

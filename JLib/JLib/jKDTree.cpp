@@ -97,25 +97,25 @@ bool jKDNode::hit(const std::shared_ptr<jKDNode> &node, const jRay &ray, jfloat 
         {
             hitLeft = hit(node->left, ray, t, tmin, norm, color);
             hitRight = hit(node->right, ray, t, tmin, norm, color);
-
-            return  hitLeft||hitRight ;
+        
+            return  hitLeft || hitRight ;
         }
-        else {
-            auto triangles_size = node->triangles.size();
-            for (size_t i = 0; i < triangles_size; i++) {
-                if (node->triangles[i]->intersect(ray, t, tmin, norm)) {
-                    hit_tri = true;
-                    tmin = t;
-                    tri_idx = i;
-                }
-            }
-            if (hit_tri) {
-                //jVec3f p = ray.Origin() + ray.Direction() * tmin;
-                //color = node->triangles[tri_idx]->get_colour_at(p);
-                color = node->triangles[tri_idx]->get_color();
-                return true;
-            }
-        }
+        //else {
+        //    auto triangles_size = node->triangles.size();
+        //    for (size_t i = 0; i < triangles_size; i++) {
+        //        //if (node->triangles[i]->intersect(ray, t, tmin, norm)) {
+        //        //    hit_tri = true;
+        //        //    tmin = t;
+        //        //    tri_idx = i;
+        //        //}
+        //    }
+        //    if (hit_tri) {
+        //        //jVec3f p = ray.Origin() + ray.Direction() * tmin;
+        //        //color = node->triangles[tri_idx]->get_colour_at(p);
+        //        color = node->triangles[tri_idx]->get_color();
+        //        return true;
+        //    }
+        //}
     }
     return false;
 }

@@ -6,7 +6,7 @@
 namespace jLib{
 namespace jGraphic{
 
-const jRay jDiffuseMaterial::get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f norm, unsigned short(&Xi)[3]) const
+const jRay jDiffuseMaterial::get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &norm, unsigned short(&Xi)[3]) const
 {
     jVec3f nl = dot(norm, input.Direction()) < 0 ? norm : norm * jfloat(-1);
     double r1 = 2 * M_PI * erand48(Xi), r2 = erand48(Xi), r2s = sqrt(r2);
@@ -15,7 +15,7 @@ const jRay jDiffuseMaterial::get_reflected_ray(const jRay &input, const jVec3f &
     return jRay(hitPos, d);
 }
 
-const jRay jSpecularMaterial::get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f norm, unsigned short(&Xi)[3]) const
+const jRay jSpecularMaterial::get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &norm, unsigned short(&Xi)[3]) const
 {
     jfloat roughness = jfloat(0.8);
     jVec3f reflected = input.Direction() - norm * jfloat(2) * dot(norm, input.Direction());
@@ -28,7 +28,7 @@ const jRay jSpecularMaterial::get_reflected_ray(const jRay &input, const jVec3f 
     return jRay(hitPos, reflected);
 }
 
-const jRay jRefractMaterial::get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f norm, unsigned short(&Xi)[3]) const
+const jRay jRefractMaterial::get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &norm, unsigned short(&Xi)[3]) const
 {
     jfloat refractRatio = jfloat(1.8); // refract ratio of glass.
     jfloat roughness = jfloat(0.01);
@@ -76,7 +76,7 @@ const jRay jRefractMaterial::get_reflected_ray(const jRay &input, const jVec3f &
     }
 }
 
-const jRay jEmitMaterial::get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f norm, unsigned short(&Xi)[3]) const
+const jRay jEmitMaterial::get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &norm, unsigned short(&Xi)[3]) const
 {
 #ifdef _Debug
     BOOST_ASSERT_MSG(true, "Control flow shouldn't reach here.");

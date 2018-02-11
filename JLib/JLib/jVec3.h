@@ -41,22 +41,30 @@ public:
         return (*this) * (*this);
     }
 
-    const jVec3 operator+(const jVec3 &b) const { return jVec3(x() + b.x(), y() + b.y(), z() + b.z()); }        // Addition
-    const jVec3 operator-(const jVec3 &b) const { return jVec3(x() - b.x(), y() - b.y(), z() - b.z()); }        // Subtraction
-    const jVec3 operator*(Type b) const { return jVec3(x() * b, y() * b, z() * b); }                  // Multiplaction with scalar
-    const Type operator*(const jVec3 &b) const { return this->dot(b); }
-    const jVec3 operator/(Type b) const { return jVec3(x() / b, y() / b, z() / b); }            // Division with scalar
-    const jVec3 mult(const jVec3 &b) const { return jVec3(x() * b.x(), y() * b.y(), z() * b.z()); }             // Multiplication
-    const jVec3 normalize() const { return *this * (Type(1) / sqrt(x() * x() + y() * y() + z() * z())); }                // Normalise vector
-    const Type dot(const jVec3 &b) const { return x() * b.x() + y() * b.y() + z() * b.z(); }                // Dot product
-    const jVec3 cross(const jVec3 &b) const { return jVec3(y() * b.z() - z() * b.y(), z() * b.x() - x() * b.z(), x() * b.y() - y() * b.x()); }    // Cross product
+    jVec3 operator+(const jVec3 &b) const { return jVec3(x() + b.x(), y() + b.y(), z() + b.z()); }        // Addition
+    jVec3 operator-(const jVec3 &b) const { return jVec3(x() - b.x(), y() - b.y(), z() - b.z()); }        // Subtraction
+    jVec3 operator*(Type b) const { return jVec3(x() * b, y() * b, z() * b); }                  // Multiplaction with scalar
+    Type operator*(const jVec3 &b) const { return this->dot(b); }
+    jVec3 operator/(Type b) const { return jVec3(x() / b, y() / b, z() / b); }            // Division with scalar
+    jVec3 mult(const jVec3 &b) const { return jVec3(x() * b.x(), y() * b.y(), z() * b.z()); }             // Multiplication
+    //const jVec3 normalize() const { return *this * (Type(1) / sqrt(x() * x() + y() * y() + z() * z())); }                // Normalise vector
+    Type  dot(const jVec3 &b) const { return x() * b.x() + y() * b.y() + z() * b.z(); }                // Dot product
+    jVec3 cross(const jVec3 &b) const { return jVec3(y() * b.z() - z() * b.y(), z() * b.x() - x() * b.z(), x() * b.y() - y() * b.x()); }    // Cross product
+
+    jVec3& normalize() {
+        Type scarlar = (Type(1) / sqrt(x() * x() + y() * y() + z() * z()));
+        this->x() *= scarlar;
+        this->y() *= scarlar;
+        this->z() *= scarlar;
+        return *this;
+    }                // Normalise vector
 
     template<typename Type>
-    inline friend const Type dot (const jVec3<Type> &a, const jVec3<Type> &b);
+    inline friend Type dot (const jVec3<Type> &a, const jVec3<Type> &b);
     template<typename Type>
-    inline friend const jVec3<Type> cross(const jVec3<Type> &a, const jVec3<Type> &b);
+    inline friend jVec3<Type> cross(const jVec3<Type> &a, const jVec3<Type> &b);
     template<typename Type>
-    inline friend const jVec3<Type> mult(const jVec3<Type> &a, const jVec3<Type> &b);
+    inline friend jVec3<Type> mult(const jVec3<Type> &a, const jVec3<Type> &b);
 private:
     std::array<Type, 3> _arr;
 };
@@ -72,19 +80,19 @@ std::ostream& operator<< (std::ostream& os, const jVec3<Type> &outVec) {
 }
 
 template<typename Type>
-const Type dot (const jVec3<Type> &a, const jVec3<Type> &b)
+Type dot (const jVec3<Type> &a, const jVec3<Type> &b)
 {
     return a.dot(b);
 }
 
 template<typename Type>
-const jVec3<Type> cross(const jVec3<Type> &a, const jVec3<Type> &b)
+jVec3<Type> cross(const jVec3<Type> &a, const jVec3<Type> &b)
 {
     return a.cross(b);
 }
 
 template<typename Type>
-const jVec3<Type> mult(const jVec3<Type> &a, const jVec3<Type> &b)
+jVec3<Type> mult(const jVec3<Type> &a, const jVec3<Type> &b)
 {
     return a.mult(b);
 }
