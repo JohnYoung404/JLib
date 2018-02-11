@@ -7,8 +7,6 @@ namespace jLib{
 namespace jMath{
 namespace jRandom{
 
-extern void rand_init();
-
 extern double jerand48(unsigned short(&xseed)[3]);
 
 }}}
