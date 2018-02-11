@@ -12,7 +12,11 @@ class jIRayTracableMaterial;
 class jRay
 {
 public:
-    jRay(jVec3f origin, jVec3f direciton) : _origin(origin), _direction(direciton), _inv_direction(jVec3f(jfloat(1)/direciton.x(), jfloat(1)/direciton.y(), jfloat(1)/direciton.z())) {}
+    jRay(jVec3f origin, jVec3f direciton) 
+        : _origin(origin)
+        , _direction(direciton)
+        , _inv_direction(jVec3f(jfloat(1)/direciton.x(), jfloat(1)/direciton.y(), jfloat(1)/direciton.z())) 
+    {}
     inline const jVec3f& Origin() const { return _origin; }
     inline const jVec3f& Direction() const { return _direction; }
     inline const jVec3f& InvDirection() const { return _inv_direction; }
@@ -25,7 +29,7 @@ private:
 class jRayObjectItersection
 {
 public:
-    jRayObjectItersection(bool ihit = false, jfloat idist = 0, jVec3f inorm = jVec3f::zero(), const std::shared_ptr<jIRayTracableMaterial> &matPtr = nullptr) : _hit(ihit), _dist(idist), _norm(inorm) 
+    jRayObjectItersection(bool ihit = false, jfloat idist = std::numeric_limits<jfloat>::max(), jVec3f inorm = jVec3f::zero(), const std::shared_ptr<jIRayTracableMaterial> &matPtr = nullptr) : _hit(ihit), _dist(idist), _norm(inorm) 
     {
         if (matPtr.use_count())
         {

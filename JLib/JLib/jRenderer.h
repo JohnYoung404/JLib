@@ -23,6 +23,7 @@ private:
 #include "time.h"
 #include "jSphere.h"
 #include "jMesh.h"
+#include "jRandom.h"
 
 namespace jLib {
     class jRendererTest final : public jITestable {
@@ -31,6 +32,7 @@ namespace jLib {
             jITestable::test();
             using namespace jGraphic;
 
+            jMath::jRandom::rand_init();
             time_t start, stop;
             time(&start);               // Start execution timer
             int samples = 20;            // Default samples per pixel

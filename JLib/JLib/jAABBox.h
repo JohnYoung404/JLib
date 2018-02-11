@@ -43,20 +43,18 @@ public:
         jfloat tx1 = (bl.x() - r.Origin().x())*r.InvDirection().x();
         jfloat tx2 = (tr.x() - r.Origin().x())*r.InvDirection().x();
 
-        jfloat tmin = std::min(tx1, tx2);
-        jfloat tmax = std::max(tx1, tx2);
-
         jfloat ty1 = (bl.y() - r.Origin().y())*r.InvDirection().y();
         jfloat ty2 = (tr.y() - r.Origin().y())*r.InvDirection().y();
-
-        tmin = std::max(tmin, std::min(ty1, ty2));
-        tmax = std::min(tmax, std::max(ty1, ty2));
 
         jfloat tz1 = (bl.z() - r.Origin().z())*r.InvDirection().z();
         jfloat tz2 = (tr.z() - r.Origin().z())*r.InvDirection().z();
 
-        tmin = std::max(tmin, std::min(tz1, tz2));
-        tmax = std::min(tmax, std::max(tz1, tz2));
+        auto &minmax_x = std::minmax(tx1, tx2);
+        auto &minmax_y = std::minmax(ty1, ty2);
+        auto &minmax_z = std::minmax(tz1, tz2);
+
+        jfloat tmin = minmax_x.first > minmax_y.first && minmax_x.first > minmax_z.first ? minmax_x.first : minmax_y.first > minmax_z.first ? minmax_y.first : minmax_z.first;
+        jfloat tmax = minmax_x.second < minmax_y.second && minmax_x.second < minmax_z.second ? minmax_x.second : minmax_y.second < minmax_z.second ? minmax_y.second : minmax_z.second;
         t = tmin;
 
         return tmax >= tmin;

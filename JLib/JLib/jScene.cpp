@@ -10,15 +10,10 @@ namespace jGraphic {
 jRayObjectItersection jScene::intersect(const jRay& ray)
 {
     jRayObjectItersection isct = jRayObjectItersection();
-    jRayObjectItersection temp;
-    size_t size = _sceneObjs.size();
 
-    for (size_t i = 0; i < size; i++) {
-        temp = _sceneObjs.at(i)->get_intersection(ray);
-        
-        if (temp.hit()) {
-            if (isct.dist() == 0 || temp.dist() < isct.dist()) isct = temp;
-        }
+    for (size_t i = 0; i < _sceneObjs.size(); i++) {
+        const jRayObjectItersection &temp = _sceneObjs.at(i)->get_intersection(ray);
+        if (temp.hit() && temp.dist() < isct.dist())  isct = temp;
     }
     return isct;
 }

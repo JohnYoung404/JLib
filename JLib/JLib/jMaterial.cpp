@@ -49,9 +49,9 @@ const jRay reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &
                 jVec3f n2 = jVec3f::zero() - norm;
                 jVec3f reflected = input.Direction() - n2 * jfloat(2) * dot(n2, input.Direction());
                 reflected = jVec3f(
-                    reflected.x() + (erand48(Xi) - 0.5)*roughness,
-                    reflected.y() + (erand48(Xi) - 0.5)*roughness,
-                    reflected.z() + (erand48(Xi) - 0.5)*roughness
+                    reflected.x() + (jMath::jRandom::jerand48(Xi) - 0.5)*roughness,
+                    reflected.y() + (jMath::jRandom::jerand48(Xi) - 0.5)*roughness,
+                    reflected.z() + (jMath::jRandom::jerand48(Xi) - 0.5)*roughness
                 ).normalize();
                 return jRay(hitPos, reflected);
             }
@@ -60,7 +60,7 @@ const jRay reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &
     else if (type == matType::DIFF)
     {
         jVec3f nl = dot(norm, input.Direction()) < 0 ? norm : norm * jfloat(-1);
-        double r1 = 2 * M_PI * erand48(Xi), r2 = erand48(Xi), r2s = sqrt(r2);
+        double r1 = 2 * M_PI * jMath::jRandom::jerand48(Xi), r2 = jMath::jRandom::jerand48(Xi), r2s = sqrt(r2);
         jVec3f w = nl, u = cross((fabs(w.x()) > jfloat(0.1) ? jVec3f(0, 1) : jVec3f(1)), w).normalize(), v = cross(w, u);
         jVec3f d = (u * jfloat(cos(r1)*r2s) + v * jfloat(sin(r1)*r2s) + w * jfloat(sqrt(1 - r2))).normalize();
         return jRay(hitPos, d);
@@ -78,7 +78,7 @@ const jRay reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &
 const jRay jDiffuseMaterial::get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &norm, unsigned short(&Xi)[3]) const
 {
     jVec3f nl = dot(norm, input.Direction()) < 0 ? norm : norm * jfloat(-1);
-    double r1 = 2 * M_PI * erand48(Xi), r2 = erand48(Xi), r2s = sqrt(r2);
+    double r1 = 2 * M_PI * jMath::jRandom::jerand48(Xi), r2 = jMath::jRandom::jerand48(Xi), r2s = sqrt(r2);
     jVec3f w = nl, u = cross((fabs(w.x()) > jfloat(0.1) ? jVec3f(0, 1) : jVec3f(1)), w).normalize(), v = cross(w, u);
     jVec3f d = (u * jfloat(cos(r1)*r2s) + v * jfloat(sin(r1)*r2s) + w * jfloat(sqrt(1 - r2))).normalize();
     return jRay(hitPos, d);
@@ -136,9 +136,9 @@ const jRay jRefractMaterial::get_reflected_ray(const jRay &input, const jVec3f &
             jVec3f n2 = jVec3f::zero() - norm;
             jVec3f reflected = input.Direction() - n2 * jfloat(2) * dot(n2, input.Direction());
             reflected = jVec3f(
-                reflected.x() + (erand48(Xi) - 0.5)*roughness,
-                reflected.y() + (erand48(Xi) - 0.5)*roughness,
-                reflected.z() + (erand48(Xi) - 0.5)*roughness
+                reflected.x() + (jMath::jRandom::jerand48(Xi) - 0.5)*roughness,
+                reflected.y() + (jMath::jRandom::jerand48(Xi) - 0.5)*roughness,
+                reflected.z() + (jMath::jRandom::jerand48(Xi) - 0.5)*roughness
             ).normalize();
             return jRay(hitPos, reflected);
         }

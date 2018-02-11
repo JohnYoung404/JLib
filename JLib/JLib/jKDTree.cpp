@@ -81,40 +81,38 @@ std::shared_ptr<jKDNode> jKDNode::build(std::vector<std::shared_ptr<jTriangle>> 
     return node;
 }
 
-bool jKDNode::hit(const std::shared_ptr<jKDNode> &node, const jRay &ray, jfloat &t, jfloat &tmin, jVec3f &norm, jVec3f &color) const
+bool jKDNode::hit(const std::shared_ptr<jKDNode> &node, const jRay &ray, jfloat &t, jfloat &tmin, jVec3f &norm/*, jVec3f &color*/) const
 {
     jfloat dist;
     if (node->box.intersection(ray, dist)) {
         if (dist > tmin) return false;
 
-        bool hit_tri = false;
-        bool hitLeft = false;
-        bool hitRight = false;
-
-        size_t tri_idx;
+        //size_t tri_idx;
 
         if (!node->leaf) 
         {
-            hitLeft = hit(node->left, ray, t, tmin, norm, color);
-            hitRight = hit(node->right, ray, t, tmin, norm, color);
+            bool hitLeft = hit(node->left, ray, t, tmin, norm/*, color*/);
+            bool hitRight = hit(node->right, ray, t, tmin, norm/*, color*/);
         
             return  hitLeft || hitRight ;
         }
         else {
+            bool hit_tri = false;
             auto triangles_size = node->triangles.size();
             for (size_t i = 0; i < triangles_size; i++) {
                 if (node->triangles[i]->intersect(ray, t, tmin, norm)) {
                     hit_tri = true;
                     tmin = t;
-                    tri_idx = i;
+                    //tri_idx = i;
                 }
             }
-            if (hit_tri) {
-                //jVec3f p = ray.Origin() + ray.Direction() * tmin;
-                //color = node->triangles[tri_idx]->get_colour_at(p);
-                color = node->triangles[tri_idx]->get_color();
-                return true;
-            }
+            return hit_tri;
+            //if (hit_tri) {
+            //    //jVec3f p = ray.Origin() + ray.Direction() * tmin;
+            //    //color = node->triangles[tri_idx]->get_colour_at(p);
+            //    color = node->triangles[tri_idx]->get_color();
+            //    return true;
+            //}
         }
     }
     return false;
