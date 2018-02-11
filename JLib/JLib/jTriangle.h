@@ -83,7 +83,7 @@ struct jTriangle {
     }
 
     // Returns the colour at point p on the triangle
-    jVec3f get_colour_at(jVec3f p) {
+    const jVec3f& get_colour_at(jVec3f p) {
         if (materialPtr == nullptr) return jVec3f(1, 0, 1);
 
         jVec3f b = barycentric(p);
@@ -95,7 +95,7 @@ struct jTriangle {
         return materialPtr->color_at(c.x(), c.y());
     }
 
-    jVec3f get_color ()
+    const jVec3f& get_color ()
     {
         return materialPtr->get_color();
     }

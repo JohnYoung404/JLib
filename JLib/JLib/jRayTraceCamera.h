@@ -13,8 +13,8 @@ public:
     jRayTraceCamera(jVec3f eye_pos, jVec3f look_at, int width, int height);
     jRay get_ray(int x, int y, bool jitter, unsigned short(&Xi)[3]);
 
-    const int get_width() const { return _width; }
-    const int get_height() const { return _height; }
+    const int& get_width() const { return _width; }
+    const int& get_height() const { return _height; }
 private:
     int _width;
     jfloat _width_recp;

@@ -32,9 +32,9 @@ jVec3f jScene::trace_ray(const jRay &ray, int depth, unsigned short(&Xi)[3])
     // If no hit, return world colour
     if (!isct.hit()) return jVec3f::zero();
    
-    if (isct.materialPtr()->is_emit()) return isct.materialPtr()->get_emission();
+    if (isct.get_type() == matType::EMIT) return isct.emission();
 
-    jVec3f colour = isct.materialPtr()->get_color();
+    jVec3f colour = isct.color();
     
     // Calculate max reflection
     jfloat p = colour.x() > colour.y() && colour.x() > colour.z() ? colour.x() : colour.y() > colour.z() ? colour.y() : colour.z();
@@ -47,12 +47,13 @@ jVec3f jScene::trace_ray(const jRay &ray, int depth, unsigned short(&Xi)[3])
             colour = colour * (jfloat(0.9) / p);
         }
         else {
-            return isct.materialPtr()->get_emission();
+            return isct.emission();
         }
     }
     
     jVec3f x = ray.Origin() + ray.Direction() * isct.dist();
-    jRay reflected = isct.materialPtr()->get_reflected_ray(ray, x, isct.norm(), Xi);
+    jRay reflected = reflected_ray(ray, x, isct.norm(), Xi, isct.get_type());
+    //jRay reflected = isct.materialPtr()->get_reflected_ray(ray, x, isct.norm(), Xi);
     
     return colour.mult(trace_ray(reflected, depth, Xi));
 }
