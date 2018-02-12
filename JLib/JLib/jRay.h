@@ -29,15 +29,15 @@ private:
 class jRayObjectItersection
 {
 public:
-    jRayObjectItersection(bool ihit = false, jfloat idist = std::numeric_limits<jfloat>::max(), jVec3f inorm = jVec3f::zero(), const std::shared_ptr<jIRayTracableMaterial> &matPtr = nullptr) : _hit(ihit), _dist(idist), _norm(inorm) 
-    {
-        if (matPtr.use_count())
-        {
-            _color = matPtr->get_color();
-            _emission = matPtr->get_emission();
-            _type = matPtr->get_type();
-        }
-    }
+    jRayObjectItersection
+    (
+        bool ihit = false
+        , jfloat idist = std::numeric_limits<jfloat>::max()
+        , jVec3f inorm = jVec3f::zero()
+        , jVec3f icolor = jVec3f::zero()
+        , jVec3f iemission = jVec3f::zero()
+        , matType itype = matType::DIFF
+    ) : _hit(ihit), _dist(idist), _norm(inorm), _color(icolor), _emission(iemission), _type(itype) {}
     inline const bool& hit() const { return _hit; }
     inline const jfloat& dist() const { return _dist; }
     inline const jVec3f& norm() const { return _norm; }

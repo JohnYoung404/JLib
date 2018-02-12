@@ -16,6 +16,9 @@ public:
 private:
     std::shared_ptr<jIRayTracableMaterial> _materialPtr;
     std::shared_ptr<jKDNode> _node;
+    //jVec3f _color;
+    //jVec3f _emission;
+    //matType _type;
 
     std::vector<tinyobj::shape_t> _shapes;
     std::vector<tinyobj::material_t> _materials;

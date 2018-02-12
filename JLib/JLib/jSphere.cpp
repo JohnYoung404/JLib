@@ -11,13 +11,13 @@ jRayObjectItersection jSphere::get_intersection(const jRay& ray)
 
     jVec3f op = get_pos() - ray.Origin();
     jfloat t, eps = jfloat(1e-4), b = op.dot(ray.Direction()), det = b*b - op.dot(op) + get_square_radius();
-    if (det < 0) return jRayObjectItersection(hit, distance, norm, _materialPtr);
+    if (det < 0) return jRayObjectItersection(hit, distance, norm, _materialPtr->get_color(), _materialPtr->get_emission(), _materialPtr->get_type());
     else det = sqrt(det);
     distance = (t = b - det) > eps ? t : ((t = b + det) > eps ? t : 0);
     if (distance != 0) hit = true,
         norm = ((ray.Origin() + ray.Direction() * distance) - get_pos()).normalize();
 
-    return jRayObjectItersection(hit, distance, norm, _materialPtr);
+    return jRayObjectItersection(hit, distance, norm, _materialPtr->get_color(), _materialPtr->get_emission(), _materialPtr->get_type());
 }
 
 }}

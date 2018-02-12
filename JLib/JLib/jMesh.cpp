@@ -116,7 +116,7 @@ jRayObjectItersection jMesh::get_intersection(const jRay& ray)
     //jVec3f colour = jVec3f::zero();
     bool _hit = _node->hit(_node, ray, t, tmin, normal/*, colour*/);
     //bool hit = bvh.getIntersection(ray, t, tmin, normal);
-    return jRayObjectItersection(_hit, tmin, normal, _materialPtr);
+    return jRayObjectItersection(_hit, tmin, normal, _materialPtr->get_color(), _materialPtr->get_emission(), _materialPtr->get_type());
 }
 
 }}
