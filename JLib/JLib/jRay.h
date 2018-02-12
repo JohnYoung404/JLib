@@ -12,14 +12,21 @@ class jIRayTracableMaterial;
 class jRay
 {
 public:
-    jRay(jVec3f origin, jVec3f direciton) 
+    jRay(jVec3f origin, jVec3f direciton)
         : _origin(origin)
         , _direction(direciton)
-        , _inv_direction(jVec3f(jfloat(1)/direciton.x(), jfloat(1)/direciton.y(), jfloat(1)/direciton.z())) 
+        , _inv_direction(jVec3f(jfloat(1) / direciton.x(), jfloat(1) / direciton.y(), jfloat(1) / direciton.z()))
+        , code_x(direciton.x() > 0 ? 01 : 10)
+        , code_y(direciton.y() > 0 ? 01 : 10)
+        , code_z(direciton.z() > 0 ? 01 : 10)
     {}
     inline const jVec3f& Origin() const { return _origin; }
     inline const jVec3f& Direction() const { return _direction; }
     inline const jVec3f& InvDirection() const { return _inv_direction; }
+
+    unsigned char code_x;   //加速求交的空间码
+    unsigned char code_y;
+    unsigned char code_z;
 private:
     jVec3f _origin;
     jVec3f _direction;

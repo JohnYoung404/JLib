@@ -40,14 +40,30 @@ public:
 
     // Check if ray intersects with box. Returns true/false and stores distance in t
     bool intersection(const jRay &r, jfloat &t) const {
-        jfloat tx1 = (bl.x() - r.Origin().x())*r.InvDirection().x();
-        jfloat tx2 = (tr.x() - r.Origin().x())*r.InvDirection().x();
 
-        jfloat ty1 = (bl.y() - r.Origin().y())*r.InvDirection().y();
-        jfloat ty2 = (tr.y() - r.Origin().y())*r.InvDirection().y();
+        jVec3f orig = r.Origin();
 
-        jfloat tz1 = (bl.z() - r.Origin().z())*r.InvDirection().z();
-        jfloat tz2 = (tr.z() - r.Origin().z())*r.InvDirection().z();
+        jfloat offset_x_tr = tr.x() - orig.x();
+        jfloat offset_x_bl = bl.x() - orig.x();
+        jfloat offset_y_tr = tr.y() - orig.y();
+        jfloat offset_y_bl = bl.y() - orig.y();
+        jfloat offset_z_tr = tr.z() - orig.z();
+        jfloat offset_z_bl = bl.z() - orig.z();
+
+        unsigned char code_x = offset_x_tr < 0 ? 01 : offset_x_bl > 0 ? 10 : 00;
+        unsigned char code_y = offset_y_tr < 0 ? 01 : offset_y_bl > 0 ? 10 : 00;
+        unsigned char code_z = offset_z_tr < 0 ? 01 : offset_z_bl > 0 ? 10 : 00;
+
+        if ((code_x||code_y||code_z)&&(code_x == r.code_x || code_y == r.code_y || code_z == r.code_z)) return false;
+
+        jfloat tx1 = (offset_x_bl)*r.InvDirection().x();
+        jfloat tx2 = (offset_x_tr)*r.InvDirection().x();
+
+        jfloat ty1 = (offset_y_bl)*r.InvDirection().y();
+        jfloat ty2 = (offset_y_tr)*r.InvDirection().y();
+
+        jfloat tz1 = (offset_z_bl)*r.InvDirection().z();
+        jfloat tz2 = (offset_z_tr)*r.InvDirection().z();
 
         auto &minmax_x = std::minmax(tx1, tx2);
         auto &minmax_y = std::minmax(ty1, ty2);
