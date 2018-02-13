@@ -38,8 +38,28 @@ public:
         return 2;
     }
 
+    bool test_area_code(const jRay &r) const
+    {
+        jVec3f orig = r.Origin();
+
+        jfloat offset_x_tr = tr.x() - orig.x();
+        jfloat offset_x_bl = bl.x() - orig.x();
+        jfloat offset_y_tr = tr.y() - orig.y();
+        jfloat offset_y_bl = bl.y() - orig.y();
+        jfloat offset_z_tr = tr.z() - orig.z();
+        jfloat offset_z_bl = bl.z() - orig.z();
+
+        unsigned char code_x = offset_x_tr < 0 ? 01 : offset_x_bl > 0 ? 10 : 00;
+        unsigned char code_y = offset_y_tr < 0 ? 01 : offset_y_bl > 0 ? 10 : 00;
+        unsigned char code_z = offset_z_tr < 0 ? 01 : offset_z_bl > 0 ? 10 : 00;
+
+        if ((code_x || code_y || code_z) && (code_x == r.code_x || code_y == r.code_y || code_z == r.code_z)) return false;
+        return true;
+    }
+
     // Check if ray intersects with box. Returns true/false and stores distance in t
-    bool intersection(const jRay &r, jfloat &t) const {
+    bool intersection(const jRay &r, jfloat &t) const 
+    {
 
         jVec3f orig = r.Origin();
 

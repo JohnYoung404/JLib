@@ -37,7 +37,7 @@ jVec3f jScene::trace_ray(const jRay &ray, int depth, unsigned short(&Xi)[3])
     // Russian roulette termination.
     // If random number between 0 and 1 is > p, terminate and return hit object's emmission
     double rnd = jMath::jRandom::jerand48(Xi);
-    if (++depth > 10) {
+    if (++depth > 30) {
         if (rnd < p*0.9) { // Multiply by 0.9 to avoid infinite loop with colours of 1.0
             colour = colour * (jfloat(0.9) / p);
         }

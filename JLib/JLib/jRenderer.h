@@ -34,7 +34,7 @@ namespace jLib {
 
             time_t start, stop;
             time(&start);               // Start execution timer
-            int samples = 200;            // Default samples per pixel
+            int samples = 20;            // Default samples per pixel
 
             auto cameraPtr = std::make_shared<jRayTraceCamera>(jVec3f(0, -5, 2.5), jVec3f(0, 0, 1), 1280, 720);
             auto scenePtr = std::make_shared<jScene>();   // Create scene
@@ -45,7 +45,7 @@ namespace jLib {
             scenePtr->add(std::make_shared<jSphere>(jVec3f(0, 1006, 0), jfloat(1000), std::make_shared<jDiffuseMaterial>(jVec3f(1, 1, 1))));
 
             scenePtr->add(std::make_shared<jSphere>(jVec3f(0, 0, 110), jfloat(100), std::make_shared<jEmitMaterial>(jVec3f(1, 1, 1), jVec3f(2.2, 2.2, 2.2))));
-            scenePtr->add(std::make_shared<jMesh>(jVec3f::zero(), "../models/dragon2.obj", std::make_shared<jRefractMaterial>(jVec3f(0.9, 0.9, 0.9))));
+            scenePtr->add(std::make_shared<jMesh>(jVec3f::zero(), "../models/dragon2.obj", std::make_shared<jRefractMaterial>(jVec3f(0.9, 0.9, 0.9))));//(jVec3f(0.93, 0.78, 0.06))));
             
             jRenderer renderer = jRenderer(scenePtr, cameraPtr);  // Create renderer with our scene and camera
             renderer.render(samples);                       // Render image to pixel buffer
