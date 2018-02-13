@@ -37,7 +37,7 @@ jVec3f jScene::trace_ray(const jRay &ray, int depth, unsigned short(&Xi)[3])
     // Russian roulette termination.
     // If random number between 0 and 1 is > p, terminate and return hit object's emmission
     double rnd = jMath::jRandom::jerand48(Xi);
-    if (++depth > 30) {
+    if (++depth > 10) {
         if (rnd < p*0.9) { // Multiply by 0.9 to avoid infinite loop with colours of 1.0
             colour = colour * (jfloat(0.9) / p);
         }
@@ -47,6 +47,12 @@ jVec3f jScene::trace_ray(const jRay &ray, int depth, unsigned short(&Xi)[3])
     }
     
     jVec3f x = ray.Origin() + ray.Direction() * isct.dist();
+    if (isct.get_type() == matType::REFR && depth < 3)
+    {
+        jRay reflected = reflected_ray(ray, x, isct.norm(), Xi, matType::SPEC);
+        jRay refrected = reflected_ray(ray, x, isct.norm(), Xi, matType::REFR);
+        return colour.mult(trace_ray(reflected, depth, Xi)*0.1) + colour.mult(trace_ray(refrected, depth, Xi)*0.9);
+    }
     jRay reflected = reflected_ray(ray, x, isct.norm(), Xi, isct.get_type());
     //jRay reflected = isct.materialPtr()->get_reflected_ray(ray, x, isct.norm(), Xi);
     
