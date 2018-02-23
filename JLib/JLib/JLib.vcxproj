@@ -131,6 +131,7 @@
       <CompileAs>Default</CompileAs>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -194,6 +195,7 @@
     <ClInclude Include="jTypeTraits.h" />
     <ClInclude Include="jUtility.h" />
     <ClInclude Include="jVec3.h" />
+    <ClInclude Include="jVec3_SIMD.h" />
     <ClInclude Include="jVector.h" />
     <ClInclude Include="jVectorTraits.h" />
     <ClInclude Include="jVectorUtil.h" />

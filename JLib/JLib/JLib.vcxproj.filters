@@ -222,6 +222,9 @@
     <ClInclude Include="jAssert.h">
       <Filter>头文件\jUtility</Filter>
     </ClInclude>
+    <ClInclude Include="jVec3_SIMD.h">
+      <Filter>头文件\jContainer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
