@@ -11,13 +11,13 @@ class jVec3
 public:
     constexpr jVec3(Type x_ = 0, Type y_ = 0, Type z_ = 0) : _arr{x_, y_, z_} {}
     constexpr jVec3(const jVec3 &rhs) : _arr(rhs._arr) {}
-    constexpr jVec3(jVec3 && rhs) : _arr(std::move(rhs._arr)) {}
+    constexpr jVec3(jVec3 && rhs) noexcept : _arr(std::move(rhs._arr)) {}
     jVec3& operator= (const jVec3 &rhs)
     {
         _arr = rhs._arr;
         return *this;
     }
-    jVec3& operator= (jVec3 && rhs) 
+    jVec3& operator= (jVec3 && rhs) noexcept
     {
         _arr = std::move(rhs._arr);
         return *this;
