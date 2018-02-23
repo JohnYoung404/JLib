@@ -219,6 +219,9 @@
     <ClInclude Include="jVec3.h">
       <Filter>头文件\jContainer</Filter>
     </ClInclude>
+    <ClInclude Include="jAssert.h">
+      <Filter>头文件\jUtility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

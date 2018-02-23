@@ -145,6 +145,7 @@
     <ClInclude Include="..\extern\tiny_obj_loader\tiny_obj_loader.h" />
     <ClInclude Include="jAABBox.h" />
     <ClInclude Include="jArrayMPL.h" />
+    <ClInclude Include="jAssert.h" />
     <ClInclude Include="jBoostCompute.h" />
     <ClInclude Include="jGraph.h" />
     <ClInclude Include="jGraphGrid.h" />
