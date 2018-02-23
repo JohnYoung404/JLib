@@ -17,7 +17,7 @@ const jRay reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &
         jfloat cos_theta = norm.dot(input.Direction());
         if (cos_theta < 0)
         {
-            jfloat sin_theta = std::sqrt(1 - cos_theta * cos_theta);
+            jfloat sin_theta = std::sqrt(1 - cos_theta * cos_theta);    //sin_theta可用叉积求出...
             jfloat sin_theta_refr = sin_theta / refractRatio;
             jfloat cos_theta_refr = std::sqrt(1 - sin_theta_refr * sin_theta_refr);
             jfloat extent_ratio = cos_theta / (cos_theta_refr * refractRatio);
@@ -58,63 +58,6 @@ const jRay reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &
                 return jRay(hitPos, refractRay);
             }
         }
-        //jfloat refractRatio = jfloat(1.8); // refract ratio of glass.
-            //jfloat roughness = jfloat(0.01);
-            //
-            //if (dot(norm, input.Direction()) < 0)
-            //{
-            //    jVec3f Axis = input.Direction() - norm * dot(norm, input.Direction());
-            //    Axis.x() = Axis.x() / refractRatio;
-            //    Axis.y() = Axis.y() / refractRatio;
-            //    Axis.z() = Axis.z() / refractRatio;
-            //    jVec3f refractRay = Axis + norm * dot(norm, input.Direction());
-            //    refractRay = jVec3f(
-            //        refractRay.x() + (jMath::jRandom::jerand48(Xi) - 0.5)*roughness,
-            //        refractRay.y() + (jMath::jRandom::jerand48(Xi) - 0.5)*roughness,
-            //        refractRay.z() + (jMath::jRandom::jerand48(Xi) - 0.5)*roughness
-            //    ).normalize();
-            //    return jRay(hitPos, refractRay);
-            //}
-            //else {
-            //    jVec3f Axis = input.Direction() - norm * dot(norm, input.Direction());
-            //    Axis.x() = Axis.x() * refractRatio;
-            //    Axis.y() = Axis.y() * refractRatio;
-            //    Axis.z() = Axis.z() * refractRatio;
-            //    jVec3f refractRay = Axis + norm * dot(norm, input.Direction());
-            //    if (dot(refractRay, norm) >= 0)
-            //    {
-            //        refractRay = jVec3f(
-            //            refractRay.x() + (jMath::jRandom::jerand48(Xi) - 0.5)*roughness,
-            //            refractRay.y() + (jMath::jRandom::jerand48(Xi) - 0.5)*roughness,
-            //            refractRay.z() + (jMath::jRandom::jerand48(Xi) - 0.5)*roughness
-            //        ).normalize();
-            //        return jRay(hitPos, refractRay);
-            //    }
-            //    else
-            //    {
-            //        jVec3f n2 = jVec3f::zero() - norm;
-            //        jVec3f reflected = input.Direction() - n2 * jfloat(2) * dot(n2, input.Direction());
-            //        reflected = jVec3f(
-            //            reflected.x() + (jMath::jRandom::jerand48(Xi) - 0.5)*roughness,
-            //            reflected.y() + (jMath::jRandom::jerand48(Xi) - 0.5)*roughness,
-            //            reflected.z() + (jMath::jRandom::jerand48(Xi) - 0.5)*roughness
-            //        ).normalize();
-            //        return jRay(hitPos, reflected);
-            //    }
-            //}
-            //jRay refr(hitPos, input.Direction() - norm*2*norm.dot(input.Direction()));
-            //jVec3f norml = norm.dot(input.Direction()) < 0 ? norm : norm * -1;
-            //bool into = norm.dot(input.Direction()) < 0;
-            //jfloat nc = 1, nt = 1.5, nnt = into ? nc / nt : nt / nc, ddn = input.Direction().dot(norml), cos2t;
-            //if (cos2t = 1 - nnt * nnt * (1 - ddn * ddn) < 0)
-            //    return refr;
-            //else
-            //{
-            //    jVec3f tdir = (input.Direction() * nnt - norm * ((into ? 1 : -1)*(ddn*nnt + sqrt(cos2t)))).normalize();
-            //    //jfloat a = nt - nc, b = nt + nc, R0 = a*a / (b*b), c = 1 - (into ? -ddn : tdir.dot(norm));
-            //    //jfloat Re = R0 + (1 - R0)*c*c*c*c*c, Tr = 1 - Re, P = .25 + .5*Re, RP = Re / P, TP = Tr / (1 - P);
-            //    return jRay(hitPos, tdir);
-            //}
     }
     if (type == matType::DIFF)
     {

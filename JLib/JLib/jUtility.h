@@ -15,8 +15,6 @@
 #define jDeprecated
 #endif
 
-#include <algorithm>
-
 namespace jLib
 {
 
