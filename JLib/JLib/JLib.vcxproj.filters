@@ -293,5 +293,8 @@
     <ClCompile Include="jRandom.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="jVec3_SIMD.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

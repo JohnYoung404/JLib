@@ -2,10 +2,16 @@
 #include <xmmintrin.h>  //SSE
 #include <immintrin.h>  //AVX
 #include <array>
+#include "jUtility.h"
+
+#define jSHUFFLE_PARAM(x, y, z, w) ((x) | ((y) << 2) | ((z) << 4) | ((w) << 6))
 
 namespace jLib {
 namespace jContainer {
 
+// float precision
+#pragma pack(push)
+#pragma pack(16)
 class jVec3f_SIMD
 {
 public:
@@ -22,13 +28,13 @@ public:
         _arr = std::move(rhs._arr);
         return *this;
     }
-    inline static constexpr const jVec3f_SIMD zero() { return jVec3f_SIMD(); }
-    inline const float& x() const { return _arr[0]; }
-    inline const float& y() const { return _arr[1]; }
-    inline const float& z() const { return _arr[2]; }
-    inline float& x() { return _arr[0]; }
-    inline float& y() { return _arr[1]; }
-    inline float& z() { return _arr[2]; }
+    jforceinline static constexpr const jVec3f_SIMD zero() { return jVec3f_SIMD(); }
+    jforceinline const float& x() const { return _arr[0]; }
+    jforceinline const float& y() const { return _arr[1]; }
+    jforceinline const float& z() const { return _arr[2]; }
+    jforceinline float& x() { return _arr[0]; }
+    jforceinline float& y() { return _arr[1]; }
+    jforceinline float& z() { return _arr[2]; }
 
     const float & at(size_t pos) const { return _arr.at(pos); }
     float & at(size_t pos) { return _arr.at(pos); }
@@ -39,8 +45,36 @@ public:
     {
         return (*this) * (*this);
     }
-    const jVec3f_SIMD normalize() const { return *this * 1.f / sqrt(x() * x() + y() * y() + z() * z()); }                // Normalise vector
+    const jVec3f_SIMD normalize() const 
+    { 
+        return *this / sqrt(_dot(*this)); 
+    }                
 
+    float dot(const jVec3f_SIMD &rhs) const
+    {
+        return _dot(rhs);
+    }
+    jVec3f_SIMD mult(const jVec3f_SIMD &rhs) const
+    {
+        jVec3f_SIMD ret = *this;
+        return ret._cwise_mult(rhs);
+    }
+    jVec3f_SIMD cross(const jVec3f_SIMD &rhs) const
+    {
+        jVec3f_SIMD ret = *this;
+        return ret._cross(rhs);
+    }
+    jforceinline friend jVec3f_SIMD operator+(const jVec3f_SIMD &lhs, const jVec3f_SIMD &rhs);
+    jforceinline friend jVec3f_SIMD operator-(const jVec3f_SIMD &lhs, const jVec3f_SIMD &rhs);
+    jforceinline friend float operator*(const jVec3f_SIMD &lhs, const jVec3f_SIMD &rhs);
+    jforceinline friend jVec3f_SIMD operator*(const jVec3f_SIMD &vec, float scarlar);
+    jforceinline friend jVec3f_SIMD operator*(float scarlar, const jVec3f_SIMD &vec);
+    jforceinline friend jVec3f_SIMD operator/(const jVec3f_SIMD &vec, float scarlar);
+    jforceinline friend jVec3f_SIMD mult(const jVec3f_SIMD &lhs, const jVec3f_SIMD &rhs);
+    jforceinline friend float dot(const jVec3f_SIMD &lhs, const jVec3f_SIMD &rhs);
+    jforceinline friend jVec3f_SIMD cross(const jVec3f_SIMD &lhs, const jVec3f_SIMD &rhs);
+private:
+    std::array<float, 4> _arr;
     jVec3f_SIMD& operator+=(const jVec3f_SIMD &rhs)
     {
         __m128 a = _mm_load_ps(_arr._Elems);
@@ -57,125 +91,311 @@ public:
         _mm_store_ps(_arr._Elems, c);
         return *this;
     }
+    float _dot(const jVec3f_SIMD &rhs) const
+    {
+        jAlign(16) float temp[4];
+        __m128 a = _mm_load_ps(_arr._Elems);
+        __m128 b = _mm_load_ps(rhs._arr._Elems);
+        __m128 c = _mm_mul_ps(a, b);
+        _mm_store_ps(temp, c);
+        return temp[0] + temp[1] + temp[2];
+    }
+    jVec3f_SIMD& _cwise_mult(const jVec3f_SIMD &rhs)
+    {
+        __m128 a = _mm_load_ps(_arr._Elems);
+        __m128 b = _mm_load_ps(rhs._arr._Elems);
+        __m128 c = _mm_mul_ps(a, b);
+        _mm_store_ps(_arr._Elems, c);
+        return *this;
+    }
+    jVec3f_SIMD& _scarlar_mult(float scarlar)
+    {
+        jAlign(16) float temp[] = { scarlar, scarlar, scarlar, 0 };
+        __m128 a = _mm_load_ps(_arr._Elems);
+        __m128 b = _mm_load_ps(temp);
+        __m128 c = _mm_mul_ps(a, b);
+        _mm_store_ps(_arr._Elems, c);
+        return *this;
+    }
+    jVec3f_SIMD& _scarlar_div(float scarlar)
+    {
+        jAlign(16) float temp[] = { scarlar, scarlar, scarlar, 1.f };
+        __m128 a = _mm_load_ps(_arr._Elems);
+        __m128 b = _mm_load_ps(temp);
+        __m128 c = _mm_div_ps(a, b);
+        _mm_store_ps(_arr._Elems, c);
+        return *this;
+    }
+    jVec3f_SIMD& _cross(const jVec3f_SIMD &rhs)
+    {
+        __m128 a = _mm_load_ps(_arr._Elems);
+        __m128 a1 = a;
+        _mm_shuffle_ps(a, a, jSHUFFLE_PARAM(1, 2, 0, 3));
+        _mm_shuffle_ps(a1, a1, jSHUFFLE_PARAM(2, 0, 1, 3));
+        __m128 b = _mm_load_ps(rhs._arr._Elems);
+        __m128 b1 = b;
+        _mm_shuffle_ps(b, b, jSHUFFLE_PARAM(2, 0, 1, 3));
+        _mm_shuffle_ps(b1, b1, jSHUFFLE_PARAM(1, 2, 0, 3));
 
-    inline friend jVec3f_SIMD operator+(jVec3f_SIMD &&lhs, const jVec3f_SIMD &rhs);
-    inline friend jVec3f_SIMD operator-(jVec3f_SIMD &&lhs, const jVec3f_SIMD &rhs);
-    inline friend float operator*(const jVec3f_SIMD &lhs, const jVec3f_SIMD &rhs);
-    inline friend jVec3f_SIMD operator*(const jVec3f_SIMD &vec, float scarlar);
-    inline friend jVec3f_SIMD operator*(float scarlar, const jVec3f_SIMD &vec);
-    inline friend jVec3f_SIMD operator/(const jVec3f_SIMD &vec, float scarlar);
-    inline friend jVec3f_SIMD mult(const jVec3f_SIMD &lhs, const jVec3f_SIMD &rhs);
-    inline friend jVec3f_SIMD dot(const jVec3f_SIMD &lhs, const jVec3f_SIMD &rhs);
-    inline friend jVec3f_SIMD cross(const jVec3f_SIMD &lhs, const jVec3f_SIMD &rhs);
-private:
-    std::array<float, 4> _arr;
+        __m128 a_mul_b = _mm_mul_ps(a, b);
+        __m128 a1_mul_b1 = _mm_mul_ps(a1, b1);
+
+        __m128 c = _mm_sub_ps(a_mul_b, a1_mul_b1);
+        _mm_store_ps(_arr._Elems, c);
+        return *this;
+    }
 };
+#pragma pack(pop)
 
-jVec3f_SIMD operator+(jVec3f_SIMD &&lhs, const jVec3f_SIMD &rhs)
+extern std::ostream& operator<< (std::ostream& os, const jVec3f_SIMD &outVec);
+
+jVec3f_SIMD operator+(const jVec3f_SIMD &lhs, const jVec3f_SIMD &rhs)
 {
-    lhs += rhs;
-    return std::move(lhs);
+    jVec3f_SIMD ret = lhs;
+    ret += rhs;
+    return ret;
 }
 
-jVec3f_SIMD operator-(jVec3f_SIMD &&lhs, const jVec3f_SIMD &rhs)
+jVec3f_SIMD operator-(const jVec3f_SIMD &lhs, const jVec3f_SIMD &rhs)
 {
-    lhs -= rhs;
-    return std::move(lhs);
+    jVec3f_SIMD ret = lhs;
+    ret -= rhs;
+    return ret;
 }
 
 float operator*(const jVec3f_SIMD &lhs, const jVec3f_SIMD &rhs)
 {
-
+    return lhs._dot(rhs);
 }
 
+jVec3f_SIMD operator*(const jVec3f_SIMD &vec, float scarlar)
+{
+    jVec3f_SIMD ret = vec;
+    return ret._scarlar_mult(scarlar);
+}
+
+jVec3f_SIMD operator*(float scarlar, const jVec3f_SIMD &vec)
+{
+    jVec3f_SIMD ret = vec;
+    return ret._scarlar_mult(scarlar);
+}
+
+jVec3f_SIMD operator/(const jVec3f_SIMD &vec, float scarlar)
+{
+    jVec3f_SIMD ret = vec;
+    return ret._scarlar_div(scarlar);
+}
+
+float dot(const jVec3f_SIMD &lhs, const jVec3f_SIMD &rhs)
+{
+    return lhs._dot(rhs);
+}
+
+jVec3f_SIMD mult(const jVec3f_SIMD &lhs, const jVec3f_SIMD &rhs)
+{
+    jVec3f_SIMD ret = lhs;
+    return ret._cwise_mult(rhs);
+}
+
+jVec3f_SIMD cross(const jVec3f_SIMD &lhs, const jVec3f_SIMD &rhs)
+{
+    jVec3f_SIMD ret = lhs;
+    return ret._cross(rhs);
+}
+
+// double precision
 class jVec3d_SIMD
 {
+public:
+    jVec3d_SIMD(double x_ = 0, double y_ = 0, double z_ = 0) : _arr{ x_, y_, z_ } {}
+    jVec3d_SIMD(const jVec3d_SIMD &rhs) : _arr(rhs._arr) {}
+    jVec3d_SIMD(jVec3d_SIMD && rhs) noexcept : _arr(std::move(rhs._arr)) {}
+    jVec3d_SIMD& operator= (const jVec3d_SIMD &rhs)
+    {
+        _arr = rhs._arr;
+        return *this;
+    }
+    jVec3d_SIMD& operator= (jVec3d_SIMD && rhs) noexcept
+    {
+        _arr = std::move(rhs._arr);
+        return *this;
+    }
+    jforceinline static const jVec3d_SIMD zero() { return jVec3d_SIMD(); }
+    jforceinline const double& x() const { return _arr[0]; }
+    jforceinline const double& y() const { return _arr[1]; }
+    jforceinline const double& z() const { return _arr[2]; }
+    jforceinline double& x() { return _arr[0]; }
+    jforceinline double& y() { return _arr[1]; }
+    jforceinline double& z() { return _arr[2]; }
+
+    jforceinline const double & at(size_t pos) const { return _arr.at(pos); }
+    jforceinline double & at(size_t pos) { return _arr.at(pos); }
+    jforceinline const double & operator[](size_t pos) const { return _arr[pos]; }
+    jforceinline double & operator[](size_t pos) { return _arr[pos]; }
+
+    jforceinline const double square_length() const
+    {
+        return (*this) * (*this);
+    }
+    jforceinline const jVec3d_SIMD normalize() const
+    {
+        return *this / sqrt(_dot(*this));
+    }
+
+    jforceinline double dot(const jVec3d_SIMD &rhs) const
+    {
+        return _dot(rhs);
+    }
+    jforceinline jVec3d_SIMD mult(const jVec3d_SIMD &rhs) const
+    {
+        jVec3d_SIMD ret = *this;
+        return ret._cwise_mult(rhs);
+    }
+    jforceinline jVec3d_SIMD cross(const jVec3d_SIMD &rhs) const
+    {
+        jVec3d_SIMD ret = *this;
+        return ret._cross(rhs);
+    }
+    jforceinline friend jVec3d_SIMD operator+(const jVec3d_SIMD &lhs, const jVec3d_SIMD &rhs);
+    jforceinline friend jVec3d_SIMD operator-(const jVec3d_SIMD &lhs, const jVec3d_SIMD &rhs);
+    jforceinline friend double operator*(const jVec3d_SIMD &lhs, const jVec3d_SIMD &rhs);
+    jforceinline friend jVec3d_SIMD operator*(const jVec3d_SIMD &vec, double scarlar);
+    jforceinline friend jVec3d_SIMD operator*(double scarlar, const jVec3d_SIMD &vec);
+    jforceinline friend jVec3d_SIMD operator/(const jVec3d_SIMD &vec, double scarlar);
+    jforceinline friend jVec3d_SIMD mult(const jVec3d_SIMD &lhs, const jVec3d_SIMD &rhs);
+    jforceinline friend double dot(const jVec3d_SIMD &lhs, const jVec3d_SIMD &rhs);
+    jforceinline friend jVec3d_SIMD cross(const jVec3d_SIMD &lhs, const jVec3d_SIMD &rhs);
 private:
-    double _vec[4];
+    jAlign(32) std::array<double, 4> _arr;
+    jVec3d_SIMD& operator+=(const jVec3d_SIMD &rhs)
+    {
+        __m256d a = _mm256_load_pd(_arr._Elems);
+        __m256d b = _mm256_load_pd(rhs._arr._Elems);
+        __m256d c = _mm256_add_pd(a, b);
+        _mm256_store_pd(_arr._Elems, c);
+        return *this;
+    }
+    jVec3d_SIMD& operator-=(const jVec3d_SIMD &rhs)
+    {
+        __m256d a = _mm256_load_pd(_arr._Elems);
+        __m256d b = _mm256_load_pd(rhs._arr._Elems);
+        __m256d c = _mm256_sub_pd(a, b);
+        _mm256_store_pd(_arr._Elems, c);
+        return *this;
+    }
+    double _dot(const jVec3d_SIMD &rhs) const
+    {
+        jAlign(32) double temp[4];
+        __m256d a = _mm256_load_pd(_arr._Elems);
+        __m256d b = _mm256_load_pd(rhs._arr._Elems);
+        __m256d c = _mm256_mul_pd(a, b);
+        _mm256_store_pd(temp, c);
+        return temp[0] + temp[1] + temp[2];
+    }
+    jVec3d_SIMD& _cwise_mult(const jVec3d_SIMD &rhs)
+    {
+        __m256d a = _mm256_load_pd(_arr._Elems);
+        __m256d b = _mm256_load_pd(rhs._arr._Elems);
+        __m256d c = _mm256_mul_pd(a, b);
+        _mm256_store_pd(_arr._Elems, c);
+        return *this;
+    }
+    jVec3d_SIMD& _scarlar_mult(double scarlar)
+    {
+        jAlign(32) double temp[] = { scarlar, scarlar, scarlar, 0 };
+        __m256d a = _mm256_load_pd(_arr._Elems);
+        __m256d b = _mm256_load_pd(temp);
+        __m256d c = _mm256_mul_pd(a, b);
+        _mm256_store_pd(_arr._Elems, c);
+        return *this;
+    }
+    jVec3d_SIMD& _scarlar_div(double scarlar)
+    {
+        jAlign(32) double temp[] = { scarlar, scarlar, scarlar, 0 };
+        __m256d a = _mm256_load_pd(_arr._Elems);
+        __m256d b = _mm256_load_pd(temp);
+        __m256d c = _mm256_div_pd(a, b);
+        _mm256_store_pd(_arr._Elems, c);
+        return *this;
+    }
+    jVec3d_SIMD& _cross(const jVec3d_SIMD &rhs)
+    {
+        auto tmp_x = y() * rhs.z() - z() * rhs.y();
+        auto tmp_y = z() * rhs.x() - x() * rhs.z();
+        auto tmp_z = x() * rhs.y() - y() * rhs.x();
+        //__m256d a = _mm256_load_pd(_arr._Elems);
+        //__m256d a1 = a;
+        //constexpr int x = jSHUFFLE_PARAM(2, 2, 2, 2);
+        //_mm256_shuffle_pd(a, a, x);
+        //_mm256_shuffle_pd(a1, a1, jSHUFFLE_PARAM(2, 0, 1, 3));
+        //__m256d b = _mm256_load_pd(rhs._arr._Elems);
+        //__m256d b1 = b;
+        //_mm256_shuffle_pd(b, b, jSHUFFLE_PARAM(2, 0, 1, 3));
+        //_mm256_shuffle_pd(b1, b1, jSHUFFLE_PARAM(1, 2, 0, 3));
+        //
+        //__m256d a_mul_b = _mm256_mul_pd(a, b);
+        //__m256d a1_mul_b1 = _mm256_mul_pd(a1, b1);
+        //
+        //__m256d c = _mm256_sub_pd(a_mul_b, a1_mul_b1);
+        //_mm256_store_pd(_arr._Elems, c);
+        return jVec3d_SIMD(tmp_x, tmp_y, tmp_z);
+    }
 };
 
-    template<typename Type>
-    class jVec3_SIMD
-        {
-        public:
-            constexpr jVec3_SIMD(Type x_ = 0, Type y_ = 0, Type z_ = 0) : _arr{ x_, y_, z_ } {}
-            constexpr jVec3_SIMD(const jVec3_SIMD &rhs) : _arr(rhs._arr) {}
-            constexpr jVec3_SIMD(jVec3_SIMD && rhs) : _arr(std::move(rhs._arr)) {}
-            jVec3_SIMD& operator= (const jVec3_SIMD &rhs)
-            {
-                _arr = rhs._arr;
-                return *this;
-            }
-            jVec3_SIMD& operator= (jVec3_SIMD && rhs)
-            {
-                _arr = std::move(rhs._arr);
-                return *this;
-            }
-            inline static constexpr const jVec3_SIMD zero() { return jVec3_SIMD(); }
+extern std::ostream& operator<< (std::ostream& os, const jVec3d_SIMD &outVec);
 
-            inline const Type& x() const { return _arr[0]; }
-            inline const Type& y() const { return _arr[1]; }
-            inline const Type& z() const { return _arr[2]; }
-            inline Type& x() { return _arr[0]; }
-            inline Type& y() { return _arr[1]; }
-            inline Type& z() { return _arr[2]; }
+jVec3d_SIMD operator+(const jVec3d_SIMD &lhs, const jVec3d_SIMD &rhs)
+{
+    jVec3d_SIMD ret = lhs;
+    ret += rhs;
+    return ret;
+}
 
-            const Type & at(size_t pos) const { return _arr.at(pos); }
-            Type & at(size_t pos) { return _arr.at(pos); }
-            const Type & operator[](size_t pos) const { return _arr[pos]; }
-            Type & operator[](size_t pos) { return _arr[pos]; }
+jVec3d_SIMD operator-(const jVec3d_SIMD &lhs, const jVec3d_SIMD &rhs)
+{
+    jVec3d_SIMD ret = lhs;
+    ret -= rhs;
+    return ret;
+}
 
-            inline const Type square_length() const
-            {
-                return (*this) * (*this);
-            }
+double operator*(const jVec3d_SIMD &lhs, const jVec3d_SIMD &rhs)
+{
+    return lhs._dot(rhs);
+}
 
-            jVec3_SIMD operator+(const jVec3_SIMD &b) const { return jVec3_SIMD(x() + b.x(), y() + b.y(), z() + b.z()); }        // Addition
-            jVec3_SIMD operator-(const jVec3_SIMD &b) const { return jVec3_SIMD(x() - b.x(), y() - b.y(), z() - b.z()); }        // Subtraction
-            jVec3_SIMD operator*(Type b) const { return jVec3_SIMD(x() * b, y() * b, z() * b); }                  // Multiplaction with scalar
-            Type operator*(const jVec3_SIMD &b) const { return this->dot(b); }
-            jVec3_SIMD operator/(Type b) const { return jVec3_SIMD(x() / b, y() / b, z() / b); }            // Division with scalar
-            jVec3_SIMD mult(const jVec3_SIMD &b) const { return jVec3_SIMD(x() * b.x(), y() * b.y(), z() * b.z()); }             // Multiplication
-            const jVec3_SIMD normalize() const { return *this * (Type(1) / sqrt(x() * x() + y() * y() + z() * z())); }                // Normalise vector
-            Type  dot(const jVec3_SIMD &b) const { return x() * b.x() + y() * b.y() + z() * b.z(); }                // Dot product
-            jVec3_SIMD cross(const jVec3_SIMD &b) const { return jVec3_SIMD(y() * b.z() - z() * b.y(), z() * b.x() - x() * b.z(), x() * b.y() - y() * b.x()); }    // Cross product
+jVec3d_SIMD operator*(const jVec3d_SIMD &vec, double scarlar)
+{
+    jVec3d_SIMD ret = vec;
+    return ret._scarlar_mult(scarlar);
+}
 
-            template<typename Type>
-            inline friend Type dot(const jVec3_SIMD<Type> &a, const jVec3_SIMD<Type> &b);
-            template<typename Type>
-            inline friend jVec3_SIMD<Type> cross(const jVec3_SIMD<Type> &a, const jVec3_SIMD<Type> &b);
-            template<typename Type>
-            inline friend jVec3_SIMD<Type> mult(const jVec3_SIMD<Type> &a, const jVec3_SIMD<Type> &b);
-        private:
-            std::array<Type, 3> _arr;
-        };
+jVec3d_SIMD operator*(double scarlar, const jVec3d_SIMD &vec)
+{
+    jVec3d_SIMD ret = vec;
+    return ret._scarlar_mult(scarlar);
+}
 
-    template <typename Type>
-    std::ostream& operator<< (std::ostream& os, const jVec3_SIMD<Type> &outVec) {
-        for (int i = 0; i < 3; ++i)
-        {
-            std::cout << outVec[i] << " ";
-        }
-        std::cout << std::endl;
-        return os;
-    }
+jVec3d_SIMD operator/(const jVec3d_SIMD &vec, double scarlar)
+{
+    jVec3d_SIMD ret = vec;
+    return ret._scarlar_div(scarlar);
+}
 
-    template<typename Type>
-    Type dot(const jVec3_SIMD<Type> &a, const jVec3_SIMD<Type> &b)
-    {
-        return a.dot(b);
-    }
+double dot(const jVec3d_SIMD &lhs, const jVec3d_SIMD &rhs)
+{
+    return lhs._dot(rhs);
+}
 
-    template<typename Type>
-    jVec3_SIMD<Type> cross(const jVec3_SIMD<Type> &a, const jVec3_SIMD<Type> &b)
-    {
-        return a.cross(b);
-    }
+jVec3d_SIMD mult(const jVec3d_SIMD &lhs, const jVec3d_SIMD &rhs)
+{
+    jVec3d_SIMD ret = lhs;
+    return ret._cwise_mult(rhs);
+}
 
-    template<typename Type>
-    jVec3_SIMD<Type> mult(const jVec3_SIMD<Type> &a, const jVec3_SIMD<Type> &b)
-    {
-        return a.mult(b);
-    }
+jVec3d_SIMD cross(const jVec3d_SIMD &lhs, const jVec3d_SIMD &rhs)
+{
+    jVec3d_SIMD ret = lhs;
+    return ret._cross(rhs);
+}
 
 }}
