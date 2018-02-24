@@ -47,17 +47,17 @@ public:
     Type operator*(const jVec3 &b) const { return this->dot(b); }
     jVec3 operator/(Type b) const { return jVec3(x() / b, y() / b, z() / b); }            // Division with scalar
     jVec3 mult(const jVec3 &b) const { return jVec3(x() * b.x(), y() * b.y(), z() * b.z()); }             // Multiplication
-    const jVec3 normalize() & { return *this * (Type(1) / sqrt(x() * x() + y() * y() + z() * z())); }                // Normalise vector
+    const jVec3 normalize() const { return *this / sqrt(x() * x() + y() * y() + z() * z()); }                // Normalise vector
     Type  dot(const jVec3 &b) const { return x() * b.x() + y() * b.y() + z() * b.z(); }                // Dot product
     jVec3 cross(const jVec3 &b) const { return jVec3(y() * b.z() - z() * b.y(), z() * b.x() - x() * b.z(), x() * b.y() - y() * b.x()); }    // Cross product
 
-    jVec3& normalize() && {
-        Type scarlar = (Type(1) / sqrt(x() * x() + y() * y() + z() * z()));
-        this->x() *= scarlar;
-        this->y() *= scarlar;
-        this->z() *= scarlar;
-        return *this;
-    }                // Normalise vector
+    //jVec3& normalize() && {
+    //    Type scarlar = sqrt(x() * x() + y() * y() + z() * z());
+    //    this->x() /= scarlar;
+    //    this->y() /= scarlar;
+    //    this->z() /= scarlar;
+    //    return *this;
+    //}               
 
     template<typename Type>
     inline friend Type dot (const jVec3<Type> &a, const jVec3<Type> &b);
