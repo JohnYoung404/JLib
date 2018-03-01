@@ -1,8 +1,8 @@
 #pragma once
 #include <iostream>
+#include "jUtility.h"
 
-
-namespace jLib {
+NAME_SPACE_BEGIN(jLib)
 
 struct jITestable
 {
@@ -32,5 +32,4 @@ struct testConstNumber
     testConstNumber() { std::cout << N << std::endl; }
 };
 
-}
-
+NAME_SPACE_END

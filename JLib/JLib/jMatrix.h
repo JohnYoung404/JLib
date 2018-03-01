@@ -7,12 +7,13 @@
 #include <array>
 #include <memory>
 #include <initializer_list>
+#include "jUtility.h"
 #include "jVector.h"
 #include "jGrid.h"
 #include "jMatrixMPL.h"
 
-namespace jLib{
-namespace jContainer {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jContainer)
 
 template <typename Type, size_t Degree>
 class jMatBase
@@ -233,9 +234,10 @@ inline const jMatBase<Type, Degree> inverse(const jMatBase<Type, Degree> &rhs)
 
 template<typename Type>
 using _jMat4 = jMatBase<Type, 4>;
-
 using _jMat4f = jMatBase<jfloat, 4>;
-}}
+
+NAME_SPACE_END
+NAME_SPACE_END
 
 namespace jLib
 {
@@ -245,22 +247,19 @@ namespace jLib
     using jMat4f = jContainer::_jMat4f;
 }
 
-#include "jTestBase.h"
-namespace jLib {
-    class jMatBaseTest final : public jITestable {
-    public:
-        virtual void test() override {
-            jITestable::test();
-            using namespace jContainer;
 
-            jMatBase<float, 5> fm = {
-                1, 1, 1, 1, 1,
-                1, 2, 3, 4, 5,
-                1, 5, 1, 2, 3,
-                1, 3, 9, 5, 6,
-                2, 0, 3, 2, 9
-            };
-            std::cout << inverse(fm) << std::endl;
-        }
+////////////// Unit Test //////////////
+#include "jTestBase.h"
+JTEST_BEGIN(jMatBaseTest)
+{
+    using namespace jContainer;
+    jMatBase<float, 5> fm = {
+        1, 1, 1, 1, 1,
+        1, 2, 3, 4, 5,
+        1, 5, 1, 2, 3,
+        1, 3, 9, 5, 6,
+        2, 0, 3, 2, 9
     };
+    std::cout << inverse(fm) << std::endl;
 }
+JTEST_END

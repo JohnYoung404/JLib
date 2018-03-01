@@ -6,8 +6,8 @@
 
 #define jSHUFFLE_PARAM(x, y, z, w) ((x) | ((y) << 2) | ((z) << 4) | ((w) << 6))
 
-namespace jLib {
-namespace jContainer {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jContainer)
 
 // float precision
 #pragma pack(push)
@@ -398,4 +398,5 @@ jVec3d_SIMD cross(const jVec3d_SIMD &lhs, const jVec3d_SIMD &rhs)
     return ret._cross(rhs);
 }
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

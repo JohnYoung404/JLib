@@ -5,11 +5,12 @@
 #include <ctime>
 #include <unordered_set>
 #include <array>
+#include "jUtility.h"
 #include "jGraphSearch.h"
 #include "jHash.h"
 
-namespace jLib{
-namespace jGame{
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGame)
 
 using jPosNode = std::tuple<int, int>;
 
@@ -81,31 +82,30 @@ private:
     }
 };
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END
 
+
+////////////// Unit Test //////////////
 #include "jTestBase.h"
 
-namespace jLib {
-	class jGraphGridTest final : public jITestable {
-	public:
-		virtual void test() override {
-			jITestable::test();
-			using namespace jGame;
-			jPositionGraph g(100, 100);
-            for (auto i = 1; i < 99; ++i)
-            {
-                g.addWall(std::make_tuple(i, i));
-            }
-            g.addWall(std::make_tuple(0, 4));
-            g.addWall(std::make_tuple(4, 0));
-            auto before = clock();
-			auto ret = a_star_search(g, std::make_tuple(0, 0), std::make_tuple(99, 99));
-            std::cout << "time cost:" << clock() - before << "ms" << std::endl;     //release模式下，100 * 100网格0ms；debug模式150ms
-			for (auto &i : ret)
-			{
-				std::cout << "(" <<std::get<0>(i) << "," << std::get<1>(i) << ") ";
-			}
-			std::cout << std::endl;
-		}
-	};
+JTEST_BEGIN(jGraphGridTest)
+{
+    using namespace jGame;
+    jPositionGraph g(100, 100);
+    for (auto i = 1; i < 99; ++i)
+    {
+        g.addWall(std::make_tuple(i, i));
+    }
+    g.addWall(std::make_tuple(0, 4));
+    g.addWall(std::make_tuple(4, 0));
+    auto before = clock();
+    auto ret = a_star_search(g, std::make_tuple(0, 0), std::make_tuple(99, 99));
+    std::cout << "time cost:" << clock() - before << "ms" << std::endl;     //release模式下，100 * 100网格0ms；debug模式150ms
+    for (auto &i : ret)
+    {
+        std::cout << "(" << std::get<0>(i) << "," << std::get<1>(i) << ") ";
+    }
+    std::cout << std::endl;
 }
+JTEST_END

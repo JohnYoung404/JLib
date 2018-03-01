@@ -1,7 +1,7 @@
 #include "jSphere.h"
 
-namespace jLib {
-namespace jGraphic {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphic)
 
 jRayObjectItersection jSphere::get_intersection(const jRay& ray)
 {
@@ -25,4 +25,5 @@ jRayObjectItersection jSphere::get_intersection(const jRay& ray)
     return jRayObjectItersection(hit, distance, norm, _materialPtr->get_color(), _materialPtr->get_emission(), _materialPtr->get_type());
 }
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

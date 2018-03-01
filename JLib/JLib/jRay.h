@@ -1,10 +1,11 @@
 #pragma once
 #include <memory>
+#include "jUtility.h"
 #include "jVector.h"
 #include "jMaterial.h"
 
-namespace jLib {
-namespace jGraphic {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphic)
 
 enum class matType;
 class jIRayTracableMaterial;
@@ -64,4 +65,5 @@ private:
     //std::shared_ptr<jIRayTracableMaterial> _materialPtr;
 };
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

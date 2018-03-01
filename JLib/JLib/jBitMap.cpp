@@ -4,8 +4,8 @@
 #include <experimental/filesystem>
 #include "jBitMap.h"
 
-namespace jLib{
-namespace jMedia{
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jMedia)
 
 bool jBitMap::LoadImage(const char* filePath) 
 {
@@ -160,4 +160,5 @@ void jBitMap::ClearImage()
 	imgLoaded_ = false;
 }
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

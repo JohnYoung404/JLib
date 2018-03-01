@@ -1,10 +1,7 @@
 #include "jPerlinNoise.h"
 
-namespace jLib
-{
-
-namespace jAlgorithm
-{
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jAlgorithm)
 
 namespace {
 const unsigned char randTab[] = {
@@ -84,8 +81,7 @@ inline float perlin_ease(float a) {
 }
 
 //reference: https://github.com/nothings/stb/blob/master/stb_perlin.h
-namespace jPerlinNoise
-{
+NAME_SPACE_BEGIN(jPerlinNoise)
 
 float perlin_noise3(float x, float y, float z, int x_wrap, int y_wrap, int z_wrap)
 	{
@@ -190,8 +186,6 @@ float perlin_turbulence_noise3(float x, float y, float z, float lacunarity, floa
 	return sum;
 }
 
-}
-
-}
-
-}
+NAME_SPACE_END
+NAME_SPACE_END
+NAME_SPACE_END

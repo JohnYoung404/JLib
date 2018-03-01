@@ -1,11 +1,10 @@
 #pragma once
 #include <vector>
 #include "jIntString.h"
+#include "jUtility.h"
 
-namespace jLib {
-
-namespace jNum
-{
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jNum)
 
 class jBigInt {
 public:
@@ -79,27 +78,24 @@ private:
 
 extern std::ostream& operator << (std::ostream &output, const jBigInt &jbi);
 
-}
-	
-}
+NAME_SPACE_END
+NAME_SPACE_END
 
+
+////////////// Unit Test //////////////
 #include "jTestBase.h"
 
-namespace jLib {
-	class jBigIntTest final : public jITestable {
-	public:
-		virtual void test() override {
-			jITestable::test();
-			try
-			{
-				jNum::jBigInt k = "464132132164163132135464121";
-				jNum::jBigInt T = "134612313513143";
-				std::cout << (k / T) + 1 << std::endl;	//division would be slow in debug mode.
-			}
-			catch (const std::exception& e)
-			{
-				std::cout << e.what() << std::endl;
-			}
-		}
-	};
+JTEST_BEGIN(jBigIntTest)
+{
+    try
+    {
+        jNum::jBigInt k = "464132132164163132135464121";
+        jNum::jBigInt T = "134612313513143";
+        std::cout << (k / T) + 1 << std::endl;	//division would be slow in debug mode.
+    }
+    catch (const std::exception& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
 }
+JTEST_END

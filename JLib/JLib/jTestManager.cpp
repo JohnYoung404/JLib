@@ -23,8 +23,7 @@
 #include "jCamera.h"
 #include "jRenderer.h"
 
-namespace jLib
-{
+NAME_SPACE_BEGIN(jLib)
 
 jTestManager::jTestManager()
 {
@@ -55,4 +54,4 @@ jTestManager::jTestManager()
 
 std::unique_ptr<jTestManager> jTestManager::_instance_ptr = std::unique_ptr<jTestManager>(new jTestManager());  //singleton
 
-}
+NAME_SPACE_END

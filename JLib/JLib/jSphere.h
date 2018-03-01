@@ -3,9 +3,10 @@
 #include "jSceneObj.h"
 #include "jMaterial.h"
 #include "jAABBox.h"
+#include "jUtility.h"
 
-namespace jLib {
-namespace jGraphic {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphic)
 
 class jSphere : public jSceneObj
 {
@@ -35,4 +36,5 @@ private:
     jAABBox _aabbox;
 };
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

@@ -1,11 +1,10 @@
 #pragma once
-
+#include "jUtility.h"
 #include "jVector.h"
 #include "jTexture.h"
-//#include "jRay.h"
 
-namespace jLib {
-namespace jGraphic {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphic)
 
 class jRay;
 enum class matType {EMIT = 0, DIFF = 1, SPEC = 2, REFR = 3};
@@ -86,4 +85,5 @@ public:
     virtual const jRay get_reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &norm, unsigned short(&Xi)[3]) const override;
 };
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

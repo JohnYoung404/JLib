@@ -4,13 +4,14 @@
 #include <cmath>
 #include <array>
 #include <cstring>
+#include "jUtility.h"
 #include "jTypeTraits.h"
 #include "jArrayMPL.h"
 #include "jVec3_SIMD.h"
 #include "jVec3.h"
 
-namespace jLib{
-namespace jContainer{
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jContainer)
 
 template <typename Type, size_t Degree>
 class jVecBase
@@ -230,7 +231,9 @@ using _jfloat = double;
 using _jVec2f = jVecBase<_jfloat, 2>;
 using _jVec3f = jVecBase<_jfloat, 3>;
 using _jVec4f = jVecBase<_jfloat, 4>;
-}}
+
+NAME_SPACE_END
+NAME_SPACE_END
 
 namespace jLib
 {
@@ -249,39 +252,37 @@ namespace jLib
     
 }
 
+
+////////////// Unit Test //////////////
 #include "jTestBase.h"
 #include "jVectorTraits.h"
-namespace jLib {
-    class jVecBaseTest final : public jITestable {
-    public:
-        virtual void test() override {
-            jITestable::test();
 
-            constexpr jContainer::jVecBase<int, 4> theVec = { 1, 2, 3, 4};
-            constexpr jContainer::jVecBase<int, 4> otherVec = {3, 2, 1, 0};
-            constexpr auto vec_square_len = theVec.square_length();
-            constexpr auto identityVec = jContainer::jVecBase<int, 4>::identity();  //intellisense bug.
-            testConstNumber<identityVec.at(0)> out2;
+JTEST_BEGIN(jVecBaseTest)
+{
+    constexpr jContainer::jVecBase<int, 4> theVec = { 1, 2, 3, 4 };
+    constexpr jContainer::jVecBase<int, 4> otherVec = { 3, 2, 1, 0 };
+    constexpr auto vec_square_len = theVec.square_length();
+    constexpr auto identityVec = jContainer::jVecBase<int, 4>::identity();  //intellisense bug.
+    testConstNumber<identityVec.at(0)> out2;
 
-            const jContainer::jVecBase<int, 5> constVec = { 1, 2 };
-            testConstNumber<jMPL::jVecTraits::is_vec<decltype(constVec)>::value> out3;
-            testConstNumber<decltype(constVec)::dim()> out4;
+    const jContainer::jVecBase<int, 5> constVec = { 1, 2 };
+    testConstNumber<jMPL::jVecTraits::is_vec<decltype(constVec)>::value> out3;
+    testConstNumber<decltype(constVec)::dim()> out4;
 
-            constexpr auto vec_sum = theVec + otherVec - otherVec;  //intellisense bug.
-            testConstNumber<vec_sum[2]> out7;
+    constexpr auto vec_sum = theVec + otherVec - otherVec;  //intellisense bug.
+    testConstNumber<vec_sum[2]> out7;
 
-            constexpr auto vec_dot_mult = theVec * otherVec;
-            constexpr auto vec_scar_mult = theVec * 6;  //intellisense bug.
+    constexpr auto vec_dot_mult = theVec * otherVec;
+    constexpr auto vec_scar_mult = theVec * 6;  //intellisense bug.
 
-            constexpr jContainer::jVecBase<double, 3> aVec = { 1, 1, 1};
-            constexpr jContainer::jVecBase<double, 3> bVec = { 2, 2, 2};
+    constexpr jContainer::jVecBase<double, 3> aVec = { 1, 1, 1 };
+    constexpr jContainer::jVecBase<double, 3> bVec = { 2, 2, 2 };
 
-            constexpr auto vec_cross_mult = jContainer::cross(aVec, bVec); //intellisense bug.
-            constexpr auto vec_norm = aVec.normalize(); //intellisense bug.
-            constexpr auto vec_cos_theta = jContainer::cos_theta(aVec, bVec);
-            testConstNumber<(int)vec_norm[0]> out8;
-            constexpr auto vec_lerp = jContainer::lerp(aVec, bVec, 0.5);    //intellisense bug.
-            testConstNumber<(int)vec_lerp[0]> out9;
-        }
-    };
+    constexpr auto vec_cross_mult = jContainer::cross(aVec, bVec); //intellisense bug.
+    constexpr auto vec_norm = aVec.normalize(); //intellisense bug.
+    constexpr auto vec_cos_theta = jContainer::cos_theta(aVec, bVec);
+    testConstNumber<(int)vec_norm[0]> out8;
+    constexpr auto vec_lerp = jContainer::lerp(aVec, bVec, 0.5);    //intellisense bug.
+    testConstNumber<(int)vec_lerp[0]> out9;
 }
+JTEST_END

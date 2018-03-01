@@ -60,9 +60,6 @@
     <ClInclude Include="jBitMap.h">
       <Filter>头文件\jMediaLib</Filter>
     </ClInclude>
-    <ClInclude Include="jPlane.h">
-      <Filter>头文件\jGraphicLib</Filter>
-    </ClInclude>
     <ClInclude Include="jCircle.h">
       <Filter>头文件\jGraphicLib</Filter>
     </ClInclude>
@@ -194,9 +191,6 @@
     </ClInclude>
     <ClInclude Include="jRay.h">
       <Filter>头文件\jGraphicLib</Filter>
-    </ClInclude>
-    <ClInclude Include="jRandom_Discarded.h">
-      <Filter>头文件\jMath</Filter>
     </ClInclude>
     <ClInclude Include="jRandom.h">
       <Filter>头文件\jMath</Filter>

@@ -1,9 +1,9 @@
 #pragma once
-
 #include <array>
+#include "jUtility.h"
 
-namespace jLib{
-namespace jContainer{
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jContainer)
 
 template<typename Type>
 class jVec3
@@ -97,4 +97,5 @@ jVec3<Type> mult(const jVec3<Type> &a, const jVec3<Type> &b)
     return a.mult(b);
 }
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

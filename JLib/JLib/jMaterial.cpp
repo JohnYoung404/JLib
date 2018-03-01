@@ -5,8 +5,8 @@
 #include "jRay.h"
 
 
-namespace jLib{
-namespace jGraphic{
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphic)
 
 const jRay reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &norm, unsigned short(&Xi)[3], matType type)
 {
@@ -164,4 +164,5 @@ const jRay jEmitMaterial::get_reflected_ray(const jRay &input, const jVec3f &hit
     return jRay(jVec3f::zero(), jVec3f::zero());
 }
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

@@ -1,13 +1,13 @@
 #pragma once
-
 #include <vector>
+#include "jUtility.h"
 #include "jRay.h"
 #include "jVector.h"
 #include "jAABBox.h"
 #include "jTriangle.h"
 
-namespace jLib {
-namespace jGraphic {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphic)
 
 class jKDNode
 {
@@ -22,4 +22,5 @@ public:
     bool leaf;
 };
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

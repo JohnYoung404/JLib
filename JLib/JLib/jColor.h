@@ -1,7 +1,8 @@
 #pragma once
+#include "jUtility.h"
 
-namespace jLib {
-namespace jGraphic {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphic)
 
 class jColor
 {
@@ -42,5 +43,6 @@ private:
     Byte a_, r_, g_, b_;
 };
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END
 

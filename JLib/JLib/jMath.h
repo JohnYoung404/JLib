@@ -1,7 +1,8 @@
 #pragma once
 #include <cmath>
 #include <cfloat>
-#include <limits> 
+#include <limits>
+#include "jUtility.h"
 
 #define PI 3.14159265358979323846
 #ifndef M_PI

@@ -1,8 +1,8 @@
 #include "jRenderer.h"
 #include "jPNG.h"
 
-namespace jLib {
-namespace jGraphic {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphic)
 
 jRenderer::jRenderer(std::shared_ptr<jScene> scenePtr, std::shared_ptr<jRayTraceCamera> cameraPtr) : _scene(scenePtr), _camera(cameraPtr)
 {
@@ -70,4 +70,5 @@ void jRenderer::save_image(const char *file_path) {
     pixel_buffer.clear();
 }
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

@@ -1,11 +1,11 @@
 #pragma once
-
+#include "jUtility.h"
 #include <vector>
 #include <boost/optional.hpp>
 #include "jTestBase.h"
 
-namespace jLib{
-namespace jVectorUtil{
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jVectorUtil)
 
 template <typename Type>
 const std::vector<Type> reverse(const std::vector<Type> & prime)
@@ -75,4 +75,5 @@ const boost::optional<Type> foldL(const std::vector<Type> & input, const FoldFun
 	return ret;
 }
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

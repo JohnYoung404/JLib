@@ -1,9 +1,10 @@
 #pragma once
 #include "jVector.h"
 #include "jRay.h"
+#include "jUtility.h"
 
-namespace jLib {
-namespace jGraphic {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphic)
 
 class jSceneObj
 {
@@ -16,4 +17,5 @@ protected:
     jVec3f _pos;
 };
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

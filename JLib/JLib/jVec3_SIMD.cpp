@@ -1,8 +1,8 @@
 #include <iostream>
 #include "jVec3_SIMD.h"
 
-namespace jLib {
-namespace jContainer {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jContainer)
 
 extern std::ostream& operator<< (std::ostream& os, const jVec3f_SIMD &outVec) {
     for (int i = 0; i < 3; ++i)
@@ -22,4 +22,5 @@ extern std::ostream& operator<< (std::ostream& os, const jVec3d_SIMD &outVec) {
     return os;
 }
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

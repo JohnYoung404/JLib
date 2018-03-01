@@ -1,13 +1,14 @@
 #pragma once
 #include <memory>
 #include <cstdint>
+#include "jUtility.h"
 #include "jBitMap.h"
 #include "jPNG.h"
 #include "jColor.h"
 #include "jStringUtil.h"
 
-namespace jLib {
-namespace jGraphic {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphic)
 
 class jICanvas {
 public:
@@ -242,41 +243,38 @@ private:
     CanvasType _type;
 };
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END
 
+
+////////////// Unit Test //////////////
 #include "jTestBase.h"
 #include "jLine2D.h"
 #include "jCircle.h"
+JTEST_BEGIN(jCanvasTest)
+{
+    jGraphic::jCanvas cvs;
+    cvs.LoadImage("srcImg/test.bmp");
+    jGraphic::jLine2D theLine = jGraphic::jLine2D(jVec2f{ 0.0f, 0.0f }, jVec2f{ 450.0f, 450.0f }, jGraphic::jColor::Black());
+    jGraphic::jLine2D theLine2 = jGraphic::jLine2D(jVec2f{ 0.0f, 450.0f }, jVec2f{ 450.0f, 0.0f }, jGraphic::jColor::Red());
+    jGraphic::jLine2D theLine3 = jGraphic::jLine2D(jVec2f{ 0.0f, 200.0f }, jVec2f{ 450.0f, 0.0f }, jGraphic::jColor::Blue());
+    jGraphic::jLine2D theLine4 = jGraphic::jLine2D(jVec2f{ 0.0f, 450.0f }, jVec2f{ 200.0f, 0.0f }, jGraphic::jColor::Green());
+    jGraphic::jCircle theCircle = jGraphic::jCircle(jVec2f{ 200, 200 }, jGraphic::jColor::Red(), 150);
+    theLine.drawOn(cvs);
+    theLine2.drawOn(cvs);
+    theLine4.drawOn(cvs);
+    theLine3.drawOn(cvs);
+    theCircle.drawOn(cvs);
+    cvs.SaveImage("jCanvasTest/canvas_painting_img.bmp");
+    std::cout << "Drawn a picture on bitmap canvas." << std::endl;
 
-namespace jLib {
-    class jCanvasTest final : public jITestable {
-    public:
-        virtual void test() override {
-            jITestable::test();
-
-            jGraphic::jCanvas cvs;
-            cvs.LoadImage("srcImg/test.bmp");
-            jGraphic::jLine2D theLine = jGraphic::jLine2D(jVec2f{ 0.0f, 0.0f }, jVec2f{ 450.0f, 450.0f }, jGraphic::jColor::Black());
-            jGraphic::jLine2D theLine2 = jGraphic::jLine2D(jVec2f{ 0.0f, 450.0f }, jVec2f{ 450.0f, 0.0f }, jGraphic::jColor::Red());
-            jGraphic::jLine2D theLine3 = jGraphic::jLine2D(jVec2f{ 0.0f, 200.0f }, jVec2f{ 450.0f, 0.0f }, jGraphic::jColor::Blue());
-            jGraphic::jLine2D theLine4 = jGraphic::jLine2D(jVec2f{ 0.0f, 450.0f }, jVec2f{ 200.0f, 0.0f }, jGraphic::jColor::Green());
-            jGraphic::jCircle theCircle = jGraphic::jCircle(jVec2f{ 200, 200 }, jGraphic::jColor::Red(), 150);
-            theLine.drawOn(cvs);
-            theLine2.drawOn(cvs);
-            theLine4.drawOn(cvs);
-            theLine3.drawOn(cvs);
-            theCircle.drawOn(cvs);
-            cvs.SaveImage("jCanvasTest/canvas_painting_img.bmp");
-            std::cout << "Drawn a picture on bitmap canvas." << std::endl;
-
-            cvs.LoadImage("srcImg/test2.png");
-            theLine.drawOn(cvs);
-            theLine2.drawOn(cvs);
-            theLine4.drawOn(cvs);
-            theLine3.drawOn(cvs);
-            theCircle.drawOn(cvs);
-            cvs.SaveImage("jCanvasTest/canvas_painting_img_2.png");
-            std::cout << "Drawn a picture on PNG canvas." << std::endl;
-        }
-    };
+    cvs.LoadImage("srcImg/test2.png");
+    theLine.drawOn(cvs);
+    theLine2.drawOn(cvs);
+    theLine4.drawOn(cvs);
+    theLine3.drawOn(cvs);
+    theCircle.drawOn(cvs);
+    cvs.SaveImage("jCanvasTest/canvas_painting_img_2.png");
+    std::cout << "Drawn a picture on PNG canvas." << std::endl;
 }
+JTEST_END

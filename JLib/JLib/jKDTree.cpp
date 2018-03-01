@@ -1,7 +1,7 @@
 #include "jKDTree.h"
 
-namespace jLib {
-namespace jGraphic {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphic)
 
 std::shared_ptr<jKDNode> jKDNode::build(std::vector<std::shared_ptr<jTriangle>> &tris, int depth)
 {
@@ -118,4 +118,5 @@ bool jKDNode::hit(const std::shared_ptr<jKDNode> &node, const jRay &ray, jfloat 
     return false;
 }
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

@@ -1,12 +1,13 @@
 #pragma once
+#include "jUtility.h"
 #include "jSceneObj.h"
 #include "jMaterial.h"
 #include "jTriangle.h"
 #include "jKDTree.h"
 #include "../extern/tiny_obj_loader/tiny_obj_loader.h"
 
-namespace jLib {
-namespace jGraphic {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphic)
 
 class jMesh : public jSceneObj
 {
@@ -26,4 +27,5 @@ private:
     std::vector<std::shared_ptr<jTriangle>> tris;
 };
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

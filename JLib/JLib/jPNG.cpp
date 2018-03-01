@@ -1,8 +1,8 @@
 #include "jPNG.h"
 #include <iostream>
 
-namespace jLib {
-namespace jMedia {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jMedia)
 
 bool jPNG::LoadImage(const char* filename)
 {
@@ -28,4 +28,5 @@ void jPNG::CreateEmpty(int width, int height)
     _data.resize(_width * _height * Channel(), 255);
 }
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

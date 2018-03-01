@@ -2,9 +2,9 @@
 #include <mutex>
 #include "../extern/rand48/erand48.h"
 
-namespace jLib {
-namespace jMath {
-namespace jRandom {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jMath)
+NAME_SPACE_BEGIN(jRandom)
 
 namespace{
 class _jRandom_static_holder
@@ -47,4 +47,6 @@ inline double jerand48(unsigned short(&xseed)[3])
     return _jerand48_static_rand();
 }
 
-}}}
+NAME_SPACE_END
+NAME_SPACE_END
+NAME_SPACE_END

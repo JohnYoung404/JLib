@@ -10,7 +10,7 @@
 #include "jTypeTraits.h"
 #include "jTestBase.h"
 
-namespace jLib {
+NAME_SPACE_BEGIN(jLib)
 
 class jTestManager{
 public:
@@ -36,4 +36,4 @@ private:
     std::vector<std::unique_ptr<jITestable> > _allTestCase;
 };
 
-}
+NAME_SPACE_END

@@ -1,7 +1,7 @@
 #include "jTexture.h"
 
-namespace jLib {
-namespace jGraphic {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphic)
 
 jTexture::jTexture(const char* filename)
 {
@@ -24,4 +24,5 @@ jVec3f jTexture::GetPixel(jfloat u, jfloat v) const
     return jVec3f((jfloat)_img.getPixel(x, y).R() / jfloat(255), (jfloat)_img.getPixel(x, y).G() / jfloat(255), (jfloat)_img.getPixel(x, y).B() / jfloat(255) );
 }
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

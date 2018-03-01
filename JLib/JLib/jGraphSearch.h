@@ -5,10 +5,10 @@
 #include <utility>
 #include <type_traits>
 #include "jGraph.h"
-#include "jTestBase.h"
+#include "jUtility.h"
 
-namespace jLib{
-namespace jGraphLib{
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphLib)
 
 namespace {
 template<typename T, typename priority_t>
@@ -81,28 +81,26 @@ a_star_search(Graph &graph, const node &start, const node & goal)
 	}
 	return std::vector<node>();
 }
+NAME_SPACE_END
+NAME_SPACE_END
 
-}}
-
-namespace jLib {
-	class jGraphSearchTest final : public jITestable {
-	public:
-		virtual void test() override {
-			jITestable::test();
-			using namespace jGraphLib;
-			jGraph<int> g;
-			g.addNode(1, std::vector<int>{2, 3});
-			g.addNode(2, std::vector<int>{4, 6});
-			g.addNode(3, std::vector<int>{5});
-			g.addNode(4, std::vector<int>{5});
-			g.addNode(5, std::vector<int>{});
-			g.addNode(6, std::vector<int>{});
-			auto ret = a_star_search(g, 1, 5);
-			for (auto &i : ret)
-			{
-				std::cout << i << " ";
-			}
-			std::cout << std::endl;
-		}
-	};
+////////////// Unit Test //////////////
+#include "jTestBase.h"
+JTEST_BEGIN(jGraphSearchTest)
+{
+    using namespace jGraphLib;
+    jGraph<int> g;
+    g.addNode(1, std::vector<int>{2, 3});
+    g.addNode(2, std::vector<int>{4, 6});
+    g.addNode(3, std::vector<int>{5});
+    g.addNode(4, std::vector<int>{5});
+    g.addNode(5, std::vector<int>{});
+    g.addNode(6, std::vector<int>{});
+    auto ret = a_star_search(g, 1, 5);
+    for (auto &i : ret)
+    {
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
 }
+JTEST_END

@@ -1,11 +1,12 @@
 #pragma once
 #include <memory>
 #include <vector>
+#include "jUtility.h"
 #include "jSceneObj.h"
 #include "jColor.h"
 
-namespace jLib{
-namespace jGraphic{
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphic)
 
 class jScene
 {
@@ -20,4 +21,5 @@ private:
     jColor _ambient;
 };
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

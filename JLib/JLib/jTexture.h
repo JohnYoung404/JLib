@@ -2,9 +2,10 @@
 #include "jColor.h"
 #include "jCanvas.h"
 #include "jVector.h"
+#include "jUtility.h"
 
-namespace jLib {
-namespace jGraphic {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphic)
 
 class jTexture
 {
@@ -23,4 +24,5 @@ private:
     bool _loaded;
 };
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

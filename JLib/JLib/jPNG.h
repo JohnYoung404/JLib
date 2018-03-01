@@ -2,9 +2,10 @@
 #include <boost/assert.hpp>
 #include "../extern/lodepng/lodepng.h"
 #include "jColor.h"
+#include "jUtility.h"
 
-namespace jLib{
-namespace jMedia {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jMedia)
 
 class jPNG
 {
@@ -70,4 +71,5 @@ private:
     bool _imgLoaded;
 };
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

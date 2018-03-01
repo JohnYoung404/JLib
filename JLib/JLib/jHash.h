@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <boost/functional/hash.hpp>
 #include <boost/type_traits.hpp>
+#include "jUtility.h"
 #include "jTupleMPL.h"
 
 namespace std
@@ -23,26 +24,23 @@ namespace std
     };
 }
 
+
+////////////// Unit Test //////////////
 #include "jTestBase.h"
 
-namespace jLib {
-    class jHashTest final : public jITestable {
-    public:
-        virtual void test() override {
-            jITestable::test();
-            
-            auto t = std::make_tuple(1, 2, "hello,");
-            auto f = std::make_tuple(t, "tuple of tuple");
+JTEST_BEGIN(jHashTest)
+{
+    auto t = std::make_tuple(1, 2, "hello,");
+    auto f = std::make_tuple(t, "tuple of tuple");
 
-            std::unordered_map<decltype(t), std::string> umap;
-            std::unordered_map<decltype(f), std::string> umap_1;
+    std::unordered_map<decltype(t), std::string> umap;
+    std::unordered_map<decltype(f), std::string> umap_1;
 
-            umap.emplace(t, "hello,");
-            umap.emplace(std::make_tuple(3, 4, "world."), "world.");
-            umap_1.emplace(f, "Ahoy~");
+    umap.emplace(t, "hello,");
+    umap.emplace(std::make_tuple(3, 4, "world."), "world.");
+    umap_1.emplace(f, "Ahoy~");
 
-            std::cout << umap[t] << umap[std::make_tuple(3, 4, "world.")] << std::endl;
-            std::cout << umap_1[f] << std::endl;
-        }
-    };
+    std::cout << umap[t] << umap[std::make_tuple(3, 4, "world.")] << std::endl;
+    std::cout << umap_1[f] << std::endl;
 }
+JTEST_END

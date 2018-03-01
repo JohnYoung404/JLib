@@ -17,9 +17,16 @@
 #define jDeprecated
 #endif
 
-namespace jLib
-{
+#define NAME_SPACE_BEGIN(name) namespace name{
+#define NAME_SPACE_END }
 
-    
+#define JTEST_BEGIN(test_class_name) namespace jLib { \
+class test_class_name final : public jITestable { \
+public: \
+    virtual void test() override { \
+        jITestable::test();
 
+#define JTEST_END \
+    } \
+}; \
 }

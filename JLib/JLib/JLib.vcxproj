@@ -188,8 +188,6 @@
     <ClInclude Include="jMatrixCvt.h" />
     <ClInclude Include="jMPL.h" />
     <ClInclude Include="jIntString.h" />
-    <ClInclude Include="jPlane.h" />
-    <ClInclude Include="jRandom_Discarded.h" />
     <ClInclude Include="jTestManager.h" />
     <ClInclude Include="jTexture.h" />
     <ClInclude Include="jTriangle.h" />

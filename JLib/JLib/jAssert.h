@@ -2,11 +2,11 @@
 #include <boost/assert.hpp>
 
 #ifdef _DEBUG
-#define jDebugAssert BOOST_ASSERT
-#define jDebugAssertMsg BOOST_ASSERT_MSG
+#define jDebugAssert(pred) BOOST_ASSERT(pred)
+#define jDebugAssertMsg(pred, msg) BOOST_ASSERT_MSG(pred, msg)
 #else
-#define jDebugAssert
-#define jDebugAssertMsg
+#define jDebugAssert(pred)
+#define jDebugAssertMsg(pred, msg)
 #endif
 
 #define jAllBuiltAssert BOOST_ASSERT

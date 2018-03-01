@@ -1,8 +1,8 @@
 #include <iostream>
 #include "jMesh.h"
 
-namespace jLib {
-namespace jGraphic {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphic)
 
 jMesh::jMesh(jVec3f pos, const char* file_path, std::shared_ptr<jIRayTracableMaterial> material) : jSceneObj(pos), _materialPtr(material)
 {
@@ -119,4 +119,5 @@ jRayObjectItersection jMesh::get_intersection(const jRay& ray)
     return jRayObjectItersection(_hit, tmin, normal, _materialPtr->get_color(), _materialPtr->get_emission(), _materialPtr->get_type());
 }
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

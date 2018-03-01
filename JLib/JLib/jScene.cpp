@@ -2,10 +2,10 @@
 #include "jMaterial.h"
 #include "jRandom.h"
 
-namespace jLib {
-namespace jGraphic {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphic)
 
-    class jSphere;
+class jSphere;
 
 jRayObjectItersection jScene::intersect(const jRay& ray)
 {
@@ -59,4 +59,5 @@ jVec3f jScene::trace_ray(const jRay &ray, int depth, unsigned short(&Xi)[3])
     return colour.mult(trace_ray(reflected, depth, Xi));
 }
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

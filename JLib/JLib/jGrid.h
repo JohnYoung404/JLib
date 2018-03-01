@@ -1,13 +1,14 @@
 #pragma once
+#include "jUtility.h"
 #include <iterator>
 #include <algorithm>
 #include <memory>
 #include <boost/assert.hpp>
 #include <type_traits>
 
-namespace jLib{
-namespace jContainer
-{
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jContainer)
+
 template<typename Type>
 class jGrid {
 public:
@@ -152,12 +153,12 @@ std::ostream& operator << (std::ostream &output, const jGrid<T> &grid)
     return output;
 }
 
-}
-}
+NAME_SPACE_END
+NAME_SPACE_END
 
-namespace jLib{
-namespace jContainer
-{
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jContainer)
+
 template <typename Type>
 class jGrid<Type>::column_iterator : public std::iterator<std::random_access_iterator_tag, Type>
 {
@@ -338,30 +339,27 @@ private:
     const_row_iterator _beg, _end;
 };
 
-}
-}
+NAME_SPACE_END
+NAME_SPACE_END
 
+
+////////////// Unit Test //////////////
 #include "jTestBase.h"
 
-namespace jLib {
-    class jGridTest final : public jITestable {
-    public:
-        virtual void test() override {
-            jITestable::test();
-
-            jContainer::jGrid<int> intGrid(3, 5);
-            intGrid.fill(2);
-            intGrid.for_each([](auto &val) {val += 1; });
-            for (auto &val : intGrid.col_at(1))
-            {
-                val += 1;
-            }
-            for (auto &val : intGrid.row_at(2))
-            {
-            	val += 1;
-            }
-            std::sort(intGrid.row_at(4).begin(), intGrid.row_at(4).end(), std::less<int>());
-            std::cout << intGrid;
-        }
-    };
+JTEST_BEGIN(jGridTest)
+{
+    jContainer::jGrid<int> intGrid(3, 5);
+    intGrid.fill(2);
+    intGrid.for_each([](auto &val) {val += 1; });
+    for (auto &val : intGrid.col_at(1))
+    {
+        val += 1;
+    }
+    for (auto &val : intGrid.row_at(2))
+    {
+        val += 1;
+    }
+    std::sort(intGrid.row_at(4).begin(), intGrid.row_at(4).end(), std::less<int>());
+    std::cout << intGrid;
 }
+JTEST_END

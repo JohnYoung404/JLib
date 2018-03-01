@@ -1,11 +1,12 @@
 #pragma once
 #include <cfloat>
 #include <algorithm>
+#include "jUtility.h"
 #include "jVector.h"
 #include "jRay.h"
 
-namespace jLib {
-namespace jGraphic {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphic)
 
 class jAABBox
 {
@@ -100,4 +101,5 @@ private:
     jVec3f tr;     // Top right   (max)
 };
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

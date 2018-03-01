@@ -8,12 +8,12 @@
 #include <memory>
 #include <boost/assert.hpp>
 #include "jColor.h"
+#include "jUtility.h"
 
 //BMP structure information : http://www.cnblogs.com/xiekeli/archive/2012/05/09/2491191.html
-namespace jLib
-{
 
-namespace jMedia {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jMedia)
 
 #pragma pack(1) // For MSVC,disable struct Pack,or short will take 32 bits memory as int32_t
 namespace jBitMapStruct {
@@ -140,42 +140,39 @@ private:
 	bool imgLoaded_;
 };
 
-}
+NAME_SPACE_END
+NAME_SPACE_END
 
-}
 
+////////////// Unit Test //////////////
 #include "jTestBase.h"
-namespace jLib {
-	class jBitMapTest final : public jITestable {
-	public:
-		virtual void test() override {
-			jITestable::test();
-			jMedia::jBitMap m;
-			m.CreateEmpty(1920, 1080);
-			for (int i = 0; i < 1920; ++i)
-			{
-				for (int j = 0; j < 1080; ++j) {
-					float hori_off = (float)i / 1920;
-					float vert_off = (float)j / 1080;
-                    m.SetPixel(i, j, jGraphic::jColor(255, 255, 0, 0));
-				}
-			}
-			m.SaveImage("jBitMapTest/create_plain_red_img.bmp");
-			std::cout << "Created a plain red image." << std::endl;
+JTEST_BEGIN(jBitMapTest)
+{
+    jMedia::jBitMap m;
+    m.CreateEmpty(1920, 1080);
+    for (int i = 0; i < 1920; ++i)
+    {
+        for (int j = 0; j < 1080; ++j) {
+            float hori_off = (float)i / 1920;
+            float vert_off = (float)j / 1080;
+            m.SetPixel(i, j, jGraphic::jColor(255, 255, 0, 0));
+        }
+    }
+    m.SaveImage("jBitMapTest/create_plain_red_img.bmp");
+    std::cout << "Created a plain red image." << std::endl;
 
-			m.LoadImage("srcImg/test.bmp");
-			for (int i = 0; i < m.Width(); ++i)
-			{
-				for (int j = 0; j < m.Height(); ++j) {
-                    auto flipped_color = m.GetPixel(i, j);
-                    flipped_color.R() = 255 - flipped_color.R();
-                    flipped_color.G() = 255 - flipped_color.G();
-                    flipped_color.B() = 255 - flipped_color.B();
-                    m.SetPixel(i, j, flipped_color);
-				}
-			}
-			m.SaveImage("jBitMapTest/rgb_filp_of_test_img.bmp");
-			std::cout << "Flip RGB of the test image." << std::endl;
-		}
-	};
+    m.LoadImage("srcImg/test.bmp");
+    for (int i = 0; i < m.Width(); ++i)
+    {
+        for (int j = 0; j < m.Height(); ++j) {
+            auto flipped_color = m.GetPixel(i, j);
+            flipped_color.R() = 255 - flipped_color.R();
+            flipped_color.G() = 255 - flipped_color.G();
+            flipped_color.B() = 255 - flipped_color.B();
+            m.SetPixel(i, j, flipped_color);
+        }
+    }
+    m.SaveImage("jBitMapTest/rgb_filp_of_test_img.bmp");
+    std::cout << "Flip RGB of the test image." << std::endl;
 }
+JTEST_END

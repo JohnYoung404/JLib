@@ -4,9 +4,10 @@
 #include <cfloat>
 #include <algorithm>
 #include <iterator>
+#include "jUtility.h"
 
-namespace jLib{
-namespace jGraphLib{
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphLib)
 
 //使用领接表的简单有向图结构
 template <typename node>
@@ -39,4 +40,5 @@ private:
 	std::unordered_map<node, std::vector<node>> _graph;
 };
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

@@ -1,8 +1,8 @@
 #include "jRayTraceCamera.h"
 #include "jRandom.h"
 
-namespace jLib {
-namespace jGraphic {
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jGraphic)
 
 jRayTraceCamera::jRayTraceCamera(jVec3f eye_pos, jVec3f look_at, int width, int height)
 {
@@ -46,4 +46,5 @@ jRay jRayTraceCamera::get_ray(int x, int y, bool jitter, unsigned short (&Xi)[3]
     return jRay(_position, (pixel - _position).normalize());
 }
 
-}}
+NAME_SPACE_END
+NAME_SPACE_END

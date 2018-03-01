@@ -3,11 +3,8 @@
 #include <boost/lexical_cast.hpp>
 #include "jBigInt.h"
 
-namespace jLib
-{
-
-namespace jNum
-{
+NAME_SPACE_BEGIN(jLib)
+NAME_SPACE_BEGIN(jNum)
 
 jBigInt::jBigInt(const std::string &initstring)
 {
@@ -396,6 +393,5 @@ std::ostream& operator << (std::ostream &output, const jBigInt &jbi) {
 	return output;
 }
 
-}
-
-}
+NAME_SPACE_END
+NAME_SPACE_END
