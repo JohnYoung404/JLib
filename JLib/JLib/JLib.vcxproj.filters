@@ -219,6 +219,9 @@
     <ClInclude Include="jVec3_SIMD.h">
       <Filter>头文件\jContainer</Filter>
     </ClInclude>
+    <ClInclude Include="jObjCounter.h">
+      <Filter>头文件\jUtility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

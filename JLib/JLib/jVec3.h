@@ -1,12 +1,13 @@
 #pragma once
 #include <array>
 #include "jUtility.h"
+#include "jObjCounter.h"
 
 NAME_SPACE_BEGIN(jLib)
 NAME_SPACE_BEGIN(jContainer)
 
 template<typename Type>
-class jVec3
+class jVec3 //: public jObjCounter<jVec3<Type>>
 {
 public:
     constexpr jVec3(Type x_ = 0, Type y_ = 0, Type z_ = 0) : _arr{x_, y_, z_} {}

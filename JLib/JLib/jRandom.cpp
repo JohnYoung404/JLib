@@ -36,7 +36,7 @@ _jRandom_static_holder _holder;
 
 inline double _jerand48_static_rand()
 {
-    //std::lock_guard<std::mutex> lock(g_index_mutex);
+    //std::lock_guard<std::mutex> lock(_holder.g_index_mutex);
     _holder.g_index = ++_holder.g_index >= _jRandom_static_holder::BUFFER_SIZE ? 0 : _holder.g_index;
     return _holder._rand_buffer[_holder.g_index];
 }

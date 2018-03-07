@@ -159,6 +159,7 @@
     <ClInclude Include="jMatrixMPL.h" />
     <ClInclude Include="jMesh.h" />
     <ClInclude Include="jMetaStateMachine.h" />
+    <ClInclude Include="jObjCounter.h" />
     <ClInclude Include="jOpsMPL.h" />
     <ClInclude Include="jPerlinNoise.h" />
     <ClInclude Include="jPNG.h" />
