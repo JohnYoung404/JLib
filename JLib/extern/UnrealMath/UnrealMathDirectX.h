@@ -1,11 +1,19 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
+// Modified by JohnYoung, 2018.3.9
+
 #pragma once
 
 #include <DirectXMath.h>
 #include <DirectXPackedVector.h>
 
+#ifdef _MSC_VER
 #define jforceinline __forceinline
+#endif
+
+#ifdef __GNUC__
+#define jforceinline inline __attribute__((always_inline))
+#endif
 
 /*=============================================================================
  *	Helpers:
@@ -63,13 +71,6 @@ jforceinline VectorRegisterInt MakeVectorRegisterInt(int X, int Y, int Z, int W)
 {
 	return _mm_castps_si128(DirectX::XMVectorSet(X, Y, Z, W));
 }
-
-/*=============================================================================
- *	Constants:
- *============================================================================*/
-
-#include "UnrealMathVectorConstants.h"
-
 
 /*=============================================================================
  *	Intrinsics:
@@ -858,6 +859,3 @@ jforceinline VectorRegisterInt VectorIntMax(const VectorRegisterInt& A, const Ve
 * @return		VectorRegisterInt(*Ptr, *Ptr, *Ptr, *Ptr)
 */
 #define VectorIntLoad1( Ptr )	_mm_shuffle_epi32(_mm_loadu_si128((VectorRegisterInt*)Ptr),_MM_SHUFFLE(0,0,0,0))
-
-
-
