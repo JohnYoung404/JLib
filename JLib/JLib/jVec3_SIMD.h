@@ -3,6 +3,7 @@
 #include <immintrin.h>  //AVX
 #include <array>
 #include "jUtility.h"
+#include <DirectXMath.h>
 
 #define jSHUFFLE_PARAM(x, y, z, w) ((x) | ((y) << 2) | ((z) << 4) | ((w) << 6))
 

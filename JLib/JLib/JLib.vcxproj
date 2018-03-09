@@ -146,6 +146,7 @@
     <ClInclude Include="..\extern\lodepng\lodepng.h" />
     <ClInclude Include="..\extern\rand48\erand48.h" />
     <ClInclude Include="..\extern\tiny_obj_loader\tiny_obj_loader.h" />
+    <ClInclude Include="..\extern\UnrealMath\UnrealMathDirectX.h" />
     <ClInclude Include="jAABBox.h" />
     <ClInclude Include="jArrayMPL.h" />
     <ClInclude Include="jAssert.h" />
