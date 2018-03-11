@@ -1,12 +1,19 @@
 #pragma once
 
+#ifndef jforceinline
 #ifdef _MSC_VER
 #define jforceinline __forceinline
-#define jAlign(bit) __declspec(align(bit))
 #endif
-
 #ifdef __GNUC__
 #define jforceinline inline __attribute__((always_inline))
+#endif
+#endif
+
+
+#ifdef _MSC_VER
+#define jAlign(bit) __declspec(align(bit))
+#endif
+#ifdef __GNUC__
 #define jAlign(bit) __attribute__((aligned(bit)))
 #endif
 

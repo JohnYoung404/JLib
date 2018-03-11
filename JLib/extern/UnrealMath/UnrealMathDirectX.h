@@ -7,12 +7,13 @@
 #include <DirectXMath.h>
 #include <DirectXPackedVector.h>
 
+#ifndef jforceinline
 #ifdef _MSC_VER
 #define jforceinline __forceinline
 #endif
-
 #ifdef __GNUC__
 #define jforceinline inline __attribute__((always_inline))
+#endif
 #endif
 
 /*=============================================================================
