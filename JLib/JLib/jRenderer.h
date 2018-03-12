@@ -33,7 +33,7 @@ JTEST_BEGIN(jRendererTest)
 
     time_t start, stop;
     time(&start);               // Start execution timer
-    int samples = 1;            // Default samples per pixel
+    int samples = 20;            // Default samples per pixel
 
     auto cameraPtr = std::make_shared<jRayTraceCamera>(jVec3f(0, -5, 2.5), jVec3f(0, 0, 1), 1280, 720);
     auto scenePtr = std::make_shared<jScene>();   // Create scene

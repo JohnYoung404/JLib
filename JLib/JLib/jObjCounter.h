@@ -2,7 +2,7 @@
 #include <mutex>
 #include "jUtility.h"
 
-#define  _OPEN_OBJ_COUNTER
+//#define  _OPEN_OBJ_COUNTER
 
 NAME_SPACE_BEGIN(jLib)
 
