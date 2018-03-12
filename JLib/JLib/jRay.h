@@ -10,7 +10,7 @@ NAME_SPACE_BEGIN(jGraphic)
 enum class matType;
 class jIRayTracableMaterial;
 
-class jRay : jObjCounter<jRay>
+class jRay //: jObjCounter<jRay>
 {
 public:
     jRay(jVec3f origin, jVec3f direciton)

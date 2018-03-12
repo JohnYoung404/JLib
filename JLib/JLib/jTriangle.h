@@ -8,7 +8,7 @@
 NAME_SPACE_BEGIN(jLib)
 NAME_SPACE_BEGIN(jGraphic)
 
-struct jTriangle : public jObjCounter<jTriangle>
+struct jTriangle //: public jObjCounter<jTriangle>
 {
     jVec3f v0, v1, v2;     // Vertex world space coordinates
     jVec3f e1, e2;         // Edge 1 and edge 2 of triangle

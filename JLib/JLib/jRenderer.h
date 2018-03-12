@@ -6,7 +6,7 @@
 NAME_SPACE_BEGIN(jLib)
 NAME_SPACE_BEGIN(jGraphic)
 
-class jRenderer : public jObjCounter<jRenderer>
+class jRenderer //: public jObjCounter<jRenderer>
 {
 public:
     jRenderer(std::shared_ptr<jScene> scenePtr, std::shared_ptr<jRayTraceCamera> cameraPtr);
@@ -59,8 +59,8 @@ JTEST_BEGIN(jRendererTest)
     printf("\rRendering (%i samples): Complete!\nTime Taken: %i hrs, %i mins, %i secs\n\n", samples, hrs, mins, secs);
     //std::cout << jObjCounter<jVec3f>::ObjectCreated() << std::endl;
     //std::cout << jObjCounter<jVec3f>::ObjectAlive() << std::endl;
-    std::cout << jObjCounter<jRay>::ObjectCreated() << std::endl;
-    std::cout << jObjCounter<jRay>::ObjectAlive() << std::endl;
+    //std::cout << jObjCounter<jRay>::ObjectCreated() << std::endl;
+    //std::cout << jObjCounter<jRay>::ObjectAlive() << std::endl;
     getchar();
 }
 JTEST_END
