@@ -29,5 +29,14 @@
     <ClInclude Include="include\jVec3.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="include\jDirectXMath.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\jVec3f_SIMD.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\jCommon.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
