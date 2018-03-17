@@ -39,7 +39,7 @@
 #endif
 #endif
 
-#define J_ALIGN(a)			__attribute__ ((aligned(a)))
+#define J_ALIGN(a)          __attribute__ ((aligned(a)))
 #endif
 
 #ifndef J_RESTRICT
@@ -47,7 +47,7 @@
 #endif
 
 #ifndef J_FORCE_INLINE	
-#define J_FORCE_INLINE		inline
+#define J_FORCE_INLINE      inline
 #endif
 
 
