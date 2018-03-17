@@ -115,6 +115,7 @@
   <ItemGroup>
     <ClInclude Include="include\jdef.h" />
     <ClInclude Include="include\jfloat.h" />
+    <ClInclude Include="include\jVec3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
