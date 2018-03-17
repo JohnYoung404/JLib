@@ -3,7 +3,7 @@
 #include <immintrin.h>  //AVX
 #include <array>
 #include "jUtility.h"
-#include <DirectXMath.h>
+#include "../extern/UnrealMath/UnrealMathDirectX.h"
 
 #define jSHUFFLE_PARAM(x, y, z, w) ((x) | ((y) << 2) | ((z) << 4) | ((w) << 6))
 
@@ -205,7 +205,7 @@ jVec3f_SIMD cross(const jVec3f_SIMD &lhs, const jVec3f_SIMD &rhs)
 }
 
 // double precision
-class jVec3d_SIMD
+jAlign(32) class jVec3d_SIMD
 {
 public:
     jVec3d_SIMD(double x_ = 0, double y_ = 0, double z_ = 0) : _arr{ x_, y_, z_ } {}
@@ -267,7 +267,7 @@ public:
     jforceinline friend double dot(const jVec3d_SIMD &lhs, const jVec3d_SIMD &rhs);
     jforceinline friend jVec3d_SIMD cross(const jVec3d_SIMD &lhs, const jVec3d_SIMD &rhs);
 private:
-    jAlign(32) std::array<double, 4> _arr;
+    std::array<double, 4> _arr;
     jVec3d_SIMD& operator+=(const jVec3d_SIMD &rhs)
     {
         __m256d a = _mm256_load_pd(_arr._Elems);
