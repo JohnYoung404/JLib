@@ -20,7 +20,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\defs.h">
+    <ClInclude Include="include\jfloat.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\jdef.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
