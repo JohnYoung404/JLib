@@ -8,8 +8,13 @@
 #include <limits>
 #include "jdef.h"
 
+namespace jRayTracing
+{
+
 #ifdef J_DBL_PRECISION
-#define jReal double
+    using jReal = double;
 #else
-#define jReal float
+    using jReal = float;
 #endif
+
+}
