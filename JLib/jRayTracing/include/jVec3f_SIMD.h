@@ -63,9 +63,6 @@ public:
     {
         return V.operator*(Scale);
     }
-
-    bool operator==(const jVec3f_SIMD& V) const;
-    bool operator!=(const jVec3f_SIMD& V) const;
 };
 
 
@@ -73,7 +70,7 @@ public:
 // Inline Functions.
 //////////////////////////////////////////////////////////////////////////
 
-J_FORCE_INLINE jVec3f_SIMD::jVec3f_SIMD(float InX = 0.0f, float InY = 0.0f, float InZ = 0.0f) : _VEC{ InX, InY, InZ}{}
+J_FORCE_INLINE jVec3f_SIMD::jVec3f_SIMD(float InX, float InY, float InZ) : _VEC{ InX, InY, InZ}{}
 
 J_FORCE_INLINE float& jVec3f_SIMD::operator[](int ComponentIndex)
 {
@@ -121,5 +118,147 @@ J_FORCE_INLINE jVec3f_SIMD& jVec3f_SIMD::add_org (const jVec3f_SIMD& V)
     return *this;
 }
 
+J_FORCE_INLINE jVec3f_SIMD jVec3f_SIMD::operator- (const jVec3f_SIMD& V) const
+{
+    J_ALIGN(16) float Ret[4];
+    VectorRegister vr_a = VectorLoadAligned(_VEC);
+    VectorRegister vr_b = VectorLoadAligned(V._VEC);
+    VectorRegister vr_r = VectorSubtract(vr_a, vr_b);
+    VectorStoreAligned(vr_r, Ret);
+    return jVec3f_SIMD(Ret[0], Ret[1], Ret[2]);
+}
+
+J_FORCE_INLINE jVec3f_SIMD& jVec3f_SIMD::sub_org(const jVec3f_SIMD& V)
+{
+    VectorRegister vr_a = VectorLoadAligned(_VEC);
+    VectorRegister vr_b = VectorLoadAligned(V._VEC);
+    VectorRegister vr_r = VectorSubtract(vr_a, vr_b);
+    VectorStoreAligned(vr_r, _VEC);
+    return *this;
+}
+
+J_FORCE_INLINE jVec3f_SIMD jVec3f_SIMD::operator* (float Scale) const
+{
+    J_ALIGN(16) float Ret[4] = {Scale, Scale, Scale, 0};
+    VectorRegister vr_a = VectorLoadAligned(_VEC);
+    VectorRegister vr_b = VectorLoadAligned(Ret);
+    VectorRegister vr_r = VectorMultiply(vr_a, vr_b);
+    VectorStoreAligned(vr_r, Ret);
+    return jVec3f_SIMD(Ret[0], Ret[1], Ret[2]);
+}
+
+J_FORCE_INLINE jVec3f_SIMD& jVec3f_SIMD::scalar_mul_org (float Scale)
+{
+    J_ALIGN(16) float S[4] = { Scale, Scale, Scale, 0 };
+    VectorRegister vr_a = VectorLoadAligned(_VEC);
+    VectorRegister vr_b = VectorLoadAligned(S);
+    VectorRegister vr_r = VectorMultiply(vr_a, vr_b);
+    VectorStoreAligned(vr_r, _VEC);
+    return *this;
+}
+
+J_FORCE_INLINE jVec3f_SIMD jVec3f_SIMD::operator/ (float Scale) const
+{
+    J_ALIGN(16) float Ret[4] = { Scale, Scale, Scale, 0 };
+    VectorRegister vr_a = VectorLoadAligned(_VEC);
+    VectorRegister vr_b = VectorLoadAligned(Ret);
+    VectorRegister vr_r = VectorDivide(vr_a, vr_b);
+    VectorStoreAligned(vr_r, Ret);
+    return jVec3f_SIMD(Ret[0], Ret[1], Ret[2]);
+}
+
+J_FORCE_INLINE jVec3f_SIMD& jVec3f_SIMD::scalar_div_org(float Scale)
+{
+    J_ALIGN(16) float S[4] = { Scale, Scale, Scale, 0 };
+    VectorRegister vr_a = VectorLoadAligned(_VEC);
+    VectorRegister vr_b = VectorLoadAligned(S);
+    VectorRegister vr_r = VectorDivide(vr_a, vr_b);
+    VectorStoreAligned(vr_r, _VEC);
+    return *this;
+}
+
+J_FORCE_INLINE jVec3f_SIMD jVec3f_SIMD::operator/ (const jVec3f_SIMD& V) const
+{
+    J_ALIGN(16) float Ret[4];
+    VectorRegister vr_a = VectorLoadAligned(_VEC);
+    VectorRegister vr_b = VectorLoadAligned(V._VEC);
+    VectorRegister vr_r = VectorDivide(vr_a, vr_b);
+    VectorStoreAligned(vr_r, Ret);
+    return jVec3f_SIMD(Ret[0], Ret[1], Ret[2]);
+}
+
+J_FORCE_INLINE jVec3f_SIMD& jVec3f_SIMD::div_org(const jVec3f_SIMD& V)
+{
+    VectorRegister vr_a = VectorLoadAligned(_VEC);
+    VectorRegister vr_b = VectorLoadAligned(V._VEC);
+    VectorRegister vr_r = VectorDivide(vr_a, vr_b);
+    VectorStoreAligned(vr_r, _VEC);
+    return *this;
+}
+
+J_FORCE_INLINE jVec3f_SIMD jVec3f_SIMD::cwise_mult_cpy(const jVec3f_SIMD& V) const
+{
+    J_ALIGN(16) float Ret[4];
+    VectorRegister vr_a = VectorLoadAligned(_VEC);
+    VectorRegister vr_b = VectorLoadAligned(V._VEC);
+    VectorRegister vr_r = VectorMultiply(vr_a, vr_b);
+    VectorStoreAligned(vr_r, Ret);
+    return jVec3f_SIMD(Ret[0], Ret[1], Ret[2]);
+}
+
+J_FORCE_INLINE jVec3f_SIMD& jVec3f_SIMD::cwise_mult_org(const jVec3f_SIMD& V)
+{
+    VectorRegister vr_a = VectorLoadAligned(_VEC);
+    VectorRegister vr_b = VectorLoadAligned(V._VEC);
+    VectorRegister vr_r = VectorMultiply(vr_a, vr_b);
+    VectorStoreAligned(vr_r, _VEC);
+    return *this;
+}
+
+J_FORCE_INLINE jVec3f_SIMD jVec3f_SIMD::cross_cpy(const jVec3f_SIMD& V) const
+{
+    J_ALIGN(16) float Ret[4];
+    VectorRegister vr_a = VectorLoadAligned(_VEC);
+    VectorRegister vr_b = VectorLoadAligned(V._VEC);
+    VectorRegister vr_r = VectorCross(vr_a, vr_b);
+    VectorStoreAligned(vr_r, Ret);
+    return jVec3f_SIMD(Ret[0], Ret[1], Ret[2]);
+}
+
+J_FORCE_INLINE jVec3f_SIMD& jVec3f_SIMD::cross_org(const jVec3f_SIMD& V)
+{
+    VectorRegister vr_a = VectorLoadAligned(_VEC);
+    VectorRegister vr_b = VectorLoadAligned(V._VEC);
+    VectorRegister vr_r = VectorCross(vr_a, vr_b);
+    VectorStoreAligned(vr_r, _VEC);
+    return *this;
+}
+
+J_FORCE_INLINE jVec3f_SIMD jVec3f_SIMD::normalize_cpy() const
+{
+    J_ALIGN(16) jVec3f_SIMD Ret;
+    VectorRegister vr_a = VectorLoadAligned(_VEC);
+    VectorRegister vr_b = VectorSet_W0(vr_a);
+    VectorRegister vr_r = VectorNormalize(vr_b);
+    VectorStoreAligned(vr_r, Ret._VEC);
+    return Ret;
+}
+
+J_FORCE_INLINE jVec3f_SIMD& jVec3f_SIMD::normalize_org()
+{
+    VectorRegister vr_a = VectorLoadAligned(_VEC);
+    VectorRegister vr_b = VectorSet_W0(vr_a);
+    VectorRegister vr_r = VectorNormalize(vr_b);
+    VectorStoreAligned(vr_r, _VEC);
+    return *this;
+}
+
+J_FORCE_INLINE float jVec3f_SIMD::dot(const jVec3f_SIMD& V) const
+{
+    VectorRegister vr_a = VectorLoadAligned(_VEC);
+    VectorRegister vr_b = VectorLoadAligned(V._VEC);
+    VectorRegister vr_r = VectorDot3(vr_a, vr_b);
+    return vr_r.m128_f32[0];
+}
 
 }

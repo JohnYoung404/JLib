@@ -4,9 +4,14 @@
 // Description : program entrance.
 
 #include <iostream>
+#include "jVec3f_SIMD.h"
 
 int main(int argc, char** argv)
 {
+    using namespace jRayTracing;
+    J_ALIGN(16) jVec3f_SIMD v_a = jVec3f_SIMD{ 1, 2, 3 };
+    J_ALIGN(16) jVec3f_SIMD v_b = jVec3f_SIMD{ 3.1f, 2.3f, 1.9f };
+    v_b.cross_org(v_a);
     getchar();
     return 0;
 }
