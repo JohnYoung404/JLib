@@ -7,7 +7,7 @@
 NAME_SPACE_BEGIN(jLib)
 NAME_SPACE_BEGIN(jGraphic)
 
-J_ALIGN(16) struct jRayTraceCamera
+class jRayTraceCamera
 {
 public:
     jRayTraceCamera(jVec3f eye_pos, jVec3f look_at, int width, int height);

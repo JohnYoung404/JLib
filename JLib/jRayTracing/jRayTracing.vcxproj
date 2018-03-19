@@ -121,7 +121,9 @@
     <ClInclude Include="include\jCommon.h" />
     <ClInclude Include="include\jdef.h" />
     <ClInclude Include="include\jfloat.h" />
+    <ClInclude Include="include\jMaterial.h" />
     <ClInclude Include="include\jRay.h" />
+    <ClInclude Include="include\jTriangle.h" />
     <ClInclude Include="include\jVec3.h" />
     <ClInclude Include="include\jDirectXMath.h" />
     <ClInclude Include="include\jVec3f_SIMD.h" />
