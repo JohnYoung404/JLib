@@ -92,6 +92,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>./include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -107,6 +108,13 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>./include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/std=c++11 %(AdditionalOptions)</AdditionalOptions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <OpenMPSupport>true</OpenMPSupport>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -114,15 +122,40 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="extern\lodepng\lodepng.cpp" />
+    <ClCompile Include="extern\rand48\rand48.c" />
+    <ClCompile Include="extern\tiny_obj_loader\tiny_obj_loader.cc" />
+    <ClCompile Include="source\jCamera.cpp" />
+    <ClCompile Include="source\jKDTree.cpp" />
+    <ClCompile Include="source\jMaterial.cpp" />
+    <ClCompile Include="source\jMesh.cpp" />
+    <ClCompile Include="source\jRandom.cpp" />
+    <ClCompile Include="source\jRenderer.cpp" />
+    <ClCompile Include="source\jScene.cpp" />
+    <ClCompile Include="source\jShpere.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="extern\lodepng\lodepng.h" />
+    <ClInclude Include="extern\rand48\erand48.h" />
+    <ClInclude Include="extern\tiny_obj_loader\tiny_obj_loader.h" />
+    <ClInclude Include="extern\UnrealMath\UnrealMathDirectX.h" />
     <ClInclude Include="include\jAABBox.h" />
+    <ClInclude Include="include\jCamera.h" />
     <ClInclude Include="include\jCommon.h" />
     <ClInclude Include="include\jdef.h" />
     <ClInclude Include="include\jfloat.h" />
+    <ClInclude Include="include\jIntersection.h" />
+    <ClInclude Include="include\jKDTree.h" />
     <ClInclude Include="include\jMaterial.h" />
+    <ClInclude Include="include\jMath.h" />
+    <ClInclude Include="include\jMesh.h" />
+    <ClInclude Include="include\jRandom.h" />
     <ClInclude Include="include\jRay.h" />
+    <ClInclude Include="include\jRenderer.h" />
+    <ClInclude Include="include\jScene.h" />
+    <ClInclude Include="include\jSceneObj.h" />
+    <ClInclude Include="include\jSphere.h" />
     <ClInclude Include="include\jTriangle.h" />
     <ClInclude Include="include\jVec3.h" />
     <ClInclude Include="include\jDirectXMath.h" />

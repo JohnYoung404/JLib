@@ -15,7 +15,7 @@ namespace jRayTracing
 J_ALIGN(16) struct jRay
 {
 public:
-    jRay(jVec3f origin, jVec3f direciton)
+    jRay(const jVec3f &origin, const jVec3f &direciton)
         : _origin(origin)
         , _direction(direciton)
         , _inv_direction(direciton.Reciprocal_cpy())

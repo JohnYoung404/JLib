@@ -18,6 +18,39 @@
     <ClCompile Include="source\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="source\jMaterial.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="source\jRandom.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="source\jKDTree.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="source\jCamera.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="source\jMesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="source\jScene.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="source\jRenderer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="extern\tiny_obj_loader\tiny_obj_loader.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="extern\lodepng\lodepng.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="extern\rand48\rand48.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="source\jShpere.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\jfloat.h">
@@ -48,6 +81,48 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="include\jMaterial.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\jSphere.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\jIntersection.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\jMath.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\jRandom.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\jSceneObj.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\jScene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\jKDTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\jCamera.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\jMesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\jRenderer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="extern\lodepng\lodepng.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="extern\rand48\erand48.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="extern\tiny_obj_loader\tiny_obj_loader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="extern\UnrealMath\UnrealMathDirectX.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
