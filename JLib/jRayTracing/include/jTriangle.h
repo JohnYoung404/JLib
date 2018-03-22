@@ -12,10 +12,10 @@ public:
     jVec3f v0, v1, v2;     // Vertex world space coordinates
     jVec3f e1, e2;         // Edge 1 and edge 2 of triangle
     jVec3f n, t0, t1, t2;  // Triangle normal and texture coordinates
-    std::shared_ptr<jIMaterial> materialPtr;       // Pointer to material
+    jIMaterial* materialPtr;       // Pointer to material
 
 
-    jTriangle(const jVec3f &v0_, const jVec3f &v1_, const jVec3f &v2_, const jVec3f &t0_ = jVec3f(), const jVec3f &t1_ = jVec3f(), const jVec3f &t2_ = jVec3f(), std::shared_ptr<jIMaterial> m_ = nullptr) {
+    jTriangle(const jVec3f &v0_, const jVec3f &v1_, const jVec3f &v2_, const jVec3f &t0_ = jVec3f::zero(), const jVec3f &t1_ = jVec3f::zero(), const jVec3f &t2_ = jVec3f::zero(), jIMaterial* m_ = nullptr) {
         v0 = v0_, v1 = v1_, v2 = v2_, e1 = v1 - v0, e2 = v2 - v0, n = e1.cross_cpy(e2).normalize_org();
         t0 = t0_, t1 = t1_, t2 = t2_;
         materialPtr = m_;

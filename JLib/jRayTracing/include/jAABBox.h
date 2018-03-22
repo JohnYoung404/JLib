@@ -39,7 +39,7 @@ public:
 
     // Returns longest axis: 0, 1, 2 for x, y, z respectively
     int get_longest_axis() const {
-        jVec3f diff = tr - bl;
+        J_ALIGN(16) jVec3f diff = tr - bl;
         if (diff.x() > diff.y() && diff.x() > diff.z()) return 0;
         if (diff.y() > diff.x() && diff.y() > diff.z()) return 1;
         return 2;
@@ -47,7 +47,7 @@ public:
 
     bool test_area_code(const jRay &r) const
     {
-        jVec3f orig = r.Origin();
+        const jVec3f &orig = r.Origin();
 
         jReal offset_x_tr = tr.x() - orig.x();
         jReal offset_x_bl = bl.x() - orig.x();
@@ -68,7 +68,7 @@ public:
     bool intersection(const jRay &r, jReal &t) const
     {
 
-        jVec3f orig = r.Origin();
+        const jVec3f &orig = r.Origin();
 
         jReal offset_x_tr = tr.x() - orig.x();
         jReal offset_x_bl = bl.x() - orig.x();

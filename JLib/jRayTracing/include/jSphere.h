@@ -6,7 +6,7 @@
 
 namespace jRayTracing{
 
-class jSphere : public jSceneObj
+J_ALIGN(16) class jSphere : public jSceneObj
 {
 public:
     jSphere(const jVec3f &pos, jReal radius, std::shared_ptr<jIMaterial> matPtr)
@@ -21,11 +21,11 @@ public:
         )
     {};
     virtual jRayObjectItersection get_intersection(const jRay& ray) override;
-    inline const jReal& get_radius() const { return _radius; }
-    inline const jReal& get_one_div_radius() const { return _one_div_radius; }
-    inline const jReal& get_square_radius() const { return _square_radius; }
-    inline const std::shared_ptr<jIMaterial>& get_material() const { return _materialPtr; }
-    inline const jAABBox & get_aabbox() const { return _aabbox; }
+    J_FORCE_INLINE const jReal& get_radius() const { return _radius; }
+    J_FORCE_INLINE const jReal& get_one_div_radius() const { return _one_div_radius; }
+    J_FORCE_INLINE const jReal& get_square_radius() const { return _square_radius; }
+    J_FORCE_INLINE const std::shared_ptr<jIMaterial>& get_material() const { return _materialPtr; }
+    J_FORCE_INLINE const jAABBox & get_aabbox() const { return _aabbox; }
 private:
     jReal _radius;
     jReal _one_div_radius;

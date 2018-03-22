@@ -246,8 +246,8 @@ namespace jLib
 
     using jVec2f = jContainer::_jVec2f;
     //using jVec3f = jContainer::_jVec3f;
-    //using jVec3f = jContainer::jVec3<jfloat>;
-    using jVec3f = jContainer::jVec3d_SIMD;
+    using jVec3f = jContainer::jVec3<jfloat>;
+    //using jVec3f = jContainer::jVec3d_SIMD;
     using jVec4f = jContainer::_jVec4f;
     
 }

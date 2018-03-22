@@ -9,16 +9,16 @@
 
 namespace jRayTracing{
 
-class jKDNode
+J_ALIGN(16) class jKDNode
 {
 public:
-    std::shared_ptr<jKDNode> build(std::vector<std::shared_ptr<jTriangle>> &tris, int depth);
-    bool hit(const std::shared_ptr<jKDNode> &node, const jRay &ray, jReal &t, jReal &tmin, jVec3f &norm/*, jVec3f &color*/) const;
+    jKDNode* build(std::vector<jTriangle*> &tris, int depth);
+    bool hit(jKDNode* node, const jRay &ray, jReal &t, jReal &tmin, jVec3f &norm/*, jVec3f &color*/) const;
 
     jAABBox box;
-    std::shared_ptr<jKDNode> left;
-    std::shared_ptr<jKDNode> right;
-    std::vector<std::shared_ptr<jTriangle>> triangles;
+    jKDNode* left;
+    jKDNode* right;
+    std::vector<jTriangle*> triangles;
     bool leaf;
 };
 

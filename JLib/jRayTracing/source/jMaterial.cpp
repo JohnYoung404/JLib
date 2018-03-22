@@ -19,11 +19,11 @@ const jRay reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &
             jReal sin_theta_refr = sin_theta / refractRatio;
             jReal cos_theta_refr = std::sqrt(1 - sin_theta_refr * sin_theta_refr);
             jReal extent_ratio = cos_theta / (cos_theta_refr * refractRatio);
-            jVec3f Axis = input.Direction() - norm * cos_theta;
+            J_ALIGN(16) jVec3f Axis = input.Direction() - norm * cos_theta;
             Axis.x() = Axis.x() * extent_ratio;
             Axis.y() = Axis.y() * extent_ratio;
             Axis.z() = Axis.z() * extent_ratio;
-            jVec3f refractRay = Axis + norm * cos_theta;
+            J_ALIGN(16) jVec3f refractRay = Axis + norm * cos_theta;
             refractRay = jVec3f(
                 refractRay.x(), //+ (jMath::jRandom::jerand48(Xi) - 0.5)*roughness,
                 refractRay.y(), //+ (jMath::jRandom::jerand48(Xi) - 0.5)*roughness,
@@ -43,7 +43,7 @@ const jRay reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &
             {
                 jReal cos_theta_refr = std::sqrt(1 - sin_theta_refr * sin_theta_refr);
                 jReal extent_ratio = refractRatio * cos_theta / cos_theta_refr;
-                jVec3f Axis = input.Direction() - norm * cos_theta;
+                J_ALIGN(16) jVec3f Axis = input.Direction() - norm * cos_theta;
                 Axis.x() = Axis.x() * extent_ratio;
                 Axis.y() = Axis.y() * extent_ratio;
                 Axis.z() = Axis.z() * extent_ratio;
@@ -70,9 +70,9 @@ const jRay reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &
         jReal roughness = 0;//jReal(0.8);
         jVec3f reflected = input.Direction() - norm * jReal(2) * norm.dot(input.Direction());
         reflected = jVec3f(
-            reflected.x() + (jerand48(Xi) - 0.5)*roughness,
-            reflected.y() + (jerand48(Xi) - 0.5)*roughness,
-            reflected.z() + (jerand48(Xi) - 0.5)*roughness
+            reflected.x() + (jerand48(Xi) - 0.5f)*roughness,
+            reflected.y() + (jerand48(Xi) - 0.5f)*roughness,
+            reflected.z() + (jerand48(Xi) - 0.5f)*roughness
         ).normalize_org();
 
         return jRay(hitPos, reflected);

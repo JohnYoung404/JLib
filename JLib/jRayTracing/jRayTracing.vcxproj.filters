@@ -51,6 +51,9 @@
     <ClCompile Include="source\jShpere.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="source\jVec3f_SIMD.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\jfloat.h">

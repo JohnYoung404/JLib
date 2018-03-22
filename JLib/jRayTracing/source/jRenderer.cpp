@@ -4,7 +4,7 @@
 
 namespace jRayTracing{
 
-jRenderer::jRenderer(std::shared_ptr<jScene> scenePtr, std::shared_ptr<jCamera> cameraPtr) : _scene(scenePtr), _camera(cameraPtr)
+jRenderer::jRenderer(jScene* scenePtr, jCamera* cameraPtr) : _scene(scenePtr), _camera(cameraPtr)
 {
     _pixel_buffer.resize(_camera->get_width() * _camera->get_height());
 }
@@ -27,7 +27,7 @@ void jRenderer::render(int samples /* = 4 */)
             samples, (double)y / height * 100);                   // progress
 
         for (int x = 0; x < width; x++) {
-            jVec3f col = jVec3f::zero();
+            J_ALIGN(16) jVec3f col = jVec3f::zero();
 
             for (int a = 0; a < samples; a++) {
                 jRay ray = _camera->get_ray(x, y, a > 0, Xi);

@@ -13,6 +13,8 @@ namespace jRayTracing
 
 J_ALIGN(16) struct jVec3f_SIMD
 {
+private:
+    J_ALIGN(16) const static jVec3f_SIMD _zero;
 public:
     float _VEC[4];
 
@@ -30,7 +32,7 @@ public:
     J_FORCE_INLINE float& z() { return _VEC[2]; }
 
 public:
-    J_FORCE_INLINE static jVec3f_SIMD zero() { return jVec3f_SIMD(0, 0, 0); }
+    J_FORCE_INLINE static const jVec3f_SIMD& zero() { return _zero; }
 
 public:
     jVec3f_SIMD operator-() const;
@@ -70,6 +72,7 @@ public:
         return V.operator*(Scale);
     }
 };
+
 
 
 //////////////////////////////////////////////////////////////////////////

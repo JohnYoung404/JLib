@@ -2,14 +2,16 @@
 
 namespace jRayTracing{
 
-std::shared_ptr<jKDNode> jKDNode::build(std::vector<std::shared_ptr<jTriangle>> &tris, int depth)
+jKDNode* jKDNode::build(std::vector<jTriangle*> &tris, int depth)
 {
-    auto node = std::make_shared<jKDNode>();
+    jKDNode* aligned_buffer = (jKDNode*)_aligned_malloc(sizeof(jKDNode), 16);
+    auto node = new (aligned_buffer) jKDNode();
     node->leaf = false;
-    node->triangles = std::vector<std::shared_ptr<jTriangle>>();
+    node->triangles = std::vector<jTriangle*>();
     node->left = nullptr;
     node->right = nullptr;
-    node->box = jAABBox();
+    jVec3f_SIMD _zero = jVec3f_SIMD{0, 0, 0};
+    node->box = jAABBox(_zero, _zero);
 
     if (tris.size() == 0) return node;
 
@@ -21,11 +23,12 @@ std::shared_ptr<jKDNode> jKDNode::build(std::vector<std::shared_ptr<jTriangle>> 
         for (size_t i = 1; i < tris.size(); i++) {
             node->box.expand(tris[i]->get_bounding_box());
         }
-
-        node->left = std::make_shared<jKDNode>();
-        node->right = std::make_shared<jKDNode>();
-        node->left->triangles = std::vector<std::shared_ptr<jTriangle>>();
-        node->right->triangles = std::vector<std::shared_ptr<jTriangle>>();
+        aligned_buffer = (jKDNode*)_aligned_malloc(sizeof(jKDNode), 16);
+        node->left = new (aligned_buffer) jKDNode();
+        aligned_buffer = (jKDNode*)_aligned_malloc(sizeof(jKDNode), 16);
+        node->right = new (aligned_buffer) jKDNode();
+        node->left->triangles = std::vector<jTriangle*>();
+        node->right->triangles = std::vector<jTriangle*>();
 
         return node;
     }
@@ -39,8 +42,8 @@ std::shared_ptr<jKDNode> jKDNode::build(std::vector<std::shared_ptr<jTriangle>> 
         midpt = midpt + (tris[i]->get_midpoint() * tris_recp);
     }
 
-    std::vector<std::shared_ptr<jTriangle>> left_tris;
-    std::vector<std::shared_ptr<jTriangle>> right_tris;
+    std::vector<jTriangle*> left_tris;
+    std::vector<jTriangle*> right_tris;
     int axis = node->box.get_longest_axis();
 
     for (size_t i = 0; i < tris.size(); i++) {
@@ -65,11 +68,13 @@ std::shared_ptr<jKDNode> jKDNode::build(std::vector<std::shared_ptr<jTriangle>> 
         for (size_t i = 1; i < tris.size(); i++) {
             node->box.expand(tris[i]->get_bounding_box());
         }
-
-        node->left = std::make_shared<jKDNode>();
-        node->right = std::make_shared<jKDNode>();
-        node->left->triangles = std::vector<std::shared_ptr<jTriangle>>();
-        node->right->triangles = std::vector<std::shared_ptr<jTriangle>>();
+        
+        aligned_buffer = (jKDNode*)_aligned_malloc(sizeof(jKDNode), 16);
+        node->left = new (aligned_buffer) jKDNode();
+        aligned_buffer = (jKDNode*)_aligned_malloc(sizeof(jKDNode), 16);
+        node->right = new (aligned_buffer) jKDNode();
+        node->left->triangles = std::vector<jTriangle*>();
+        node->right->triangles = std::vector<jTriangle*>();
 
         return node;
     }
@@ -80,7 +85,7 @@ std::shared_ptr<jKDNode> jKDNode::build(std::vector<std::shared_ptr<jTriangle>> 
     return node;
 }
 
-bool jKDNode::hit(const std::shared_ptr<jKDNode> &node, const jRay &ray, jReal &t, jReal &tmin, jVec3f &norm/*, jVec3f &color*/) const
+bool jKDNode::hit(jKDNode* node, const jRay &ray, jReal &t, jReal &tmin, jVec3f &norm/*, jVec3f &color*/) const
 {
     jReal dist;
     if (node->box.intersection(ray, dist)) {

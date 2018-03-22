@@ -5,7 +5,9 @@
 // Date : [3/20/2018]
 // Description : A wrapper for erand.
 
+#include "jCommon.h"
+
 namespace jRayTracing
 {
-    extern double jerand48(unsigned short(&xseed)[3]);
+    extern jReal jerand48(unsigned short(&xseed)[3]);
 }

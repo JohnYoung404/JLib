@@ -20,10 +20,10 @@ enum class matType
 
 extern const jRay reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &norm, unsigned short(&Xi)[3], matType type);
 
-class jIMaterial
+J_ALIGN(16) class jIMaterial
 {
 public:
-    jIMaterial(const jVec3f &color, const jVec3f &emission, const matType &type) : _color(color), _emission(emission), _type(type) {}
+    jIMaterial(const jVec3f &color, const jVec3f &emission, matType type) : _color(color), _emission(emission), _type(type) {}
     virtual ~jIMaterial() {}
 
     J_FORCE_INLINE const jVec3f& get_emission() const { return _emission; }
@@ -39,25 +39,25 @@ protected:
     matType _type;
 };
 
-class jDiffuseMaterial : public jIMaterial
+J_ALIGN(16) class jDiffuseMaterial : public jIMaterial
 {
 public:
     jDiffuseMaterial(const jVec3f &diffuse_color) : jIMaterial(diffuse_color, jVec3f::zero(), matType::DIFF) {}
 };
 
-class jSpecularMaterial : public jIMaterial
+J_ALIGN(16) class jSpecularMaterial : public jIMaterial
 {
 public:
     jSpecularMaterial(const jVec3f &specular_color) : jIMaterial(specular_color, jVec3f::zero(), matType::SPEC) {}
 };
 
-class jRefractMaterial : public jIMaterial
+J_ALIGN(16) class jRefractMaterial : public jIMaterial
 {
 public:
     jRefractMaterial(const jVec3f &refract_color) : jIMaterial(refract_color, jVec3f::zero(), matType::REFR) {}
 };
 
-class jEmitMaterial : public jIMaterial
+J_ALIGN(16) class jEmitMaterial : public jIMaterial
 {
 public:
     jEmitMaterial(const jVec3f &color, const jVec3f &emission) : jIMaterial(color, emission, matType::EMIT) {}
