@@ -54,15 +54,15 @@
     <ClCompile Include="source\jVec3f_SIMD.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="source\jVec3f_fpu.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\jfloat.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="include\jdef.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\jVec3.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="include\jDirectXMath.h">
@@ -126,6 +126,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="extern\UnrealMath\UnrealMathDirectX.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\jVec3f_fpu.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

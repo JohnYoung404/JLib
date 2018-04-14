@@ -144,6 +144,7 @@
     <ClCompile Include="source\jRenderer.cpp" />
     <ClCompile Include="source\jScene.cpp" />
     <ClCompile Include="source\jShpere.cpp" />
+    <ClCompile Include="source\jVec3f_fpu.cpp" />
     <ClCompile Include="source\jVec3f_SIMD.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
@@ -169,7 +170,7 @@
     <ClInclude Include="include\jSceneObj.h" />
     <ClInclude Include="include\jSphere.h" />
     <ClInclude Include="include\jTriangle.h" />
-    <ClInclude Include="include\jVec3.h" />
+    <ClInclude Include="include\jVec3f_fpu.h" />
     <ClInclude Include="include\jDirectXMath.h" />
     <ClInclude Include="include\jVec3f_SIMD.h" />
   </ItemGroup>

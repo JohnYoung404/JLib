@@ -10,7 +10,7 @@ jKDNode* jKDNode::build(std::vector<jTriangle*> &tris, int depth)
     node->triangles = std::vector<jTriangle*>();
     node->left = nullptr;
     node->right = nullptr;
-    jVec3f_SIMD _zero = jVec3f_SIMD{0, 0, 0};
+    jVec3f _zero = jVec3f{0, 0, 0};
     node->box = jAABBox(_zero, _zero);
 
     if (tris.size() == 0) return node;
@@ -34,7 +34,7 @@ jKDNode* jKDNode::build(std::vector<jTriangle*> &tris, int depth)
     }
 
     node->box = tris[0]->get_bounding_box();
-    jVec3f midpt = jVec3f::zero();
+    jVec3f midpt = jVec3f(0, 0, 0);
     jReal tris_recp = jReal(1) / tris.size();
 
     for (size_t i = 1; i < tris.size(); i++) {

@@ -17,7 +17,8 @@ namespace jRayTracing
 J_ALIGN(16) class jAABBox
 {
 public:
-    jAABBox(const jVec3f &bl_ = jVec3f::zero(), const jVec3f &tr_ = jVec3f::zero()) : bl(bl_), tr(tr_) {}
+    jAABBox() {}
+    jAABBox(const jVec3f &bl_, const jVec3f &tr_) : bl(bl_), tr(tr_) {}
 
     // Expand to fit box
     void expand(const jAABBox &box) {

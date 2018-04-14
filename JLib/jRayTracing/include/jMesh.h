@@ -8,7 +8,7 @@
 
 namespace jRayTracing{
 
-J_ALIGN(16) class jMesh : public jSceneObj
+class jMesh : public jSceneObj
 {
 public:
     jMesh(const jVec3f &pos, const char* file_path, jIMaterial* material);

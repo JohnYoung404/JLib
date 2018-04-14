@@ -79,9 +79,9 @@ const jRay reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &
     }
     if (type == matType::EMIT)
     {
-        return jRay(jVec3f::zero(), jVec3f::zero());
+        return jRay(jVec3f(0, 0, 0), jVec3f(0, 0, 0));
     }
-    return jRay(jVec3f(1, 1, 1), jVec3f::zero());
+    return jRay(jVec3f(1, 1, 1), jVec3f(0, 0, 0));
 }
 
 }

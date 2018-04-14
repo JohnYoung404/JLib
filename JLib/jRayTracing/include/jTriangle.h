@@ -15,7 +15,7 @@ public:
     jIMaterial* materialPtr;       // Pointer to material
 
 
-    jTriangle(const jVec3f &v0_, const jVec3f &v1_, const jVec3f &v2_, const jVec3f &t0_ = jVec3f::zero(), const jVec3f &t1_ = jVec3f::zero(), const jVec3f &t2_ = jVec3f::zero(), jIMaterial* m_ = nullptr) {
+    jTriangle(const jVec3f &v0_, const jVec3f &v1_, const jVec3f &v2_, jVec3f t0_ = jVec3f(0, 0, 0), jVec3f t1_ = jVec3f(0, 0, 0), jVec3f t2_ = jVec3f(0, 0, 0), jIMaterial* m_ = nullptr) {
         v0 = v0_, v1 = v1_, v2 = v2_, e1 = v1 - v0, e2 = v2 - v0, n = e1.cross_cpy(e2).normalize_org();
         t0 = t0_, t1 = t1_, t2 = t2_;
         materialPtr = m_;
@@ -88,7 +88,7 @@ public:
         if (materialPtr == nullptr) return jVec3f(1, 0, 1);
 
         jVec3f b = barycentric(p);
-        jVec3f c = jVec3f::zero();
+        jVec3f c = jVec3f(0, 0, 0);
         c = c + (t0 * b.x());
         c = c + (t1 * b.y());
         c = c + (t2 * b.z());

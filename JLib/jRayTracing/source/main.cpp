@@ -35,7 +35,7 @@ int main(int argc, char** argv)
     sceneInstance.add(&sphere_3);
     sceneInstance.add(&sphere_4);
     sceneInstance.add(&sphere_5);
-    //sceneInstance.add(&mesh_1);
+    sceneInstance.add(&mesh_1);
 
     //sceneInstance.add(std::make_shared<jMesh>(jVec3f::zero(), "../models/dragon2.obj", std::make_shared<jDiffuseMaterial>(jVec3f(0.9, 0.9, 0.9))));//(jVec3f(0.93, 0.78, 0.06))));
 

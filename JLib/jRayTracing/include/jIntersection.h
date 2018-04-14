@@ -16,11 +16,11 @@ class jRayObjectItersection
 public:
     jRayObjectItersection
     (
-        const bool &ihit = false
+        bool ihit = false
         , jReal idist = std::numeric_limits<jReal>::max()
-        , const jVec3f &inorm = jVec3f::zero()
-        , const jVec3f &icolor = jVec3f::zero()
-        , const jVec3f &iemission = jVec3f::zero()
+        , jVec3f inorm = jVec3f(0, 0, 0)
+        , jVec3f icolor = jVec3f(0, 0, 0)
+        , jVec3f iemission = jVec3f(0, 0, 0)
         , matType itype = matType::DIFF
     ) : _hit(ihit), _dist(idist), _norm(inorm), _color(icolor), _emission(iemission), _type(itype) {}
     J_FORCE_INLINE const bool& hit() const { return _hit; }

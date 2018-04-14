@@ -7,6 +7,7 @@
 
 #include "jCommon.h"
 #include <array>
+#include "jVec3f_fpu.h"
 
 namespace jRayTracing
 {
@@ -15,6 +16,7 @@ J_ALIGN(16) struct jVec3f_SIMD
 {
 private:
     J_ALIGN(16) const static jVec3f_SIMD _zero;
+
 public:
     float _VEC[4];
 
