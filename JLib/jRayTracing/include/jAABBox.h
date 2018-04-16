@@ -63,7 +63,7 @@ public:
         unsigned char code_y = offset_y_tr < 0 ? 01 : offset_y_bl > 0 ? 10 : 00;
         unsigned char code_z = offset_z_tr < 0 ? 01 : offset_z_bl > 0 ? 10 : 00;
 
-		//使用区域码减少求交
+		//use area code to reduce intersection-calculation.
         if ((code_x || code_y || code_z) && (code_x == r.code_x || code_y == r.code_y || code_z == r.code_z)) return false;
 
         jReal tx1 = (offset_x_bl)*r.InvDirection().x();

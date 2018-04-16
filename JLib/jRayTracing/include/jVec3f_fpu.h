@@ -3,7 +3,7 @@
 // Author : John Young
 // Contact : JohnYoung404@outlook.com
 // Date : [3/17/2018]
-// Description : Vector contains 3 elements.
+// Description : Float-precision vector contains 3 elements.
 
 #include <array>
 #include "jCommon.h"

@@ -1,5 +1,10 @@
 #pragma once
 
+// Author : John Young
+// Contact : JohnYoung404@outlook.com
+// Date : [4/16/2018]
+// Description : KD-tree to accelerate intersection.
+
 #include "jCommon.h"
 #include <vector>
 #include "jRay.h"

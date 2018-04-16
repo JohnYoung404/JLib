@@ -3,7 +3,7 @@
 // Author : John Young
 // Contact : JohnYoung404@outlook.com
 // Date : [3/17/2018]
-// Description : definitions/declarations for some commonly standard declaration.
+// Description : definitions/declarations for cross-platform purpose.
 
 #define ENABLE_ALIGNMENT false
 

@@ -1,4 +1,10 @@
 #pragma once
+
+// Author : John Young
+// Contact : JohnYoung404@outlook.com
+// Date : [4/16/2018]
+// Description : smallest part of mesh object we can render.
+
 #include <memory>
 #include "jAABBox.h"
 #include "jMaterial.h"

@@ -1,4 +1,10 @@
 #pragma once
+
+// Author : John Young
+// Contact : JohnYoung404@outlook.com
+// Date : [4/16/2018]
+// Description : Inherited from SceneObj, a kind of Renderable Object.
+
 #include <memory>
 #include "jSceneObj.h"
 #include "jMaterial.h"

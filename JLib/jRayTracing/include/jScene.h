@@ -1,4 +1,10 @@
 #pragma once
+
+// Author : John Young
+// Contact : JohnYoung404@outlook.com
+// Date : [4/16/2018]
+// Description : A scene contains all sceneObjs that need to be rendered.
+
 #include <memory>
 #include <vector>
 #include "jSceneObj.h"

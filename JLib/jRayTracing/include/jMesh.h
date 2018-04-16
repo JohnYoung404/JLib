@@ -1,4 +1,10 @@
 #pragma once
+
+// Author : John Young
+// Contact : JohnYoung404@outlook.com
+// Date : [4/16/2018]
+// Description : Mesh Object inherited from jSceneObj, represented by a group of triangles.
+
 #include "jCommon.h"
 #include "jSceneObj.h"
 #include "jMaterial.h"
