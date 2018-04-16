@@ -121,7 +121,7 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
-      <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <OpenMPSupport>true</OpenMPSupport>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -144,7 +144,6 @@
     <ClCompile Include="source\jRenderer.cpp" />
     <ClCompile Include="source\jScene.cpp" />
     <ClCompile Include="source\jShpere.cpp" />
-    <ClCompile Include="source\jVec3f_fpu.cpp" />
     <ClCompile Include="source\jVec3f_SIMD.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>

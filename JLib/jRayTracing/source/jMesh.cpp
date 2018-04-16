@@ -26,7 +26,7 @@ jMesh::jMesh(const jVec3f &pos, const char* file_path, jIMaterial* material) : j
 
     // Load materials/textures from obj
     // TODO: Only texture is loaded at the moment, need to implement material types and colours
-    for (auto i = 0; i < materials_size; i++) {
+    for (size_t i = 0; i < materials_size; i++) {
         std::string texture_path = "";
 
         if (!_materials[i].diffuse_texname.empty()) {
@@ -41,7 +41,7 @@ jMesh::jMesh(const jVec3f &pos, const char* file_path, jIMaterial* material) : j
     }
 
     // Load triangles from obj
-    for (auto i = 0; i < shapes_size; i++) {
+    for (size_t i = 0; i < shapes_size; i++) {
         indices_size = _shapes[i].mesh.indices.size() / 3;
         for (size_t f = 0; f < indices_size; f++) {
 

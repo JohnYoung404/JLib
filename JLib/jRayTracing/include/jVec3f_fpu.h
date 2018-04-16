@@ -14,13 +14,17 @@ namespace jRayTracing
 class jVec3f_fpu
 {
 public:
-    const static jVec3f_fpu _zero;
-public:
     std::array<float, 3> _arr;
     
 public:
-    constexpr explicit jVec3f_fpu(float InX = 0.0f, float InY = 0.0f, float InZ = 0.0f) : _arr{ InX, InY, InZ } {}
-    J_FORCE_INLINE static const jVec3f_fpu& zero() { return _zero; }
+    constexpr explicit jVec3f_fpu(float InX = 0.0f, float InY = 0.0f, float InZ = 0.0f) : _arr{ InX, InY, InZ } { }
+	constexpr jVec3f_fpu(const jVec3f_fpu &rhs) noexcept : _arr(rhs._arr) { }
+	constexpr jVec3f_fpu(jVec3f_fpu && rhs) noexcept : _arr(std::move(rhs._arr)) { }
+	jVec3f_fpu& operator=(const jVec3f_fpu &rhs) { _arr = rhs._arr; return *this; }
+	jVec3f_fpu& operator=(jVec3f_fpu &&rhs) { _arr = std::move(rhs._arr); return *this; }
+
+public:
+    J_FORCE_INLINE static constexpr jVec3f_fpu zero() { return jVec3f_fpu(); }
 
 public:
     J_FORCE_INLINE float& operator[](int ComponentIndex) { return _arr[ComponentIndex]; }

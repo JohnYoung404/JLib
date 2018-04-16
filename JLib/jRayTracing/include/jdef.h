@@ -5,11 +5,19 @@
 // Date : [3/17/2018]
 // Description : definitions/declarations for some commonly standard declaration.
 
+#define ENABLE_ALIGNMENT false
+
 #if defined(__INTEL_COMPILER) || defined(__ICL)
 #include <cstddef>
 #define J_RESTRICT              __restrict
 #define J_FORCE_INLINE          __forceinline
+
+#if ENABLE_ALIGNMENT
 #define J_ALIGN(a)              __declspec(align(a))
+#else
+#define J_ALIGN(a)
+#endif
+
 #define J_DLLIMPORT             __declspec(dllimport)
 #define J_DLLEXPORT             __declspec(dllexport)
 #define J_DECLARE_C             __cdecl
@@ -18,7 +26,13 @@
 #include <cstddef>
 #define J_RESTRICT              __restrict
 #define J_FORCE_INLINE          __forceinline
+
+#if ENABLE_ALIGNMENT
 #define J_ALIGN(a)              __declspec(align(a))
+#else
+#define J_ALIGN(a)
+#endif
+
 #define J_DLLIMPORT             __declspec(dllimport)
 #define J_DLLEXPORT             __declspec(dllexport)
 #define J_DECLARE_C             __cdecl
@@ -39,7 +53,12 @@
 #endif
 #endif
 
+#if ENABLE_ALIGNMENT
 #define J_ALIGN(a)          __attribute__ ((aligned(a)))
+#else
+#define J_ALIGN(a)
+#endif
+
 #endif
 
 #ifndef J_RESTRICT

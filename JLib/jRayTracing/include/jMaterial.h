@@ -24,7 +24,7 @@ class jIMaterial
 {
 public:
     jIMaterial(jVec3f color, jVec3f emission, matType type) : _color(color), _emission(emission), _type(type) {}
-    virtual ~jIMaterial() {}
+    //virtual ~jIMaterial() {}
 
     J_FORCE_INLINE const jVec3f& get_emission() const { return _emission; }
     J_FORCE_INLINE const jVec3f& get_color() const { return _color; }

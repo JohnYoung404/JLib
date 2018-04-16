@@ -46,25 +46,6 @@ public:
         return 2;
     }
 
-    bool test_area_code(const jRay &r) const
-    {
-        const jVec3f &orig = r.Origin();
-
-        jReal offset_x_tr = tr.x() - orig.x();
-        jReal offset_x_bl = bl.x() - orig.x();
-        jReal offset_y_tr = tr.y() - orig.y();
-        jReal offset_y_bl = bl.y() - orig.y();
-        jReal offset_z_tr = tr.z() - orig.z();
-        jReal offset_z_bl = bl.z() - orig.z();
-
-        unsigned char code_x = offset_x_tr < 0 ? 01 : offset_x_bl > 0 ? 10 : 00;
-        unsigned char code_y = offset_y_tr < 0 ? 01 : offset_y_bl > 0 ? 10 : 00;
-        unsigned char code_z = offset_z_tr < 0 ? 01 : offset_z_bl > 0 ? 10 : 00;
-
-        if ((code_x || code_y || code_z) && (code_x == r.code_x || code_y == r.code_y || code_z == r.code_z)) return false;
-        return true;
-    }
-
     // Check if ray intersects with box. Returns true/false and stores distance in t
     bool intersection(const jRay &r, jReal &t) const
     {
@@ -82,6 +63,7 @@ public:
         unsigned char code_y = offset_y_tr < 0 ? 01 : offset_y_bl > 0 ? 10 : 00;
         unsigned char code_z = offset_z_tr < 0 ? 01 : offset_z_bl > 0 ? 10 : 00;
 
+		//使用区域码减少求交
         if ((code_x || code_y || code_z) && (code_x == r.code_x || code_y == r.code_y || code_z == r.code_z)) return false;
 
         jReal tx1 = (offset_x_bl)*r.InvDirection().x();
@@ -93,9 +75,9 @@ public:
         jReal tz1 = (offset_z_bl)*r.InvDirection().z();
         jReal tz2 = (offset_z_tr)*r.InvDirection().z();
 
-        auto &minmax_x = std::minmax(tx1, tx2);
-        auto &minmax_y = std::minmax(ty1, ty2);
-        auto &minmax_z = std::minmax(tz1, tz2);
+        const auto &minmax_x = std::minmax(tx1, tx2);
+        const auto &minmax_y = std::minmax(ty1, ty2);
+        const auto &minmax_z = std::minmax(tz1, tz2);
 
         jReal tmin = minmax_x.first > minmax_y.first && minmax_x.first > minmax_z.first ? minmax_x.first : minmax_y.first > minmax_z.first ? minmax_y.first : minmax_z.first;
         jReal tmax = minmax_x.second < minmax_y.second && minmax_x.second < minmax_z.second ? minmax_x.second : minmax_y.second < minmax_z.second ? minmax_y.second : minmax_z.second;
