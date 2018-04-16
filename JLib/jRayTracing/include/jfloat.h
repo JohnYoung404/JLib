@@ -8,6 +8,8 @@
 #include <limits>
 #include "jdef.h"
 
+#define J_DBL_PRECISION
+
 namespace jRayTracing
 {
 

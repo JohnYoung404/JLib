@@ -169,6 +169,7 @@
     <ClInclude Include="include\jSceneObj.h" />
     <ClInclude Include="include\jSphere.h" />
     <ClInclude Include="include\jTriangle.h" />
+    <ClInclude Include="include\jVec3d_fpu.h" />
     <ClInclude Include="include\jVec3f_fpu.h" />
     <ClInclude Include="include\jDirectXMath.h" />
     <ClInclude Include="include\jVec3f_SIMD.h" />

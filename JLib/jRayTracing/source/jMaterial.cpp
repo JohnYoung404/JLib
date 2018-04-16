@@ -62,7 +62,7 @@ const jRay reflected_ray(const jRay &input, const jVec3f &hitPos, const jVec3f &
         jVec3f nl = norm.dot(input.Direction()) < 0 ? norm : norm * jReal(-1);
         jReal r1 = jReal(2 * M_PI * jerand48(Xi)), r2 = jerand48(Xi), r2s = std::sqrt(r2);
         jVec3f w = nl, u = (fabs(w.x()) > jReal(0.1) ? jVec3f(0, 1) : jVec3f(1)).cross_org(w).normalize_org(), v = w.cross_cpy(u);
-        jVec3f d = (u * jReal(cos(r1)*r2s) + v * jReal(sin(r1)*r2s) + w * jReal(std::sqrt(1 - r2))).normalize_org();
+        jVec3f d = ((u.scalar_mul_org(jReal(cos(r1)*r2s))).add_org(v .scalar_mul_org(jReal(sin(r1)*r2s))).add_org(w.scalar_mul_org((std::sqrt(1 - r2))))).normalize_org();
         return jRay(hitPos, d);
     }
     if (type == matType::SPEC)

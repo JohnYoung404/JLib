@@ -128,5 +128,8 @@
     <ClInclude Include="include\jVec3f_fpu.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="include\jVec3d_fpu.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

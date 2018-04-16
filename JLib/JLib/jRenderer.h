@@ -44,7 +44,7 @@ JTEST_BEGIN(jRendererTest)
     scenePtr->add(std::make_shared<jSphere>(jVec3f(0, 1006, 0), jfloat(1000), std::make_shared<jDiffuseMaterial>(jVec3f(1, 1, 1))));
 
     scenePtr->add(std::make_shared<jSphere>(jVec3f(0, 0, 110), jfloat(100), std::make_shared<jEmitMaterial>(jVec3f(1, 1, 1), jVec3f(2.2, 2.2, 2.2))));
-    //scenePtr->add(std::make_shared<jMesh>(jVec3f::zero(), "../models/dragon2.obj", std::make_shared<jDiffuseMaterial>(jVec3f(0.9, 0.9, 0.9))));//(jVec3f(0.93, 0.78, 0.06))));
+    scenePtr->add(std::make_shared<jMesh>(jVec3f::zero(), "../models/dragon2.obj", std::make_shared<jDiffuseMaterial>(jVec3f(0.9, 0.9, 0.9))));//(jVec3f(0.93, 0.78, 0.06))));
 
     jRenderer renderer = jRenderer(scenePtr, cameraPtr);  // Create renderer with our scene and camera
     renderer.render(samples);                       // Render image to pixel buffer

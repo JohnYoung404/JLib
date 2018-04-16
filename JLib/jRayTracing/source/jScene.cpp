@@ -46,12 +46,12 @@ jVec3f jScene::trace_ray(const jRay &ray, int depth, unsigned short(&Xi)[3])
         }
     }
 
-    jVec3f x = ray.Origin() + ray.Direction() * isct.dist();
+    jVec3f x = (ray.Direction() * isct.dist()).add_org(ray.Origin());
     if (isct.get_type() == matType::REFR && depth < 3)
     {
         jRay reflected = reflected_ray(ray, x, isct.norm(), Xi, matType::SPEC);
         jRay refrected = reflected_ray(ray, x, isct.norm(), Xi, matType::REFR);
-        return colour.cwise_mult_cpy(trace_ray(reflected, depth, Xi)*0.1) + colour.cwise_mult_cpy(trace_ray(refrected, depth, Xi)*0.9);
+        return colour.cwise_mult_cpy(trace_ray(reflected, depth, Xi)*0.1).add_org(colour.cwise_mult_cpy(trace_ray(refrected, depth, Xi)*0.9));
     }
     jRay reflected = reflected_ray(ray, x, isct.norm(), Xi, isct.get_type());
     //jRay reflected = isct.materialPtr()->get_reflected_ray(ray, x, isct.norm(), Xi);
