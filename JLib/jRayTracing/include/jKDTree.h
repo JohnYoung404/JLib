@@ -8,7 +8,6 @@
 #include "jCommon.h"
 #include <vector>
 #include "jRay.h"
-#include "jVec3f_SIMD.h"
 #include "jAABBox.h"
 #include "jTriangle.h"
 

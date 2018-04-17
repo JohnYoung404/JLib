@@ -9,7 +9,6 @@
 #include <algorithm>
 #include "jCommon.h"
 #include "jRay.h"
-#include "jVec3f_SIMD.h"
 
 namespace jRayTracing
 {

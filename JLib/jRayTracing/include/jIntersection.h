@@ -6,7 +6,6 @@
 // Description : Interaction of Ray and Scene Object.
 
 #include "jCommon.h"
-#include "jVec3f_SIMD.h"
 #include "jMaterial.h"
 
 namespace jRayTracing{

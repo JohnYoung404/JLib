@@ -10,6 +10,8 @@
 #include "jVec3f_fpu.h"
 #include "jVec3f_SIMD.h"
 
+// note : jVec3f_SIMD is not available yet. Its slow so need some extra work.
+
 namespace jRayTracing
 {
 	using  jVec3f = jVec3d_fpu_heapAlloc;
