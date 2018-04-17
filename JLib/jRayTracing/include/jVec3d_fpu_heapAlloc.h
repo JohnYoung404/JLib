@@ -23,14 +23,16 @@ public:
 public:
 	explicit jVec3d_fpu_heapAlloc(double InX = 0.0f, double InY = 0.0f, double InZ = 0.0f)
 	{ 
-		_arr = (double*)spl::malloc();
+		//_arr = (double*)spl::malloc();
+		_arr = (double*)malloc(3 * sizeof(double));
 		_arr[0] = InX;
 		_arr[1] = InY;
 		_arr[2] = InZ;
 	}
 	jVec3d_fpu_heapAlloc(const jVec3d_fpu_heapAlloc &rhs) noexcept
 	{
-		_arr = (double*)spl::malloc();
+		//_arr = (double*)spl::malloc();
+		_arr = (double*)malloc(3 * sizeof(double));
 		std::memcpy(_arr, rhs._arr, 3 * sizeof(double));
 	}
 	jVec3d_fpu_heapAlloc(jVec3d_fpu_heapAlloc && rhs) noexcept
@@ -59,7 +61,8 @@ public:
 	{
 		if (_arr != nullptr)
 		{
-			spl::free(_arr);
+			//spl::free(_arr);
+			free(_arr);
 		}
 	}
 
