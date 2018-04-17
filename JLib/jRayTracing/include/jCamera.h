@@ -8,7 +8,7 @@
 #include <vector>
 #include "jCommon.h"
 #include "jRay.h"
-#include "jVec3f_SIMD.h"
+#include "jVec3.h"
 
 namespace jRayTracing{
 

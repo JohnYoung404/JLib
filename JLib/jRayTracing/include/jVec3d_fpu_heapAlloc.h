@@ -3,7 +3,7 @@
 // Author : John Young
 // Contact : JohnYoung404@outlook.com
 // Date : [3/17/2018]
-// Description : Double-precision vector contains 3 elements.
+// Description : Double-precision vector contains 3 elements, alloc on heap.
 
 #include <array>
 #include "jCommon.h"

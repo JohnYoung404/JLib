@@ -6,7 +6,7 @@
 // Description : base class of scene objects.
 
 #include "jCommon.h"
-#include "jVec3f_SIMD.h"
+#include "jVec3.h"
 #include "jIntersection.h"
 
 namespace jRayTracing

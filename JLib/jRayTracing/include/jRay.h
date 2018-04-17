@@ -7,7 +7,7 @@
 
 #include <memory>
 #include "jCommon.h"
-#include "jVec3f_SIMD.h"
+#include "jVec3.h"
 
 namespace jRayTracing
 {
