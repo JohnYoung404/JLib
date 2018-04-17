@@ -24,8 +24,6 @@ void jRenderer::render(int samples /* = 4 */)
         unsigned short Xi[3] = { 0,0,y*y*y };               // Stores seed for erand48
 #pragma warning( pop ) 
 
-		//printf("id=%d y=%d\n", omp_get_thread_num(), y);
-
         fprintf(stderr, "\rRendering (%i samples): %.2f%% ",      // Prints
             samples, (double)y / height * 100);                   // progress
 

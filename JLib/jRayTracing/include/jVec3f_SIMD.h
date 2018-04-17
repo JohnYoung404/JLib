@@ -295,6 +295,6 @@ J_FORCE_INLINE float jVec3f_SIMD::dot(const jVec3f_SIMD& V) const
 // type definitions.
 //////////////////////////////////////////////////////////////////////////
 
-using jVec3f = jVec3d_fpu_heapAlloc;
+using jVec3f = jVec3d_fpu;
 
 }

@@ -9,11 +9,15 @@
 #include "jCommon.h"
 #include <boost/pool/singleton_pool.hpp>
 #include <iostream>
+#include <omp.h>
+
 namespace jRayTracing
 {
 
 struct pool_tag {};
 using spl = boost::singleton_pool<pool_tag, sizeof(double) * 3>;	// as slow as hell, because of lock.
+
+extern thread_local boost::pool<> vecPool;
 
 class jVec3d_fpu_heapAlloc
 {
@@ -24,7 +28,8 @@ public:
 	explicit jVec3d_fpu_heapAlloc(double InX = 0.0f, double InY = 0.0f, double InZ = 0.0f)
 	{ 
 		//_arr = (double*)spl::malloc();
-		_arr = (double*)malloc(3 * sizeof(double));
+		//_arr = (double*)malloc(3 * sizeof(double));
+		_arr = (double*)vecPool.malloc();
 		_arr[0] = InX;
 		_arr[1] = InY;
 		_arr[2] = InZ;
@@ -32,7 +37,8 @@ public:
 	jVec3d_fpu_heapAlloc(const jVec3d_fpu_heapAlloc &rhs) noexcept
 	{
 		//_arr = (double*)spl::malloc();
-		_arr = (double*)malloc(3 * sizeof(double));
+		//_arr = (double*)malloc(3 * sizeof(double));
+		_arr = (double*)vecPool.malloc();
 		std::memcpy(_arr, rhs._arr, 3 * sizeof(double));
 	}
 	jVec3d_fpu_heapAlloc(jVec3d_fpu_heapAlloc && rhs) noexcept
@@ -62,7 +68,8 @@ public:
 		if (_arr != nullptr)
 		{
 			//spl::free(_arr);
-			free(_arr);
+			//free(_arr);
+			vecPool.free(_arr);
 		}
 	}
 

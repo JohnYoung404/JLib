@@ -162,6 +162,7 @@
     <ClCompile Include="source\jRenderer.cpp" />
     <ClCompile Include="source\jScene.cpp" />
     <ClCompile Include="source\jShpere.cpp" />
+    <ClCompile Include="source\jVec3d_fpu_heapAlloc.cpp" />
     <ClCompile Include="source\jVec3f_SIMD.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
