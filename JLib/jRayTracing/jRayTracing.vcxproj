@@ -87,7 +87,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>./include;D:\boost_1_65_1</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include;D:\boost_1_65_1;E:\librarys\boost_1_67_0</AdditionalIncludeDirectories>
       <AdditionalOptions>/std=c++11 %(AdditionalOptions)</AdditionalOptions>
       <OmitFramePointers>false</OmitFramePointers>
     </ClCompile>
@@ -130,7 +130,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>./include;D:\boost_1_65_1</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include;D:\boost_1_65_1;E:\librarys\boost_1_67_0</AdditionalIncludeDirectories>
       <AdditionalOptions>/std:c++14 %(AdditionalOptions)</AdditionalOptions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
