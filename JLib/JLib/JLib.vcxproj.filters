@@ -225,6 +225,12 @@
     <ClInclude Include="..\extern\UnrealMath\UnrealMathDirectX.h">
       <Filter>extern</Filter>
     </ClInclude>
+    <ClInclude Include="type_list.h">
+      <Filter>头文件\jMPL</Filter>
+    </ClInclude>
+    <ClInclude Include="function_parser.h">
+      <Filter>头文件\jMPL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

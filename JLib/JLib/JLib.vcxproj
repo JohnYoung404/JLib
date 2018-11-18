@@ -74,7 +74,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\Programming\boost_1_65_1\boost_1_65_1;D:\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Programming\boost_1_65_1\boost_1_65_1;D:\boost_1_65_1;D:\Library\boost_1_65_1</AdditionalIncludeDirectories>
       <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
@@ -86,7 +86,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\Programming\boost_1_65_1\boost_1_65_1;D:\boost_1_65_1;E:\librarys\boost_1_67_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Programming\boost_1_65_1\boost_1_65_1;D:\boost_1_65_1;D:\Library\boost_1_65_1</AdditionalIncludeDirectories>
       <AdditionalOptions>/std:c++14 %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <OpenMPSupport>true</OpenMPSupport>
@@ -106,7 +106,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\Programming\boost_1_65_1\boost_1_65_1;D:\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Programming\boost_1_65_1\boost_1_65_1;D:\boost_1_65_1;D:\Library\boost_1_65_1</AdditionalIncludeDirectories>
       <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
@@ -123,7 +123,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>D:\Programming\boost_1_65_1\boost_1_65_1;D:\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Programming\boost_1_65_1\boost_1_65_1;D:\boost_1_65_1;D:\Library\boost_1_65_1</AdditionalIncludeDirectories>
       <AdditionalOptions>/std:c++14 %(AdditionalOptions)</AdditionalOptions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
@@ -147,6 +147,7 @@
     <ClInclude Include="..\extern\rand48\erand48.h" />
     <ClInclude Include="..\extern\tiny_obj_loader\tiny_obj_loader.h" />
     <ClInclude Include="..\extern\UnrealMath\UnrealMathDirectX.h" />
+    <ClInclude Include="function_parser.h" />
     <ClInclude Include="jAABBox.h" />
     <ClInclude Include="jArrayMPL.h" />
     <ClInclude Include="jAssert.h" />
@@ -202,6 +203,7 @@
     <ClInclude Include="jVectorTraits.h" />
     <ClInclude Include="jVectorUtil.h" />
     <ClInclude Include="jMaterial.h" />
+    <ClInclude Include="type_list.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\extern\lodepng\lodepng.cpp" />
